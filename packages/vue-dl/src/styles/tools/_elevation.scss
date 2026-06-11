@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use '../settings';
+
+/** Applies a soft Vuesax shadow from the elevation scale (0–24). */
+@mixin elevation($level) {
+  box-shadow: map.get(settings.$vd-shadows, $level);
+}
+
+/** Resting shadow shorthand. */
+@mixin elevation-rest {
+  box-shadow: map.get(settings.$vd-shadows, 3);
+}

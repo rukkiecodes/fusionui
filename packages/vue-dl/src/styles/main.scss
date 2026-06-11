@@ -1,0 +1,142 @@
+@use 'sass:map';
+@use 'settings';
+@use 'tools';
+
+// Cascade layer order. Everything Vue DL ships is layered so unlayered consumer
+// styles always win. The theme runtime injects into vd-theme / vd-utilities.
+@layer vd-tokens, vd-theme, vd-base, vd-components, vd-utilities;
+
+// ---------------------------------------------------------------------------
+// Design tokens as CSS custom properties (overridable by consumers)
+// ---------------------------------------------------------------------------
+@layer vd-tokens {
+  :root {
+    --vd-radius-sm: #{settings.$vd-radius-sm};
+    --vd-radius-md: #{settings.$vd-radius-md};
+    --vd-radius-lg: #{settings.$vd-radius-lg};
+    --vd-radius-pill: #{settings.$vd-radius-pill};
+    --vd-radius-circle: #{settings.$vd-radius-circle};
+
+    --vd-transition-duration: #{settings.$vd-transition-duration};
+    --vd-transition-timing: #{settings.$vd-transition-timing};
+    --vd-transition: #{settings.$vd-transition};
+
+    --vd-font-family: #{settings.$vd-font-family};
+    --vd-font-weight-regular: #{settings.$vd-font-weight-regular};
+    --vd-font-weight-medium: #{settings.$vd-font-weight-medium};
+    --vd-font-weight-bold: #{settings.$vd-font-weight-bold};
+
+    --vd-spacer: #{settings.$vd-spacer};
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Base / reset
+// ---------------------------------------------------------------------------
+@layer vd-base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .vd-application {
+    font-family: var(--vd-font-family);
+    line-height: 1.5;
+    background-color: rgb(var(--vd-theme-background));
+    color: rgba(var(--vd-theme-on-background), var(--vd-high-emphasis-opacity, 0.87));
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Component-level styles that don't belong to a single component
+// ---------------------------------------------------------------------------
+@layer vd-components {
+  .vd-ripple {
+    overflow: hidden;
+  }
+
+  .vd-ripple__container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .vd-ripple__animation {
+    position: absolute;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.3);
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  .vd-ripple__animation--enter {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+
+  .vd-ripple__animation--leave {
+    opacity: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Static utilities (color utilities are generated at runtime by the theme)
+// ---------------------------------------------------------------------------
+@layer vd-utilities {
+  @each $level, $shadow in settings.$vd-shadows {
+    .elevation-#{$level} {
+      box-shadow: #{$shadow} !important;
+    }
+  }
+
+  .rounded {
+    border-radius: var(--vd-radius-md) !important;
+  }
+  .rounded-0 {
+    border-radius: 0 !important;
+  }
+  .rounded-sm {
+    border-radius: var(--vd-radius-sm) !important;
+  }
+  .rounded-md {
+    border-radius: var(--vd-radius-md) !important;
+  }
+  .rounded-lg {
+    border-radius: var(--vd-radius-lg) !important;
+  }
+  .rounded-pill {
+    border-radius: var(--vd-radius-pill) !important;
+  }
+  .rounded-circle {
+    border-radius: var(--vd-radius-circle) !important;
+  }
+
+  .d-none {
+    display: none !important;
+  }
+  .d-flex {
+    display: flex !important;
+  }
+  .d-inline-flex {
+    display: inline-flex !important;
+  }
+  .d-block {
+    display: block !important;
+  }
+
+  .text-truncate {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+}

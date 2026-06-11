@@ -1,0 +1,38 @@
+// Design tokens — the Vuesax "feel". These are SASS-time constants; main.scss
+// also re-exposes them as CSS custom properties so consumers can override.
+
+// Border radii (Vuesax: 5px controls, 8px cards)
+$vd-radius-sm: 5px !default;
+$vd-radius-md: 8px !default;
+$vd-radius-lg: 12px !default;
+$vd-radius-pill: 9999px !default;
+$vd-radius-circle: 50% !default;
+
+// Motion — Vuesax uses plain `ease`, not cubic-bezier
+$vd-transition-duration: 0.25s !default;
+$vd-transition-timing: ease !default;
+$vd-transition: all $vd-transition-duration $vd-transition-timing !default;
+$vd-transition-fast: all 0.15s $vd-transition-timing !default;
+
+// Typography
+$vd-font-family:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  'Helvetica Neue',
+  Arial,
+  sans-serif !default;
+$vd-font-size-root: 16px !default;
+$vd-font-weight-regular: 400 !default;
+$vd-font-weight-medium: 500 !default;
+$vd-font-weight-bold: 600 !default;
+
+// Spacing scale (4px base)
+$vd-spacer: 4px !default;
+
+// Opacity tokens
+$vd-hover-opacity: 0.08 !default;
+$vd-focus-opacity: 0.12 !default;
+$vd-pressed-opacity: 0.16 !default;

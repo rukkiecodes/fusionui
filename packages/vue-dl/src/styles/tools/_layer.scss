@@ -1,0 +1,7 @@
+// Wraps content in a named Vue DL cascade layer so consumer (unlayered) styles
+// always take precedence. Layer order is declared in main.scss.
+@mixin layer($name) {
+  @layer vd-#{$name} {
+    @content;
+  }
+}

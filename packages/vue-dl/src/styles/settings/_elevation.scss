@@ -1,0 +1,82 @@
+// Vuesax soft-shadow elevation scale. Shadows are intentionally gentle (low
+// alpha, large blur) — the signature "Vuesax shadow". Levels 0–24 so the
+// elevation utility and useElevation composable have a full range.
+
+$vd-shadows: (
+  0: none,
+  1: (
+    0 2px 8px 0 rgba(0, 0, 0, 0.04),
+  ),
+  2: (
+    0 3px 12px 0 rgba(0, 0, 0, 0.05),
+  ),
+  3: (
+    0 5px 20px 0 rgba(0, 0, 0, 0.05),
+  ),
+  4: (
+    0 4px 25px 0 rgba(0, 0, 0, 0.1),
+  ),
+  5: (
+    0 6px 28px 0 rgba(0, 0, 0, 0.1),
+  ),
+  6: (
+    0 8px 30px 0 rgba(0, 0, 0, 0.12),
+  ),
+  7: (
+    0 9px 32px 0 rgba(0, 0, 0, 0.12),
+  ),
+  8: (
+    0 10px 34px 0 rgba(0, 0, 0, 0.14),
+  ),
+  9: (
+    0 11px 36px 0 rgba(0, 0, 0, 0.14),
+  ),
+  10: (
+    0 12px 38px 0 rgba(0, 0, 0, 0.16),
+  ),
+  11: (
+    0 13px 40px 0 rgba(0, 0, 0, 0.16),
+  ),
+  12: (
+    0 14px 42px 0 rgba(0, 0, 0, 0.18),
+  ),
+  13: (
+    0 15px 44px 0 rgba(0, 0, 0, 0.18),
+  ),
+  14: (
+    0 16px 46px 0 rgba(0, 0, 0, 0.2),
+  ),
+  15: (
+    0 17px 48px 0 rgba(0, 0, 0, 0.2),
+  ),
+  16: (
+    0 18px 50px 0 rgba(0, 0, 0, 0.22),
+  ),
+  17: (
+    0 19px 52px 0 rgba(0, 0, 0, 0.22),
+  ),
+  18: (
+    0 20px 54px 0 rgba(0, 0, 0, 0.24),
+  ),
+  19: (
+    0 21px 56px 0 rgba(0, 0, 0, 0.24),
+  ),
+  20: (
+    0 22px 58px 0 rgba(0, 0, 0, 0.26),
+  ),
+  21: (
+    0 23px 60px 0 rgba(0, 0, 0, 0.26),
+  ),
+  22: (
+    0 24px 62px 0 rgba(0, 0, 0, 0.28),
+  ),
+  23: (
+    0 25px 64px 0 rgba(0, 0, 0, 0.28),
+  ),
+  24: (
+    0 26px 66px 0 rgba(0, 0, 0, 0.3),
+  ),
+) !default;
+
+// Colored hover glow offset used by interactive components (button/card lift).
+$vd-shadow-hover-spread: 0 8px 25px -8px !default;

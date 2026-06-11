@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use '../settings';
+
+// Interaction states (hover / focus / pressed) and the Vuesax "lift". These
+// mixins are consumed by components in Batch 05+.
+
+/**
+ * Adds a translucent overlay that intensifies on hover/focus/active. `$selector`
+ * targets the overlay element rendered inside the component.
+ */
+@mixin states($selector: '.vd-overlay') {
+  position: relative;
+
+  #{$selector} {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: currentColor;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity settings.$vd-transition-duration settings.$vd-transition-timing;
+  }
+
+  &:hover #{$selector} {
+    opacity: settings.$vd-hover-opacity;
+  }
+  &:focus-visible #{$selector} {
+    opacity: settings.$vd-focus-opacity;
+  }
+  &:active #{$selector} {
+    opacity: settings.$vd-pressed-opacity;
+  }
+}
+
+/** The signature Vuesax hover-lift: rise slightly and cast a softer, larger shadow. */
+@mixin lift($shadow-level: 6) {
+  transition: settings.$vd-transition;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: map.get(settings.$vd-shadows, $shadow-level);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
