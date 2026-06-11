@@ -6,12 +6,27 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "echo \"[docs] dev server placeholder — implemented in Batch 09\"",
-    "build": "echo \"[docs] static build placeholder — implemented in Batch 09\"",
-    "typecheck": "echo \"[docs] typecheck placeholder\"",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "echo \"[docs] typecheck via build\"",
     "test": "echo \"[docs] no tests yet\""
   },
   "dependencies": {
-    "vue-dl": "workspace:*"
+    "vue": "^3.5.13",
+    "vue-dl": "workspace:*",
+    "@vue-dl/icons-feather": "workspace:*",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@types/markdown-it": "^14.1.2",
+    "markdown-it-anchor": "^9.2.0",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "unplugin-vue-markdown": "^0.26.2",
+    "vite": "^6.0.7",
+    "vite-plugin-pages": "^0.32.5"
   }
 }

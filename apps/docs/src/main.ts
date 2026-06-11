@@ -1,0 +1,25 @@
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import routes from '~pages'
+import App from './App.vue'
+import vuedl from './plugins/vue-dl'
+import Example from './components/Example.vue'
+import Markup from './components/Markup.vue'
+import ApiTable from './components/ApiTable.vue'
+import 'vue-dl/styles'
+import './styles/docs.scss'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  scrollBehavior: () => ({ top: 0 }),
+})
+
+createApp(App)
+  .use(router)
+  .use(vuedl)
+  // Make doc helpers available inside markdown pages without imports.
+  .component('Example', Example)
+  .component('Markup', Markup)
+  .component('ApiTable', ApiTable)
+  .mount('#app')
