@@ -1,0 +1,24 @@
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-btn-group {
+    display: inline-flex;
+    border-radius: var(--vd-radius-sm);
+
+    > .vd-btn {
+      border-radius: 0;
+    }
+    > .vd-btn:first-child {
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+    }
+    > .vd-btn:last-child {
+      border-top-right-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+
+    &--divided > .vd-btn:not(:last-child) {
+      border-right: thin solid rgba(var(--vd-border-color, 0, 0, 0), 0.12);
+    }
+  }
+}

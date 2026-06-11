@@ -1,0 +1,13 @@
+// Aggregates the co-located component styles into the main stylesheet so a
+// single `vue-dl/styles` import ships every component's CSS. Per-component CSS
+// extraction for tree-shaking happens in the Batch 12 build.
+@use '../components/VdBtn/VdBtn';
+@use '../components/VdBtnGroup/VdBtnGroup';
+@use '../components/VdCard/VdCard';
+@use '../components/VdAlert/VdAlert';
+@use '../components/VdChip/VdChip';
+@use '../components/VdAvatar/VdAvatar';
+@use '../components/VdBadge/VdBadge';
+@use '../components/VdProgress/VdProgress';
+@use '../components/VdDivider/VdDivider';
+@use '../components/VdSpacer/VdSpacer';

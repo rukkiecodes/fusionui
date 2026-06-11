@@ -1,0 +1,133 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-btn {
+    --vd-variant-color: var(--vd-theme-primary);
+    @include tools.variant-base;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 18px;
+    border: none;
+    border-radius: var(--vd-radius-sm);
+    font-family: var(--vd-font-family);
+    font-weight: settings.$vd-font-weight-medium;
+    font-size: 0.95rem;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+
+    &__content {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    &__loader {
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    // Variants
+    &--variant-elevated {
+      @include tools.variant-elevated;
+    }
+    &--variant-flat {
+      @include tools.variant-flat;
+    }
+    &--variant-tonal {
+      @include tools.variant-tonal;
+    }
+    &--variant-outlined {
+      @include tools.variant-outlined;
+    }
+    &--variant-text {
+      @include tools.variant-text;
+    }
+    &--variant-plain {
+      @include tools.variant-plain;
+    }
+    &--variant-gradient {
+      @include tools.variant-gradient;
+    }
+    &--variant-relief {
+      @include tools.variant-relief;
+    }
+    &--variant-line {
+      border-radius: 0;
+      @include tools.variant-line;
+    }
+
+    // Sizes
+    &--size-x-small {
+      height: 24px;
+      padding: 0 8px;
+      font-size: 0.7rem;
+    }
+    &--size-small {
+      height: 32px;
+      padding: 0 12px;
+      font-size: 0.8rem;
+    }
+    &--size-large {
+      height: 48px;
+      padding: 0 24px;
+      font-size: 1.05rem;
+    }
+    &--size-x-large {
+      height: 56px;
+      padding: 0 28px;
+      font-size: 1.15rem;
+    }
+
+    // Modifiers
+    &--block {
+      display: flex;
+      width: 100%;
+    }
+
+    &--icon {
+      width: 40px;
+      min-width: 0;
+      padding: 0;
+      border-radius: settings.$vd-radius-circle;
+    }
+    &--icon.vd-btn--size-x-small {
+      width: 24px;
+    }
+    &--icon.vd-btn--size-small {
+      width: 32px;
+    }
+    &--icon.vd-btn--size-large {
+      width: 48px;
+    }
+    &--icon.vd-btn--size-x-large {
+      width: 56px;
+    }
+
+    &--loading {
+      color: transparent !important;
+      pointer-events: none;
+    }
+    &--loading .vd-btn__content {
+      opacity: 0;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

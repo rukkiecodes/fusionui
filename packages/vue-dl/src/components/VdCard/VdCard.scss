@@ -1,0 +1,71 @@
+@use 'sass:map';
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-card {
+    position: relative;
+    display: block;
+    background-color: rgb(var(--vd-theme-surface));
+    color: rgba(var(--vd-theme-on-surface), 0.87);
+    border-radius: var(--vd-radius-md);
+    box-shadow: map.get(settings.$vd-shadows, 4);
+    overflow: hidden;
+    transition: settings.$vd-transition;
+
+    &--variant-outlined {
+      box-shadow: none;
+      border: thin solid rgba(var(--vd-theme-on-surface), 0.12);
+    }
+    &--variant-flat {
+      box-shadow: none;
+    }
+
+    &--hover {
+      cursor: pointer;
+    }
+    // Vuesax-style "grow": the card sinks slightly while its shadow tightens.
+    &--hover:hover {
+      transform: translateY(4px);
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+    }
+    &--hover:hover .vd-card__media img {
+      transform: scale(1.08);
+    }
+
+    &__media {
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.4s settings.$vd-transition-timing;
+      }
+    }
+
+    &__title {
+      padding: 16px 16px 4px;
+      font-size: 1.1rem;
+      font-weight: settings.$vd-font-weight-bold;
+    }
+
+    &__subtitle {
+      padding: 0 16px 8px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    &__text {
+      padding: 8px 16px;
+      font-size: 0.95rem;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+    }
+  }
+}

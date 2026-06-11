@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use 'settings';
 @use 'tools';
+@use 'components';
 
 // Cascade layer order. Everything Vue DL ships is layered so unlayered consumer
 // styles always win. The theme runtime injects into vd-theme / vd-utilities.

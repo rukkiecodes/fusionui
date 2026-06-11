@@ -80,3 +80,6 @@ $vd-shadows: (
 
 // Colored hover glow offset used by interactive components (button/card lift).
 $vd-shadow-hover-spread: 0 8px 25px -8px !default;
+
+// The signature soft "Vuesax shadow" resting elevation.
+$vd-shadow-rest: 0 5px 20px 0 rgba(0, 0, 0, 0.05) !default;

@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import ts from 'typescript-eslint'
 import vue from 'eslint-plugin-vue'
+import prettier from 'eslint-config-prettier'
 import globals from 'globals'
 
 export default ts.config(
@@ -51,5 +52,14 @@ export default ts.config(
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
     },
-  }
+  },
+  {
+    // Docs example snippets are intentionally single-purpose SFCs.
+    files: ['apps/docs/**/*.vue', '**/examples/**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
+  // Must be last: turns off rules that conflict with Prettier formatting.
+  prettier
 )
