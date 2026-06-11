@@ -24,6 +24,17 @@ export default ts.config(
     languageOptions: {
       globals: { ...globals.node, ...globals.browser },
     },
+    rules: {
+      // Framework-internal plumbing (generic component/prop factories, directive
+      // element augmentation) legitimately needs `any`. Mirrors Vuetify.
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      // TSX files legitimately declare several render-function components.
+      'vue/one-component-per-file': 'off',
+    },
   },
   {
     // SFCs use the TS parser for <script lang="ts">.

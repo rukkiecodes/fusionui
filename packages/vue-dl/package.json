@@ -29,15 +29,26 @@
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "echo \"[vue-dl] build placeholder — implemented in Batch 02/12\"",
-    "dev": "echo \"[vue-dl] dev/watch placeholder — implemented in Batch 02\"",
-    "typecheck": "echo \"[vue-dl] typecheck placeholder — implemented in Batch 02\"",
-    "test": "echo \"[vue-dl] no tests yet — added per component in Batch 05+\""
+    "build": "echo \"[vue-dl] build placeholder — implemented in Batch 12\"",
+    "dev": "echo \"[vue-dl] dev/watch placeholder — implemented in Batch 12\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
     "vue": "^3.5.0"
   },
   "dependencies": {
     "@vue-dl/icons-feather": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8",
+    "vue": "^3.5.13"
   }
 }
