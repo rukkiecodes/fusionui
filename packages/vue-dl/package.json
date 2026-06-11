@@ -1,0 +1,43 @@
+{
+  "name": "vue-dl",
+  "version": "0.0.0",
+  "description": "Vue DL — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "design-system",
+    "framework",
+    "vuesax",
+    "vuetify"
+  ],
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./styles": "./lib/styles/main.css"
+  },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "echo \"[vue-dl] build placeholder — implemented in Batch 02/12\"",
+    "dev": "echo \"[vue-dl] dev/watch placeholder — implemented in Batch 02\"",
+    "typecheck": "echo \"[vue-dl] typecheck placeholder — implemented in Batch 02\"",
+    "test": "echo \"[vue-dl] no tests yet — added per component in Batch 05+\""
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@vue-dl/icons-feather": "workspace:*"
+  }
+}

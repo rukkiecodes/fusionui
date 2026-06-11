@@ -1,0 +1,36 @@
+{
+  "name": "@vue-dl/icons-feather",
+  "version": "0.0.0",
+  "description": "Feather icon set for Vue DL — the default icon pack.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue-dl",
+    "icons",
+    "feather",
+    "svg"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "svg"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "echo \"[icons-feather] build placeholder — implemented in Batch 04\"",
+    "generate": "echo \"[icons-feather] icon generator placeholder — implemented in Batch 04\"",
+    "typecheck": "echo \"[icons-feather] typecheck placeholder\"",
+    "test": "echo \"[icons-feather] no tests yet\""
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  }
+}

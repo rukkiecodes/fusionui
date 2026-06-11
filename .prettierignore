@@ -1,0 +1,11 @@
+**/node_modules/**
+**/dist/**
+**/lib/**
+**/coverage/**
+pnpm-lock.yaml
+feather.zip
+vuetify/
+vuesax/
+
+# Authored planning docs — kept formatted by hand.
+plans/

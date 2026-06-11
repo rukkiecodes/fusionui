@@ -1,0 +1,14 @@
+{
+  "name": "@vue-dl/api-generator",
+  "version": "0.0.0",
+  "description": "Generates component API metadata (props/events/slots) for the Vue DL docs.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "echo \"[api-generator] build placeholder — implemented in Batch 10\"",
+    "generate": "echo \"[api-generator] generate placeholder — implemented in Batch 10\"",
+    "typecheck": "echo \"[api-generator] typecheck placeholder\"",
+    "test": "echo \"[api-generator] no tests yet\""
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "create-vue-dl",
+  "version": "0.0.0",
+  "description": "Scaffold a new Vue 3 project preconfigured with Vue DL.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "create",
+    "vue",
+    "vue-dl",
+    "scaffold",
+    "cli"
+  ],
+  "bin": {
+    "create-vue-dl": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "src",
+    "templates"
+  ],
+  "scripts": {
+    "build": "echo \"[create-vue-dl] build placeholder — implemented in Batch 11\"",
+    "typecheck": "echo \"[create-vue-dl] typecheck placeholder\"",
+    "test": "echo \"[create-vue-dl] no tests yet\""
+  }
+}

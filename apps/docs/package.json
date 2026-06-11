@@ -1,0 +1,17 @@
+{
+  "name": "@vue-dl/docs",
+  "version": "0.0.0",
+  "description": "Documentation website for Vue DL with live component previews.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"[docs] dev server placeholder — implemented in Batch 09\"",
+    "build": "echo \"[docs] static build placeholder — implemented in Batch 09\"",
+    "typecheck": "echo \"[docs] typecheck placeholder\"",
+    "test": "echo \"[docs] no tests yet\""
+  },
+  "dependencies": {
+    "vue-dl": "workspace:*"
+  }
+}
