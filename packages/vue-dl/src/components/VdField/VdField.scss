@@ -1,0 +1,118 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-field {
+    --vd-field-color: var(--vd-theme-primary);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--vd-font-family);
+
+    &__label-top {
+      font-size: 0.85rem;
+      font-weight: settings.$vd-font-weight-medium;
+      margin-bottom: 6px;
+      color: rgba(var(--vd-theme-on-surface), 0.7);
+    }
+
+    &__control {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      min-height: 42px;
+      background-color: rgb(var(--vd-theme-surface));
+      border: 1px solid rgba(var(--vd-theme-on-surface), 0.2);
+      border-radius: var(--vd-radius-sm);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
+      transition: settings.$vd-transition;
+    }
+
+    &__input {
+      position: relative;
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: rgba(var(--vd-theme-on-surface), 0.87);
+        font: inherit;
+        padding: 10px 0;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+    }
+
+    // Floating placeholder label (Vuesax signature)
+    &--floating-label &__label {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: rgba(var(--vd-theme-on-surface), 0.5);
+      transition: settings.$vd-transition-fast;
+    }
+
+    &--floating-label.vd-field--active &__label {
+      top: 0;
+      transform: translateY(-90%) scale(0.8);
+      color: rgb(var(--vd-field-color));
+    }
+
+    &--focused &__control {
+      border-color: rgb(var(--vd-field-color));
+      box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    &--error &__control {
+      border-color: rgb(var(--vd-theme-danger));
+    }
+
+    &--success &__control {
+      border-color: rgb(var(--vd-theme-success));
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &__prepend,
+    &__append,
+    &__clear {
+      flex-shrink: 0;
+      color: rgba(var(--vd-theme-on-surface), 0.6);
+    }
+
+    &__clear {
+      cursor: pointer;
+      &:hover {
+        color: rgb(var(--vd-theme-danger));
+      }
+    }
+
+    &__messages {
+      min-height: 18px;
+      margin-top: 4px;
+      padding: 0 4px;
+      font-size: 0.75rem;
+      color: rgba(var(--vd-theme-on-surface), 0.6);
+      transition: settings.$vd-transition-fast;
+
+      &--error {
+        color: rgb(var(--vd-theme-danger));
+      }
+    }
+  }
+}
