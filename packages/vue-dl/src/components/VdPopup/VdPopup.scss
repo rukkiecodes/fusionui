@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-popup {
+    max-width: 100%;
+    max-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(var(--vd-theme-surface));
+    color: rgba(var(--vd-theme-on-surface), 0.87);
+    border-radius: var(--vd-radius-lg);
+    box-shadow: map.get(settings.$vd-shadows, 12);
+    overflow: hidden;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px 8px;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+      font-weight: settings.$vd-font-weight-bold;
+    }
+
+    &__body {
+      padding: 8px 20px 20px;
+      overflow-y: auto;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+    }
+  }
+}

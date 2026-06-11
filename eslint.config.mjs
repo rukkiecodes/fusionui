@@ -14,6 +14,7 @@ export default ts.config(
       '**/.changeset/**',
       'vuetify/**',
       'vuesax/**',
+      'vuesax-next/**',
       'plans/**',
       '**/*.md',
       // Generated Feather icon modules
@@ -58,6 +59,8 @@ export default ts.config(
     files: ['apps/docs/**/*.vue', '**/examples/**/*.vue'],
     rules: {
       'vue/multi-word-component-names': 'off',
+      // Slot names with dots (e.g. #item.score) are a valid table-cell pattern.
+      'vue/valid-v-slot': 'off',
     },
   },
   // Must be last: turns off rules that conflict with Prettier formatting.

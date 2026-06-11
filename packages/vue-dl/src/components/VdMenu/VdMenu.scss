@@ -1,0 +1,48 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-menu {
+    position: relative;
+    display: inline-block;
+
+    &__content {
+      position: absolute;
+      z-index: 100;
+      min-width: 160px;
+      background-color: rgb(var(--vd-theme-surface));
+      border-radius: var(--vd-radius-md);
+      box-shadow: settings.$vd-shadow-rest;
+      padding: 6px;
+      animation: vd-menu-open 0.16s settings.$vd-transition-timing;
+
+      &--bottom {
+        top: calc(100% + 6px);
+        left: 0;
+      }
+      &--bottom-end {
+        top: calc(100% + 6px);
+        right: 0;
+      }
+      &--top {
+        bottom: calc(100% + 6px);
+        left: 0;
+      }
+      &--top-end {
+        bottom: calc(100% + 6px);
+        right: 0;
+      }
+    }
+  }
+
+  @keyframes vd-menu-open {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}

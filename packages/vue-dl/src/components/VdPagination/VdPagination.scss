@@ -1,0 +1,53 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-pagination {
+    --vd-pagination-color: var(--vd-theme-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+      padding: 0 8px;
+      border: none;
+      border-radius: var(--vd-radius-sm);
+      background: transparent;
+      color: rgba(var(--vd-theme-on-surface), 0.8);
+      font: inherit;
+      cursor: pointer;
+      transition: settings.$vd-transition;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(var(--vd-pagination-color), 0.1);
+      }
+
+      &--active {
+        background-color: rgb(var(--vd-pagination-color));
+        color: rgb(var(--vd-theme-on-primary));
+        box-shadow: 0 6px 16px -6px rgb(var(--vd-pagination-color));
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+    }
+
+    &__ellipsis {
+      min-width: 24px;
+      text-align: center;
+      opacity: 0.6;
+    }
+
+    &--disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+}

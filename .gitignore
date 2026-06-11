@@ -30,3 +30,4 @@ Thumbs.db
 # research reference clones (kept locally, not part of the monorepo)
 vuetify/
 vuesax/
+vuesax-next/

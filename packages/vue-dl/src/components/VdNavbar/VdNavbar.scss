@@ -1,0 +1,47 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-navbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 60px;
+    padding: 0 20px;
+    background-color: rgb(var(--vd-theme-surface));
+    color: rgba(var(--vd-theme-on-surface), 0.87);
+    box-shadow: settings.$vd-shadow-rest;
+
+    &--flat {
+      box-shadow: none;
+      border-bottom: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+    }
+
+    &--fixed {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    &__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: settings.$vd-font-weight-bold;
+      font-size: 1.15rem;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 auto;
+    }
+
+    &__append {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}

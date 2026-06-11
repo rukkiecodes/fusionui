@@ -1,0 +1,56 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .vd-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgb(var(--vd-theme-surface));
+    color: rgba(var(--vd-theme-on-surface), 0.87);
+    overflow-y: auto;
+
+    &--permanent {
+      border-right: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+    }
+
+    &:not(&--permanent) {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      z-index: 2001;
+      box-shadow: settings.$vd-shadow-rest;
+    }
+
+    &--left {
+      left: 0;
+    }
+    &--right {
+      right: 0;
+      border-right: none;
+      border-left: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+    }
+
+    &__scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .vd-sidebar-left-enter-active,
+  .vd-sidebar-left-leave-active,
+  .vd-sidebar-right-enter-active,
+  .vd-sidebar-right-leave-active {
+    transition: transform 0.25s settings.$vd-transition-timing;
+  }
+  .vd-sidebar-left-enter-from,
+  .vd-sidebar-left-leave-to {
+    transform: translateX(-100%);
+  }
+  .vd-sidebar-right-enter-from,
+  .vd-sidebar-right-leave-to {
+    transform: translateX(100%);
+  }
+}

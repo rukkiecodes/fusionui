@@ -21,6 +21,18 @@ import { VdSwitch } from './VdSwitch'
 import { VdSlider } from './VdSlider'
 import { VdUpload } from './VdUpload'
 import { VdForm } from './VdForm'
+import { VdOverlay } from './VdOverlay'
+import { VdPopup } from './VdPopup'
+import { VdMenu } from './VdMenu'
+import { VdTooltip } from './VdTooltip'
+import { VdList, VdListItem } from './VdList'
+import { VdTabs, VdTab, VdTabPanel, VdTabsWindow } from './VdTabs'
+import { VdNavbar } from './VdNavbar'
+import { VdSidebar } from './VdSidebar'
+import { VdBreadcrumb } from './VdBreadcrumb'
+import { VdPagination } from './VdPagination'
+import { VdCollapse } from './VdCollapse'
+import { VdTable } from './VdTable'
 
 export * from './VdIcon'
 export * from './VdBtn'
@@ -44,6 +56,18 @@ export * from './VdSwitch'
 export * from './VdSlider'
 export * from './VdUpload'
 export * from './VdForm'
+export * from './VdOverlay'
+export * from './VdPopup'
+export * from './VdMenu'
+export * from './VdTooltip'
+export * from './VdList'
+export * from './VdTabs'
+export * from './VdNavbar'
+export * from './VdSidebar'
+export * from './VdBreadcrumb'
+export * from './VdPagination'
+export * from './VdCollapse'
+export * from './VdTable'
 
 /** Built-in components registered globally by createVueDL().install. */
 export const components: Record<string, Component> = {
@@ -75,4 +99,20 @@ export const components: Record<string, Component> = {
   VdSlider,
   VdUpload,
   VdForm,
+  VdOverlay,
+  VdPopup,
+  VdMenu,
+  VdTooltip,
+  VdList,
+  VdListItem,
+  VdTabs,
+  VdTab,
+  VdTabPanel,
+  VdTabsWindow,
+  VdNavbar,
+  VdSidebar,
+  VdBreadcrumb,
+  VdPagination,
+  VdCollapse,
+  VdTable,
 }
