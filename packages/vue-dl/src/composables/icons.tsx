@@ -1,9 +1,11 @@
 import { computed, defineComponent, h, inject, toValue } from 'vue'
 import type { Component, FunctionalComponent, InjectionKey, MaybeRefOrGetter, PropType } from 'vue'
+import { featherAliases } from '@vue-dl/icons-feather'
 import { propsFactory } from '../util/propsFactory'
 
-// NOTE: Minimal icon framework so components can render icons now. Batch 04
-// fleshes out the Feather set, the SVG/component renderers, and the generator.
+// Icon framework: resolves an icon value (alias / set:name / raw SVG / component)
+// to a renderer. Feather is the default set; semantic aliases ($close, $success,
+// …) ship by default so component internals work out of the box.
 
 export type IconValue = string | FunctionalComponent | Component | unknown[]
 
@@ -56,6 +58,8 @@ export const VdSvgIcon = defineComponent({
             'stroke-width': '2',
             'stroke-linecap': 'round',
             'stroke-linejoin': 'round',
+            width: '1em',
+            height: '1em',
             role: 'img',
           },
           children
@@ -87,7 +91,7 @@ export function createIcons(options: IconOptions = {}): InternalIconOptions {
   return {
     defaultSet: options.defaultSet ?? 'feather',
     sets: { svg: { component: VdSvgIcon }, ...options.sets },
-    aliases: options.aliases ?? {},
+    aliases: { ...featherAliases, ...options.aliases },
   }
 }
 

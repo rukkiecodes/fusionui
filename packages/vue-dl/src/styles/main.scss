@@ -53,6 +53,37 @@
 // Component-level styles that don't belong to a single component
 // ---------------------------------------------------------------------------
 @layer vd-components {
+  .vd-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    vertical-align: middle;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .vd-icon svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  .vd-icon--start {
+    margin-inline-end: 8px;
+  }
+  .vd-icon--end {
+    margin-inline-start: 8px;
+  }
+  .vd-icon--spin svg {
+    animation: vd-spin 1s linear infinite;
+  }
+
+  @keyframes vd-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .vd-ripple {
     overflow: hidden;
   }

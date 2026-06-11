@@ -10,6 +10,7 @@ import type { ThemeOptions } from './composables/theme'
 import { createIcons, IconSymbol } from './composables/icons'
 import type { IconOptions } from './composables/icons'
 import { directives as builtinDirectives } from './directives'
+import { components as builtinComponents } from './components'
 
 export interface VueDLOptions {
   /** A preset that is deep-merged under the rest of the options. */
@@ -61,7 +62,10 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
         app.directive(key, merged.directives[key] as never)
       }
 
-      // Global component registration (components land in Batch 05+).
+      // Built-in components, then any the consumer passes.
+      for (const key in builtinComponents) {
+        app.component(key, builtinComponents[key])
+      }
       for (const key in merged.components) {
         app.component(key, merged.components[key])
       }

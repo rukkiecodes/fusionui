@@ -65,9 +65,12 @@ importers:
   packages/create-vue-dl: {}
 
   packages/icons-feather:
-    dependencies:
+    devDependencies:
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
       vue:
-        specifier: ^3.5.0
+        specifier: ^3.5.13
         version: 3.5.38(typescript@5.9.3)
 
   packages/vue-dl:

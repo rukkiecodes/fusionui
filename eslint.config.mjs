@@ -15,6 +15,9 @@ export default ts.config(
       'vuesax/**',
       'plans/**',
       '**/*.md',
+      // Generated Feather icon modules
+      '**/icons-feather/src/icons/**',
+      '**/icons-feather/src/registry.ts',
     ],
   },
   js.configs.recommended,

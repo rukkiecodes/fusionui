@@ -9,3 +9,8 @@ vuesax/
 
 # Authored planning docs — kept formatted by hand.
 plans/
+
+# Generated Feather icon modules (formatted by the generator)
+packages/icons-feather/svg/
+packages/icons-feather/src/icons/
+packages/icons-feather/src/registry.ts

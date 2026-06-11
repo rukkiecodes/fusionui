@@ -4,6 +4,7 @@
   "description": "Feather icon set for Vue DL — the default icon pack.",
   "type": "module",
   "license": "MIT",
+  "sideEffects": false,
   "keywords": [
     "vue",
     "vue-dl",
@@ -18,19 +19,25 @@
   ],
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.js"
-    }
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": "./src/icons/*.ts"
   },
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
-    "build": "echo \"[icons-feather] build placeholder — implemented in Batch 04\"",
-    "generate": "echo \"[icons-feather] icon generator placeholder — implemented in Batch 04\"",
-    "typecheck": "echo \"[icons-feather] typecheck placeholder\"",
+    "generate": "node scripts/build-icons.mjs",
+    "add-icon": "node scripts/add-icon.mjs",
+    "build": "echo \"[icons-feather] build placeholder — bundled in Batch 12\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "echo \"[icons-feather] no tests yet\""
   },
   "peerDependencies": {
     "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vue": "^3.5.13"
   }
 }

@@ -3,6 +3,9 @@
 export { createVueDL } from './framework'
 export type { VueDLOptions, VueDLInstance } from './framework'
 
+// Components
+export * from './components'
+
 // Composables & their prop factories
 export * from './composables'
 
