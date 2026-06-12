@@ -45,7 +45,7 @@ const options = [
   justify-content: center;
 }
 .color-btns :deep(.vd-btn--active) {
-  transform: translateY(-7px);
+  transform: translateY(-4px);
   border-radius: 0 0 12px 12px;
 }
 </style>
