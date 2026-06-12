@@ -20,8 +20,7 @@ function show(e: PointerEvent, el: RippleElement): void {
   const rect = el.getBoundingClientRect()
   const x = data.centered ? rect.width / 2 : e.clientX - rect.left
   const y = data.centered ? rect.height / 2 : e.clientY - rect.top
-  const size = el.clientWidth * 2.5
-  const duration = el.clientWidth > 150 ? 0.9 : 0.6
+  const time = el.clientWidth > 150 ? 1.2 : 0.6
 
   const container = document.createElement('span')
   container.className = 'vd-ripple__container'
@@ -30,11 +29,10 @@ function show(e: PointerEvent, el: RippleElement): void {
   effect.className = 'vd-ripple__effect'
   effect.style.left = `${x}px`
   effect.style.top = `${y}px`
-  effect.style.transitionDuration = `${duration}s`
+  effect.style.transition = `all ${time}s ease`
   container.appendChild(effect)
 
-  const computed = window.getComputedStyle(el)
-  if (computed.position === 'static') {
+  if (window.getComputedStyle(el).position === 'static') {
     el.style.position = 'relative'
     el.dataset.vdRippleStatic = 'true'
   }
@@ -42,27 +40,42 @@ function show(e: PointerEvent, el: RippleElement): void {
   // Insert behind later siblings (content) but above the element background.
   el.insertBefore(container, el.firstChild)
 
-  // Next frame: grow + fade in.
-  requestAnimationFrame(() => {
-    effect.style.width = `${size}px`
-    effect.style.height = `${size}px`
-    effect.style.opacity = '1'
-  })
+  // Reading clientWidth forces a synchronous reflow so the browser paints the
+  // ripple at its initial 0 size BEFORE we set the final size — this is what
+  // makes the grow transition fire reliably (the Vuesax technique).
+  const size = el.clientWidth * 2.5
+  effect.style.width = `${size}px`
+  effect.style.height = `${size}px`
+  effect.style.opacity = '1'
 
-  let released = false
+  // Even a quick click should show the ripple: wait before fading unless the
+  // press already lasted long enough.
+  let pressedLongEnough = false
+  window.setTimeout(() => {
+    pressedLongEnough = true
+  }, 300)
+
+  let removed = false
   const remove = (): void => {
-    if (released) return
-    released = true
-    effect.style.opacity = '0'
-    window.setTimeout(() => {
-      container.remove()
-      if (!el.querySelector('.vd-ripple__container') && el.dataset.vdRippleStatic) {
-        el.style.position = ''
-        delete el.dataset.vdRippleStatic
-      }
-    }, duration * 500)
+    if (removed) return
+    removed = true
     el.removeEventListener('pointerup', remove)
     el.removeEventListener('pointerleave', remove)
+
+    window.setTimeout(
+      () => {
+        effect.style.transition = `opacity ${time * 0.6}s ease`
+        effect.style.opacity = '0'
+        window.setTimeout(() => {
+          container.remove()
+          if (!el.querySelector('.vd-ripple__container') && el.dataset.vdRippleStatic) {
+            el.style.position = ''
+            delete el.dataset.vdRippleStatic
+          }
+        }, time * 600)
+      },
+      pressedLongEnough ? 0 : time * 400
+    )
   }
   el.addEventListener('pointerup', remove)
   el.addEventListener('pointerleave', remove)
