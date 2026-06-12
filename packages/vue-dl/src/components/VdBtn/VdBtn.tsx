@@ -106,14 +106,19 @@ export const VdBtn = genericComponent()({
       const Tag = props.href ? 'a' : props.tag
       const hasIconValue = props.icon && typeof props.icon !== 'boolean'
 
+      // Icons size relative to the button text so they stay proportionate.
       const content = h('span', { class: 'vd-btn__content' }, [
-        props.prependIcon ? h(VdIcon, { icon: props.prependIcon, class: 'vd-btn__icon' }) : null,
+        props.prependIcon
+          ? h(VdIcon, { icon: props.prependIcon, class: 'vd-btn__icon', size: '1.15em' })
+          : null,
         hasIconValue
-          ? h(VdIcon, { icon: props.icon })
+          ? h(VdIcon, { icon: props.icon, size: '1.3em' })
           : slots.default
             ? slots.default()
             : props.text,
-        props.appendIcon ? h(VdIcon, { icon: props.appendIcon, class: 'vd-btn__icon' }) : null,
+        props.appendIcon
+          ? h(VdIcon, { icon: props.appendIcon, class: 'vd-btn__icon', size: '1.15em' })
+          : null,
       ])
 
       return withDirectives(

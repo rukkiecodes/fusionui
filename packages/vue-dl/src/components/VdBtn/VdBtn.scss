@@ -98,15 +98,16 @@
       }
     }
 
-    // ---- Upload progress sweep ----
+    // ---- Upload progress sweep (Vuesax) ----
     &--upload {
       pointer-events: none;
       &::after {
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 2;
         background-color: rgba(var(--vd-variant-color), 0.4);
-        animation: vd-btn-upload 0.9s ease infinite;
+        animation: vd-btn-upload 0.7s ease infinite;
       }
     }
 
