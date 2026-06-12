@@ -28,7 +28,8 @@ describe('VdBtn', () => {
     const wrapper = mountWith(VdBtn, { slots: { default: () => 'Click' } })
     expect(wrapper.classes()).toContain('vd-btn')
     expect(wrapper.classes()).toContain('vd-btn--variant-elevated')
-    expect(wrapper.classes()).toContain('bg-primary')
+    // self-colored via CSS variable (no !important utility class)
+    expect(wrapper.attributes('style') ?? '').toContain('--vd-variant-color')
     expect(wrapper.text()).toBe('Click')
   })
 

@@ -1,5 +1,6 @@
 import { getCurrentInstance as _getCurrentInstance } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
+import { toKebabCase } from './helpers'
 
 interface VueDLInstanceType {
   name?: string
@@ -15,8 +16,12 @@ export function getCurrentInstance(name: string, message?: string): ComponentInt
   return vm
 }
 
-/** Best-effort component name for the current instance (used to scope BEM classes). */
+/**
+ * Best-effort kebab-case component name for the current instance, used to scope
+ * BEM classes (e.g. `VdBtn` → `vd-btn`) so composable-generated classes
+ * (`vd-btn--size-large`) match the component stylesheets.
+ */
 export function getCurrentInstanceName(name = 'composables'): string {
   const vm = _getCurrentInstance()?.type as VueDLInstanceType | undefined
-  return vm?.aliasName ?? vm?.name ?? name
+  return toKebabCase(vm?.aliasName ?? vm?.name ?? name)
 }

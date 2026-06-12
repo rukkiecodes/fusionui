@@ -2,13 +2,13 @@ import { computed, h, withDirectives } from 'vue'
 import type { PropType } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
-import { isCssColor, parseColor } from '../../util/colors'
+import { isCssColor, isLightColor, parseColor } from '../../util/colors'
 import { makeComponentProps, makeTagProps } from '../../composables/component'
 import { makeBorderProps, useBorder } from '../../composables/border'
 import { makeRoundedProps, useRounded } from '../../composables/rounded'
 import { makeElevationProps, useElevation } from '../../composables/elevation'
 import { makeSizeProps, useSize } from '../../composables/size'
-import { makeVariantProps, useVariant } from '../../composables/variant'
+import { makeVariantProps } from '../../composables/variant'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import type { IconValue } from '../../composables/icons'
 import { Ripple } from '../../directives/ripple'
@@ -58,18 +58,18 @@ export const VdBtn = genericComponent()({
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     provideTheme(props)
-    const { colorClasses, colorStyles, variantClasses } = useVariant(props)
     const { borderClasses } = useBorder(props)
     const { roundedClasses } = useRounded(props)
     const { elevationClasses } = useElevation(props)
     const { sizeClasses } = useSize(props)
     const group = useGroupItem(props, VdBtnGroupSymbol)
 
-    // Accent color (RGB triplet) used by the SASS variants for colored shadows,
-    // gradients, borders and tints.
+    // The button is fully self-colored via CSS variables (no `!important`
+    // utility classes), so fill-on-active/focus states recolor text correctly.
+    // `--vd-variant-color` = accent (RGB triplet), `--vd-variant-on` = contrast.
     const variantColor = computed(() => {
       const color = props.color
-      if (!color) return undefined
+      if (!color) return 'var(--vd-theme-primary)'
       if (isCssColor(color)) {
         if (color.startsWith('#') || color.startsWith('rgb')) {
           const { r, g, b } = parseColor(color)
@@ -78,6 +78,18 @@ export const VdBtn = genericComponent()({
         return undefined
       }
       return `var(--vd-theme-${color})`
+    })
+
+    const variantOn = computed(() => {
+      const color = props.color
+      if (!color) return 'var(--vd-theme-on-primary)'
+      if (isCssColor(color)) {
+        if (color.startsWith('#') || color.startsWith('rgb')) {
+          return isLightColor(color) ? '0,0,0' : '255,255,255'
+        }
+        return '255,255,255'
+      }
+      return `var(--vd-theme-on-${color})`
     })
 
     const isDisabled = computed(() => props.disabled || props.loading)
@@ -123,15 +135,16 @@ export const VdBtn = genericComponent()({
                 'vd-btn--animate': hasAnimate.value,
                 [`vd-btn--animate-${props.animationType}`]: !!props.animationType,
               },
-              ...variantClasses.value,
-              ...colorClasses.value,
               ...borderClasses.value,
               ...roundedClasses.value,
               ...elevationClasses.value,
               ...sizeClasses.value,
               props.class,
             ],
-            style: [{ '--vd-variant-color': variantColor.value }, colorStyles.value, props.style],
+            style: [
+              { '--vd-variant-color': variantColor.value, '--vd-variant-on': variantOn.value },
+              props.style,
+            ],
             type: Tag === 'button' ? 'button' : undefined,
             disabled: Tag === 'button' ? isDisabled.value : undefined,
             href: props.href,

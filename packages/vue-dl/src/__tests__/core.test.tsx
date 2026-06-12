@@ -38,7 +38,7 @@ describe('createVueDL + component pipeline', () => {
   it('installs and renders a component built from the runtime', () => {
     const wrapper = mountProbe({})
     expect(wrapper.classes()).toContain('vd-probe')
-    expect(wrapper.classes()).toContain('VdProbe--variant-elevated')
+    expect(wrapper.classes()).toContain('vd-probe--variant-elevated')
   })
 
   it('resolves a named theme color to a utility class', () => {

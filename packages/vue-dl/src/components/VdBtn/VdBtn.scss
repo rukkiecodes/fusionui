@@ -213,6 +213,8 @@
 
     // default / elevated — solid fill, hover lifts with a colored shadow
     &--variant-elevated {
+      background-color: rgb(var(--vd-variant-color));
+      color: rgb(var(--vd-variant-on));
       &:hover,
       &.vd-btn--active {
         box-shadow: 0 10px 20px -10px rgb(var(--vd-variant-color));
@@ -222,6 +224,8 @@
 
     // flat — solid, no shadow
     &--variant-flat {
+      background-color: rgb(var(--vd-variant-color));
+      color: rgb(var(--vd-variant-on));
       box-shadow: none;
     }
 
@@ -245,12 +249,14 @@
       &:focus-visible,
       &.vd-btn--active {
         background-color: rgb(var(--vd-variant-color));
-        color: #fff;
+        color: rgb(var(--vd-variant-on));
       }
     }
 
     // floating — rests elevated with a colored shadow, lifts further on hover
     &--variant-floating {
+      background-color: rgb(var(--vd-variant-color));
+      color: rgb(var(--vd-variant-on));
       box-shadow: 0 8px 20px -6px rgb(var(--vd-variant-color));
       transform: translateY(-3px);
       &:hover {
@@ -284,7 +290,7 @@
       &:focus-visible,
       &.vd-btn--active {
         background-color: rgb(var(--vd-variant-color));
-        color: #fff;
+        color: rgb(var(--vd-variant-on));
       }
     }
 
@@ -327,6 +333,7 @@
 
     // gradient — diagonal two-tone gradient (base color → hue-shifted), fades on hover
     &--variant-gradient {
+      background-color: rgb(var(--vd-variant-color));
       color: #fff;
       &::before {
         content: '';
@@ -353,6 +360,8 @@
 
     // relief — raised button sitting on a darker color ledge; sinks when pressed
     &--variant-relief {
+      background-color: rgb(var(--vd-variant-color));
+      color: rgb(var(--vd-variant-on));
       box-shadow: 0 4px 0 0 color-mix(in oklch, rgb(var(--vd-variant-color)), #000 32%);
       &:hover {
         box-shadow: 0 4px 0 0 color-mix(in oklch, rgb(var(--vd-variant-color)), #000 32%);
