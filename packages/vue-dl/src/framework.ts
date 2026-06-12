@@ -1,4 +1,4 @@
-import { effectScope } from 'vue'
+import { createApp, effectScope } from 'vue'
 import type { App, Component } from 'vue'
 import { mergeDeep } from './util/helpers'
 import { createDefaults, DefaultsSymbol } from './composables/defaults'
@@ -11,6 +11,10 @@ import { createIcons, IconSymbol } from './composables/icons'
 import type { IconOptions } from './composables/icons'
 import { directives as builtinDirectives } from './directives'
 import { components as builtinComponents } from './components'
+import { VdServices } from './services/VdServices'
+import { useNotify } from './services/notify/useNotify'
+import { useLoading } from './services/loading/useLoading'
+import { useDialog } from './services/dialog/useDialog'
 
 export interface VueDLOptions {
   /** A preset that is deep-merged under the rest of the options. */
@@ -22,6 +26,8 @@ export interface VueDLOptions {
   theme?: ThemeOptions
   icons?: IconOptions
   ssr?: boolean
+  /** Set false to skip auto-mounting the notify/dialog/loading hosts. */
+  services?: boolean
 }
 
 export interface VueDLInstance {
@@ -34,10 +40,6 @@ export interface VueDLInstance {
 
 /**
  * Creates the Vue DL plugin. Wire it up with `app.use(createVueDL({ ... }))`.
- *
- * Mirrors Vuetify's framework installer: a single `effectScope` owns the global
- * systems (defaults/display/theme/icons), which are provided via injection keys
- * and consumed by every component through composables.
  */
 export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
   const { blueprint, ...rest } = options
@@ -53,16 +55,15 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
     const theme = createTheme(merged.theme)
     const icons = createIcons(merged.icons)
 
-    function install(app: App): void {
-      // Directives → v-ripple, v-click-outside, v-intersect
+    // Registers everything on an app (directives, components, provides, theme).
+    // Shared by the main install and the services host app.
+    function applyVueDL(app: App): void {
       for (const key in builtinDirectives) {
         app.directive(key, builtinDirectives[key])
       }
       for (const key in merged.directives) {
         app.directive(key, merged.directives[key] as never)
       }
-
-      // Built-in components, then any the consumer passes.
       for (const key in builtinComponents) {
         app.component(key, builtinComponents[key])
       }
@@ -76,6 +77,29 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
       app.provide(IconSymbol, icons)
 
       theme.install(app)
+    }
+
+    let servicesMounted = false
+    function mountServices(): void {
+      if (servicesMounted || merged.services === false) return
+      if (typeof document === 'undefined') return
+      servicesMounted = true
+      const host = document.createElement('div')
+      host.className = 'vd-services-host'
+      document.body.appendChild(host)
+      const servicesApp = createApp(VdServices)
+      applyVueDL(servicesApp)
+      servicesApp.mount(host)
+    }
+
+    function install(app: App): void {
+      applyVueDL(app)
+      app.config.globalProperties.$vd = {
+        notify: useNotify().notify,
+        loading: useLoading(),
+        dialog: useDialog(),
+      }
+      mountServices()
     }
 
     return { install, defaults, display, theme, icons }

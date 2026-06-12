@@ -6,6 +6,9 @@ export type { VueDLOptions, VueDLInstance } from './framework'
 // Components
 export * from './components'
 
+// Programmatic services (notify / loading / dialog)
+export * from './services'
+
 // Composables & their prop factories
 export * from './composables'
 

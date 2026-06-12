@@ -31,6 +31,7 @@ export const nav: NavSection[] = [
       { title: 'Navigation', to: '/components/navigation' },
       { title: 'Overlays', to: '/components/overlays' },
       { title: 'Data Table', to: '/components/data' },
+      { title: 'Services', to: '/components/services' },
     ],
   },
   {
