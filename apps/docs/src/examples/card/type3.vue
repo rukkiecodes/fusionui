@@ -9,5 +9,9 @@ const img = name => `${import.meta.env.BASE_URL}cards/${name}`
     <template #text>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
     </template>
+    <template #interactions>
+      <vd-btn icon="heart" color="danger" />
+      <vd-btn color="primary" variant="shadow" prepend-icon="message-circle">54</vd-btn>
+    </template>
   </vd-card>
 </template>
