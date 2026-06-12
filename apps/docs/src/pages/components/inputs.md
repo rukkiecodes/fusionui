@@ -42,11 +42,38 @@ The field colors its border, label, and message accordingly.
 
 <Example file="input/states" />
 
+## Icon card
+
+Add `icon-card` to seat the prepend / append icon in a little card that lifts
+out with a soft shadow when the field is focused.
+
+<Example file="input/icon-card" />
+
+## State
+
+Force a state tint with the `state` prop — `success`, `danger`, `warning`, or
+`primary`.
+
+<Example file="input/state" />
+
 ## Password
 
 `type="password"` adds a reveal toggle automatically.
 
 <Example file="input/password" />
+
+## Strength bar
+
+Bind a 0–100 `progress` value for a bar under the field that shifts from red to
+green as it fills — handy for password strength.
+
+<Example file="input/strength" />
+
+## Square & transparent
+
+`square` removes the rounding; `transparent` drops the fill.
+
+<Example file="input/square-transparent" />
 
 ## Loading
 

@@ -51,6 +51,7 @@
         color: rgba(var(--vd-theme-on-surface), 0.9);
         font: inherit;
         padding: 10px 0;
+        transition: padding 0.25s ease;
       }
 
       textarea {
@@ -114,7 +115,9 @@
       }
     }
 
-    // ---------- Default variant (filled) ----------
+    // ---------- Default variant (filled, Vuesax) ----------
+    // At rest a soft gray fill with no border; on focus the fill lightens and a
+    // colored bottom border slides in, while the text nudges to the right.
     &--variant-default {
       .vd-field__control {
         background-color: rgb(var(--vd-surface-2));
@@ -122,8 +125,11 @@
       }
       &.vd-field--focused .vd-field__control {
         background-color: rgb(var(--vd-theme-surface));
-        border-color: rgb(var(--vd-field-color));
-        box-shadow: 0 8px 20px -8px rgba(var(--vd-field-color), 0.5);
+        border-bottom-color: rgb(var(--vd-field-color));
+      }
+      &.vd-field--focused .vd-field__input input,
+      &.vd-field--focused .vd-field__input textarea {
+        padding-left: 5px;
       }
     }
 
@@ -173,9 +179,8 @@
       }
     }
 
-    // ---------- States ----------
-    &--error,
-    &--success {
+    // ---------- States (validation + manual `state`) ----------
+    &--tinted {
       .vd-field__control {
         border-color: rgb(var(--vd-field-color));
       }
@@ -183,9 +188,73 @@
         color: rgb(var(--vd-field-color));
       }
     }
-    &--error.vd-field--variant-default .vd-field__control,
-    &--success.vd-field--variant-default .vd-field__control {
+    &--tinted.vd-field--variant-default .vd-field__control {
       background-color: rgba(var(--vd-field-color), 0.08);
+    }
+
+    // ---------- Icon card (Vuesax) ----------
+    // The icon sits in a box that matches the fill at rest, then lifts out
+    // into a little floating card (translate + shadow) when the field focuses.
+    &--icon-card {
+      .vd-field__prepend,
+      .vd-field__append {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+        background: rgb(var(--vd-surface-2));
+        transition: all 0.25s ease;
+      }
+
+      &.vd-field--focused .vd-field__prepend {
+        transform: translate(-6px, -6px);
+        background: rgb(var(--vd-theme-surface));
+        box-shadow: -14px 10px 16px -10px rgba(0, 0, 0, 0.22);
+        color: rgb(var(--vd-field-color));
+      }
+      &.vd-field--focused .vd-field__append {
+        transform: translate(6px, -6px);
+        background: rgb(var(--vd-theme-surface));
+        box-shadow: 14px 10px 16px -10px rgba(0, 0, 0, 0.22);
+        color: rgb(var(--vd-field-color));
+      }
+    }
+
+    // ---------- Square / transparent ----------
+    &--square .vd-field__control {
+      border-radius: 0;
+    }
+    &--transparent .vd-field__control {
+      background-color: transparent;
+    }
+
+    // ---------- Strength / progress bar ----------
+    &__progress {
+      position: relative;
+      height: 3px;
+      margin-top: 6px;
+      border-radius: 3px;
+      background-color: rgba(var(--vd-theme-on-surface), 0.1);
+      overflow: hidden;
+
+      &-bar {
+        height: 100%;
+        border-radius: 3px;
+        transition:
+          width 0.25s ease,
+          background-color 0.25s ease;
+      }
+      &--danger &-bar {
+        background-color: rgb(var(--vd-theme-danger));
+      }
+      &--warning &-bar {
+        background-color: rgb(var(--vd-theme-warning));
+      }
+      &--success &-bar {
+        background-color: rgb(var(--vd-theme-success));
+      }
     }
 
     &--disabled {

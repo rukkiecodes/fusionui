@@ -23,6 +23,27 @@
       "required": false,
       "description": ""
     },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "progress": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "transparent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "prependIcon": {
       "type": "String | Object | Function",
       "required": false,
