@@ -52,16 +52,50 @@ to watch it drift.
 
 <Example file="card/type6" />
 
+## Type 8 — dodges the cursor
+
+Move your cursor toward the card and it kinetically dodges out of the way.
+
+<Example file="card/type8" />
+
+## Type 9 — follows the cursor
+
+Hover around the card and it leans and tilts toward your cursor.
+
+<Example file="card/type9" />
+
+## Type 10 — X feed
+
+A post layout (avatar, handle, media, reply / repost / like / views) using the
+`avatar`, `header`, and `actions` slots.
+
+<Example file="card/type10" />
+
+## Type 11 — Facebook feed
+
+Full-bleed media with a divided Like / Comment / Share bar.
+
+<Example file="card/type11" />
+
+## Type 12 — Instagram
+
+Header, square media, the action row, then the caption.
+
+<Example file="card/type12" />
+
 ## Slots
 
-| Slot           | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `img`          | The card image (or any media).                      |
-| `title`        | Heading shown above the text.                       |
-| `text`         | Body copy.                                          |
-| `interactions` | Buttons overlaid on the image (likes, comments, …). |
-| `buttons`      | A footer row of actions below the text.             |
-| `default`      | Free-form content appended inside the card.         |
+| Slot           | Description                                           |
+| -------------- | ----------------------------------------------------- |
+| `img`          | The card image (or any media).                        |
+| `title`        | Heading shown above the text.                         |
+| `text`         | Body copy.                                            |
+| `interactions` | Buttons overlaid on the image (likes, comments, …).   |
+| `avatar`       | Avatar in the header (social types 10–12).            |
+| `header`       | Name / handle / meta beside the avatar (types 10–12). |
+| `actions`      | Footer action row (social types 10–12).               |
+| `buttons`      | A footer row of actions below the text.               |
+| `default`      | Free-form content appended inside the card.           |
 
 ## Group
 

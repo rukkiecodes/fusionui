@@ -6,7 +6,11 @@ import { makeComponentProps, makeTagProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { VdIcon } from '../VdIcon'
 
-export type VdCardType = '1' | '2' | '3' | '4' | '5' | '6'
+export type VdCardType = '1' | '2' | '3' | '4' | '5' | '6' | '8' | '9' | '10' | '11' | '12'
+
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n))
+}
 
 export const makeVdCardProps = propsFactory(
   {
@@ -81,22 +85,95 @@ export const VdCard = genericComponent()({
       }
     }
 
-    onMounted(() => {
-      if (String(props.type) === '6') attach()
-    })
+    // ---- Types 8 & 9: cursor avoid / follow -----------------------------
+    let cursorFrame = 0
+    let cursorMove: ((e: MouseEvent) => void) | null = null
+
+    function detachCursor() {
+      if (cursorMove) {
+        document.removeEventListener('mousemove', cursorMove)
+        cursorMove = null
+      }
+      if (cursorFrame) {
+        cancelAnimationFrame(cursorFrame)
+        cursorFrame = 0
+      }
+      const el = cardRef.value
+      if (el) el.style.transform = ''
+    }
+
+    function attachCursor() {
+      if (typeof window === 'undefined') return
+      const t = String(props.type)
+      if (t !== '8' && t !== '9') return
+      detachCursor()
+      cursorMove = (e: MouseEvent) => {
+        if (cursorFrame) return
+        cursorFrame = requestAnimationFrame(() => {
+          cursorFrame = 0
+          const el = cardRef.value
+          if (!el) return
+          const rect = el.getBoundingClientRect()
+          const cx = rect.left + rect.width / 2
+          const cy = rect.top + rect.height / 2
+          const dx = e.clientX - cx
+          const dy = e.clientY - cy
+          if (t === '9') {
+            // follow: tilt + lean toward the cursor while it is over the card.
+            const margin = 60
+            const inside =
+              e.clientX >= rect.left - margin &&
+              e.clientX <= rect.right + margin &&
+              e.clientY >= rect.top - margin &&
+              e.clientY <= rect.bottom + margin
+            if (inside) {
+              const px = clamp(dx / (rect.width / 2), -1, 1)
+              const py = clamp(dy / (rect.height / 2), -1, 1)
+              el.style.transform =
+                `perspective(800px) rotateY(${px * 12}deg) rotateX(${-py * 12}deg) ` +
+                `translate(${px * 10}px, ${py * 10}px) scale(1.03)`
+            } else {
+              el.style.transform = ''
+            }
+          } else {
+            // avoid: shove away from the cursor when it gets close.
+            const dist = Math.hypot(dx, dy) || 0.001
+            const radius = 180
+            if (dist < radius) {
+              const force = 1 - dist / radius
+              const push = force * 75
+              el.style.transform = `translate(${(-dx / dist) * push}px, ${(-dy / dist) * push}px)`
+            } else {
+              el.style.transform = ''
+            }
+          }
+        })
+      }
+      document.addEventListener('mousemove', cursorMove, { passive: true })
+    }
+
+    function syncEffects() {
+      const t = String(props.type)
+      if (t === '6') attach()
+      else detach()
+      if (t === '8' || t === '9') attachCursor()
+      else detachCursor()
+    }
+
+    onMounted(syncEffects)
 
     // Attach/detach as the type switches (e.g. in the docs playground), and
-    // re-run when the intensity changes.
-    watch(
-      () => String(props.type),
-      t => (t === '6' ? attach() : detach())
-    )
+    // re-run parallax when the intensity changes.
+    watch(() => String(props.type), syncEffects)
     watch(
       () => props.parallax,
       () => updateParallax()
     )
 
-    onBeforeUnmount(detach)
+    onBeforeUnmount(() => {
+      detach()
+      detachCursor()
+    })
 
     useRender(() => {
       const src = props.image ?? props.img
@@ -133,9 +210,25 @@ export const VdCard = genericComponent()({
         ? h('div', { class: 'vd-card__buttons' }, [slots.buttons()])
         : null
 
+      // Social-feed building blocks (types 10–12): a header (avatar + name /
+      // meta) and an actions row. Layout order is arranged per type in SCSS.
+      const headerNode =
+        slots.avatar || slots.header
+          ? h('div', { class: 'vd-card__header' }, [
+              slots.avatar ? h('div', { class: 'vd-card__avatar' }, [slots.avatar()]) : null,
+              slots.header ? h('div', { class: 'vd-card__head' }, [slots.header()]) : null,
+            ])
+          : null
+
+      const actionsNode = slots.actions
+        ? h('div', { class: 'vd-card__actions' }, [slots.actions()])
+        : null
+
       const card = h(props.tag, { class: 'vd-card', ...attrs, ref: cardRef }, [
+        headerNode,
         imgNode,
         textNode,
+        actionsNode,
         buttonsNode,
         slots.default?.(),
       ])

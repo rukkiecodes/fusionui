@@ -8,6 +8,11 @@ const types = [
   { value: '4', label: 'Type 4' },
   { value: '5', label: 'Type 5' },
   { value: '6', label: 'Type 6' },
+  { value: '8', label: 'Type 8' },
+  { value: '9', label: 'Type 9' },
+  { value: '10', label: 'X' },
+  { value: '11', label: 'Facebook' },
+  { value: '12', label: 'Instagram' },
 ]
 const images = ['foto5.png', 'foto1.png', 'foto2.jpg', 'foto6.png', 'foto13.png']
 
@@ -24,9 +29,19 @@ const cfg = reactive({
 
 const defaults = JSON.stringify(cfg)
 
+const isSocial = computed(() => ['10', '11', '12'].includes(type.value))
 const imgUrl = computed(() => `${import.meta.env.BASE_URL}cards/${cfg.image}`)
+const avatarUrl = computed(() => `${import.meta.env.BASE_URL}cards/foto1.png`)
+const meta = computed(() =>
+  type.value === '10'
+    ? '@handle · 2h'
+    : type.value === '11'
+      ? 'Yesterday at 14:32'
+      : 'Santorini, Greece'
+)
 
 const code = computed(() => {
+  if (isSocial.value) return socialCode()
   const lines: string[] = []
   const attrs: string[] = []
   if (type.value !== '1') attrs.push(`type="${type.value}"`)
@@ -44,6 +59,46 @@ const code = computed(() => {
   lines.push(`</vd-card>`)
   return lines.join('\n')
 })
+
+function socialCode() {
+  const t = type.value
+  const l: string[] = [`<vd-card type="${t}">`]
+  l.push(`  <template #avatar><img src="/cards/foto1.png" alt="" /></template>`)
+  l.push(`  <template #header>`)
+  l.push(`    <strong>${cfg.title}</strong>`)
+  l.push(`    <span>${meta.value}</span>`)
+  l.push(`  </template>`)
+  if (t !== '12') l.push(`  <template #text><p>${cfg.text}</p></template>`)
+  l.push(`  <template #img><img src="/cards/${cfg.image}" alt="" /></template>`)
+  l.push(`  <template #actions>`)
+  if (t === '10') {
+    l.push(`    <button class="vd-act"><vd-icon icon="message-circle" size="small" /> 12</button>`)
+    l.push(`    <button class="vd-act"><vd-icon icon="repeat" size="small" /> 48</button>`)
+    l.push(`    <button class="vd-act"><vd-icon icon="heart" size="small" /> 312</button>`)
+    l.push(`    <button class="vd-act"><vd-icon icon="bar-chart-2" size="small" /> 9.8k</button>`)
+  } else if (t === '11') {
+    l.push(`    <button class="vd-act"><vd-icon icon="thumbs-up" size="small" /> Like</button>`)
+    l.push(
+      `    <button class="vd-act"><vd-icon icon="message-circle" size="small" /> Comment</button>`
+    )
+    l.push(`    <button class="vd-act"><vd-icon icon="share-2" size="small" /> Share</button>`)
+  } else {
+    l.push(`    <button class="vd-act"><vd-icon icon="heart" /></button>`)
+    l.push(`    <button class="vd-act"><vd-icon icon="message-circle" /></button>`)
+    l.push(`    <button class="vd-act"><vd-icon icon="send" /></button>`)
+    l.push(`    <vd-spacer />`)
+    l.push(`    <button class="vd-act"><vd-icon icon="bookmark" /></button>`)
+  }
+  l.push(`  </template>`)
+  if (t === '12') {
+    l.push(`  <template #text>`)
+    l.push(`    <p><strong>2,418 likes</strong></p>`)
+    l.push(`    <p><strong>${cfg.title}</strong> ${cfg.text}</p>`)
+    l.push(`  </template>`)
+  }
+  l.push(`</vd-card>`)
+  return l.join('\n')
+}
 
 async function copy() {
   await navigator.clipboard.writeText(code.value)
@@ -82,7 +137,47 @@ function reset() {
 
     <div class="pg__body">
       <div class="pg__preview">
-        <vd-card :type="type" :parallax="cfg.parallax" style="max-width: 320px">
+        <!-- Social feed cards (10–12) -->
+        <vd-card v-if="isSocial" :type="type">
+          <template #avatar><img :src="avatarUrl" alt="" /></template>
+          <template #header>
+            <strong>{{ cfg.title }}</strong>
+            <span>{{ meta }}</span>
+          </template>
+          <template v-if="type !== '12'" #text>
+            <p>{{ cfg.text }}</p>
+          </template>
+          <template #img><img :src="imgUrl" alt="" /></template>
+          <template #actions>
+            <template v-if="type === '10'">
+              <button class="vd-act"><vd-icon icon="message-circle" size="small" /> 12</button>
+              <button class="vd-act"><vd-icon icon="repeat" size="small" /> 48</button>
+              <button class="vd-act"><vd-icon icon="heart" size="small" /> 312</button>
+              <button class="vd-act"><vd-icon icon="bar-chart-2" size="small" /> 9.8k</button>
+            </template>
+            <template v-else-if="type === '11'">
+              <button class="vd-act"><vd-icon icon="thumbs-up" size="small" /> Like</button>
+              <button class="vd-act"><vd-icon icon="message-circle" size="small" /> Comment</button>
+              <button class="vd-act"><vd-icon icon="share-2" size="small" /> Share</button>
+            </template>
+            <template v-else>
+              <button class="vd-act"><vd-icon icon="heart" /></button>
+              <button class="vd-act"><vd-icon icon="message-circle" /></button>
+              <button class="vd-act"><vd-icon icon="send" /></button>
+              <vd-spacer />
+              <button class="vd-act"><vd-icon icon="bookmark" /></button>
+            </template>
+          </template>
+          <template v-if="type === '12'" #text>
+            <p><strong>2,418 likes</strong></p>
+            <p>
+              <strong>{{ cfg.title }}</strong> {{ cfg.text }}
+            </p>
+          </template>
+        </vd-card>
+
+        <!-- Image-based cards (1–9) -->
+        <vd-card v-else :type="type" :parallax="cfg.parallax" style="max-width: 320px">
           <template v-if="cfg.title" #title
             ><h3>{{ cfg.title }}</h3></template
           >
@@ -99,10 +194,10 @@ function reset() {
 
       <div class="pg__config">
         <p class="pg__config-title">Configuration</p>
-        <vd-input v-model="cfg.title" label="Title" label-placeholder />
-        <vd-input v-model="cfg.text" label="Text" label-placeholder />
+        <vd-input v-model="cfg.title" :label="isSocial ? 'Name' : 'Title'" label-placeholder />
+        <vd-input v-model="cfg.text" :label="isSocial ? 'Content' : 'Text'" label-placeholder />
         <vd-select v-model="cfg.image" :items="images" label="Image" />
-        <div class="pg__checks">
+        <div v-if="!isSocial" class="pg__checks">
           <vd-checkbox v-model="cfg.interactions" label="Interactions" />
         </div>
         <div v-if="type === '6'" class="pg__slider">
