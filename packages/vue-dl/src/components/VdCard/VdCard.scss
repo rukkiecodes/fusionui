@@ -275,19 +275,20 @@
   }
 
   // ---- Type 5: caption card pops up over the image on hover -------------
+  // The caption sits below the image in flow (so it can't balloon), but its
+  // negative margin-bottom keeps it from reserving space — the image fills the
+  // card at rest, and the caption slides up over it on hover.
   .vd-card-content--type-5 .vd-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     box-shadow: none;
-    // Transparent so the space reserved for the (hidden) caption blends with
-    // the page until the caption pops up on hover — clean in any theme.
     background: transparent;
+    overflow: visible;
 
     &:hover {
       .vd-card__interactions {
-        bottom: 70px;
+        bottom: 78px;
       }
 
       .vd-card__text {
@@ -307,7 +308,7 @@
 
     .vd-card__img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       max-height: none;
       border-radius: 6px 20px 6px 20px;
 
@@ -330,6 +331,7 @@
       z-index: 10;
       width: calc(100% - 30px);
       margin-top: -45px;
+      margin-bottom: -120px;
       padding: 12px 15px 15px;
       border-radius: 6px 20px 6px 20px;
       background: rgb(var(--vd-theme-surface));
