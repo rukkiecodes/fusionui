@@ -65,6 +65,9 @@ importers:
       '@vue-dl/icons-feather':
         specifier: workspace:*
         version: link:../../packages/icons-feather
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.30.0
       vue:
         specifier: ^3.5.13
         version: 3.5.38(typescript@5.9.3)
@@ -2535,6 +2538,10 @@ packages:
     resolution: {integrity: sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==}
     engines: {node: '>=14'}
     hasBin: true
+
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
+    engines: {node: '>=6'}
 
   prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
@@ -5493,6 +5500,8 @@ snapshots:
   prettier@2.8.8: {}
 
   prettier@3.8.4: {}
+
+  prismjs@1.30.0: {}
 
   prompts@2.4.2:
     dependencies:

@@ -189,22 +189,117 @@ body {
 .example {
   margin: 28px 0;
   border: 1px solid rgba(var(--vd-theme-on-surface), 0.09);
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
+  background-color: rgba(var(--vd-theme-on-surface), 0.015);
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 
   &__preview {
-    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 44px 32px;
     background-color: rgb(var(--vd-theme-background));
   }
 
+  // centered icon toolbar (copy · toggle source)
   &__toolbar {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 6px 10px;
-    border-top: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
-    background-color: rgba(var(--vd-theme-on-surface), 0.02);
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  &__tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(var(--vd-theme-on-surface), 0.45);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(var(--vd-theme-on-surface), 0.07);
+      color: rgba(var(--vd-theme-on-surface), 0.8);
+    }
+    &--active {
+      color: rgb(var(--vd-theme-primary));
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 18px;
+    background-color: rgba(var(--vd-theme-on-surface), 0.12);
+  }
+
+  // Template / Script / All tabs
+  &__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 4px 0 0;
+  }
+
+  &__tab {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 6px 2px;
+    font: inherit;
+    font-size: 0.82rem;
+    color: rgba(var(--vd-theme-on-surface), 0.45);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 2px;
+      background-color: rgb(var(--vd-theme-primary));
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    &:hover {
+      color: rgba(var(--vd-theme-on-surface), 0.75);
+    }
+    &--active {
+      color: rgb(var(--vd-theme-on-surface));
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__panel {
+    position: relative;
+    margin: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  &__lang {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 1;
   }
 
   &__missing {
@@ -215,13 +310,52 @@ body {
 
 .markup {
   margin: 0;
-  padding: 20px 24px;
+  padding: 22px 24px;
   overflow-x: auto;
-  background-color: #1d1f2b;
-  color: #e6e6f0;
+  background-color: #1a1b26;
+  color: #c0caf5;
   font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.84rem;
-  line-height: 1.6;
+  font-size: 0.83rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+// Prism token theme (Tokyo Night–ish) for the code panels
+.markup {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #565f89;
+  }
+  .token.punctuation {
+    color: #89ddff;
+  }
+  .token.tag {
+    color: #f7768e;
+  }
+  .token.attr-name {
+    color: #bb9af7;
+  }
+  .token.attr-value,
+  .token.string {
+    color: #9ece6a;
+  }
+  .token.keyword,
+  .token.boolean {
+    color: #bb9af7;
+  }
+  .token.function {
+    color: #7aa2f7;
+  }
+  .token.number,
+  .token.constant {
+    color: #ff9e64;
+  }
+  .token.operator,
+  .token.script .token.punctuation {
+    color: #89ddff;
+  }
 }
 
 .api-table__pending {

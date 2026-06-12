@@ -3,7 +3,6 @@ import { computed, defineAsyncComponent, ref, watchEffect } from 'vue'
 
 const props = defineProps<{ file: string }>()
 
-// Vite globs every example once; we pick the one matching `file` at runtime.
 const componentModules = import.meta.glob('../examples/**/*.vue')
 const sourceModules = import.meta.glob('../examples/**/*.vue', {
   query: '?raw',
@@ -13,6 +12,7 @@ const sourceModules = import.meta.glob('../examples/**/*.vue', {
 const showCode = ref(false)
 const copied = ref(false)
 const source = ref('')
+const tab = ref<'template' | 'script' | 'all'>('template')
 
 const key = computed(() => `../examples/${props.file}.vue`)
 
@@ -26,6 +26,30 @@ watchEffect(async () => {
   source.value = loader ? ((await loader()) as string) : ''
 })
 
+const templateBlock = computed(() => {
+  const m = source.value.match(/<template>[\s\S]*<\/template>/)
+  return m ? m[0] : source.value.trim()
+})
+const scriptBlock = computed(() => {
+  const m = source.value.match(/<script[\s\S]*?<\/script>/)
+  return m ? m[0] : ''
+})
+const hasScript = computed(() => !!scriptBlock.value)
+const tabs = computed(() =>
+  hasScript.value ? (['template', 'script', 'all'] as const) : (['template'] as const)
+)
+
+const shownCode = computed(() => {
+  if (tab.value === 'script') return scriptBlock.value
+  if (tab.value === 'all') return source.value.trim()
+  return templateBlock.value
+})
+
+function toggleCode() {
+  showCode.value = !showCode.value
+  if (showCode.value) tab.value = 'template'
+}
+
 async function copy() {
   await navigator.clipboard.writeText(source.value)
   copied.value = true
@@ -34,22 +58,43 @@ async function copy() {
 </script>
 
 <template>
-  <div class="example">
+  <div class="example" :class="{ 'example--open': showCode }">
     <div class="example__preview">
       <component :is="Comp" v-if="Comp" />
       <div v-else class="example__missing">Example "{{ file }}" not found.</div>
     </div>
 
     <div class="example__toolbar">
-      <vd-btn size="x-small" variant="text" prepend-icon="code" @click="showCode = !showCode">
-        {{ showCode ? 'Hide' : 'Show' }} source
-      </vd-btn>
-      <vd-spacer />
-      <vd-btn size="x-small" variant="text" :prepend-icon="copied ? 'check' : 'copy'" @click="copy">
-        {{ copied ? 'Copied' : 'Copy' }}
-      </vd-btn>
+      <button class="example__tool" :title="copied ? 'Copied' : 'Copy source'" @click="copy">
+        <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+      </button>
+      <span class="example__divider" />
+      <button
+        class="example__tool"
+        :class="{ 'example__tool--active': showCode }"
+        title="Toggle source"
+        @click="toggleCode"
+      >
+        <vd-icon :icon="showCode ? 'eye-off' : 'code'" size="small" />
+      </button>
     </div>
 
-    <Markup v-if="showCode" :code="source" />
+    <div v-if="showCode" class="example__code">
+      <div class="example__tabs">
+        <button
+          v-for="t in tabs"
+          :key="t"
+          class="example__tab"
+          :class="{ 'example__tab--active': tab === t }"
+          @click="tab = t"
+        >
+          {{ t === 'all' ? 'All' : t.charAt(0).toUpperCase() + t.slice(1) }}
+        </button>
+      </div>
+      <div class="example__panel">
+        <span class="example__lang">vue</span>
+        <Markup :code="shownCode" lang="markup" />
+      </div>
+    </div>
   </div>
 </template>
