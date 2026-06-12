@@ -1,0 +1,37 @@
+{
+  "displayName": "VdTab",
+  "props": {
+    "value": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "type": "String | Number",
+      "required": false,
+      "description": ""
+    },
+    "icon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {}
+}

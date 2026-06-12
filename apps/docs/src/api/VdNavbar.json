@@ -1,0 +1,37 @@
+{
+  "displayName": "VdNavbar",
+  "props": {
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "flat": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "fixed": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {}
+}

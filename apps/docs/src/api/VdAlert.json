@@ -1,0 +1,73 @@
+{
+  "displayName": "VdAlert",
+  "props": {
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "tonal",
+      "required": false,
+      "description": ""
+    },
+    "type": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "icon": {
+      "type": "Boolean | String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "closable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "border": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "modelValue": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  }
+}

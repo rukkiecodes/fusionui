@@ -1,0 +1,53 @@
+{
+  "displayName": "VdAvatar",
+  "props": {
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "size": {
+      "type": "String | Number",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "image": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "icon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tile": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {}
+}

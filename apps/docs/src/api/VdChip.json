@@ -1,0 +1,83 @@
+{
+  "displayName": "VdChip",
+  "props": {
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "tonal",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "pill": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "closable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "prependIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "link": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "modelValue": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "size": {
+      "type": "String | Number",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "click:close": {
+      "description": ""
+    }
+  }
+}

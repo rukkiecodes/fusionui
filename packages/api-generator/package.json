@@ -1,14 +1,23 @@
 {
   "name": "@vue-dl/api-generator",
   "version": "0.0.0",
-  "description": "Generates component API metadata (props/events/slots) for the Vue DL docs.",
+  "description": "Generates component API metadata (props/events) for the Vue DL docs.",
   "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "echo \"[api-generator] build placeholder — implemented in Batch 10\"",
-    "generate": "echo \"[api-generator] generate placeholder — implemented in Batch 10\"",
+    "generate": "node src/index.mjs",
+    "build": "echo \"[api-generator] build placeholder\"",
     "typecheck": "echo \"[api-generator] typecheck placeholder\"",
     "test": "echo \"[api-generator] no tests yet\""
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "vite": "^6.0.7",
+    "vue": "^3.5.13"
+  },
+  "dependencies": {
+    "vue-dl": "workspace:*",
+    "@vue-dl/icons-feather": "workspace:*"
   }
 }

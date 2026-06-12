@@ -1,0 +1,48 @@
+{
+  "displayName": "VdTabs",
+  "props": {
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "grow": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "align": {
+      "type": "String",
+      "default": "start",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  }
+}

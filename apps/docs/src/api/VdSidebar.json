@@ -1,0 +1,49 @@
+{
+  "displayName": "VdSidebar",
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "location": {
+      "type": "String",
+      "default": "left",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "String | Number",
+      "default": "256",
+      "required": false,
+      "description": ""
+    },
+    "permanent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  }
+}

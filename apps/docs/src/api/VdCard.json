@@ -1,0 +1,85 @@
+{
+  "displayName": "VdCard",
+  "props": {
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "elevated",
+      "required": false,
+      "description": ""
+    },
+    "image": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "subtitle": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "hover": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "link": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | Number | String",
+      "default": "lg",
+      "required": false,
+      "description": ""
+    },
+    "tile": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "elevation": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {}
+}

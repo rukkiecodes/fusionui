@@ -1,0 +1,124 @@
+{
+  "displayName": "VdSelect",
+  "props": {
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "items": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "itemTitle": {
+      "type": "String",
+      "default": "title",
+      "required": false,
+      "description": ""
+    },
+    "itemValue": {
+      "type": "String",
+      "default": "value",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "placeholder": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "multiple": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "clearable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hint": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "persistentHint": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rules": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "error": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "errorMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "successMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "validateOn": {
+      "type": "String",
+      "default": "input",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  }
+}

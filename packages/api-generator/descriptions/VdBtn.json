@@ -1,0 +1,17 @@
+{
+  "props": {
+    "variant": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, or line.",
+    "color": "A theme color name (primary, success…) or any CSS color.",
+    "size": "x-small, small, default, large, x-large, or a custom value.",
+    "icon": "Renders a round, icon-only button when set to an icon value.",
+    "prependIcon": "Icon shown before the label.",
+    "appendIcon": "Icon shown after the label.",
+    "loading": "Shows a spinner and blocks interaction.",
+    "block": "Stretches the button to the full container width.",
+    "disabled": "Disables the button.",
+    "href": "Renders the button as an <a> link."
+  },
+  "events": {
+    "click": "Emitted on click when the button is not disabled or loading."
+  }
+}
