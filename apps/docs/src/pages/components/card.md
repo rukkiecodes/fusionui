@@ -7,6 +7,12 @@ animation.
 
 > The images below are placeholders; swap in your own by changing the `img` slot.
 
+## Usage
+
+Pick a type and configure the card live — the code updates as you go.
+
+<CardPlayground />
+
 ## Default
 
 The default card (`type="1"`) settles down and zooms its image gently on hover.
