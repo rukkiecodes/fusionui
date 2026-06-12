@@ -9,6 +9,8 @@ import anchor from 'markdown-it-anchor'
 const r = (p: string) => fileURLToPath(new URL(p, import.meta.url))
 
 export default defineConfig({
+  // Served under a sub-path on GitHub Pages (set by the deploy workflow).
+  base: process.env.DOCS_BASE ?? '/',
   resolve: {
     alias: [
       // Resolve the library to its SOURCE so editing packages/vue-dl/src
