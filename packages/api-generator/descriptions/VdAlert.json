@@ -1,0 +1,27 @@
+{
+  "props": {
+    "variant": "Visual style — default, solid, border, shadow, gradient, flat, or relief.",
+    "color": "Accent color — a theme name (primary, success…) or any CSS color.",
+    "type": "Semantic shortcut (success, info, warning, error) that sets a color and a leading icon.",
+    "title": "Title text (shorthand for the `title` slot).",
+    "text": "Body text (shorthand for the default slot).",
+    "icon": "Leading icon name, or false to hide the type icon.",
+    "closable": "Shows a dismiss button that hides the alert.",
+    "progress": "0–100 value for the bottom progress bar.",
+    "hiddenContent": "Boolean (use `v-model:hidden-content`) — makes the title collapse/expand the content.",
+    "page": "Current page for the `page-N` slots (use `v-model:page`).",
+    "modelValue": "Visibility (use `v-model`)."
+  },
+  "events": {
+    "update:modelValue": "Emitted when the alert is dismissed.",
+    "update:hiddenContent": "Emitted when the content is collapsed or expanded.",
+    "update:page": "Emitted when the page changes."
+  },
+  "slots": {
+    "default": "The alert content.",
+    "title": "The alert title.",
+    "icon": "Custom leading icon.",
+    "footer": "A footer row, typically for actions.",
+    "page-1": "Content for page 1 (add page-2, page-3, … for more)."
+  }
+}

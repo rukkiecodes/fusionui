@@ -9,6 +9,7 @@ import ApiTable from './components/ApiTable.vue'
 import ButtonPlayground from './components/ButtonPlayground.vue'
 import InputPlayground from './components/InputPlayground.vue'
 import CardPlayground from './components/CardPlayground.vue'
+import AlertPlayground from './components/AlertPlayground.vue'
 import 'vue-dl/styles'
 import './styles/docs.scss'
 
@@ -28,4 +29,5 @@ createApp(App)
   .component('ButtonPlayground', ButtonPlayground)
   .component('InputPlayground', InputPlayground)
   .component('CardPlayground', CardPlayground)
+  .component('AlertPlayground', AlertPlayground)
   .mount('#app')

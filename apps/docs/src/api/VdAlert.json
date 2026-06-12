@@ -1,52 +1,65 @@
 {
   "displayName": "VdAlert",
   "props": {
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": "Visual style — default, solid, border, shadow, gradient, flat, or relief."
+    },
     "color": {
       "type": "String",
       "required": false,
-      "description": ""
-    },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
+      "description": "Accent color — a theme name (primary, success…) or any CSS color."
     },
     "type": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Semantic shortcut (success, info, warning, error) that sets a color and a leading icon."
     },
     "title": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Title text (shorthand for the `title` slot)."
     },
     "text": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Body text (shorthand for the default slot)."
     },
     "icon": {
       "type": "Boolean | String | Object | Function",
       "required": false,
-      "description": ""
+      "description": "Leading icon name, or false to hide the type icon."
     },
     "closable": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Shows a dismiss button that hides the alert."
     },
-    "border": {
-      "type": "Boolean",
+    "progress": {
+      "type": "Number | String",
+      "default": "0",
       "required": false,
-      "description": ""
+      "description": "0–100 value for the bottom progress bar."
+    },
+    "hiddenContent": {
+      "type": "Boolean",
+      "default": "null",
+      "required": false,
+      "description": "Boolean (use `v-model:hidden-content`) — makes the title collapse/expand the content."
+    },
+    "page": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": "Current page for the `page-N` slots (use `v-model:page`)."
     },
     "modelValue": {
       "type": "Boolean",
       "default": "true",
       "required": false,
-      "description": ""
+      "description": "Visibility (use `v-model`)."
     },
     "theme": {
       "type": "String",
@@ -67,8 +80,30 @@
   },
   "events": {
     "update:modelValue": {
-      "description": ""
+      "description": "Emitted when the alert is dismissed."
+    },
+    "update:hiddenContent": {
+      "description": "Emitted when the content is collapsed or expanded."
+    },
+    "update:page": {
+      "description": "Emitted when the page changes."
     }
   },
-  "slots": {}
+  "slots": {
+    "default": {
+      "description": "The alert content."
+    },
+    "title": {
+      "description": "The alert title."
+    },
+    "icon": {
+      "description": "Custom leading icon."
+    },
+    "footer": {
+      "description": "A footer row, typically for actions."
+    },
+    "page-1": {
+      "description": "Content for page 1 (add page-2, page-3, … for more)."
+    }
+  }
 }

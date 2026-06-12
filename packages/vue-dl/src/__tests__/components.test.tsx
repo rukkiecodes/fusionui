@@ -130,9 +130,9 @@ describe('VdCard', () => {
 })
 
 describe('VdAlert', () => {
-  it('maps type to color and a leading icon', () => {
+  it('maps type to a color var and a leading icon', () => {
     const wrapper = mountWith(VdAlert, { props: { type: 'success', text: 'Done' } })
-    expect(wrapper.classes()).toContain('text-success')
+    expect(wrapper.find('.vd-alert').attributes('style')).toContain('--vd-theme-success')
     expect(wrapper.find('.vd-alert__icon').exists()).toBe(true)
     expect(wrapper.text()).toContain('Done')
   })
