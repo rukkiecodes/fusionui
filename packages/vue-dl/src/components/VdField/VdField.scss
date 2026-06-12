@@ -7,7 +7,9 @@
     display: inline-flex;
     flex-direction: column;
     font-family: var(--vd-font-family);
-    min-width: 220px;
+    // Match Vuesax's compact density (input ≈ 38px tall, 13.3px text).
+    font-size: 0.83rem;
+    min-width: 200px;
 
     &--block {
       display: flex;
@@ -15,19 +17,20 @@
     }
 
     &__label-top {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: settings.$vd-font-weight-medium;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       color: rgba(var(--vd-theme-on-surface), 0.7);
     }
 
     &__control {
       position: relative;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 2px 14px;
-      min-height: 44px;
+      padding: 0 11px;
+      min-height: 38px;
       background-color: rgb(var(--vd-surface-2));
       border: 2px solid transparent;
       border-radius: var(--vd-radius-md);
@@ -50,7 +53,8 @@
         background: transparent;
         color: rgba(var(--vd-theme-on-surface), 0.9);
         font: inherit;
-        padding: 10px 0;
+        line-height: 1.5;
+        padding: 5px 0;
         transition: padding 0.25s ease;
       }
 
@@ -63,7 +67,7 @@
     // Floating placeholder label (Vuesax signature) — sits as placeholder text
     // at rest, then floats up above the field when focused or filled.
     &--floating-label {
-      margin-top: 20px;
+      margin-top: 17px;
     }
     &--floating-label &__label {
       position: absolute;
@@ -205,15 +209,15 @@
     &--icon-card {
       .vd-field__prepend,
       .vd-field__append {
-        width: 38px;
-        height: 38px;
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         // Matches the fill at rest (invisible). On focus the field fill darkens
         // to surface-3, so this stays put and reads as a lighter, lifted card.
         background: rgb(var(--vd-surface-2));
-        border-radius: 10px;
+        border-radius: 8px;
         transition: all 0.25s ease;
       }
 
