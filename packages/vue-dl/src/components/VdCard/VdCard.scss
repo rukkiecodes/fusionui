@@ -288,7 +288,7 @@
 
     &:hover {
       .vd-card__interactions {
-        bottom: 78px;
+        bottom: 92px;
       }
 
       .vd-card__text {
@@ -345,7 +345,9 @@
       position: relative;
       z-index: 10;
       width: calc(100% - 30px);
-      margin-top: -45px;
+      // Overlap most of the image so the caption only protrudes a little on
+      // hover (keeps it inside the demo's padding instead of being clipped).
+      margin-top: -92px;
       margin-bottom: -120px;
       padding: 14px 16px 15px;
       border-radius: 6px 20px 6px 20px;
