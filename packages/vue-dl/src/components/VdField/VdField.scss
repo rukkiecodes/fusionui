@@ -60,19 +60,25 @@
       }
     }
 
-    // Floating placeholder label (Vuesax signature)
+    // Floating placeholder label (Vuesax signature) — sits as placeholder text
+    // at rest, then floats up above the field when focused or filled.
+    &--floating-label {
+      margin-top: 20px;
+    }
     &--floating-label &__label {
       position: absolute;
       left: 0;
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
+      white-space: nowrap;
       color: rgba(var(--vd-theme-on-surface), 0.5);
       transition: settings.$vd-transition-fast;
     }
     &--floating-label.vd-field--active &__label {
       top: 0;
-      transform: translateY(-90%) scale(0.8);
+      transform: translateY(-148%);
+      font-size: 0.78rem;
       color: rgb(var(--vd-field-color));
     }
 
@@ -116,15 +122,16 @@
     }
 
     // ---------- Default variant (filled, Vuesax) ----------
-    // At rest a soft gray fill with no border; on focus the fill lightens and a
-    // colored bottom border slides in, while the text nudges to the right.
+    // A soft gray fill (gray-2) that lightens slightly on focus — staying
+    // visible — while a colored, rounded bottom border slides in and the text
+    // nudges to the right.
     &--variant-default {
       .vd-field__control {
         background-color: rgb(var(--vd-surface-2));
         border: 2px solid transparent;
       }
       &.vd-field--focused .vd-field__control {
-        background-color: rgb(var(--vd-theme-surface));
+        background-color: rgb(var(--vd-surface-3));
         border-bottom-color: rgb(var(--vd-field-color));
       }
       &.vd-field--focused .vd-field__input input,
