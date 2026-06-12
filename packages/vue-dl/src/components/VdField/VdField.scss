@@ -86,13 +86,29 @@
       color: rgb(var(--vd-field-color));
     }
 
-    // Icons — square animated affordances (Vuesax)
+    // Prepend / append icons always sit in a little card that lifts out on
+    // focus (Vuesax) — matches the fill at rest, pops as the fill darkens.
     &__prepend,
     &__append {
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: rgb(var(--vd-surface-2));
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+    &--focused &__prepend {
+      transform: translate(-8px, -9px);
+      box-shadow: -12px 12px 20px -10px rgba(0, 0, 0, 0.3);
+      color: rgb(var(--vd-field-color));
+    }
+    &--focused &__append {
+      transform: translate(8px, -9px);
+      box-shadow: 12px 12px 20px -10px rgba(0, 0, 0, 0.3);
+      color: rgb(var(--vd-field-color));
     }
     &__icon {
       flex-shrink: 0;
@@ -143,7 +159,6 @@
       }
       &.vd-field--focused .vd-field__control {
         background-color: rgb(var(--vd-surface-3));
-        border-bottom-color: rgb(var(--vd-field-color));
       }
       &.vd-field--focused .vd-field__input input,
       &.vd-field--focused .vd-field__input textarea {
@@ -208,36 +223,6 @@
     }
     &--tinted.vd-field--variant-default .vd-field__control {
       background-color: rgba(var(--vd-field-color), 0.08);
-    }
-
-    // ---------- Icon card (Vuesax) ----------
-    // The icon sits in a box that matches the fill at rest, then lifts out
-    // into a little floating card (translate + shadow) when the field focuses.
-    &--icon-card {
-      .vd-field__prepend,
-      .vd-field__append {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        // Matches the fill at rest (invisible). On focus the field fill darkens
-        // to surface-3, so this stays put and reads as a lighter, lifted card.
-        background: rgb(var(--vd-surface-2));
-        border-radius: 8px;
-        transition: all 0.25s ease;
-      }
-
-      &.vd-field--focused .vd-field__prepend {
-        transform: translate(-8px, -9px);
-        box-shadow: -12px 12px 20px -10px rgba(0, 0, 0, 0.3);
-        color: rgb(var(--vd-field-color));
-      }
-      &.vd-field--focused .vd-field__append {
-        transform: translate(8px, -9px);
-        box-shadow: 12px 12px 20px -10px rgba(0, 0, 0, 0.3);
-        color: rgb(var(--vd-field-color));
-      }
     }
 
     // ---------- Square / transparent ----------

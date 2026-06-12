@@ -22,8 +22,6 @@ export const makeVdFieldProps = propsFactory(
     progress: { type: [Number, String] as PropType<number | string>, default: 0 },
     square: Boolean,
     transparent: Boolean,
-    // Render prepend / append icons as little cards that lift on focus (Vuesax).
-    iconCard: Boolean,
     prependIcon: [String, Object, Function] as PropType<IconValue>,
     appendIcon: [String, Object, Function] as PropType<IconValue>,
     clearable: Boolean,
@@ -96,7 +94,6 @@ export const VdField = genericComponent()({
               'vd-field--block': props.block,
               'vd-field--square': props.square,
               'vd-field--transparent': props.transparent,
-              'vd-field--icon-card': props.iconCard,
               'vd-field--floating-label': floating,
             },
             props.class,

@@ -30,8 +30,9 @@ The `color` prop sets the focus accent — a theme color or any CSS color.
 
 ## Icons
 
-Add `prepend-icon` / `append-icon`, and `clearable` to show a clear affordance
-when the field has a value.
+Add `prepend-icon` / `append-icon` — the icon sits in a little card that lifts
+out with a soft shadow when the field is focused. Add `clearable` for a clear
+affordance when the field has a value.
 
 <Example file="input/icons" />
 
@@ -41,13 +42,6 @@ Pass `rules` for validation, or `success-messages` / `hint` for other states.
 The field colors its border, label, and message accordingly.
 
 <Example file="input/states" />
-
-## Icon card
-
-Add `icon-card` to seat the prepend / append icon in a little card that lifts
-out with a soft shadow when the field is focused.
-
-<Example file="input/icon-card" />
 
 ## State
 
