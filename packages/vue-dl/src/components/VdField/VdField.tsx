@@ -112,7 +112,7 @@ export const VdField = genericComponent()({
               ? h(VdIcon, {
                   icon: props.prependIcon,
                   class: 'vd-field__icon vd-field__prepend',
-                  size: '1.15em',
+                  size: '1em',
                 })
               : null,
             h('div', { class: 'vd-field__input' }, [
@@ -132,7 +132,7 @@ export const VdField = genericComponent()({
               ? h(VdIcon, {
                   icon: props.appendIcon,
                   class: 'vd-field__icon vd-field__append',
-                  size: '1.15em',
+                  size: '1em',
                 })
               : null,
             slots.append?.(),
