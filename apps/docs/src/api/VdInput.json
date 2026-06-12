@@ -5,65 +5,81 @@
       "type": "String | Number",
       "default": "",
       "required": false,
-      "description": ""
+      "description": "The input value (use with `v-model`)."
     },
     "type": {
       "type": "String",
       "default": "text",
       "required": false,
-      "description": ""
+      "description": "Native input type — text, password, email, number, etc. `password` adds a reveal toggle."
     },
     "placeholder": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Native placeholder (when not using a floating label)."
     },
     "label": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Field label. Combine with `label-placeholder` for the floating label."
     },
     "labelPlaceholder": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Animates the label as a placeholder that floats up on focus."
     },
     "color": {
       "type": "String",
       "default": "primary",
       "required": false,
-      "description": ""
+      "description": "Focus accent color — a theme color name or any CSS color."
+    },
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": "Field style — default (filled), underlined, or shadow."
     },
     "prependIcon": {
       "type": "String | Object | Function",
       "required": false,
-      "description": ""
+      "description": "Icon shown before the input."
     },
     "appendIcon": {
       "type": "String | Object | Function",
       "required": false,
-      "description": ""
+      "description": "Icon shown after the input."
     },
     "clearable": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Shows a clear button when the field has a value."
+    },
+    "block": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Stretches the field to the full container width."
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shows an inline loading spinner."
     },
     "hint": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Helper text shown below the field."
     },
     "persistentHint": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Keeps the hint visible even when not focused."
     },
     "rules": {
       "type": "Array",
       "default": "[]",
       "required": false,
-      "description": ""
+      "description": "Array of validation rules — each returns true or an error message."
     },
     "error": {
       "type": "Boolean",
@@ -74,29 +90,29 @@
       "type": "String | Array",
       "default": "[]",
       "required": false,
-      "description": ""
+      "description": "Force one or more error messages."
     },
     "successMessages": {
       "type": "String | Array",
       "default": "[]",
       "required": false,
-      "description": ""
+      "description": "Show success messages (green state)."
     },
     "validateOn": {
       "type": "String",
       "default": "input",
       "required": false,
-      "description": ""
+      "description": "When to validate — input, blur, or submit."
     },
     "disabled": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Disables the field."
     },
     "readonly": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Makes the field read-only."
     },
     "theme": {
       "type": "String",
@@ -117,11 +133,15 @@
   },
   "events": {
     "update:modelValue": {
-      "description": ""
+      "description": "Emitted when the value changes."
     },
     "update:focused": {
-      "description": ""
+      "description": "Emitted when focus state changes."
     }
   },
-  "slots": {}
+  "slots": {
+    "default": {
+      "description": "The input element (advanced usage)."
+    }
+  }
 }

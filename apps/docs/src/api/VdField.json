@@ -17,6 +17,12 @@
       "required": false,
       "description": ""
     },
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
     "prependIcon": {
       "type": "String | Object | Function",
       "required": false,
@@ -28,6 +34,11 @@
       "description": ""
     },
     "clearable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "block": {
       "type": "Boolean",
       "required": false,
       "description": ""

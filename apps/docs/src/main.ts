@@ -7,6 +7,7 @@ import Example from './components/Example.vue'
 import Markup from './components/Markup.vue'
 import ApiTable from './components/ApiTable.vue'
 import ButtonPlayground from './components/ButtonPlayground.vue'
+import InputPlayground from './components/InputPlayground.vue'
 import 'vue-dl/styles'
 import './styles/docs.scss'
 
@@ -24,4 +25,5 @@ createApp(App)
   .component('Markup', Markup)
   .component('ApiTable', ApiTable)
   .component('ButtonPlayground', ButtonPlayground)
+  .component('InputPlayground', InputPlayground)
   .mount('#app')

@@ -1,0 +1,31 @@
+{
+  "props": {
+    "modelValue": "The input value (use with `v-model`).",
+    "type": "Native input type — text, password, email, number, etc. `password` adds a reveal toggle.",
+    "label": "Field label. Combine with `label-placeholder` for the floating label.",
+    "labelPlaceholder": "Animates the label as a placeholder that floats up on focus.",
+    "placeholder": "Native placeholder (when not using a floating label).",
+    "color": "Focus accent color — a theme color name or any CSS color.",
+    "variant": "Field style — default (filled), underlined, or shadow.",
+    "prependIcon": "Icon shown before the input.",
+    "appendIcon": "Icon shown after the input.",
+    "clearable": "Shows a clear button when the field has a value.",
+    "block": "Stretches the field to the full container width.",
+    "loading": "Shows an inline loading spinner.",
+    "hint": "Helper text shown below the field.",
+    "persistentHint": "Keeps the hint visible even when not focused.",
+    "rules": "Array of validation rules — each returns true or an error message.",
+    "errorMessages": "Force one or more error messages.",
+    "successMessages": "Show success messages (green state).",
+    "validateOn": "When to validate — input, blur, or submit.",
+    "disabled": "Disables the field.",
+    "readonly": "Makes the field read-only."
+  },
+  "events": {
+    "update:modelValue": "Emitted when the value changes.",
+    "update:focused": "Emitted when focus state changes."
+  },
+  "slots": {
+    "default": "The input element (advanced usage)."
+  }
+}

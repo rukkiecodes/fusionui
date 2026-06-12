@@ -7,14 +7,18 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import type { IconValue } from '../../composables/icons'
 import { VdIcon } from '../VdIcon'
 
+export type FieldVariant = 'default' | 'underlined' | 'shadow'
+
 export const makeVdFieldProps = propsFactory(
   {
     label: String as PropType<string>,
     labelPlaceholder: Boolean,
     color: { type: String as PropType<string>, default: 'primary' },
+    variant: { type: String as PropType<FieldVariant>, default: 'default' },
     prependIcon: [String, Object, Function] as PropType<IconValue>,
     appendIcon: [String, Object, Function] as PropType<IconValue>,
     clearable: Boolean,
+    block: Boolean,
     hint: String as PropType<string>,
     persistentHint: Boolean,
     errorMessages: { type: Array as PropType<string[]>, default: () => [] },
@@ -64,12 +68,15 @@ export const VdField = genericComponent()({
         {
           class: [
             'vd-field',
+            `vd-field--variant-${props.variant}`,
             {
               'vd-field--focused': props.focused,
               'vd-field--active': props.active || props.focused,
               'vd-field--error': hasError.value,
               'vd-field--success': hasSuccess.value,
               'vd-field--disabled': props.disabled,
+              'vd-field--loading': props.loading,
+              'vd-field--block': props.block,
               'vd-field--floating-label': floating,
             },
             props.class,
@@ -82,23 +89,34 @@ export const VdField = genericComponent()({
             : null,
           h('div', { class: 'vd-field__control' }, [
             props.prependIcon
-              ? h(VdIcon, { icon: props.prependIcon, class: 'vd-field__prepend' })
+              ? h(VdIcon, {
+                  icon: props.prependIcon,
+                  class: 'vd-field__icon vd-field__prepend',
+                  size: '1.15em',
+                })
               : null,
             h('div', { class: 'vd-field__input' }, [
               floating ? h('label', { class: 'vd-field__label' }, props.label) : null,
               slots.default?.(),
             ]),
-            props.clearable && props.active
+            props.loading ? h('span', { class: 'vd-field__loading' }) : null,
+            props.clearable && props.active && !props.loading
               ? h(VdIcon, {
                   icon: '$clear',
-                  class: 'vd-field__clear',
-                  size: 'small',
+                  class: 'vd-field__icon vd-field__clear',
+                  size: '1.1em',
                   onClick: (e: MouseEvent) => emit('click:clear', e),
                 })
               : null,
             props.appendIcon
-              ? h(VdIcon, { icon: props.appendIcon, class: 'vd-field__append' })
+              ? h(VdIcon, {
+                  icon: props.appendIcon,
+                  class: 'vd-field__icon vd-field__append',
+                  size: '1.15em',
+                })
               : null,
+            slots.append?.(),
+            props.variant === 'underlined' ? h('span', { class: 'vd-field__line' }) : null,
           ]),
           showMessage.value
             ? h(

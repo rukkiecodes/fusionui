@@ -7,7 +7,9 @@ import { makeThemeProps } from '../../composables/theme'
 import { makeValidationProps, useValidation } from '../../composables/validation'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import type { IconValue } from '../../composables/icons'
+import type { FieldVariant } from '../VdField'
 import { VdField } from '../VdField'
+import { VdIcon } from '../VdIcon'
 
 export const makeVdInputProps = propsFactory(
   {
@@ -17,9 +19,12 @@ export const makeVdInputProps = propsFactory(
     label: String as PropType<string>,
     labelPlaceholder: Boolean,
     color: { type: String as PropType<string>, default: 'primary' },
+    variant: { type: String as PropType<FieldVariant>, default: 'default' },
     prependIcon: [String, Object, Function] as PropType<IconValue>,
     appendIcon: [String, Object, Function] as PropType<IconValue>,
     clearable: Boolean,
+    block: Boolean,
+    loading: Boolean,
     hint: String as PropType<string>,
     persistentHint: Boolean,
     ...makeValidationProps(),
@@ -38,10 +43,14 @@ export const VdInput = genericComponent()({
   },
   setup(props: any, { emit }: any) {
     const model = useProxiedModel(props, 'modelValue', '')
-    const { errorMessages, validate } = useValidation(props)
+    const { errorMessages, successMessages, validate } = useValidation(props)
     const focused = ref(false)
+    const reveal = ref(false)
 
     const isActive = computed(() => focused.value || (model.value != null && model.value !== ''))
+    const isPassword = computed(() => props.type === 'password')
+    const inputType = computed(() => (isPassword.value && reveal.value ? 'text' : props.type))
+    const showReveal = computed(() => isPassword.value && !props.appendIcon)
 
     function onInput(e: Event): void {
       model.value = (e.target as HTMLInputElement).value
@@ -65,12 +74,16 @@ export const VdInput = genericComponent()({
           label: props.label,
           labelPlaceholder: props.labelPlaceholder,
           color: props.color,
+          variant: props.variant,
           prependIcon: props.prependIcon,
           appendIcon: props.appendIcon,
           clearable: props.clearable,
+          block: props.block,
+          loading: props.loading,
           hint: props.hint,
           persistentHint: props.persistentHint,
           errorMessages: errorMessages.value,
+          successMessages: successMessages.value,
           focused: focused.value,
           active: isActive.value,
           disabled: props.disabled,
@@ -83,7 +96,7 @@ export const VdInput = genericComponent()({
           default: () =>
             h('input', {
               class: 'vd-input__el',
-              type: props.type,
+              type: inputType.value,
               value: model.value,
               placeholder: props.labelPlaceholder ? undefined : props.placeholder,
               disabled: props.disabled,
@@ -92,6 +105,17 @@ export const VdInput = genericComponent()({
               onFocus,
               onBlur,
             }),
+          append: showReveal.value
+            ? () =>
+                h(VdIcon, {
+                  icon: reveal.value ? 'eye-off' : 'eye',
+                  class: 'vd-field__icon vd-field__reveal',
+                  size: '1.15em',
+                  onClick: () => {
+                    reveal.value = !reveal.value
+                  },
+                })
+            : undefined,
         }
       )
     )
