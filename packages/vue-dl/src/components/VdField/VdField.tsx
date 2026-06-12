@@ -109,11 +109,9 @@ export const VdField = genericComponent()({
             : null,
           h('div', { class: 'vd-field__control' }, [
             props.prependIcon
-              ? h(VdIcon, {
-                  icon: props.prependIcon,
-                  class: 'vd-field__icon vd-field__prepend',
-                  size: '1em',
-                })
+              ? h('span', { class: 'vd-field__prepend' }, [
+                  h(VdIcon, { icon: props.prependIcon, class: 'vd-field__icon', size: '1em' }),
+                ])
               : null,
             h('div', { class: 'vd-field__input' }, [
               floating ? h('label', { class: 'vd-field__label' }, props.label) : null,
@@ -129,11 +127,9 @@ export const VdField = genericComponent()({
                 })
               : null,
             props.appendIcon
-              ? h(VdIcon, {
-                  icon: props.appendIcon,
-                  class: 'vd-field__icon vd-field__append',
-                  size: '1em',
-                })
+              ? h('span', { class: 'vd-field__append' }, [
+                  h(VdIcon, { icon: props.appendIcon, class: 'vd-field__icon', size: '1em' }),
+                ])
               : null,
             slots.append?.(),
             props.variant === 'underlined' ? h('span', { class: 'vd-field__line' }) : null,

@@ -87,6 +87,13 @@
     }
 
     // Icons — square animated affordances (Vuesax)
+    &__prepend,
+    &__append {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
     &__icon {
       flex-shrink: 0;
       color: rgba(var(--vd-theme-on-surface), 0.5);
