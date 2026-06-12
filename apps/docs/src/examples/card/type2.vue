@@ -11,7 +11,7 @@ const img = name => `${import.meta.env.BASE_URL}cards/${name}`
     </template>
     <template #interactions>
       <vd-btn icon="heart" color="danger" />
-      <vd-btn color="primary" variant="shadow" prepend-icon="message-circle">54</vd-btn>
+      <vd-btn color="primary" prepend-icon="message-circle">54</vd-btn>
     </template>
   </vd-card>
 </template>
