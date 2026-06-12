@@ -76,6 +76,13 @@ export const VdField = genericComponent()({
 
     useRender(() => {
       const floating = props.labelPlaceholder && props.label
+      // A plain `label` renders pinned in the same spot a floating label ends
+      // up, so both modes are pixel-identical (Vuesax).
+      const pinned = !!props.label && !floating
+      // Space for overlays is reserved up-front (not when they appear), so the
+      // field never resizes — and never shifts surrounding layout.
+      const hasPrepend = !!props.prependIcon
+      const hasAfter = !!(props.appendIcon || props.loading || props.clearable || slots.append)
 
       return h(
         'div',
@@ -95,15 +102,15 @@ export const VdField = genericComponent()({
               'vd-field--square': props.square,
               'vd-field--transparent': props.transparent,
               'vd-field--floating-label': floating,
+              'vd-field--pinned-label': pinned,
+              'vd-field--has-prepend': hasPrepend,
+              'vd-field--has-after': hasAfter,
             },
             props.class,
           ],
           style: [{ '--vd-field-color': `var(--vd-theme-${stateColor.value})` }, props.style],
         },
         [
-          props.label && !floating
-            ? h('label', { class: 'vd-field__label-top' }, props.label)
-            : null,
           h('div', { class: 'vd-field__control' }, [
             props.prependIcon
               ? h('span', { class: 'vd-field__prepend' }, [
@@ -111,24 +118,36 @@ export const VdField = genericComponent()({
                 ])
               : null,
             h('div', { class: 'vd-field__input' }, [
-              floating ? h('label', { class: 'vd-field__label' }, props.label) : null,
+              floating || pinned
+                ? h(
+                    'label',
+                    { class: ['vd-field__label', { 'vd-field__label--pinned': pinned }] },
+                    props.label
+                  )
+                : null,
               slots.default?.(),
             ]),
-            props.loading ? h('span', { class: 'vd-field__loading' }) : null,
-            props.clearable && props.active && !props.loading
-              ? h(VdIcon, {
-                  icon: '$clear',
-                  class: 'vd-field__icon vd-field__clear',
-                  size: '1.1em',
-                  onClick: (e: MouseEvent) => emit('click:clear', e),
-                })
-              : null,
-            props.appendIcon
-              ? h('span', { class: 'vd-field__append' }, [
-                  h(VdIcon, { icon: props.appendIcon, class: 'vd-field__icon', size: '1em' }),
+            // Right-side overlay — absolutely positioned so showing/hiding the
+            // spinner or clear button never resizes the field.
+            hasAfter
+              ? h('div', { class: 'vd-field__after' }, [
+                  props.loading ? h('span', { class: 'vd-field__loading' }) : null,
+                  props.clearable && props.active && !props.loading
+                    ? h(VdIcon, {
+                        icon: '$clear',
+                        class: 'vd-field__icon vd-field__clear',
+                        size: '1.1em',
+                        onClick: (e: MouseEvent) => emit('click:clear', e),
+                      })
+                    : null,
+                  props.appendIcon
+                    ? h('span', { class: 'vd-field__append' }, [
+                        h(VdIcon, { icon: props.appendIcon, class: 'vd-field__icon', size: '1em' }),
+                      ])
+                    : null,
+                  slots.append?.(),
                 ])
               : null,
-            slots.append?.(),
             props.variant === 'underlined' ? h('span', { class: 'vd-field__line' }) : null,
           ]),
           progressVal.value > 0
