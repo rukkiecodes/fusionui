@@ -31,3 +31,9 @@ Thumbs.db
 vuetify/
 vuesax/
 vuesax-next/
+
+# unrelated repos that happen to live in this working dir
+GLSL/
+depot_tools/
+skia/
+threejs-skills/
