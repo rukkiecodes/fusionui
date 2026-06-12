@@ -28,5 +28,6 @@
       "description": ""
     }
   },
-  "events": {}
+  "events": {},
+  "slots": {}
 }

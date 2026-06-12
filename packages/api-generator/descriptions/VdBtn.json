@@ -18,5 +18,9 @@
   },
   "events": {
     "click": "Emitted on click when the button is not disabled or loading."
+  },
+  "slots": {
+    "default": "The button label / content.",
+    "animate": "Content revealed on hover when `animation-type` is set."
   }
 }

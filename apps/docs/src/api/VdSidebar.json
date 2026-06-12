@@ -45,5 +45,6 @@
     "update:modelValue": {
       "description": ""
     }
-  }
+  },
+  "slots": {}
 }

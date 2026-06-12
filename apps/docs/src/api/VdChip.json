@@ -79,5 +79,6 @@
     "click:close": {
       "description": ""
     }
-  }
+  },
+  "slots": {}
 }

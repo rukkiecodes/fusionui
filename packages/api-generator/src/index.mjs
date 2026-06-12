@@ -84,7 +84,9 @@ try {
       for (const e of names) events[e] = { description: '' }
     }
 
-    // Optional hand-authored prose overlay.
+    // Optional hand-authored prose overlay (descriptions + slots, which can't
+    // be introspected at runtime).
+    const slots = {}
     const descFile = join(descDir, `${name}.json`)
     if (existsSync(descFile)) {
       const desc = JSON.parse(readFileSync(descFile, 'utf8'))
@@ -94,11 +96,14 @@ try {
       for (const [e, text] of Object.entries(desc.events ?? {})) {
         if (events[e]) events[e].description = text
       }
+      for (const [s, text] of Object.entries(desc.slots ?? {})) {
+        slots[s] = { description: text }
+      }
     }
 
     writeFileSync(
       join(outDir, `${name}.json`),
-      JSON.stringify({ displayName: name, props, events }, null, 2) + '\n'
+      JSON.stringify({ displayName: name, props, events, slots }, null, 2) + '\n'
     )
     count++
   }

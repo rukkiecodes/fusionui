@@ -10,3 +10,7 @@ Pair it with `VdTabsWindow` for panels.
 ## Breadcrumb & Pagination
 
 <Example file="nav/pagination" />
+
+## API
+
+<ApiTable name="VdTabs" />

@@ -23,7 +23,9 @@ export default defineConfig({
     vueJsx(),
     Markdown({
       markdownItSetup(md) {
-        md.use(anchor, { permalink: anchor.permalink.headerLink() })
+        // Adds id attributes to headings (for #anchor navigation) without
+        // wrapping them in <a> tags, so headings keep their normal color.
+        md.use(anchor)
       },
     }),
     Pages({ extensions: ['vue', 'md'], dirs: 'src/pages' }),

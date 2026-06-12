@@ -1,5 +1,6 @@
 {
   "displayName": "VdCardSubtitle",
   "props": {},
-  "events": {}
+  "events": {},
+  "slots": {}
 }

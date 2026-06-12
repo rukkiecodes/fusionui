@@ -150,24 +150,13 @@ body {
   p {
     margin: 14px 0;
   }
-  a {
+  // Only style plain prose links — component anchors (buttons, list items,
+  // breadcrumbs, heading anchors) keep their own colors.
+  a:not([class]) {
     color: rgb(var(--vd-theme-primary));
     text-decoration: none;
     &:hover {
       text-decoration: underline;
-    }
-  }
-  // Heading anchor links keep the heading color (not link blue).
-  h1 a,
-  h2 a,
-  h3 a,
-  h4 a,
-  h5 a,
-  h6 a {
-    color: inherit;
-    text-decoration: none;
-    &:hover {
-      text-decoration: none;
     }
   }
   code {
@@ -505,6 +494,119 @@ body {
   border-radius: 14px;
   background-color: rgba(var(--vd-theme-warning), 0.12);
   font-size: 0.9rem;
+}
+
+// Detailed, tabbed API reference (Props / Events / Slots)
+.api {
+  margin: 16px 0 8px;
+
+  &__tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(var(--vd-theme-on-surface), 0.12);
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font: inherit;
+    font-size: 0.85rem;
+    color: rgba(var(--vd-theme-on-surface), 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba(var(--vd-theme-primary), 0.4);
+    }
+    &--active {
+      background-color: rgb(var(--vd-theme-primary));
+      border-color: rgb(var(--vd-theme-primary));
+      color: rgb(var(--vd-theme-on-primary));
+    }
+  }
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9999px;
+    background-color: rgba(var(--vd-theme-on-surface), 0.12);
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+  &__tab--active &__count {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  &__table-wrap {
+    border: 1px solid rgba(var(--vd-theme-on-surface), 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+
+    th {
+      text-align: left;
+      padding: 11px 16px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(var(--vd-theme-on-surface), 0.55);
+      background-color: rgba(var(--vd-theme-on-surface), 0.03);
+      border-bottom: 1px solid rgba(var(--vd-theme-on-surface), 0.1);
+    }
+
+    td {
+      padding: 11px 16px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(var(--vd-theme-on-surface), 0.06);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: rgba(var(--vd-theme-on-surface), 0.02);
+    }
+
+    code {
+      font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+  }
+
+  &__name {
+    background-color: rgba(var(--vd-theme-primary), 0.1) !important;
+    color: rgb(var(--vd-theme-primary)) !important;
+    font-weight: 500;
+  }
+  &__type {
+    background-color: rgba(var(--vd-theme-on-surface), 0.07);
+    color: rgba(var(--vd-theme-on-surface), 0.75);
+  }
+  &__default {
+    background-color: transparent !important;
+    color: rgba(var(--vd-theme-on-surface), 0.55);
+    padding-left: 0 !important;
+  }
+  &__desc {
+    color: rgba(var(--vd-theme-on-surface), 0.78);
+    min-width: 220px;
+  }
 }
 
 @media (max-width: 880px) {

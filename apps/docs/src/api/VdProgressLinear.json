@@ -55,5 +55,6 @@
       "description": ""
     }
   },
-  "events": {}
+  "events": {},
+  "slots": {}
 }
