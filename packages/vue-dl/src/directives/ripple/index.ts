@@ -1,7 +1,9 @@
 import type { DirectiveBinding, ObjectDirective } from 'vue'
 
-// The ripple is one of Vuesax's three signature interactions (with soft shadows
-// and hover-lift). Ported as a directive so any component can opt in.
+// Vuesax-style ripple: a soft radial circle that grows from the click point to
+// ~2.5x the element width and lingers while pressed, fading out on release.
+// Color comes from the `--vd-ripple-color` CSS variable (white by default;
+// components set it to their accent color for light backgrounds).
 
 interface RippleElement extends HTMLElement {
   _vdRipple?: {
@@ -11,51 +13,25 @@ interface RippleElement extends HTMLElement {
   }
 }
 
-const DEFAULT_DURATION = 600
-
-function calculate(e: PointerEvent, el: HTMLElement, centered: boolean) {
-  const rect = el.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const radius = size / 2
-
-  let localX = radius
-  let localY = radius
-  if (!centered) {
-    localX = e.clientX - rect.left
-    localY = e.clientY - rect.top
-  }
-  // Diameter large enough to cover the element from the click point.
-  const diameter =
-    2 *
-    Math.max(
-      Math.hypot(localX, localY),
-      Math.hypot(rect.width - localX, localY),
-      Math.hypot(localX, rect.height - localY),
-      Math.hypot(rect.width - localX, rect.height - localY)
-    )
-
-  return { diameter, x: localX, y: localY }
-}
-
 function show(e: PointerEvent, el: RippleElement): void {
   const data = el._vdRipple
   if (!data?.enabled) return
 
+  const rect = el.getBoundingClientRect()
+  const x = data.centered ? rect.width / 2 : e.clientX - rect.left
+  const y = data.centered ? rect.height / 2 : e.clientY - rect.top
+  const size = el.clientWidth * 2.5
+  const duration = el.clientWidth > 150 ? 0.9 : 0.6
+
   const container = document.createElement('span')
   container.className = 'vd-ripple__container'
 
-  const animation = document.createElement('span')
-  animation.className = 'vd-ripple__animation'
-
-  const { diameter, x, y } = calculate(e, el, data.centered)
-  const size = diameter || 10
-
-  animation.style.width = `${size}px`
-  animation.style.height = `${size}px`
-  animation.style.left = `${x - size / 2}px`
-  animation.style.top = `${y - size / 2}px`
-
-  container.appendChild(animation)
+  const effect = document.createElement('span')
+  effect.className = 'vd-ripple__effect'
+  effect.style.left = `${x}px`
+  effect.style.top = `${y}px`
+  effect.style.transitionDuration = `${duration}s`
+  container.appendChild(effect)
 
   const computed = window.getComputedStyle(el)
   if (computed.position === 'static') {
@@ -63,22 +39,33 @@ function show(e: PointerEvent, el: RippleElement): void {
     el.dataset.vdRippleStatic = 'true'
   }
 
-  el.appendChild(container)
+  // Insert behind later siblings (content) but above the element background.
+  el.insertBefore(container, el.firstChild)
 
-  // Force reflow then trigger the scale/fade transition.
-  void animation.offsetWidth
-  animation.classList.add('vd-ripple__animation--enter')
+  // Next frame: grow + fade in.
+  requestAnimationFrame(() => {
+    effect.style.width = `${size}px`
+    effect.style.height = `${size}px`
+    effect.style.opacity = '1'
+  })
 
-  window.setTimeout(() => {
-    animation.classList.add('vd-ripple__animation--leave')
+  let released = false
+  const remove = (): void => {
+    if (released) return
+    released = true
+    effect.style.opacity = '0'
     window.setTimeout(() => {
       container.remove()
-      if (el.dataset.vdRippleStatic) {
+      if (!el.querySelector('.vd-ripple__container') && el.dataset.vdRippleStatic) {
         el.style.position = ''
         delete el.dataset.vdRippleStatic
       }
-    }, DEFAULT_DURATION / 2)
-  }, DEFAULT_DURATION / 2)
+    }, duration * 500)
+    el.removeEventListener('pointerup', remove)
+    el.removeEventListener('pointerleave', remove)
+  }
+  el.addEventListener('pointerup', remove)
+  el.addEventListener('pointerleave', remove)
 }
 
 function isEnabled(value: unknown): boolean {

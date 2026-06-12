@@ -48,10 +48,20 @@
       "required": false,
       "description": "Removes the border radius."
     },
+    "active": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Forces the active/pressed look (e.g. a selected toggle)."
+    },
     "loading": {
       "type": "Boolean",
       "required": false,
-      "description": "Shows the loader overlay and blocks interaction."
+      "description": "Shows the dual-ring loader overlay and blocks interaction."
+    },
+    "upload": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shows an upload progress sweep overlay."
     },
     "disabled": {
       "type": "Boolean",

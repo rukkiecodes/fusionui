@@ -4,6 +4,7 @@
 @include tools.layer('components') {
   .vd-btn {
     --vd-variant-color: var(--vd-theme-primary);
+    --vd-ripple-color: 255, 255, 255;
     position: relative;
     z-index: 1;
     display: inline-flex;
@@ -94,6 +95,18 @@
       border-radius: var(--vd-radius-lg);
       .vd-btn__content {
         padding: 15px 21px;
+      }
+    }
+
+    // ---- Upload progress sweep ----
+    &--upload {
+      pointer-events: none;
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(var(--vd-variant-color), 0.4);
+        animation: vd-btn-upload 0.9s ease infinite;
       }
     }
 
@@ -212,6 +225,16 @@
       box-shadow: none;
     }
 
+    // Light-background variants ripple in their accent color, not white.
+    &--variant-tonal,
+    &--variant-outlined,
+    &--variant-text,
+    &--variant-plain,
+    &--variant-line,
+    &--variant-shadow {
+      --vd-ripple-color: var(--vd-variant-color);
+    }
+
     // tonal — tinted fill (Vuesax "flat"); fills solid on focus/active
     &--variant-tonal {
       background-color: rgba(var(--vd-variant-color), 0.15);
@@ -302,24 +325,22 @@
       }
     }
 
-    // gradient — diagonal gradient overlay with hue shift, fades on hover
+    // gradient — diagonal two-tone gradient (base color → hue-shifted), fades on hover
     &--variant-gradient {
       color: #fff;
       &::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          30deg,
-          rgba(var(--vd-variant-color), 0) 33%,
-          rgb(var(--vd-variant-color)) 100%
+        background-image: linear-gradient(
+          118deg,
+          rgb(var(--vd-variant-color)) 0%,
+          color-mix(in oklch, rgb(var(--vd-variant-color)), #c026ff 48%) 100%
         );
         border-radius: inherit;
         pointer-events: none;
         z-index: -1;
-        filter: hue-rotate(-40deg);
-        box-sizing: border-box;
-        transition: all 0.4s ease;
+        transition: opacity 0.4s ease;
       }
       &:hover {
         transform: translateY(-3px);
@@ -330,28 +351,16 @@
       }
     }
 
-    // relief — solid with a 3px inset bottom ledge, sinks on press
+    // relief — raised button sitting on a darker color ledge; sinks when pressed
     &--variant-relief {
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: calc(100% - 3px);
-        border-radius: inherit;
-        border-bottom: 3px solid rgba(0, 0, 0, 0.18);
-        pointer-events: none;
-        z-index: -1;
-        box-sizing: border-box;
-        transition: all 0.25s ease;
+      box-shadow: 0 4px 0 0 color-mix(in oklch, rgb(var(--vd-variant-color)), #000 32%);
+      &:hover {
+        box-shadow: 0 4px 0 0 color-mix(in oklch, rgb(var(--vd-variant-color)), #000 32%);
       }
       &:active,
       &.vd-btn--active {
-        transform: translateY(1px);
-        &::before {
-          border-bottom-width: 0;
-        }
+        transform: translateY(4px);
+        box-shadow: 0 0 0 0 transparent;
       }
     }
 
@@ -389,6 +398,15 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes vd-btn-upload {
+    0% {
+      transform: translateY(110%);
+    }
+    100% {
+      transform: translateY(-110%);
     }
   }
 }

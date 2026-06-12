@@ -27,7 +27,11 @@ export const makeVdBtnProps = propsFactory(
     block: Boolean,
     circle: Boolean,
     square: Boolean,
+    /** Forces the active/pressed look (e.g. a selected toggle). */
+    active: Boolean,
     loading: Boolean,
+    /** Shows the upload progress sweep overlay. */
+    upload: Boolean,
     disabled: Boolean,
     ripple: { type: Boolean, default: true },
     href: String as PropType<string>,
@@ -113,8 +117,9 @@ export const VdBtn = genericComponent()({
                 'vd-btn--circle': props.circle,
                 'vd-btn--square': props.square,
                 'vd-btn--loading': props.loading,
+                'vd-btn--upload': props.upload,
                 'vd-btn--disabled': isDisabled.value,
-                'vd-btn--active': group?.isSelected.value,
+                'vd-btn--active': props.active || group?.isSelected.value,
                 'vd-btn--animate': hasAnimate.value,
                 [`vd-btn--animate-${props.animationType}`]: !!props.animationType,
               },
