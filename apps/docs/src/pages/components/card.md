@@ -45,6 +45,13 @@ interactions rise and the image corners morph.
 
 <Example file="card/type5" />
 
+## Type 6
+
+The image parallaxes inside its frame as the page scrolls — scroll up and down
+to watch it drift.
+
+<Example file="card/type6" />
+
 ## Slots
 
 | Slot           | Description                                         |

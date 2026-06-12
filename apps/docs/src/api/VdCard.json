@@ -5,7 +5,13 @@
       "type": "String | Number",
       "default": "1",
       "required": false,
-      "description": "Layout style 1–5. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image."
+      "description": "Layout style 1–6. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image as the page scrolls."
+    },
+    "parallax": {
+      "type": "Number | String",
+      "default": "280",
+      "required": false,
+      "description": "Type 6 only — how far (px) the image drifts across a full scroll pass. Higher is more intense (default 280)."
     },
     "image": {
       "type": "String",

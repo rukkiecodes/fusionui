@@ -366,6 +366,35 @@
     }
   }
 
+  // ---- Type 6: the image parallaxes as the page scrolls -----------------
+  // The image is taller than its frame; JS sets translateY on scroll so it
+  // drifts within the (overflow-hidden) frame.
+  .vd-card-content--type-6 .vd-card {
+    &:hover {
+      box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.28);
+      transform: translateY(-4px);
+    }
+
+    .vd-card__img {
+      height: 260px;
+      max-height: none;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+
+      img {
+        position: absolute;
+        top: calc(var(--vd-parallax-room, 140px) * -1);
+        left: 0;
+        width: 100%;
+        height: calc(100% + var(--vd-parallax-room, 140px) * 2);
+        border-radius: 0;
+        object-fit: cover;
+        transition: none;
+        will-change: transform;
+      }
+    }
+  }
+
   // ---- Card group: horizontal scroller with arrows ----------------------
   .vd-card-group {
     display: flex;
