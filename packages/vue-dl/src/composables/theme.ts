@@ -36,13 +36,16 @@ export const ThemeSymbol: InjectionKey<ThemeInstance> = Symbol.for('vuedl:theme'
 const LAYER_ORDER = '@layer vd-tokens, vd-theme, vd-base, vd-components, vd-utilities;'
 const STYLE_ID = 'vue-dl-theme-stylesheet'
 
-// Variables that differ between light and dark surfaces (Vuesax DNA).
+// Variables that differ between light and dark surfaces (Vuesax v4 DNA).
+// `surface-2` is the subtle gray fill used by inputs/selects (Vuesax gray-2).
 const lightVariables: Record<string, string | number> = {
-  'border-color': '#000000',
+  'border-color': '#2c3e50',
   'border-opacity': 0.12,
-  'high-emphasis-opacity': 0.87,
+  'high-emphasis-opacity': 0.92,
   'medium-emphasis-opacity': 0.6,
   'disabled-opacity': 0.38,
+  'surface-2': '#f4f7f8',
+  'surface-3': '#f0f3f4',
   'shadow-rest': '0 5px 20px 0 rgba(0, 0, 0, 0.05)',
 }
 
@@ -52,6 +55,8 @@ const darkVariables: Record<string, string | number> = {
   'high-emphasis-opacity': 1,
   'medium-emphasis-opacity': 0.7,
   'disabled-opacity': 0.5,
+  'surface-2': '#26282c',
+  'surface-3': '#1c1e21',
   'shadow-rest': '0 5px 20px 0 rgba(0, 0, 0, 0.4)',
 }
 
@@ -63,18 +68,21 @@ const vuesaxLight: ThemeDefinition = {
   colors: {
     background: '#ffffff',
     surface: '#ffffff',
-    primary: '#1f74ff',
-    secondary: '#7931b1',
+    primary: '#195bff',
+    secondary: '#7d33ff',
     success: '#46c93a',
     danger: '#ff4757',
     warning: '#ffba00',
     dark: '#1e1e1e',
-    light: '#f5f5f5',
+    light: '#f4f7f8',
+    'on-background': '#2c3e50',
+    'on-surface': '#2c3e50',
     'on-primary': '#ffffff',
     'on-secondary': '#ffffff',
     'on-success': '#ffffff',
     'on-danger': '#ffffff',
     'on-warning': '#1e1e1e',
+    'on-light': '#2c3e50',
   },
   variables: lightVariables,
 }
@@ -82,20 +90,23 @@ const vuesaxLight: ThemeDefinition = {
 const vuesaxDark: ThemeDefinition = {
   dark: true,
   colors: {
-    background: '#121212',
-    surface: '#1e1e1e',
-    primary: '#1f74ff',
-    secondary: '#9b59d0',
+    background: '#1e2023',
+    surface: '#26282c',
+    primary: '#195bff',
+    secondary: '#9b6bff',
     success: '#46c93a',
     danger: '#ff4757',
     warning: '#ffba00',
-    dark: '#f5f5f5',
-    light: '#2a2a2a',
+    dark: '#f4f7f8',
+    light: '#2a2c30',
+    'on-background': '#ffffff',
+    'on-surface': '#ffffff',
     'on-primary': '#ffffff',
     'on-secondary': '#ffffff',
     'on-success': '#ffffff',
     'on-danger': '#ffffff',
     'on-warning': '#1e1e1e',
+    'on-light': '#ffffff',
   },
   variables: darkVariables,
 }

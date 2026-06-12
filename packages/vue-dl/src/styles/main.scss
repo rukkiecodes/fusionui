@@ -15,6 +15,7 @@
     --vd-radius-sm: #{settings.$vd-radius-sm};
     --vd-radius-md: #{settings.$vd-radius-md};
     --vd-radius-lg: #{settings.$vd-radius-lg};
+    --vd-radius-xl: #{settings.$vd-radius-xl};
     --vd-radius-pill: #{settings.$vd-radius-pill};
     --vd-radius-circle: #{settings.$vd-radius-circle};
 
@@ -44,9 +45,11 @@
   .vd-application {
     font-family: var(--vd-font-family);
     line-height: 1.5;
+    letter-spacing: #{settings.$vd-letter-spacing};
     background-color: rgb(var(--vd-theme-background));
-    color: rgba(var(--vd-theme-on-background), var(--vd-high-emphasis-opacity, 0.87));
+    color: rgba(var(--vd-theme-on-background), var(--vd-high-emphasis-opacity, 0.92));
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

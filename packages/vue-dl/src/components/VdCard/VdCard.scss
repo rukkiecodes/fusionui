@@ -7,9 +7,9 @@
     position: relative;
     display: block;
     background-color: rgb(var(--vd-theme-surface));
-    color: rgba(var(--vd-theme-on-surface), 0.87);
-    border-radius: var(--vd-radius-md);
-    box-shadow: map.get(settings.$vd-shadows, 4);
+    color: rgba(var(--vd-theme-on-surface), 0.92);
+    border-radius: var(--vd-radius-lg);
+    box-shadow: settings.$vd-shadow-rest;
     overflow: hidden;
     transition: settings.$vd-transition;
 

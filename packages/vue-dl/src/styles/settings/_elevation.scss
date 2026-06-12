@@ -79,7 +79,11 @@ $vd-shadows: (
 ) !default;
 
 // Colored hover glow offset used by interactive components (button/card lift).
-$vd-shadow-hover-spread: 0 8px 25px -8px !default;
+// Vuesax v4 floats the element with a tight, deep colored shadow.
+$vd-shadow-hover-spread: 0 10px 20px -10px !default;
+
+// Floating-button colored shadow (resting elevation for floating variant).
+$vd-shadow-floating: 0 8px 20px -6px !default;
 
 // The signature soft "Vuesax shadow" resting elevation.
 $vd-shadow-rest: 0 5px 20px 0 rgba(0, 0, 0, 0.05) !default;

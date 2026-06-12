@@ -18,7 +18,7 @@ export const makeVdCardProps = propsFactory(
     text: String as PropType<string>,
     hover: Boolean,
     link: Boolean,
-    ...makeRoundedProps({ rounded: 'md' }),
+    ...makeRoundedProps({ rounded: 'lg' }),
     ...makeElevationProps(),
     ...makeTagProps({ tag: 'div' }),
     ...makeThemeProps(),

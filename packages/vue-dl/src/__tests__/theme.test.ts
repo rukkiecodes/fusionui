@@ -5,7 +5,7 @@ import { createVueDL } from '../index'
 describe('theme engine', () => {
   it('generates rgb-triplet css variables from the palette', () => {
     const theme = createTheme()
-    expect(theme.styles.value).toContain('--vd-theme-primary: 31,116,255')
+    expect(theme.styles.value).toContain('--vd-theme-primary: 25,91,255')
     expect(theme.styles.value).toContain('--vd-theme-background: 255,255,255')
   })
 
@@ -14,8 +14,8 @@ describe('theme engine', () => {
     // curated: white on primary, dark on warning
     expect(theme.styles.value).toContain('--vd-theme-on-primary: 255,255,255')
     expect(theme.styles.value).toContain('--vd-theme-on-warning: 30,30,30')
-    // auto-derived: background is light → black foreground
-    expect(theme.styles.value).toContain('--vd-theme-on-background: 0,0,0')
+    // curated blue-gray body text on light surfaces (Vuesax v4 #2c3e50)
+    expect(theme.styles.value).toContain('--vd-theme-on-background: 44,62,80')
   })
 
   it('emits color utility classes that reference the variables', () => {

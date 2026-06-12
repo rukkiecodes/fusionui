@@ -25,6 +25,14 @@
 
 ---
 
+## 1b. Design language
+
+The visual language follows **Vuesax v4** (vuesax-next) blended with **Apple**
+cues (SF/Inter font, generous whitespace, subtle borders, soft large radii). The
+authoritative token catalog lives in [`design-language.md`](./design-language.md)
+and supersedes the original token values in `03-theme-design-tokens.md`. All
+components and the docs site adhere to it.
+
 ## 2. Naming & conventions (used across all batches)
 
 | Thing | Decision |

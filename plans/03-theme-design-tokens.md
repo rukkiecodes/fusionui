@@ -1,5 +1,12 @@
 # Batch 03 — Theme System & Design Tokens (Vuesax Visual DNA)
 
+> ⚠️ **Token values updated.** The concrete colors/radii/shadows below were
+> revised to the **Vuesax v4 × Apple** language — see
+> [`design-language.md`](./design-language.md) for the authoritative catalog
+> (primary `#195BFF`, radii 8/12/20, blue-gray `#2C3E50` text, colored
+> `0 10px 20px -10px` hover lift, Apple/SF + Inter font). The architecture below
+> is unchanged.
+
 **Depends on:** 01 · **Blocks:** 05, 06, 07, 08 · **Parallel with:** 02, 04
 
 ## Goal
@@ -58,32 +65,42 @@ packages/vue-dl/src/
 Port these literal values from Vuesax `src/style/{colors,vars,mixins}.styl`:
 
 ```scss
-// settings/_colors.scss  (Vuesax palette)
+// settings/_colors.scss  (Vuesax v4 palette — see design-language.md)
 $vd-colors-light: (
-  primary:   #1f74ff,   // bright blue
-  secondary: #7931b1,   // purple
+  primary:   #195bff,   // Vuesax v4 blue
+  secondary: #7d33ff,   // violet
   success:   #46c93a,   // green
   danger:    #ff4757,   // red
   warning:   #ffba00,   // amber
   dark:      #1e1e1e,
-  light:     #f5f5f5,
+  light:     #f4f7f8,   // gray-2 surface
   background: #ffffff,
   surface:    #ffffff,
+  on-surface: #2c3e50,  // refined blue-gray body text (NOT pure black)
 );
 
-// settings/_variables.scss  (Vuesax feel)
-$vd-radius-sm: 5px;     // buttons / inputs
-$vd-radius-md: 8px;     // cards
-$vd-radius-lg: 12px;
+// settings/_variables.scss  (Vuesax v4 × Apple: softer corners)
+$vd-radius-sm: 8px;     // small controls, list items
+$vd-radius-md: 12px;    // buttons, inputs, select, menus (default)
+$vd-radius-lg: 20px;    // cards, popups
+$vd-radius-xl: 28px;
 $vd-transition-duration: .25s;
 $vd-transition-timing: ease;        // Vuesax uses plain ease, not cubic-bezier
 $vd-transition: all $vd-transition-duration $vd-transition-timing;
 
+// Apple/SF first, Inter fallback (the headline typographic cue)
+$vd-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+  'Segoe UI', Roboto, sans-serif;
+$vd-letter-spacing: -0.011em;
+
 // settings/_elevation.scss  (the signature "Vuesax shadow")
 $vd-shadow-rest:  0 5px 20px 0 rgba(0,0,0,.05);   // very soft default
-$vd-shadow-card:  0 4px 25px 0 rgba(0,0,0,.10);
-$vd-shadow-hover: 0 8px 25px -8px;                // + color → colored glow on hover
+$vd-shadow-hover-spread: 0 10px 20px -10px;       // + color → colored lift on hover
+$vd-shadow-floating: 0 8px 20px -6px;             // + color → floating variant
 ```
+
+The input surface uses a subtle gray fill (`surface-2` = `#f4f7f8`) with a 2px
+**transparent** border that colors on focus — the Vuesax v4 input look.
 
 ### Variant tool (port Vuesax button modes into SASS mixin)
 `tools/_variant.scss` implements the six Vuesax button looks as a reusable mixin

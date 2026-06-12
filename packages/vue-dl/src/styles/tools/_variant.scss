@@ -74,7 +74,7 @@
   box-shadow: map.get(settings.$vd-shadows, 3);
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
   &:active {
     transform: translateY(0);
@@ -99,6 +99,6 @@
 
   &:hover {
     border-bottom-color: rgb(var(--vd-variant-color));
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 }
