@@ -1,14 +1,17 @@
 {
   "props": {
-    "variant": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, or line.",
+    "variant": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, line, floating, or shadow.",
     "color": "A theme color name (primary, success…) or any CSS color.",
-    "size": "x-small, small, default, large, x-large, or a custom value.",
-    "icon": "Renders a round, icon-only button when set to an icon value.",
+    "size": "x-small, small, default, large, or x-large.",
+    "icon": "Renders a compact, icon-only button when set to an icon value.",
+    "circle": "Makes an icon button fully circular.",
+    "square": "Removes the border radius.",
     "prependIcon": "Icon shown before the label.",
     "appendIcon": "Icon shown after the label.",
-    "loading": "Shows a spinner and blocks interaction.",
+    "loading": "Shows the loader overlay and blocks interaction.",
     "block": "Stretches the button to the full container width.",
     "disabled": "Disables the button.",
+    "animationType": "Reveals the `animate` slot on hover — horizontal, vertical, scale, or rotate.",
     "href": "Renders the button as an <a> link."
   },
   "events": {

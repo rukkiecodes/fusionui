@@ -18,6 +18,8 @@ export type Variant =
   | 'gradient'
   | 'relief'
   | 'line'
+  | 'floating'
+  | 'shadow'
 
 export const allowedVariants: Variant[] = [
   'elevated',
@@ -29,6 +31,8 @@ export const allowedVariants: Variant[] = [
   'gradient',
   'relief',
   'line',
+  'floating',
+  'shadow',
 ]
 
 export interface VariantProps {
@@ -51,7 +55,7 @@ export function makeVariantProps(defaults?: { variant?: Variant }) {
 }
 
 /** Variants whose color applies to the background vs. the foreground/text. */
-const backgroundVariants: Variant[] = ['elevated', 'flat', 'gradient', 'relief']
+const backgroundVariants: Variant[] = ['elevated', 'flat', 'floating', 'gradient', 'relief']
 
 export function useVariant(props: MaybeRefOrGetter<VariantProps>, name = getCurrentInstanceName()) {
   const variantClasses = computed(() => {

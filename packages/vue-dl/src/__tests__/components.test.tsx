@@ -60,10 +60,29 @@ describe('VdBtn', () => {
     expect(disabled.classes()).toContain('vd-btn--disabled')
   })
 
-  it('shows a progress spinner when loading', () => {
+  it('shows a loader overlay when loading', () => {
     const wrapper = mountWith(VdBtn, { props: { loading: true } })
     expect(wrapper.classes()).toContain('vd-btn--loading')
-    expect(wrapper.findComponent(VdProgressCircular).exists()).toBe(true)
+    expect(wrapper.find('.vd-btn__loader').exists()).toBe(true)
+    expect((wrapper.element as HTMLButtonElement).disabled).toBe(true)
+  })
+
+  it('supports the new floating and shadow variants', () => {
+    expect(mountWith(VdBtn, { props: { variant: 'floating' } }).classes()).toContain(
+      'vd-btn--variant-floating'
+    )
+    expect(mountWith(VdBtn, { props: { variant: 'shadow' } }).classes()).toContain(
+      'vd-btn--variant-shadow'
+    )
+  })
+
+  it('renders an animate slot for hover transitions', () => {
+    const wrapper = mountWith(VdBtn, {
+      props: { animationType: 'horizontal' },
+      slots: { default: () => 'Hover', animate: () => 'Go' },
+    })
+    expect(wrapper.classes()).toContain('vd-btn--animate')
+    expect(wrapper.find('.vd-btn__animate').text()).toBe('Go')
   })
 
   it('renders an icon-only button', () => {

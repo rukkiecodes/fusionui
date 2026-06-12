@@ -11,12 +11,12 @@
       "type": "String",
       "default": "elevated",
       "required": false,
-      "description": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, or line."
+      "description": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, line, floating, or shadow."
     },
     "icon": {
       "type": "Boolean | String | Object | Function",
       "required": false,
-      "description": "Renders a round, icon-only button when set to an icon value."
+      "description": "Renders a compact, icon-only button when set to an icon value."
     },
     "prependIcon": {
       "type": "String | Object | Function",
@@ -38,10 +38,20 @@
       "required": false,
       "description": "Stretches the button to the full container width."
     },
+    "circle": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Makes an icon button fully circular."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Removes the border radius."
+    },
     "loading": {
       "type": "Boolean",
       "required": false,
-      "description": "Shows a spinner and blocks interaction."
+      "description": "Shows the loader overlay and blocks interaction."
     },
     "disabled": {
       "type": "Boolean",
@@ -59,6 +69,12 @@
       "required": false,
       "description": "Renders the button as an <a> link."
     },
+    "animationType": {
+      "type": "String",
+      "default": "",
+      "required": false,
+      "description": "Reveals the `animate` slot on hover — horizontal, vertical, scale, or rotate."
+    },
     "value": {
       "type": "any",
       "required": false,
@@ -68,7 +84,7 @@
       "type": "String | Number",
       "default": "default",
       "required": false,
-      "description": "x-small, small, default, large, x-large, or a custom value."
+      "description": "x-small, small, default, large, or x-large."
     },
     "border": {
       "type": "Boolean | Number | String",

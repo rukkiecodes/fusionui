@@ -3,8 +3,7 @@ import type { PropType } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
 import { isCssColor, parseColor } from '../../util/colors'
-import { makeComponentProps } from '../../composables/component'
-import { makeTagProps } from '../../composables/component'
+import { makeComponentProps, makeTagProps } from '../../composables/component'
 import { makeBorderProps, useBorder } from '../../composables/border'
 import { makeRoundedProps, useRounded } from '../../composables/rounded'
 import { makeElevationProps, useElevation } from '../../composables/elevation'
@@ -15,7 +14,6 @@ import type { IconValue } from '../../composables/icons'
 import { Ripple } from '../../directives/ripple'
 import { useGroupItem } from '../../composables/group'
 import { VdIcon } from '../VdIcon'
-import { VdProgressCircular } from '../VdProgress'
 import { VdBtnGroupSymbol } from '../VdBtnGroup/key'
 
 export const makeVdBtnProps = propsFactory(
@@ -27,11 +25,17 @@ export const makeVdBtnProps = propsFactory(
     appendIcon: [String, Object, Function] as PropType<IconValue>,
     text: String as PropType<string>,
     block: Boolean,
+    circle: Boolean,
+    square: Boolean,
     loading: Boolean,
     disabled: Boolean,
     ripple: { type: Boolean, default: true },
     href: String as PropType<string>,
-    // Used when the button is an item inside a VdBtnGroup.
+    /** Hover animation for the optional `animate` slot. */
+    animationType: {
+      type: String as PropType<'' | 'horizontal' | 'vertical' | 'scale' | 'rotate'>,
+      default: '',
+    },
     value: null as unknown as PropType<unknown>,
     ...makeSizeProps(),
     ...makeBorderProps(),
@@ -57,7 +61,8 @@ export const VdBtn = genericComponent()({
     const { sizeClasses } = useSize(props)
     const group = useGroupItem(props, VdBtnGroupSymbol)
 
-    // The accent color used by the SASS variant mixins (glow / gradient / border).
+    // Accent color (RGB triplet) used by the SASS variants for colored shadows,
+    // gradients, borders and tints.
     const variantColor = computed(() => {
       const color = props.color
       if (!color) return undefined
@@ -73,6 +78,7 @@ export const VdBtn = genericComponent()({
 
     const isDisabled = computed(() => props.disabled || props.loading)
     const isIconOnly = computed(() => !!props.icon)
+    const hasAnimate = computed(() => !!props.animationType || !!slots.animate)
 
     function onClick(e: MouseEvent): void {
       if (isDisabled.value) return
@@ -84,6 +90,16 @@ export const VdBtn = genericComponent()({
       const Tag = props.href ? 'a' : props.tag
       const hasIconValue = props.icon && typeof props.icon !== 'boolean'
 
+      const content = h('span', { class: 'vd-btn__content' }, [
+        props.prependIcon ? h(VdIcon, { icon: props.prependIcon, class: 'vd-btn__icon' }) : null,
+        hasIconValue
+          ? h(VdIcon, { icon: props.icon })
+          : slots.default
+            ? slots.default()
+            : props.text,
+        props.appendIcon ? h(VdIcon, { icon: props.appendIcon, class: 'vd-btn__icon' }) : null,
+      ])
+
       return withDirectives(
         h(
           Tag,
@@ -94,9 +110,13 @@ export const VdBtn = genericComponent()({
               {
                 'vd-btn--block': props.block,
                 'vd-btn--icon': isIconOnly.value,
+                'vd-btn--circle': props.circle,
+                'vd-btn--square': props.square,
                 'vd-btn--loading': props.loading,
                 'vd-btn--disabled': isDisabled.value,
                 'vd-btn--active': group?.isSelected.value,
+                'vd-btn--animate': hasAnimate.value,
+                [`vd-btn--animate-${props.animationType}`]: !!props.animationType,
               },
               ...variantClasses.value,
               ...colorClasses.value,
@@ -114,24 +134,15 @@ export const VdBtn = genericComponent()({
             onClick,
           },
           [
-            h('span', { class: 'vd-btn__content' }, [
-              props.prependIcon
-                ? h(VdIcon, { icon: props.prependIcon, class: 'vd-btn__icon' })
-                : null,
-              hasIconValue
-                ? h(VdIcon, { icon: props.icon })
-                : slots.default
-                  ? slots.default()
-                  : props.text,
-              props.appendIcon
-                ? h(VdIcon, { icon: props.appendIcon, class: 'vd-btn__icon' })
-                : null,
-            ]),
-            props.loading
-              ? h('span', { class: 'vd-btn__loader' }, [
-                  h(VdProgressCircular, { indeterminate: true, size: '1.3em', width: 2 }),
-                ])
+            content,
+            hasAnimate.value
+              ? h(
+                  'span',
+                  { class: ['vd-btn__animate', `vd-btn__animate--${props.animationType}`] },
+                  slots.animate?.()
+                )
               : null,
+            props.loading ? h('span', { class: 'vd-btn__loader' }) : null,
           ]
         ),
         [[Ripple, props.ripple && !isDisabled.value]]
