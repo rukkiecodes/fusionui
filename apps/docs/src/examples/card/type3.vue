@@ -1,0 +1,13 @@
+<script setup>
+const img = name => `${import.meta.env.BASE_URL}cards/${name}`
+</script>
+
+<template>
+  <vd-card type="3">
+    <template #title><h3>Live a life of madness</h3></template>
+    <template #img><img :src="img('foto1.png')" alt="" /></template>
+    <template #text>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+    </template>
+  </vd-card>
+</template>

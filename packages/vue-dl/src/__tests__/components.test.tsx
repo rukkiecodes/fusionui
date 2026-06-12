@@ -114,18 +114,18 @@ describe('VdBtnGroup', () => {
 })
 
 describe('VdCard', () => {
-  it('renders title/subtitle/text from props', () => {
+  it('renders title/text from props', () => {
     const wrapper = mountWith(VdCard, {
-      props: { title: 'Title', subtitle: 'Sub', text: 'Body' },
+      props: { title: 'Title', text: 'Body' },
     })
     expect(wrapper.find('.vd-card__title').text()).toBe('Title')
-    expect(wrapper.find('.vd-card__subtitle').text()).toBe('Sub')
-    expect(wrapper.find('.vd-card__text').text()).toBe('Body')
+    expect(wrapper.find('.vd-card__text').text()).toContain('Body')
   })
 
-  it('adds the hover modifier', () => {
-    const wrapper = mountWith(VdCard, { props: { hover: true } })
-    expect(wrapper.classes()).toContain('vd-card--hover')
+  it('renders an image and the type modifier', () => {
+    const wrapper = mountWith(VdCard, { props: { type: '4', image: '/x.png' } })
+    expect(wrapper.classes()).toContain('vd-card-content--type-4')
+    expect(wrapper.find('.vd-card__img img').attributes('src')).toBe('/x.png')
   })
 })
 

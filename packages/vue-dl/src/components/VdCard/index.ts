@@ -1,8 +1,9 @@
 export {
   VdCard,
+  VdCardGroup,
   VdCardTitle,
-  VdCardSubtitle,
   VdCardText,
-  VdCardActions,
+  VdCardButtons,
   makeVdCardProps,
 } from './VdCard'
+export type { VdCardType } from './VdCard'

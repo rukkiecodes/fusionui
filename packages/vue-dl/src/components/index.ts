@@ -2,7 +2,7 @@ import type { Component } from 'vue'
 import { VdIcon } from './VdIcon'
 import { VdBtn } from './VdBtn'
 import { VdBtnGroup } from './VdBtnGroup'
-import { VdCard, VdCardTitle, VdCardSubtitle, VdCardText, VdCardActions } from './VdCard'
+import { VdCard, VdCardGroup, VdCardTitle, VdCardText, VdCardButtons } from './VdCard'
 import { VdAlert } from './VdAlert'
 import { VdChip } from './VdChip'
 import { VdAvatar } from './VdAvatar'
@@ -75,10 +75,10 @@ export const components: Record<string, Component> = {
   VdBtn,
   VdBtnGroup,
   VdCard,
+  VdCardGroup,
   VdCardTitle,
-  VdCardSubtitle,
   VdCardText,
-  VdCardActions,
+  VdCardButtons,
   VdAlert,
   VdChip,
   VdAvatar,

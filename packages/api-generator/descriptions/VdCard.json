@@ -1,0 +1,18 @@
+{
+  "props": {
+    "type": "Layout style 1–5. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image.",
+    "image": "Image URL for the card media (shorthand for the `img` slot).",
+    "img": "Alias of `image`.",
+    "title": "Heading text (shorthand for the `title` slot).",
+    "text": "Body text (shorthand for the `text` slot).",
+    "tag": "The root element tag."
+  },
+  "slots": {
+    "img": "The card image or media.",
+    "title": "Heading shown above the text.",
+    "text": "Body copy.",
+    "interactions": "Buttons overlaid on the image (likes, comments, …).",
+    "buttons": "A footer row of actions below the text.",
+    "default": "Free-form content appended inside the card."
+  }
+}

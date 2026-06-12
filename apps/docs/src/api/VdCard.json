@@ -1,68 +1,37 @@
 {
   "displayName": "VdCard",
   "props": {
-    "color": {
-      "type": "String",
+    "type": {
+      "type": "String | Number",
+      "default": "1",
       "required": false,
-      "description": ""
-    },
-    "variant": {
-      "type": "String",
-      "default": "elevated",
-      "required": false,
-      "description": ""
+      "description": "Layout style 1–5. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image."
     },
     "image": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Image URL for the card media (shorthand for the `img` slot)."
+    },
+    "img": {
+      "type": "String",
+      "required": false,
+      "description": "Alias of `image`."
     },
     "title": {
       "type": "String",
       "required": false,
-      "description": ""
-    },
-    "subtitle": {
-      "type": "String",
-      "required": false,
-      "description": ""
+      "description": "Heading text (shorthand for the `title` slot)."
     },
     "text": {
       "type": "String",
       "required": false,
-      "description": ""
-    },
-    "hover": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "default": "lg",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "elevation": {
-      "type": "Number | String",
-      "required": false,
-      "description": ""
+      "description": "Body text (shorthand for the `text` slot)."
     },
     "tag": {
       "type": "String",
       "default": "div",
       "required": false,
-      "description": ""
+      "description": "The root element tag."
     },
     "theme": {
       "type": "String",
@@ -82,5 +51,24 @@
     }
   },
   "events": {},
-  "slots": {}
+  "slots": {
+    "img": {
+      "description": "The card image or media."
+    },
+    "title": {
+      "description": "Heading shown above the text."
+    },
+    "text": {
+      "description": "Body copy."
+    },
+    "interactions": {
+      "description": "Buttons overlaid on the image (likes, comments, …)."
+    },
+    "buttons": {
+      "description": "A footer row of actions below the text."
+    },
+    "default": {
+      "description": "Free-form content appended inside the card."
+    }
+  }
 }
