@@ -278,7 +278,7 @@
   // The card box is the image; extra bottom room on the wrapper gives the
   // caption space to pop up and protrude on hover without being clipped.
   .vd-card-content--type-5 {
-    padding-bottom: 52px;
+    padding-bottom: 72px;
   }
 
   .vd-card-content--type-5 .vd-card {
@@ -291,7 +291,7 @@
 
     &:hover {
       .vd-card__interactions {
-        bottom: 80px;
+        bottom: 48px;
       }
 
       .vd-card__text {
@@ -349,7 +349,7 @@
     .vd-card__text {
       position: absolute;
       right: 15px;
-      bottom: -40px;
+      bottom: -64px;
       left: 15px;
       z-index: 10;
       padding: 14px 16px 15px;
@@ -357,7 +357,7 @@
       background: rgb(var(--vd-theme-surface));
       box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
       opacity: 0;
-      transform: translate(0, 40px);
+      transform: translate(0, 28px);
       transition: all 0.25s ease;
 
       p {
