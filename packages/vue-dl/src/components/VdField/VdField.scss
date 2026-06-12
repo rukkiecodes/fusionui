@@ -205,26 +205,26 @@
     &--icon-card {
       .vd-field__prepend,
       .vd-field__append {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 9px;
+        // Matches the fill at rest (invisible). On focus the field fill darkens
+        // to surface-3, so this stays put and reads as a lighter, lifted card.
         background: rgb(var(--vd-surface-2));
+        border-radius: 10px;
         transition: all 0.25s ease;
       }
 
       &.vd-field--focused .vd-field__prepend {
-        transform: translate(-6px, -6px);
-        background: rgb(var(--vd-theme-surface));
-        box-shadow: -14px 10px 16px -10px rgba(0, 0, 0, 0.22);
+        transform: translate(-8px, -9px);
+        box-shadow: -12px 12px 20px -10px rgba(0, 0, 0, 0.3);
         color: rgb(var(--vd-field-color));
       }
       &.vd-field--focused .vd-field__append {
-        transform: translate(6px, -6px);
-        background: rgb(var(--vd-theme-surface));
-        box-shadow: 14px 10px 16px -10px rgba(0, 0, 0, 0.22);
+        transform: translate(8px, -9px);
+        box-shadow: 12px 12px 20px -10px rgba(0, 0, 0, 0.3);
         color: rgb(var(--vd-field-color));
       }
     }
