@@ -13,7 +13,7 @@ export const makeVdTextareaProps = propsFactory(
     modelValue: { type: String, default: '' },
     label: String as PropType<string>,
     placeholder: String as PropType<string>,
-    color: { type: String as PropType<string>, default: 'primary' },
+    color: String as PropType<string>,
     rows: { type: [Number, String], default: 4 },
     hint: String as PropType<string>,
     persistentHint: Boolean,

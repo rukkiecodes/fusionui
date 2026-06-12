@@ -1,15 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-const v = ref('checking…')
+const v = ref('')
 </script>
 
 <template>
-  <vd-input
-    v-model="v"
-    label="Username"
-    label-placeholder
-    loading
-    prepend-icon="user"
-    style="max-width: 360px"
-  />
+  <vd-input v-model="v" placeholder="Name" loading />
 </template>

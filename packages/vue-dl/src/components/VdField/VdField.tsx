@@ -4,17 +4,18 @@ import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
+import { isCssColor, parseColor } from '../../util/colors'
 import type { IconValue } from '../../composables/icons'
 import { VdIcon } from '../VdIcon'
 
 export type FieldVariant = 'default' | 'underlined' | 'shadow'
-export type FieldState = 'success' | 'danger' | 'warning' | 'primary'
+export type FieldState = 'success' | 'danger' | 'warning' | 'primary' | 'dark'
 
 export const makeVdFieldProps = propsFactory(
   {
     label: String as PropType<string>,
     labelPlaceholder: Boolean,
-    color: { type: String as PropType<string>, default: 'primary' },
+    color: String as PropType<string>,
     variant: { type: String as PropType<FieldVariant>, default: 'default' },
     // Manual state tint (success / danger / warning / primary).
     state: String as PropType<FieldState>,
@@ -67,6 +68,21 @@ export const VdField = genericComponent()({
       if (props.state) return props.state
       return props.color
     })
+    // A field is "colored" only when a color/state is explicitly set — the
+    // plain default field keeps its neutral, borderless focus (Vuesax).
+    const colored = computed(() => !!stateColor.value)
+    const fieldColor = computed(() => {
+      const c = stateColor.value
+      if (!c) return undefined
+      if (isCssColor(c)) {
+        if (c.startsWith('#') || c.startsWith('rgb')) {
+          const { r, g, b } = parseColor(c)
+          return `${r}, ${g}, ${b}`
+        }
+        return undefined
+      }
+      return `var(--vd-theme-${c})`
+    })
     const tinted = computed(() => hasError.value || hasSuccess.value || !!props.state)
 
     const progressVal = computed(() => Math.max(0, Math.min(100, Number(props.progress) || 0)))
@@ -101,6 +117,7 @@ export const VdField = genericComponent()({
               'vd-field--block': props.block,
               'vd-field--square': props.square,
               'vd-field--transparent': props.transparent,
+              'vd-field--colored': colored.value,
               'vd-field--floating-label': floating,
               'vd-field--pinned-label': pinned,
               'vd-field--has-prepend': hasPrepend,
@@ -108,7 +125,10 @@ export const VdField = genericComponent()({
             },
             props.class,
           ],
-          style: [{ '--vd-field-color': `var(--vd-theme-${stateColor.value})` }, props.style],
+          style: [
+            fieldColor.value ? { '--vd-field-color': fieldColor.value } : undefined,
+            props.style,
+          ],
         },
         [
           h('div', { class: 'vd-field__control' }, [
@@ -171,6 +191,14 @@ export const VdField = genericComponent()({
                 message.value
               )
             : null,
+          // Vuesax `message-{color}` slots — colored helper text below the field.
+          ...['success', 'danger', 'warn', 'primary'].map(t =>
+            slots[`message-${t}`]
+              ? h('div', { class: ['vd-field__message', `vd-field__message--${t}`] }, [
+                  slots[`message-${t}`](),
+                ])
+              : null
+          ),
         ]
       )
     })

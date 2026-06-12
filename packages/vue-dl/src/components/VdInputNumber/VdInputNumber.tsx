@@ -13,7 +13,7 @@ export const makeVdInputNumberProps = propsFactory(
     min: { type: Number, default: -Infinity },
     max: { type: Number, default: Infinity },
     step: { type: Number, default: 1 },
-    color: { type: String as PropType<string>, default: 'primary' },
+    color: String as PropType<string>,
     disabled: Boolean,
     ...makeThemeProps(),
     ...makeComponentProps(),

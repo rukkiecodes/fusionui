@@ -1,7 +1,7 @@
 # Input
 
 `VdInput` is a text field with the Vuesax look — a soft filled background, a
-smooth focus glow, and the signature animated floating label.
+stable focus, and the signature animated floating label.
 
 ## Usage
 
@@ -17,57 +17,45 @@ In its simplest form, an input just needs a `v-model`.
 
 ## Label
 
-Use `label` for a label above the field, or add `label-placeholder` to get the
-animated floating label that lifts on focus.
+Use `label` for a label pinned above the field, or add `label-placeholder` to
+get the animated label that reads as a placeholder and floats up on focus.
 
 <Example file="input/label" />
 
-## Colors
+## Color
 
-The `color` prop sets the focus accent — a theme color or any CSS color.
+The `color` prop colors the focus — the bottom border, icons, and floated label
+take the accent. It accepts a theme color or any HEX / RGB value.
 
 <Example file="input/colors" />
 
 ## Icons
 
 Add `prepend-icon` / `append-icon` — the icon sits in a little card that lifts
-out with a soft shadow when the field is focused. Add `clearable` for a clear
-affordance when the field has a value.
+out with a soft shadow when the field is focused.
 
 <Example file="input/icons" />
 
-## Validation & states
+## Message
 
-Pass `rules` for validation, or `success-messages` / `hint` for other states.
-The field colors its border, label, and message accordingly.
+Add colored helper text below the field with the `message-success`,
+`message-danger`, `message-warn`, and `message-primary` slots.
 
-<Example file="input/states" />
+<Example file="input/message" />
 
 ## State
 
-Force a state tint with the `state` prop — `success`, `danger`, `warning`, or
-`primary`.
+Tint the whole field with the `state` prop — `primary`, `success`, `danger`,
+`warning`, or `dark`.
 
 <Example file="input/state" />
 
-## Password
+## Progress
 
-`type="password"` adds a reveal toggle automatically.
-
-<Example file="input/password" />
-
-## Strength bar
-
-Bind a 0–100 `progress` value for a bar under the field that shifts from red to
-green as it fills — handy for password strength.
+Bind a 0–100 `progress` value for a validation bar under the field that shifts
+from red to green — most commonly used for password strength.
 
 <Example file="input/strength" />
-
-## Square & transparent
-
-`square` removes the rounding; `transparent` drops the fill.
-
-<Example file="input/square-transparent" />
 
 ## Loading
 
@@ -75,18 +63,29 @@ The `loading` prop shows an inline spinner.
 
 <Example file="input/loading" />
 
-## Variants
+## Input types
 
-Three looks: the filled `default`, an `underlined` field with the Vuesax
-center-out underline, and an elevated `shadow` field.
+The `type` prop is the native HTML input type.
 
-<Example file="input/variants" />
+<Example file="input/types" />
 
-## Block
+## Password
 
-`block` stretches the field to the full width of its container.
+`type="password"` adds a reveal toggle automatically.
 
-<Example file="input/block" />
+<Example file="input/password" />
+
+## Border
+
+The `underlined` variant strips the fill down to an animated underline.
+
+<Example file="input/border" />
+
+## Shadow
+
+The `shadow` variant floats the field on a soft shadow.
+
+<Example file="input/shadow" />
 
 ## API
 

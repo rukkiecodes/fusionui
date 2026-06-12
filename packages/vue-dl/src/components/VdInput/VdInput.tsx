@@ -18,9 +18,9 @@ export const makeVdInputProps = propsFactory(
     placeholder: String as PropType<string>,
     label: String as PropType<string>,
     labelPlaceholder: Boolean,
-    color: { type: String as PropType<string>, default: 'primary' },
+    color: String as PropType<string>,
     variant: { type: String as PropType<FieldVariant>, default: 'default' },
-    state: String as PropType<'success' | 'danger' | 'warning' | 'primary'>,
+    state: String as PropType<'success' | 'danger' | 'warning' | 'primary' | 'dark'>,
     progress: { type: [Number, String] as PropType<number | string>, default: 0 },
     square: Boolean,
     transparent: Boolean,
@@ -45,7 +45,7 @@ export const VdInput = genericComponent()({
     'update:modelValue': (_v: string | number) => true,
     'update:focused': (_v: boolean) => true,
   },
-  setup(props: any, { emit }: any) {
+  setup(props: any, { emit, slots }: any) {
     const model = useProxiedModel(props, 'modelValue', '')
     const { errorMessages, successMessages, validate } = useValidation(props)
     const focused = ref(false)
@@ -124,6 +124,12 @@ export const VdInput = genericComponent()({
                   },
                 })
             : undefined,
+          // Forward Vuesax-style `message-{color}` slots to the field.
+          ...Object.fromEntries(
+            Object.keys(slots)
+              .filter((k: string) => k.startsWith('message-'))
+              .map((k: string) => [k, slots[k]])
+          ),
         }
       )
     )

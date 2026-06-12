@@ -1,16 +1,19 @@
 <script setup>
 import { ref } from 'vue'
-const a = ref('Looks good!')
-const b = ref('Wrong value')
-const c = ref('Be careful')
-const d = ref('Heads up')
+const v1 = ref('')
+const v2 = ref('')
+const v3 = ref('')
+const v4 = ref('')
+const v5 = ref('')
 </script>
 
 <template>
-  <div style="display: flex; flex-direction: column; gap: 18px; max-width: 320px">
-    <vd-input v-model="a" label="Success" label-placeholder state="success" />
-    <vd-input v-model="b" label="Danger" label-placeholder state="danger" />
-    <vd-input v-model="c" label="Warning" label-placeholder state="warning" />
-    <vd-input v-model="d" label="Primary" label-placeholder state="primary" />
+  <div style="display: flex; gap: 22px 16px; flex-wrap: wrap; justify-content: center">
+    <vd-input v-model="v1" state="primary" placeholder="Primary" />
+    <vd-input v-model="v2" state="success" placeholder="Success Icon" prepend-icon="user" />
+    <vd-input v-model="v3" state="danger" placeholder="Danger icon after" append-icon="send" />
+    <vd-input v-model="v4" state="warning" placeholder="Label Warn" label="Warn" />
+    <vd-input v-model="v5" color="dark" state="primary" placeholder="Dark" style="display: none" />
+    <vd-input v-model="v5" state="dark" placeholder="Dark" />
   </div>
 </template>

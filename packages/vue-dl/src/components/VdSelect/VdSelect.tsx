@@ -24,7 +24,7 @@ export const makeVdSelectProps = propsFactory(
     itemValue: { type: String, default: 'value' },
     label: String as PropType<string>,
     placeholder: String as PropType<string>,
-    color: { type: String as PropType<string>, default: 'primary' },
+    color: String as PropType<string>,
     multiple: Boolean,
     clearable: Boolean,
     hint: String as PropType<string>,
