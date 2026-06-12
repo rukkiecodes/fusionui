@@ -14,23 +14,39 @@
     "vuesax",
     "vuetify"
   ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.js"
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
     },
-    "./styles": "./lib/styles/main.css"
+    "./styles": "./src/styles/main.scss"
   },
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/types/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./styles": "./dist/vue-dl.css"
+    }
+  },
   "scripts": {
-    "build": "echo \"[vue-dl] build placeholder — implemented in Batch 12\"",
-    "dev": "echo \"[vue-dl] dev/watch placeholder — implemented in Batch 12\"",
+    "build": "vite build && pnpm build:css && pnpm build:types",
+    "build:css": "sass src/styles/main.scss dist/vue-dl.css --no-source-map --style=compressed",
+    "build:types": "tsc -p tsconfig.build.json",
+    "dev": "vite build --watch",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest"
