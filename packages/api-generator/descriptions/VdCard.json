@@ -1,6 +1,6 @@
 {
   "props": {
-    "type": "Layout style. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image on scroll, 8 dodges the cursor, 9 follows the cursor, 10 is an X feed post, 11 a Facebook post, 12 an Instagram post.",
+    "type": "Layout style. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image on scroll, 8 dodges the cursor, 9 follows the cursor, 10 flips to a back face when the cursor is near, 11 is a Tinder-style swipe deck, 12 an X feed post, 13 a Facebook post, 14 an Instagram post.",
     "parallax": "Type 6 only — how far (px) the image drifts across a full scroll pass. Higher is more intense (default 280).",
     "image": "Image URL for the card media (shorthand for the `img` slot).",
     "img": "Alias of `image`.",
@@ -13,9 +13,11 @@
     "title": "Heading shown above the text.",
     "text": "Body copy.",
     "interactions": "Buttons overlaid on the image (likes, comments, …).",
-    "avatar": "Avatar shown in the header (social types 10–12).",
-    "header": "Name / handle / meta beside the avatar (social types 10–12).",
-    "actions": "Footer action row (social types 10–12).",
+    "front": "Front face of the flip card (type 10).",
+    "back": "Back face of the flip card (type 10).",
+    "avatar": "Avatar shown in the header (social types 12–14).",
+    "header": "Name / handle / meta beside the avatar (social types 12–14).",
+    "actions": "Footer action row (social types 12–14).",
     "buttons": "A footer row of actions below the text.",
     "default": "Free-form content appended inside the card."
   }

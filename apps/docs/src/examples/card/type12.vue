@@ -3,23 +3,21 @@ const img = name => `${import.meta.env.BASE_URL}cards/${name}`
 </script>
 
 <template>
-  <vd-card type="12" style="max-width: 360px">
-    <template #avatar><img :src="img('foto5.png')" alt="" /></template>
+  <vd-card type="12">
+    <template #avatar><img :src="img('foto1.png')" alt="" /></template>
     <template #header>
-      <strong>traveldaily</strong>
-      <span>Santorini, Greece</span>
-    </template>
-    <template #img><img :src="img('foto4.png')" alt="" /></template>
-    <template #actions>
-      <button class="vd-act"><vd-icon icon="heart" /></button>
-      <button class="vd-act"><vd-icon icon="message-circle" /></button>
-      <button class="vd-act"><vd-icon icon="send" /></button>
-      <vd-spacer />
-      <button class="vd-act"><vd-icon icon="bookmark" /></button>
+      <strong>Jane Doe</strong>
+      <span>@janedoe · 2h</span>
     </template>
     <template #text>
-      <p><strong>2,418 likes</strong></p>
-      <p><strong>traveldaily</strong> Golden hour never disappoints ✨</p>
+      <p>Just shipped a brand-new Vue design library — five card types and counting 🎨🚀</p>
+    </template>
+    <template #img><img :src="img('foto2.jpg')" alt="" /></template>
+    <template #actions>
+      <button class="vd-act"><vd-icon icon="message-circle" size="small" /> 12</button>
+      <button class="vd-act"><vd-icon icon="repeat" size="small" /> 48</button>
+      <button class="vd-act"><vd-icon icon="heart" size="small" /> 312</button>
+      <button class="vd-act"><vd-icon icon="bar-chart-2" size="small" /> 9.8k</button>
     </template>
   </vd-card>
 </template>

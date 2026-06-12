@@ -5,7 +5,7 @@
       "type": "String | Number",
       "default": "1",
       "required": false,
-      "description": "Layout style. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image on scroll, 8 dodges the cursor, 9 follows the cursor, 10 is an X feed post, 11 a Facebook post, 12 an Instagram post."
+      "description": "Layout style. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image on scroll, 8 dodges the cursor, 9 follows the cursor, 10 flips to a back face when the cursor is near, 11 is a Tinder-style swipe deck, 12 an X feed post, 13 a Facebook post, 14 an Instagram post."
     },
     "parallax": {
       "type": "Number | String",
@@ -70,14 +70,20 @@
     "interactions": {
       "description": "Buttons overlaid on the image (likes, comments, …)."
     },
+    "front": {
+      "description": "Front face of the flip card (type 10)."
+    },
+    "back": {
+      "description": "Back face of the flip card (type 10)."
+    },
     "avatar": {
-      "description": "Avatar shown in the header (social types 10–12)."
+      "description": "Avatar shown in the header (social types 12–14)."
     },
     "header": {
-      "description": "Name / handle / meta beside the avatar (social types 10–12)."
+      "description": "Name / handle / meta beside the avatar (social types 12–14)."
     },
     "actions": {
-      "description": "Footer action row (social types 10–12)."
+      "description": "Footer action row (social types 12–14)."
     },
     "buttons": {
       "description": "A footer row of actions below the text."

@@ -64,24 +64,43 @@ Hover around the card and it leans and tilts toward your cursor.
 
 <Example file="card/type9" />
 
-## Type 10 — X feed
+## Type 10 — flip
+
+Bring your cursor near the card and it flips to reveal its back face (it senses
+the cursor approaching, so it won't flicker at the edges). Uses the `front` and
+`back` slots.
+
+<Example file="card/type10" />
+
+A credit-card take on the same flip:
+
+<Example file="card/type10-credit" />
+
+## Type 11 — swipe deck
+
+A Tinder-style stack — drag the top card left or right to fling it away and
+reveal the next. Each direct child is a card in the deck.
+
+<Example file="card/type11" />
+
+## Type 12 — X feed
 
 A post layout (avatar, handle, media, reply / repost / like / views) using the
 `avatar`, `header`, and `actions` slots.
 
-<Example file="card/type10" />
+<Example file="card/type12" />
 
-## Type 11 — Facebook feed
+## Type 13 — Facebook feed
 
 Full-bleed media with a divided Like / Comment / Share bar.
 
-<Example file="card/type11" />
+<Example file="card/type13" />
 
-## Type 12 — Instagram
+## Type 14 — Instagram
 
 Header, square media, the action row, then the caption.
 
-<Example file="card/type12" />
+<Example file="card/type14" />
 
 ## Slots
 
@@ -91,9 +110,11 @@ Header, square media, the action row, then the caption.
 | `title`        | Heading shown above the text.                         |
 | `text`         | Body copy.                                            |
 | `interactions` | Buttons overlaid on the image (likes, comments, …).   |
-| `avatar`       | Avatar in the header (social types 10–12).            |
-| `header`       | Name / handle / meta beside the avatar (types 10–12). |
-| `actions`      | Footer action row (social types 10–12).               |
+| `front`        | Front face of the flip card (type 10).                |
+| `back`         | Back face of the flip card (type 10).                 |
+| `avatar`       | Avatar in the header (social types 12–14).            |
+| `header`       | Name / handle / meta beside the avatar (types 12–14). |
+| `actions`      | Footer action row (social types 12–14).               |
 | `buttons`      | A footer row of actions below the text.               |
 | `default`      | Free-form content appended inside the card.           |
 

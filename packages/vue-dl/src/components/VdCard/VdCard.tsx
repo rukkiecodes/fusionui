@@ -6,7 +6,20 @@ import { makeComponentProps, makeTagProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { VdIcon } from '../VdIcon'
 
-export type VdCardType = '1' | '2' | '3' | '4' | '5' | '6' | '8' | '9' | '10' | '11' | '12'
+export type VdCardType =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
@@ -99,13 +112,16 @@ export const VdCard = genericComponent()({
         cursorFrame = 0
       }
       const el = cardRef.value
-      if (el) el.style.transform = ''
+      if (el) {
+        el.style.transform = ''
+        el.classList.remove('is-flipped')
+      }
     }
 
     function attachCursor() {
       if (typeof window === 'undefined') return
       const t = String(props.type)
-      if (t !== '8' && t !== '9') return
+      if (t !== '8' && t !== '9' && t !== '10') return
       detachCursor()
       cursorMove = (e: MouseEvent) => {
         if (cursorFrame) return
@@ -118,7 +134,17 @@ export const VdCard = genericComponent()({
           const cy = rect.top + rect.height / 2
           const dx = e.clientX - cx
           const dy = e.clientY - cy
-          if (t === '9') {
+          if (t === '10') {
+            // flip when the cursor comes near (margin gives spatial awareness
+            // so it doesn't flicker at the edges).
+            const margin = 80
+            const near =
+              e.clientX >= rect.left - margin &&
+              e.clientX <= rect.right + margin &&
+              e.clientY >= rect.top - margin &&
+              e.clientY <= rect.bottom + margin
+            el.classList.toggle('is-flipped', near)
+          } else if (t === '9') {
             // follow: tilt + lean toward the cursor while it is over the card.
             const margin = 60
             const inside =
@@ -152,12 +178,97 @@ export const VdCard = genericComponent()({
       document.addEventListener('mousemove', cursorMove, { passive: true })
     }
 
+    // ---- Type 11: Tinder-style swipeable deck ---------------------------
+    let deckCleanup: (() => void) | null = null
+
+    function detachDeck() {
+      if (deckCleanup) {
+        deckCleanup()
+        deckCleanup = null
+      }
+    }
+
+    function attachDeck() {
+      if (typeof window === 'undefined') return
+      const el = cardRef.value
+      if (!el) return
+      detachDeck()
+      const slides = Array.from(el.children).filter(
+        (c): c is HTMLElement => c instanceof HTMLElement
+      )
+      if (!slides.length) return
+      const order = slides.slice()
+
+      function layout() {
+        order.forEach((s, i) => {
+          const offset = Math.min(i, 3)
+          s.style.transition = 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease'
+          s.style.zIndex = String(order.length - i)
+          s.style.transform = `translateY(${offset * 12}px) scale(${1 - offset * 0.05})`
+          s.style.opacity = i < 4 ? '1' : '0'
+          s.style.pointerEvents = i === 0 ? 'auto' : 'none'
+        })
+      }
+
+      let dragging = false
+      let startX = 0
+      let top: HTMLElement | null = null
+
+      function onDown(e: PointerEvent) {
+        const t = order[0]
+        if (!t || (t !== e.target && !t.contains(e.target as Node))) return
+        top = t
+        dragging = true
+        startX = e.clientX
+        top.style.transition = 'none'
+        top.setPointerCapture?.(e.pointerId)
+      }
+      function onMove(e: PointerEvent) {
+        if (!dragging || !top) return
+        const dx = e.clientX - startX
+        top.style.transform = `translate(${dx}px, ${Math.abs(dx) * 0.06}px) rotate(${dx / 18}deg)`
+      }
+      function onUp(e: PointerEvent) {
+        if (!dragging || !top) return
+        dragging = false
+        const dx = e.clientX - startX
+        const card = top
+        top = null
+        if (Math.abs(dx) > 90) {
+          const dir = dx > 0 ? 1 : -1
+          card.style.transition = 'transform 0.45s ease, opacity 0.45s ease'
+          card.style.transform = `translate(${dir * 520}px, 60px) rotate(${dir * 35}deg)`
+          card.style.opacity = '0'
+          window.setTimeout(() => {
+            order.push(order.shift() as HTMLElement)
+            card.style.transition = 'none'
+            layout()
+          }, 320)
+        } else {
+          layout()
+        }
+      }
+
+      el.addEventListener('pointerdown', onDown)
+      window.addEventListener('pointermove', onMove)
+      window.addEventListener('pointerup', onUp)
+      layout()
+
+      deckCleanup = () => {
+        el.removeEventListener('pointerdown', onDown)
+        window.removeEventListener('pointermove', onMove)
+        window.removeEventListener('pointerup', onUp)
+      }
+    }
+
     function syncEffects() {
       const t = String(props.type)
       if (t === '6') attach()
       else detach()
-      if (t === '8' || t === '9') attachCursor()
+      if (t === '8' || t === '9' || t === '10') attachCursor()
       else detachCursor()
+      if (t === '11') nextTick(attachDeck)
+      else detachDeck()
     }
 
     onMounted(syncEffects)
@@ -173,6 +284,7 @@ export const VdCard = genericComponent()({
     onBeforeUnmount(() => {
       detach()
       detachCursor()
+      detachDeck()
     })
 
     useRender(() => {
@@ -224,7 +336,13 @@ export const VdCard = genericComponent()({
         ? h('div', { class: 'vd-card__actions' }, [slots.actions()])
         : null
 
+      // Flip card (type 10): two faces.
+      const frontNode = slots.front ? h('div', { class: 'vd-card__front' }, [slots.front()]) : null
+      const backNode = slots.back ? h('div', { class: 'vd-card__back' }, [slots.back()]) : null
+
       const card = h(props.tag, { class: 'vd-card', ...attrs, ref: cardRef }, [
+        frontNode,
+        backNode,
         headerNode,
         imgNode,
         textNode,

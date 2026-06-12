@@ -1,22 +1,32 @@
 <script setup>
 const img = name => `${import.meta.env.BASE_URL}cards/${name}`
+const people = [
+  { src: 'foto1.png', name: 'Alex, 27' },
+  { src: 'foto6.png', name: 'Sam, 24' },
+  { src: 'foto13.png', name: 'Jordan, 30' },
+  { src: 'foto5.png', name: 'Riley, 26' },
+]
 </script>
 
 <template>
-  <vd-card type="11">
-    <template #avatar><img :src="img('foto6.png')" alt="" /></template>
-    <template #header>
-      <strong>Ada Lovelace</strong>
-      <span>Yesterday at 14:32 · 🌍</span>
-    </template>
-    <template #text>
-      <p>Spent the afternoon in the hills. Worth every step. 🥾⛰️</p>
-    </template>
-    <template #img><img :src="img('foto13.png')" alt="" /></template>
-    <template #actions>
-      <button class="vd-act"><vd-icon icon="thumbs-up" size="small" /> Like</button>
-      <button class="vd-act"><vd-icon icon="message-circle" size="small" /> Comment</button>
-      <button class="vd-act"><vd-icon icon="share-2" size="small" /> Share</button>
-    </template>
+  <vd-card type="11" style="max-width: 280px">
+    <div v-for="p in people" :key="p.name">
+      <img :src="img(p.src)" alt="" />
+      <div class="deck-name">{{ p.name }}</div>
+    </div>
   </vd-card>
 </template>
+
+<style scoped>
+.deck-name {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 30px 18px 16px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+}
+</style>
