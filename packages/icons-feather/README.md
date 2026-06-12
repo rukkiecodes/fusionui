@@ -1,8 +1,9 @@
 # @vue-dl/icons-feather
 
-The default [Feather](https://feathericons.com) icon set for **Vue DL** — 287
-tree-shakeable icon components plus an opt-in string-name set and the semantic
-aliases used by Vue DL components.
+The default [Feather](https://feathericons.com)-style icon set for **Vue DL** —
+737 tree-shakeable icon components (the original Feather set plus 450 extended
+icons) plus an opt-in string-name set and the semantic aliases used by Vue DL
+components.
 
 ## Usage
 
@@ -24,7 +25,7 @@ import { Bell, Search } from '@vue-dl/icons-feather'
 ### By string name (convenience, opt-in)
 
 Register the full set to use string names like `<vd-icon icon="bell" />`. This
-pulls all 287 icons, so prefer the tree-shakeable form for app bundles:
+pulls all 737 icons, so prefer the tree-shakeable form for app bundles:
 
 ```ts
 import { createVueDL } from 'vue-dl'

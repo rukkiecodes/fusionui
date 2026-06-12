@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Vinyl = /*#__PURE__*/ createFeatherIcon('vinyl', [
+  ['circle', { "cx": "12", "cy": "12", "r": "9" }],
+  ['circle', { "cx": "12", "cy": "12", "r": "3" }],
+  ['circle', { "cx": "12", "cy": "12", "r": "1" }],
+])

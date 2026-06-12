@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Banknote = /*#__PURE__*/ createFeatherIcon('banknote', [
+  ['rect', { "x": "2", "y": "6", "width": "20", "height": "12", "rx": "2" }],
+  ['circle', { "cx": "12", "cy": "12", "r": "2.5" }],
+  ['path', { "d": "M6 9h.01M18 15h.01" }],
+])

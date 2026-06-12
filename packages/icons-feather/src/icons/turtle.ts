@@ -1,0 +1,8 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Turtle = /*#__PURE__*/ createFeatherIcon('turtle', [
+  ['path', { "d": "M5 15a7 5 0 0 1 14 0" }],
+  ['path', { "d": "M3 17l2-1M21 17l-2-1M8 17v2M16 17v2" }],
+  ['circle', { "cx": "21", "cy": "13", "r": "1.5" }],
+  ['path', { "d": "M9 13l1.5 1.5L12 12l1.5 2.5L15 12" }],
+])

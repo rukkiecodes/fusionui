@@ -1,7 +1,7 @@
 # Icons
 
-Vue DL uses [Feather](https://feathericons.com) icons by default — 287 clean,
-stroke-based icons.
+Vue DL uses [Feather](https://feathericons.com)-style icons by default — 737
+clean, stroke-based icons (the original Feather set plus 450 extended icons).
 
 ## Usage
 
