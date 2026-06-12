@@ -4,6 +4,12 @@ Buttons are a fundamental part of any project. With Vue DL you add a great
 button with a single line of code — every button ships with all of its states
 (`active`, `focus`, `hover`, `disabled`) so implementation stays simple.
 
+## Usage
+
+Pick a variant and configure the button live — the code updates as you go.
+
+<ButtonPlayground />
+
 ## Default
 
 The default button is a solid fill that lifts with a soft colored shadow on
