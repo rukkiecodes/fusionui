@@ -13,7 +13,7 @@ const options = [
 </script>
 
 <template>
-  <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 620px">
+  <div style="display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 620px">
     <vd-alert :color="color">
       <template #title>Vue DL Framework</template>
       Vue DL is a <b>UI component library</b> built with <a href="https://vuejs.org/">Vue</a> for
@@ -45,7 +45,7 @@ const options = [
   justify-content: center;
 }
 .color-btns :deep(.vd-btn--active) {
-  transform: translateY(-16px);
+  transform: translateY(-7px);
   border-radius: 0 0 12px 12px;
 }
 </style>
