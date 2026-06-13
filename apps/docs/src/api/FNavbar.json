@@ -1,0 +1,20 @@
+{
+  "displayName": "FNavbar",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when an item is activated."
+    }
+  },
+  "slots": {
+    "left": {
+      "description": "Left section (logo / brand)."
+    },
+    "default": {
+      "description": "Center section — usually `fui-navbar-item`s."
+    },
+    "right": {
+      "description": "Right section (actions)."
+    }
+  }
+}

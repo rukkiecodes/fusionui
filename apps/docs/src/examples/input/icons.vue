@@ -6,7 +6,7 @@ const pass = ref('')
 
 <template>
   <div style="display: flex; gap: 18px; flex-wrap: wrap; justify-content: center">
-    <vd-input v-model="user" placeholder="User name" prepend-icon="user" />
-    <vd-input v-model="pass" type="password" placeholder="Password" append-icon="lock" />
+    <f-input v-model="user" placeholder="User name" prepend-icon="user" />
+    <f-input v-model="pass" type="password" placeholder="Password" append-icon="lock" />
   </div>
 </template>

@@ -1,7 +1,7 @@
-// Public entry point for the Vue DL component library.
+// Public entry point for the FusionUI component library.
 
-export { createVueDL } from './framework'
-export type { VueDLOptions, VueDLInstance } from './framework'
+export { createFusionUI } from './framework'
+export type { FusionUIOptions, FusionUIInstance } from './framework'
 
 // Components
 export * from './components'

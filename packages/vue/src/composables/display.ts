@@ -35,7 +35,7 @@ export interface DisplayInstance {
   update: () => void
 }
 
-export const DisplaySymbol: InjectionKey<DisplayInstance> = Symbol.for('vuedl:display')
+export const DisplaySymbol: InjectionKey<DisplayInstance> = Symbol.for('fusionui:display')
 
 const defaultThresholds: DisplayThresholds = {
   xs: 0,
@@ -106,6 +106,6 @@ export function createDisplay(options: DisplayOptions = {}, ssr?: boolean): Disp
 
 export function useDisplay(): DisplayInstance {
   const display = inject(DisplaySymbol)
-  if (!display) throw new Error('[Vue DL] Could not find display instance')
+  if (!display) throw new Error('[FusionUI] Could not find display instance')
   return readonly(display) as unknown as DisplayInstance
 }

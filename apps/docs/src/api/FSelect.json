@@ -1,0 +1,10 @@
+{
+  "displayName": "FSelect",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

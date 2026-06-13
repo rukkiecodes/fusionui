@@ -2,11 +2,11 @@ import { chromium } from 'playwright'
 
 const url = 'http://localhost:5174/components/card'
 const shots = [
-  ['.vd-card-content--type-3', '/tmp/w-t3.png', false],
-  ['.vd-card-content--type-4', '/tmp/w-t4.png', false],
-  ['.vd-card-content--type-5', '/tmp/w-t5.png', false],
-  ['.vd-card-content--type-5', '/tmp/w-t5h.png', true],
-  ['.vd-card-content--type-2', '/tmp/w-t2.png', false],
+  ['.fui-card-content--type-3', '/tmp/w-t3.png', false],
+  ['.fui-card-content--type-4', '/tmp/w-t4.png', false],
+  ['.fui-card-content--type-5', '/tmp/w-t5.png', false],
+  ['.fui-card-content--type-5', '/tmp/w-t5h.png', true],
+  ['.fui-card-content--type-2', '/tmp/w-t2.png', false],
 ]
 
 const browser = await chromium.launch()

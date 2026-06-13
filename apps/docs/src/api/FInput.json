@@ -1,0 +1,17 @@
+{
+  "displayName": "FInput",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when the value changes."
+    },
+    "update:focused": {
+      "description": "Emitted when focus state changes."
+    }
+  },
+  "slots": {
+    "default": {
+      "description": "The input element (advanced usage)."
+    }
+  }
+}

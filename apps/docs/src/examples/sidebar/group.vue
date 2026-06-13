@@ -5,35 +5,35 @@ const active = ref('alert')
 
 <template>
   <div class="sidebar-demo">
-    <vd-sidebar v-model="active" permanent>
+    <f-sidebar v-model="active" permanent>
       <template #logo>
-        <vd-icon icon="feather" color="primary" size="medium" />
+        <f-icon icon="feather" color="primary" size="medium" />
       </template>
 
-      <vd-sidebar-item id="home">
-        <template #icon><vd-icon icon="home" size="small" /></template>
+      <f-sidebar-item id="home">
+        <template #icon><f-icon icon="home" size="small" /></template>
         Home
-      </vd-sidebar-item>
+      </f-sidebar-item>
 
-      <vd-sidebar-group open>
+      <f-sidebar-group open>
         <template #header>
-          <vd-sidebar-item>
-            <template #icon><vd-icon icon="grid" size="small" /></template>
+          <f-sidebar-item>
+            <template #icon><f-icon icon="grid" size="small" /></template>
             Components
-          </vd-sidebar-item>
+          </f-sidebar-item>
         </template>
 
-        <vd-sidebar-item id="button">Button</vd-sidebar-item>
-        <vd-sidebar-item id="card">Card</vd-sidebar-item>
-        <vd-sidebar-item id="alert">Alert</vd-sidebar-item>
-        <vd-sidebar-item id="input">Input</vd-sidebar-item>
-      </vd-sidebar-group>
+        <f-sidebar-item id="button">Button</f-sidebar-item>
+        <f-sidebar-item id="card">Card</f-sidebar-item>
+        <f-sidebar-item id="alert">Alert</f-sidebar-item>
+        <f-sidebar-item id="input">Input</f-sidebar-item>
+      </f-sidebar-group>
 
-      <vd-sidebar-item id="docs">
-        <template #icon><vd-icon icon="book-open" size="small" /></template>
+      <f-sidebar-item id="docs">
+        <template #icon><f-icon icon="book-open" size="small" /></template>
         Documentation
-      </vd-sidebar-item>
-    </vd-sidebar>
+      </f-sidebar-item>
+    </f-sidebar>
   </div>
 </template>
 
@@ -44,6 +44,6 @@ const active = ref('alert')
   height: 460px;
   overflow: hidden;
   border-radius: 14px;
-  background: rgba(var(--vd-theme-on-surface), 0.03);
+  background: rgba(var(--fui-theme-on-surface), 0.03);
 }
 </style>

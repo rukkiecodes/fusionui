@@ -3,7 +3,7 @@ import type { App, ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import { propsFactory } from '../util/propsFactory'
 import { isLightColor, parseColor } from '../util/colors'
 
-// Theme engine: generates `--vd-theme-*` CSS variables (RGB triplets so
+// Theme engine: generates `--fui-theme-*` CSS variables (RGB triplets so
 // components can apply alpha), auto-derives `on-*` contrast colors, emits the
 // color utility classes (`bg-*`, `text-*`, `border-*`) that useColor relies on,
 // and wraps everything in cascade `@layer`s so consumer styles always win.
@@ -31,10 +31,10 @@ export interface ThemeInstance {
   toggle: (themes?: [string, string]) => void
 }
 
-export const ThemeSymbol: InjectionKey<ThemeInstance> = Symbol.for('vuedl:theme')
+export const ThemeSymbol: InjectionKey<ThemeInstance> = Symbol.for('fusionui:theme')
 
-const LAYER_ORDER = '@layer vd-tokens, vd-theme, vd-base, vd-components, vd-utilities;'
-const STYLE_ID = 'vue-dl-theme-stylesheet'
+const LAYER_ORDER = '@layer fui-tokens, fui-theme, fui-base, fui-components, fui-utilities;'
+const STYLE_ID = 'fusionui-theme-stylesheet'
 
 // Variables that differ between light and dark surfaces (Vuesax v4 DNA).
 // `surface-2` is the subtle gray fill used by inputs/selects (Vuesax gray-2).
@@ -126,15 +126,15 @@ function genThemeVariables(theme: ThemeDefinition): string {
   for (const [key, value] of Object.entries(theme.colors)) {
     // `on-*` colors are emitted alongside their base color below.
     if (key.startsWith('on-')) continue
-    lines.push(`--vd-theme-${key}: ${colorToTriplet(value)};`)
+    lines.push(`--fui-theme-${key}: ${colorToTriplet(value)};`)
     const onKey = `on-${key}`
     const onValue = theme.colors[onKey] ? colorToTriplet(theme.colors[onKey]) : onColor(value)
-    lines.push(`--vd-theme-${onKey}: ${onValue};`)
+    lines.push(`--fui-theme-${onKey}: ${onValue};`)
   }
   for (const [key, value] of Object.entries(theme.variables ?? {})) {
     const cssValue =
       typeof value === 'string' && value.startsWith('#') ? colorToTriplet(value) : value
-    lines.push(`--vd-${key}: ${cssValue};`)
+    lines.push(`--fui-${key}: ${cssValue};`)
   }
   return lines.join(' ')
 }
@@ -144,11 +144,11 @@ function genColorUtilities(colorKeys: string[]): string {
   for (const key of colorKeys) {
     if (key.startsWith('on-')) continue
     out.push(
-      `.bg-${key} { background-color: rgb(var(--vd-theme-${key})) !important; color: rgb(var(--vd-theme-on-${key})) !important; }`
+      `.bg-${key} { background-color: rgb(var(--fui-theme-${key})) !important; color: rgb(var(--fui-theme-on-${key})) !important; }`
     )
-    out.push(`.text-${key} { color: rgb(var(--vd-theme-${key})) !important; }`)
-    out.push(`.border-${key} { border-color: rgb(var(--vd-theme-${key})) !important; }`)
-    out.push(`.text-on-${key} { color: rgb(var(--vd-theme-on-${key})) !important; }`)
+    out.push(`.text-${key} { color: rgb(var(--fui-theme-${key})) !important; }`)
+    out.push(`.border-${key} { border-color: rgb(var(--fui-theme-${key})) !important; }`)
+    out.push(`.text-on-${key} { color: rgb(var(--fui-theme-on-${key})) !important; }`)
   }
   return out.join('\n')
 }
@@ -161,20 +161,20 @@ export function createTheme(options: ThemeOptions = {}): ThemeInstance {
 
   const current = computed<ThemeDefinition>(() => themes.value[name.value] ?? vuesaxLight)
   const isDark = computed(() => current.value.dark)
-  const themeClasses = computed(() => `vd-theme--${name.value}`)
+  const themeClasses = computed(() => `fui-theme--${name.value}`)
 
   const styles = computed(() => {
     const blocks: string[] = [LAYER_ORDER]
     const themeBlocks: string[] = []
     for (const [themeName, def] of Object.entries(themes.value)) {
       const selector =
-        themeName === name.value ? `:root, .vd-theme--${themeName}` : `.vd-theme--${themeName}`
+        themeName === name.value ? `:root, .fui-theme--${themeName}` : `.fui-theme--${themeName}`
       themeBlocks.push(`${selector} { ${genThemeVariables(def)} }`)
     }
-    blocks.push(`@layer vd-theme {\n${themeBlocks.join('\n')}\n}`)
+    blocks.push(`@layer fui-theme {\n${themeBlocks.join('\n')}\n}`)
 
     const colorKeys = Object.keys(current.value.colors)
-    blocks.push(`@layer vd-utilities {\n${genColorUtilities(colorKeys)}\n}`)
+    blocks.push(`@layer fui-utilities {\n${genColorUtilities(colorKeys)}\n}`)
     return blocks.join('\n')
   })
 
@@ -194,7 +194,7 @@ export function createTheme(options: ThemeOptions = {}): ThemeInstance {
     if (typeof document === 'undefined') return
     const root = document.documentElement
     for (const themeName of Object.keys(themes.value)) {
-      root.classList.toggle(`vd-theme--${themeName}`, themeName === name.value)
+      root.classList.toggle(`fui-theme--${themeName}`, themeName === name.value)
     }
   }
 
@@ -227,10 +227,10 @@ export const makeThemeProps = propsFactory(
 /** Components call this to participate in theming (and override the theme locally). */
 export function provideTheme(props: { theme?: string } = {}) {
   const theme = inject(ThemeSymbol)
-  if (!theme) throw new Error('[Vue DL] Could not find theme instance')
+  if (!theme) throw new Error('[FusionUI] Could not find theme instance')
 
   const name = computed(() => props.theme ?? theme.name.value)
-  const themeClasses = computed(() => `vd-theme--${name.value}`)
+  const themeClasses = computed(() => `fui-theme--${name.value}`)
 
   provide(ThemeSymbol, theme)
 
@@ -239,6 +239,6 @@ export function provideTheme(props: { theme?: string } = {}) {
 
 export function useTheme(): ThemeInstance {
   const theme = inject(ThemeSymbol)
-  if (!theme) throw new Error('[Vue DL] Could not find theme instance')
+  if (!theme) throw new Error('[FusionUI] Could not find theme instance')
   return theme
 }

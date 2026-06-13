@@ -1,0 +1,32 @@
+{
+  "displayName": "FAlert",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when the alert is dismissed."
+    },
+    "update:hiddenContent": {
+      "description": "Emitted when the content is collapsed or expanded."
+    },
+    "update:page": {
+      "description": "Emitted when the page changes."
+    }
+  },
+  "slots": {
+    "default": {
+      "description": "The alert content."
+    },
+    "title": {
+      "description": "The alert title."
+    },
+    "icon": {
+      "description": "Custom leading icon."
+    },
+    "footer": {
+      "description": "A footer row, typically for actions."
+    },
+    "page-1": {
+      "description": "Content for page 1 (add page-2, page-3, … for more)."
+    }
+  }
+}

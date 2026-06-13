@@ -5,10 +5,10 @@ const active = ref(0)
 
 <template>
   <div class="d-flex" style="gap: 12px; align-items: center">
-    <vd-btn variant="outlined" :active="active === 0" @click="active = 0">Active</vd-btn>
-    <vd-btn variant="outlined" color="danger" :active="active === 1" @click="active = 1">
+    <f-btn variant="outlined" :active="active === 0" @click="active = 0">Active</f-btn>
+    <f-btn variant="outlined" color="danger" :active="active === 1" @click="active = 1">
       Default
-    </vd-btn>
-    <vd-btn variant="outlined" disabled>Disabled</vd-btn>
+    </f-btn>
+    <f-btn variant="outlined" disabled>Disabled</f-btn>
   </div>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex" style="gap: 12px; align-items: center; flex-wrap: wrap">
-    <vd-btn icon="heart" color="danger" />
-    <vd-btn icon="star" color="warning" variant="tonal" />
-    <vd-btn icon="settings" circle variant="outlined" />
-    <vd-btn icon="github" circle color="dark" />
-    <vd-btn prepend-icon="download" color="primary">Download</vd-btn>
-    <vd-btn append-icon="arrow-right" variant="tonal">Next</vd-btn>
+    <f-btn icon="heart" color="danger" />
+    <f-btn icon="star" color="warning" variant="tonal" />
+    <f-btn icon="settings" circle variant="outlined" />
+    <f-btn icon="github" circle color="dark" />
+    <f-btn prepend-icon="download" color="primary">Download</f-btn>
+    <f-btn append-icon="arrow-right" variant="tonal">Next</f-btn>
   </div>
 </template>

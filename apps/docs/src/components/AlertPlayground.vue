@@ -9,7 +9,7 @@ const copied = ref(false)
 const show = ref(true)
 
 const cfg = reactive({
-  title: 'Vue DL Framework',
+  title: 'FusionUI Framework',
   text: 'A configurable alert — tweak the controls on the right.',
   color: 'primary',
   closable: false,
@@ -27,8 +27,8 @@ const code = computed(() => {
   if (cfg.color !== 'primary') a.push(`color="${cfg.color}"`)
   if (cfg.closable) a.push('closable')
   if (cfg.icon) a.push('icon="bell"')
-  const open = a.length ? `<vd-alert ${a.join(' ')}>` : '<vd-alert>'
-  return [open, `  <template #title>${cfg.title}</template>`, `  ${cfg.text}`, `</vd-alert>`].join(
+  const open = a.length ? `<f-alert ${a.join(' ')}>` : '<f-alert>'
+  return [open, `  <template #title>${cfg.title}</template>`, `  ${cfg.text}`, `</f-alert>`].join(
     '\n'
   )
 })
@@ -61,17 +61,17 @@ function reset() {
       </div>
       <div class="pg__bar-actions">
         <button class="pg__icon" title="Reset" @click="reset">
-          <vd-icon icon="refresh-cw" size="small" />
+          <f-icon icon="refresh-cw" size="small" />
         </button>
         <button class="pg__icon" title="Copy code" @click="copy">
-          <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+          <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
         </button>
       </div>
     </div>
 
     <div class="pg__body">
       <div class="pg__preview">
-        <vd-alert
+        <f-alert
           v-model="show"
           :variant="variant"
           :color="cfg.color"
@@ -81,17 +81,17 @@ function reset() {
         >
           <template #title>{{ cfg.title }}</template>
           {{ cfg.text }}
-        </vd-alert>
+        </f-alert>
       </div>
 
       <div class="pg__config">
         <p class="pg__config-title">Configuration</p>
-        <vd-input v-model="cfg.title" label="Title" label-placeholder />
-        <vd-input v-model="cfg.text" label="Text" label-placeholder />
-        <vd-select v-model="cfg.color" :items="colors" label="Color" />
+        <f-input v-model="cfg.title" label="Title" label-placeholder />
+        <f-input v-model="cfg.text" label="Text" label-placeholder />
+        <f-select v-model="cfg.color" :items="colors" label="Color" />
         <div class="pg__checks">
-          <vd-checkbox v-model="cfg.closable" label="Closable" />
-          <vd-checkbox v-model="cfg.icon" label="Icon" />
+          <f-checkbox v-model="cfg.closable" label="Closable" />
+          <f-checkbox v-model="cfg.icon" label="Icon" />
         </div>
       </div>
     </div>

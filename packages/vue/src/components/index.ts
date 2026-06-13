@@ -1,121 +1,121 @@
 import type { Component } from 'vue'
-import { VdIcon } from './VdIcon'
-import { VdBtn } from './VdBtn'
-import { VdBtnGroup } from './VdBtnGroup'
-import { VdCard, VdCardGroup, VdCardTitle, VdCardText, VdCardButtons } from './VdCard'
-import { VdAlert } from './VdAlert'
-import { VdChip } from './VdChip'
-import { VdAvatar } from './VdAvatar'
-import { VdBadge } from './VdBadge'
-import { VdProgressCircular, VdProgressLinear } from './VdProgress'
-import { VdDivider } from './VdDivider'
-import { VdSpacer } from './VdSpacer'
-import { VdField } from './VdField'
-import { VdInput } from './VdInput'
-import { VdTextarea } from './VdTextarea'
-import { VdInputNumber } from './VdInputNumber'
-import { VdSelect } from './VdSelect'
-import { VdCheckbox } from './VdCheckbox'
-import { VdRadio, VdRadioGroup } from './VdRadioGroup'
-import { VdSwitch } from './VdSwitch'
-import { VdSlider } from './VdSlider'
-import { VdUpload } from './VdUpload'
-import { VdForm } from './VdForm'
-import { VdOverlay } from './VdOverlay'
-import { VdPopup } from './VdPopup'
-import { VdMenu } from './VdMenu'
-import { VdTooltip } from './VdTooltip'
-import { VdList, VdListItem } from './VdList'
-import { VdTabs, VdTab, VdTabPanel, VdTabsWindow } from './VdTabs'
-import { VdNavbar, VdNavbarItem } from './VdNavbar'
-import { VdSidebar, VdSidebarItem, VdSidebarGroup } from './VdSidebar'
-import { VdBreadcrumb } from './VdBreadcrumb'
-import { VdPagination } from './VdPagination'
-import { VdCollapse } from './VdCollapse'
-import { VdTable } from './VdTable'
+import { FIcon } from './FIcon'
+import { FBtn } from './FBtn'
+import { FBtnGroup } from './FBtnGroup'
+import { FCard, FCardGroup, FCardTitle, FCardText, FCardButtons } from './FCard'
+import { FAlert } from './FAlert'
+import { FChip } from './FChip'
+import { FAvatar } from './FAvatar'
+import { FBadge } from './FBadge'
+import { FProgressCircular, FProgressLinear } from './FProgress'
+import { FDivider } from './FDivider'
+import { FSpacer } from './FSpacer'
+import { FField } from './FField'
+import { FInput } from './FInput'
+import { FTextarea } from './FTextarea'
+import { FInputNumber } from './FInputNumber'
+import { FSelect } from './FSelect'
+import { FCheckbox } from './FCheckbox'
+import { FRadio, FRadioGroup } from './FRadioGroup'
+import { FSwitch } from './FSwitch'
+import { FSlider } from './FSlider'
+import { FUpload } from './FUpload'
+import { FForm } from './FForm'
+import { FOverlay } from './FOverlay'
+import { FPopup } from './FPopup'
+import { FMenu } from './FMenu'
+import { FTooltip } from './FTooltip'
+import { FList, FListItem } from './FList'
+import { FTabs, FTab, FTabPanel, FTabsWindow } from './FTabs'
+import { FNavbar, FNavbarItem } from './FNavbar'
+import { FSidebar, FSidebarItem, FSidebarGroup } from './FSidebar'
+import { FBreadcrumb } from './FBreadcrumb'
+import { FPagination } from './FPagination'
+import { FCollapse } from './FCollapse'
+import { FTable } from './FTable'
 
-export * from './VdIcon'
-export * from './VdBtn'
-export * from './VdBtnGroup'
-export * from './VdCard'
-export * from './VdAlert'
-export * from './VdChip'
-export * from './VdAvatar'
-export * from './VdBadge'
-export * from './VdProgress'
-export * from './VdDivider'
-export * from './VdSpacer'
-export * from './VdField'
-export * from './VdInput'
-export * from './VdTextarea'
-export * from './VdInputNumber'
-export * from './VdSelect'
-export * from './VdCheckbox'
-export * from './VdRadioGroup'
-export * from './VdSwitch'
-export * from './VdSlider'
-export * from './VdUpload'
-export * from './VdForm'
-export * from './VdOverlay'
-export * from './VdPopup'
-export * from './VdMenu'
-export * from './VdTooltip'
-export * from './VdList'
-export * from './VdTabs'
-export * from './VdNavbar'
-export * from './VdSidebar'
-export * from './VdBreadcrumb'
-export * from './VdPagination'
-export * from './VdCollapse'
-export * from './VdTable'
+export * from './FIcon'
+export * from './FBtn'
+export * from './FBtnGroup'
+export * from './FCard'
+export * from './FAlert'
+export * from './FChip'
+export * from './FAvatar'
+export * from './FBadge'
+export * from './FProgress'
+export * from './FDivider'
+export * from './FSpacer'
+export * from './FField'
+export * from './FInput'
+export * from './FTextarea'
+export * from './FInputNumber'
+export * from './FSelect'
+export * from './FCheckbox'
+export * from './FRadioGroup'
+export * from './FSwitch'
+export * from './FSlider'
+export * from './FUpload'
+export * from './FForm'
+export * from './FOverlay'
+export * from './FPopup'
+export * from './FMenu'
+export * from './FTooltip'
+export * from './FList'
+export * from './FTabs'
+export * from './FNavbar'
+export * from './FSidebar'
+export * from './FBreadcrumb'
+export * from './FPagination'
+export * from './FCollapse'
+export * from './FTable'
 
-/** Built-in components registered globally by createVueDL().install. */
+/** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
-  VdIcon,
-  VdBtn,
-  VdBtnGroup,
-  VdCard,
-  VdCardGroup,
-  VdCardTitle,
-  VdCardText,
-  VdCardButtons,
-  VdAlert,
-  VdChip,
-  VdAvatar,
-  VdBadge,
-  VdProgressCircular,
-  VdProgressLinear,
-  VdDivider,
-  VdSpacer,
-  VdField,
-  VdInput,
-  VdTextarea,
-  VdInputNumber,
-  VdSelect,
-  VdCheckbox,
-  VdRadio,
-  VdRadioGroup,
-  VdSwitch,
-  VdSlider,
-  VdUpload,
-  VdForm,
-  VdOverlay,
-  VdPopup,
-  VdMenu,
-  VdTooltip,
-  VdList,
-  VdListItem,
-  VdTabs,
-  VdTab,
-  VdTabPanel,
-  VdTabsWindow,
-  VdNavbar,
-  VdNavbarItem,
-  VdSidebar,
-  VdSidebarItem,
-  VdSidebarGroup,
-  VdBreadcrumb,
-  VdPagination,
-  VdCollapse,
-  VdTable,
+  FIcon,
+  FBtn,
+  FBtnGroup,
+  FCard,
+  FCardGroup,
+  FCardTitle,
+  FCardText,
+  FCardButtons,
+  FAlert,
+  FChip,
+  FAvatar,
+  FBadge,
+  FProgressCircular,
+  FProgressLinear,
+  FDivider,
+  FSpacer,
+  FField,
+  FInput,
+  FTextarea,
+  FInputNumber,
+  FSelect,
+  FCheckbox,
+  FRadio,
+  FRadioGroup,
+  FSwitch,
+  FSlider,
+  FUpload,
+  FForm,
+  FOverlay,
+  FPopup,
+  FMenu,
+  FTooltip,
+  FList,
+  FListItem,
+  FTabs,
+  FTab,
+  FTabPanel,
+  FTabsWindow,
+  FNavbar,
+  FNavbarItem,
+  FSidebar,
+  FSidebarItem,
+  FSidebarGroup,
+  FBreadcrumb,
+  FPagination,
+  FCollapse,
+  FTable,
 }

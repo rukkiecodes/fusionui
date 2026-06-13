@@ -3,10 +3,10 @@
 
 /** Applies a soft Vuesax shadow from the elevation scale (0–24). */
 @mixin elevation($level) {
-  box-shadow: map.get(settings.$vd-shadows, $level);
+  box-shadow: map.get(settings.$fui-shadows, $level);
 }
 
 /** Resting shadow shorthand. */
 @mixin elevation-rest {
-  box-shadow: map.get(settings.$vd-shadows, 3);
+  box-shadow: map.get(settings.$fui-shadows, 3);
 }

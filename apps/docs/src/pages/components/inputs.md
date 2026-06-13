@@ -1,6 +1,6 @@
 # Input
 
-`VdInput` is a text field with the Vuesax look — a soft filled background, a
+`FInput` is a text field with the Vuesax look — a soft filled background, a
 stable focus, and the signature animated floating label.
 
 ## Usage
@@ -89,4 +89,4 @@ The `shadow` variant floats the field on a soft shadow.
 
 ## API
 
-<ApiTable name="VdInput" />
+<ApiTable name="FInput" />

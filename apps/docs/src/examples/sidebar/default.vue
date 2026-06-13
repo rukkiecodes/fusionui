@@ -5,39 +5,39 @@ const active = ref('home')
 
 <template>
   <div class="sidebar-demo">
-    <vd-sidebar v-model="active" permanent>
+    <f-sidebar v-model="active" permanent>
       <template #logo>
-        <vd-icon icon="feather" color="primary" size="medium" />
+        <f-icon icon="feather" color="primary" size="medium" />
       </template>
 
-      <vd-sidebar-item id="home">
-        <template #icon><vd-icon icon="home" size="small" /></template>
+      <f-sidebar-item id="home">
+        <template #icon><f-icon icon="home" size="small" /></template>
         Home
-      </vd-sidebar-item>
-      <vd-sidebar-item id="market">
-        <template #icon><vd-icon icon="shopping-cart" size="small" /></template>
+      </f-sidebar-item>
+      <f-sidebar-item id="market">
+        <template #icon><f-icon icon="shopping-cart" size="small" /></template>
         Market Overview
-      </vd-sidebar-item>
-      <vd-sidebar-item id="music">
-        <template #icon><vd-icon icon="music" size="small" /></template>
+      </f-sidebar-item>
+      <f-sidebar-item id="music">
+        <template #icon><f-icon icon="music" size="small" /></template>
         Music
-      </vd-sidebar-item>
-      <vd-sidebar-item id="donate">
-        <template #icon><vd-icon icon="heart" size="small" /></template>
+      </f-sidebar-item>
+      <f-sidebar-item id="donate">
+        <template #icon><f-icon icon="heart" size="small" /></template>
         Donate
-      </vd-sidebar-item>
-      <vd-sidebar-item id="drive">
-        <template #icon><vd-icon icon="hard-drive" size="small" /></template>
+      </f-sidebar-item>
+      <f-sidebar-item id="drive">
+        <template #icon><f-icon icon="hard-drive" size="small" /></template>
         Drive
-      </vd-sidebar-item>
+      </f-sidebar-item>
 
       <template #footer>
-        <vd-sidebar-item id="settings">
-          <template #icon><vd-icon icon="settings" size="small" /></template>
+        <f-sidebar-item id="settings">
+          <template #icon><f-icon icon="settings" size="small" /></template>
           Settings
-        </vd-sidebar-item>
+        </f-sidebar-item>
       </template>
-    </vd-sidebar>
+    </f-sidebar>
   </div>
 </template>
 
@@ -48,6 +48,6 @@ const active = ref('home')
   height: 420px;
   overflow: hidden;
   border-radius: 14px;
-  background: rgba(var(--vd-theme-on-surface), 0.03);
+  background: rgba(var(--fui-theme-on-surface), 0.03);
 }
 </style>

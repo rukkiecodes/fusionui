@@ -1,45 +1,45 @@
-// Design tokens — the Vue DL design language: Vuesax v4 softness + Apple-style
+// Design tokens — the FusionUI design language: Vuesax v4 softness + Apple-style
 // typography, spacing and whitespace. SASS constants here; main.scss also
 // exposes them as CSS custom properties so consumers can override.
 
 // Border radii — Vuesax v4 uses generous, soft corners (Apple-like).
 // 8px small controls · 12px buttons/inputs (the default) · 20px cards.
-$vd-radius-sm: 8px !default;
-$vd-radius-md: 12px !default;
-$vd-radius-lg: 20px !default;
-$vd-radius-xl: 28px !default;
-$vd-radius-pill: 9999px !default;
-$vd-radius-circle: 50% !default;
+$fui-radius-sm: 8px !default;
+$fui-radius-md: 12px !default;
+$fui-radius-lg: 20px !default;
+$fui-radius-xl: 28px !default;
+$fui-radius-pill: 9999px !default;
+$fui-radius-circle: 50% !default;
 
 // Motion — Vuesax uses plain `ease`, not cubic-bezier.
-$vd-transition-duration: 0.25s !default;
-$vd-transition-timing: ease !default;
-$vd-transition: all $vd-transition-duration $vd-transition-timing !default;
-$vd-transition-fast: all 0.15s $vd-transition-timing !default;
+$fui-transition-duration: 0.25s !default;
+$fui-transition-timing: ease !default;
+$fui-transition: all $fui-transition-duration $fui-transition-timing !default;
+$fui-transition-fast: all 0.15s $fui-transition-timing !default;
 
 // Typography — Apple system font first (SF Pro on Apple devices), Inter as the
 // refined cross-platform fallback. This is the headline "Apple" cue.
-$vd-font-family:
+$fui-font-family:
   -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto,
   'Helvetica Neue', Arial, sans-serif !default;
-$vd-font-size-root: 16px !default;
-$vd-font-weight-regular: 400 !default;
-$vd-font-weight-medium: 500 !default;
-$vd-font-weight-bold: 600 !default;
+$fui-font-size-root: 16px !default;
+$fui-font-weight-regular: 400 !default;
+$fui-font-weight-medium: 500 !default;
+$fui-font-weight-bold: 600 !default;
 // Apple-style slightly tightened tracking on larger text.
-$vd-letter-spacing: -0.011em !default;
+$fui-letter-spacing: -0.011em !default;
 
 // Spacing scale (4px base) — used for generous, consistent whitespace.
-$vd-spacer: 4px !default;
-$vd-space-1: 4px !default;
-$vd-space-2: 8px !default;
-$vd-space-3: 12px !default;
-$vd-space-4: 16px !default;
-$vd-space-5: 24px !default;
-$vd-space-6: 32px !default;
-$vd-space-7: 48px !default;
+$fui-spacer: 4px !default;
+$fui-space-1: 4px !default;
+$fui-space-2: 8px !default;
+$fui-space-3: 12px !default;
+$fui-space-4: 16px !default;
+$fui-space-5: 24px !default;
+$fui-space-6: 32px !default;
+$fui-space-7: 48px !default;
 
 // Opacity tokens
-$vd-hover-opacity: 0.08 !default;
-$vd-focus-opacity: 0.12 !default;
-$vd-pressed-opacity: 0.16 !default;
+$fui-hover-opacity: 0.08 !default;
+$fui-focus-opacity: 0.12 !default;
+$fui-pressed-opacity: 0.16 !default;

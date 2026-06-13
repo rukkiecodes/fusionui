@@ -1,26 +1,26 @@
 {
-  "name": "create-vue-dl",
+  "name": "create-fusionui",
   "version": "0.0.0",
-  "description": "Scaffold a new Vue 3 project preconfigured with Vue DL.",
+  "description": "Scaffold a new Vue 3 project preconfigured with FusionUI.",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "create",
     "vue",
-    "vue-dl",
+    "@fusionui/vue",
     "scaffold",
     "cli"
   ],
   "bin": {
-    "create-vue-dl": "index.mjs"
+    "create-fusionui": "index.mjs"
   },
   "files": [
     "index.mjs",
     "templates"
   ],
   "scripts": {
-    "build": "echo \"[create-vue-dl] no build step\"",
-    "typecheck": "echo \"[create-vue-dl] typecheck placeholder\"",
+    "build": "echo \"[create-fusionui] no build step\"",
+    "typecheck": "echo \"[create-fusionui] typecheck placeholder\"",
     "test": "node test/smoke.mjs"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 # Theme & Colors
 
-Vue DL ships a light and dark theme seeded with the Vuesax palette. Colors are
-exposed as CSS variables (`--vd-theme-primary`, …) so components can apply alpha.
+FusionUI ships a light and dark theme seeded with the Vuesax palette. Colors are
+exposed as CSS variables (`--fui-theme-primary`, …) so components can apply alpha.
 
 ## Named colors
 
@@ -14,7 +14,7 @@ Every color-aware component accepts a named color or any CSS color:
 Use the `useTheme()` composable:
 
 ```ts
-import { useTheme } from 'vue-dl'
+import { useTheme } from '@fusionui/vue'
 
 const theme = useTheme()
 theme.toggle() // light <-> dark
@@ -26,7 +26,7 @@ Try the toggle in the top bar of this site — it flips the whole page live.
 ## Customizing
 
 ```ts
-createVueDL({
+createFusionUI({
   theme: {
     defaultTheme: 'light',
     themes: {

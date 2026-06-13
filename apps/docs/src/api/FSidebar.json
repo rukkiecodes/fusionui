@@ -1,0 +1,26 @@
+{
+  "displayName": "FSidebar",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when an item is activated."
+    },
+    "update:open": {
+      "description": "Emitted when the overlay drawer opens or closes."
+    }
+  },
+  "slots": {
+    "logo": {
+      "description": "Logo area at the top."
+    },
+    "header": {
+      "description": "Content below the logo (e.g. a user card)."
+    },
+    "default": {
+      "description": "The items — `fui-sidebar-item` and `fui-sidebar-group`."
+    },
+    "footer": {
+      "description": "Pinned to the bottom."
+    }
+  }
+}

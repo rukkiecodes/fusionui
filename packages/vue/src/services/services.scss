@@ -3,7 +3,7 @@
 
 @include tools.layer('components') {
   // ---- Notify ----
-  .vd-notify-host {
+  .fui-notify-host {
     position: fixed;
     z-index: 3000;
     display: flex;
@@ -45,13 +45,13 @@
     }
   }
 
-  .vd-notify {
+  .fui-notify {
     position: relative;
     display: flex;
     align-items: flex-start;
     gap: 12px;
     padding: 14px 16px;
-    border-radius: var(--vd-radius-md);
+    border-radius: var(--fui-radius-md);
     box-shadow: 0 8px 30px -6px rgba(0, 0, 0, 0.25);
     pointer-events: auto;
     cursor: default;
@@ -66,7 +66,7 @@
       min-width: 0;
     }
     &__title {
-      font-weight: settings.$vd-font-weight-bold;
+      font-weight: settings.$fui-font-weight-bold;
     }
     &__text {
       font-size: 0.88rem;
@@ -85,11 +85,11 @@
       width: 100%;
       background-color: rgba(255, 255, 255, 0.5);
       transform-origin: left;
-      animation: vd-notify-progress linear forwards;
+      animation: fui-notify-progress linear forwards;
     }
   }
 
-  @keyframes vd-notify-progress {
+  @keyframes fui-notify-progress {
     from {
       transform: scaleX(1);
     }
@@ -98,28 +98,28 @@
     }
   }
 
-  .vd-notify-enter-active,
-  .vd-notify-leave-active {
-    transition: all 0.3s settings.$vd-transition-timing;
+  .fui-notify-enter-active,
+  .fui-notify-leave-active {
+    transition: all 0.3s settings.$fui-transition-timing;
   }
-  .vd-notify-enter-from {
+  .fui-notify-enter-from {
     opacity: 0;
     transform: translateX(20px);
   }
-  .vd-notify-leave-to {
+  .fui-notify-leave-to {
     opacity: 0;
     transform: scale(0.9);
   }
 
   // ---- Loading ----
-  .vd-loading {
+  .fui-loading {
     z-index: 3100;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(var(--vd-theme-background), 0.7);
+    background-color: rgba(var(--fui-theme-background), 0.7);
     backdrop-filter: blur(2px);
-    animation: vd-fade-in 0.2s settings.$vd-transition-timing;
+    animation: fui-fade-in 0.2s settings.$fui-transition-timing;
 
     &__content {
       display: flex;
@@ -129,11 +129,11 @@
     }
     &__text {
       font-size: 0.9rem;
-      color: rgba(var(--vd-theme-on-surface), 0.8);
+      color: rgba(var(--fui-theme-on-surface), 0.8);
     }
   }
 
-  @keyframes vd-fade-in {
+  @keyframes fui-fade-in {
     from {
       opacity: 0;
     }
@@ -143,9 +143,9 @@
   }
 
   // ---- Dialog ----
-  .vd-dialog__text {
+  .fui-dialog__text {
     margin: 0 0 8px;
-    color: rgba(var(--vd-theme-on-surface), 0.8);
+    color: rgba(var(--fui-theme-on-surface), 0.8);
     line-height: 1.6;
   }
 }

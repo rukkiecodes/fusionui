@@ -40,7 +40,7 @@ function wrap(value: string | string[]): string[] {
 /**
  * Shared validation engine for form controls: runs `rules` against the current
  * model value, exposes `errorMessages`/`isValid`, and registers the field with
- * the surrounding `VdForm` (if any).
+ * the surrounding `FForm` (if any).
  */
 export function useValidation(props: {
   rules: ValidationRule[]

@@ -14,16 +14,16 @@ const options = [
 
 <template>
   <div style="display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 620px">
-    <vd-alert :color="color">
-      <template #title>Vue DL Framework</template>
-      Vue DL is a <b>UI component library</b> built with <a href="https://vuejs.org/">Vue</a> for
+    <f-alert :color="color">
+      <template #title>FusionUI Framework</template>
+      FusionUI is a <b>UI component library</b> built with <a href="https://vuejs.org/">Vue</a> for
       shipping beautiful interfaces fast — created from scratch with a unique, pleasant style for
       every kind of developer, from frontend lovers to backend devs who want a polished result with
       ease.
-    </vd-alert>
+    </f-alert>
 
     <div class="color-btns">
-      <vd-btn
+      <f-btn
         v-for="o in options"
         :key="o.value"
         variant="tonal"
@@ -32,7 +32,7 @@ const options = [
         @click="color = o.value"
       >
         {{ o.label }}
-      </vd-btn>
+      </f-btn>
     </div>
   </div>
 </template>
@@ -44,7 +44,7 @@ const options = [
   gap: 8px;
   justify-content: center;
 }
-.color-btns :deep(.vd-btn--active) {
+.color-btns :deep(.fui-btn--active) {
   transform: translateY(-4px);
   border-radius: 0 0 12px 12px;
 }

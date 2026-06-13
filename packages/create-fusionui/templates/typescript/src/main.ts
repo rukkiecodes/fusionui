@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import { createVueDL } from 'vue-dl'
-import { featherSet, featherAliases } from '@vue-dl/icons-feather'
-import 'vue-dl/styles'
+import { createFusionUI } from '@fusionui/vue'
+import { featherSet, featherAliases } from '@fusionui/icons'
+import '@fusionui/vue/styles'
 import App from './App.vue'
 
-const vuedl = createVueDL({
+const fusionui = createFusionUI({
   theme: { defaultTheme: 'light' },
   icons: {
     defaultSet: 'feather',
@@ -13,4 +13,4 @@ const vuedl = createVueDL({
   },
 })
 
-createApp(App).use(vuedl).mount('#app')
+createApp(App).use(fusionui).mount('#app')

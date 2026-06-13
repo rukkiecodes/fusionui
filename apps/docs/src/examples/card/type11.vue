@@ -9,12 +9,12 @@ const people = [
 </script>
 
 <template>
-  <vd-card type="11" style="max-width: 280px">
+  <f-card type="11" style="max-width: 280px">
     <div v-for="p in people" :key="p.name">
       <img :src="img(p.src)" alt="" />
       <div class="deck-name">{{ p.name }}</div>
     </div>
-  </vd-card>
+  </f-card>
 </template>
 
 <style scoped>

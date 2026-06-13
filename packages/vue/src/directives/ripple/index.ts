@@ -2,11 +2,11 @@ import type { DirectiveBinding, ObjectDirective } from 'vue'
 
 // Vuesax-style ripple: a soft radial circle that grows from the click point to
 // ~2.5x the element width and lingers while pressed, fading out on release.
-// Color comes from the `--vd-ripple-color` CSS variable (white by default;
+// Color comes from the `--fui-ripple-color` CSS variable (white by default;
 // components set it to their accent color for light backgrounds).
 
 interface RippleElement extends HTMLElement {
-  _vdRipple?: {
+  _fuiRipple?: {
     enabled: boolean
     centered: boolean
     onPointerdown: (e: PointerEvent) => void
@@ -14,7 +14,7 @@ interface RippleElement extends HTMLElement {
 }
 
 function show(e: PointerEvent, el: RippleElement): void {
-  const data = el._vdRipple
+  const data = el._fuiRipple
   if (!data?.enabled) return
 
   const rect = el.getBoundingClientRect()
@@ -23,10 +23,10 @@ function show(e: PointerEvent, el: RippleElement): void {
   const time = el.clientWidth > 150 ? 1.2 : 0.6
 
   const container = document.createElement('span')
-  container.className = 'vd-ripple__container'
+  container.className = 'fui-ripple__container'
 
   const effect = document.createElement('span')
-  effect.className = 'vd-ripple__effect'
+  effect.className = 'fui-ripple__effect'
   effect.style.left = `${x}px`
   effect.style.top = `${y}px`
   effect.style.transition = `all ${time}s ease`
@@ -34,7 +34,7 @@ function show(e: PointerEvent, el: RippleElement): void {
 
   if (window.getComputedStyle(el).position === 'static') {
     el.style.position = 'relative'
-    el.dataset.vdRippleStatic = 'true'
+    el.dataset.fuiRippleStatic = 'true'
   }
 
   // Insert behind later siblings (content) but above the element background.
@@ -68,9 +68,9 @@ function show(e: PointerEvent, el: RippleElement): void {
         effect.style.opacity = '0'
         window.setTimeout(() => {
           container.remove()
-          if (!el.querySelector('.vd-ripple__container') && el.dataset.vdRippleStatic) {
+          if (!el.querySelector('.fui-ripple__container') && el.dataset.fuiRippleStatic) {
             el.style.position = ''
-            delete el.dataset.vdRippleStatic
+            delete el.dataset.fuiRippleStatic
           }
         }, time * 600)
       },
@@ -89,21 +89,21 @@ function mounted(el: RippleElement, binding: DirectiveBinding): void {
   const centered = !!binding.modifiers.center
   const onPointerdown = (e: PointerEvent) => show(e, el)
 
-  el._vdRipple = { enabled: isEnabled(binding.value), centered, onPointerdown }
-  el.classList.add('vd-ripple')
+  el._fuiRipple = { enabled: isEnabled(binding.value), centered, onPointerdown }
+  el.classList.add('fui-ripple')
   el.addEventListener('pointerdown', onPointerdown)
 }
 
 function updated(el: RippleElement, binding: DirectiveBinding): void {
-  if (!el._vdRipple) return
-  el._vdRipple.enabled = isEnabled(binding.value)
-  el._vdRipple.centered = !!binding.modifiers.center
+  if (!el._fuiRipple) return
+  el._fuiRipple.enabled = isEnabled(binding.value)
+  el._fuiRipple.centered = !!binding.modifiers.center
 }
 
 function unmounted(el: RippleElement): void {
-  if (el._vdRipple) {
-    el.removeEventListener('pointerdown', el._vdRipple.onPointerdown)
-    delete el._vdRipple
+  if (el._fuiRipple) {
+    el.removeEventListener('pointerdown', el._fuiRipple.onPointerdown)
+    delete el._fuiRipple
   }
 }
 

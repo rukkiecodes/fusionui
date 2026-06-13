@@ -1,7 +1,7 @@
 # Navbar
 
-`VdNavbar` is a clean top bar with `left`, default (center), and `right` slots,
-and a sliding line that follows the active `VdNavbarItem`.
+`FNavbar` is a clean top bar with `left`, default (center), and `right` slots,
+and a sliding line that follows the active `FNavbarItem`.
 
 ## Default
 
@@ -19,4 +19,4 @@ Bind `v-model` to the active item id — the line slides between items.
 
 ## API
 
-<ApiTable name="VdNavbar" />
+<ApiTable name="FNavbar" />

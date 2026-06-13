@@ -1,5 +1,0 @@
-export { VdTabs, makeVdTabsProps } from './VdTabs'
-export { VdTab, makeVdTabProps } from './VdTab'
-export { VdTabPanel, makeVdTabPanelProps } from './VdTabPanel'
-export { VdTabsWindow, makeVdTabsWindowProps } from './VdTabsWindow'
-export { VdTabsSymbol, VdTabsWindowSymbol } from './key'

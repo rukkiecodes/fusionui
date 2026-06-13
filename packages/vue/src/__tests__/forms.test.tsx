@@ -2,30 +2,30 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { h, ref } from 'vue'
 import {
-  createVueDL,
-  VdInput,
-  VdTextarea,
-  VdInputNumber,
-  VdCheckbox,
-  VdSwitch,
-  VdRadioGroup,
-  VdRadio,
-  VdSlider,
-  VdSelect,
-  VdUpload,
-  VdForm,
+  createFusionUI,
+  FInput,
+  FTextarea,
+  FInputNumber,
+  FCheckbox,
+  FSwitch,
+  FRadioGroup,
+  FRadio,
+  FSlider,
+  FSelect,
+  FUpload,
+  FForm,
 } from '../index'
 
 function mountWith(component: any, options: Record<string, any> = {}): any {
   return mount(component, {
     ...options,
-    global: { plugins: [createVueDL()], ...(options.global ?? {}) },
+    global: { plugins: [createFusionUI()], ...(options.global ?? {}) },
   })
 }
 
-describe('VdInput', () => {
+describe('FInput', () => {
   it('two-way binds via v-model', async () => {
-    const wrapper = mountWith(VdInput, {
+    const wrapper = mountWith(FInput, {
       props: { modelValue: '', 'onUpdate:modelValue': () => {} },
     })
     const input = wrapper.find('input')
@@ -34,7 +34,7 @@ describe('VdInput', () => {
   })
 
   it('floats the label when active and shows validation errors', async () => {
-    const wrapper = mountWith(VdInput, {
+    const wrapper = mountWith(FInput, {
       props: {
         modelValue: '',
         label: 'Email',
@@ -44,37 +44,37 @@ describe('VdInput', () => {
       },
     })
     await wrapper.find('input').setValue('nope')
-    expect(wrapper.find('.vd-field__messages--error').text()).toBe('Invalid email')
-    expect(wrapper.find('.vd-field--active').exists()).toBe(true)
+    expect(wrapper.find('.fui-field__messages--error').text()).toBe('Invalid email')
+    expect(wrapper.find('.fui-field--active').exists()).toBe(true)
   })
 
   it('clears the value via the clear affordance', async () => {
-    const wrapper = mountWith(VdInput, {
+    const wrapper = mountWith(FInput, {
       props: { modelValue: 'text', clearable: true, 'onUpdate:modelValue': () => {} },
     })
-    await wrapper.find('.vd-field__clear').trigger('click')
+    await wrapper.find('.fui-field__clear').trigger('click')
     expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([''])
   })
 })
 
-describe('VdTextarea / VdInputNumber', () => {
-  it('VdTextarea binds text', async () => {
-    const wrapper = mountWith(VdTextarea, {
+describe('FTextarea / FInputNumber', () => {
+  it('FTextarea binds text', async () => {
+    const wrapper = mountWith(FTextarea, {
       props: { modelValue: '', 'onUpdate:modelValue': () => {} },
     })
     await wrapper.find('textarea').setValue('multi\nline')
     expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual(['multi\nline'])
   })
 
-  it('VdInputNumber increments and clamps to max', async () => {
-    const wrapper = mountWith(VdInputNumber, {
+  it('FInputNumber increments and clamps to max', async () => {
+    const wrapper = mountWith(FInputNumber, {
       props: {
         modelValue: 4,
         max: 5,
         'onUpdate:modelValue': (v: number) => wrapper.setProps({ modelValue: v }),
       },
     })
-    const buttons = wrapper.findAll('.vd-input-number__btn')
+    const buttons = wrapper.findAll('.fui-input-number__btn')
     await buttons[1].trigger('click')
     expect(wrapper.props('modelValue')).toBe(5)
     await buttons[1].trigger('click')
@@ -83,17 +83,17 @@ describe('VdTextarea / VdInputNumber', () => {
 })
 
 describe('selection controls', () => {
-  it('VdCheckbox toggles boolean model', async () => {
-    const wrapper = mountWith(VdCheckbox, {
+  it('FCheckbox toggles boolean model', async () => {
+    const wrapper = mountWith(FCheckbox, {
       props: { modelValue: false, 'onUpdate:modelValue': () => {} },
     })
     await wrapper.find('input').trigger('change')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
   })
 
-  it('VdCheckbox supports array model', async () => {
+  it('FCheckbox supports array model', async () => {
     const model = ref<string[]>([])
-    const wrapper = mountWith(VdCheckbox, {
+    const wrapper = mountWith(FCheckbox, {
       props: {
         modelValue: model.value,
         value: 'a',
@@ -107,19 +107,19 @@ describe('selection controls', () => {
     expect(model.value).toEqual(['a'])
   })
 
-  it('VdSwitch toggles', async () => {
-    const wrapper = mountWith(VdSwitch, {
+  it('FSwitch toggles', async () => {
+    const wrapper = mountWith(FSwitch, {
       props: { modelValue: false, 'onUpdate:modelValue': () => {} },
     })
     await wrapper.find('input').trigger('change')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
   })
 
-  it('VdRadioGroup selects a radio by value', async () => {
-    const wrapper = mountWith(VdRadioGroup, {
+  it('FRadioGroup selects a radio by value', async () => {
+    const wrapper = mountWith(FRadioGroup, {
       props: { modelValue: null, 'onUpdate:modelValue': () => {} },
       slots: {
-        default: () => [h(VdRadio, { value: 'x' }), h(VdRadio, { value: 'y' })],
+        default: () => [h(FRadio, { value: 'x' }), h(FRadio, { value: 'y' })],
       },
     })
     const radios = wrapper.findAll('input[type="radio"]')
@@ -128,23 +128,23 @@ describe('selection controls', () => {
   })
 })
 
-describe('VdSlider', () => {
+describe('FSlider', () => {
   it('moves with arrow keys', async () => {
-    const wrapper = mountWith(VdSlider, {
+    const wrapper = mountWith(FSlider, {
       props: {
         modelValue: 50,
         step: 5,
         'onUpdate:modelValue': (v: number) => wrapper.setProps({ modelValue: v }),
       },
     })
-    await wrapper.find('.vd-slider__thumb').trigger('keydown', { key: 'ArrowRight' })
+    await wrapper.find('.fui-slider__thumb').trigger('keydown', { key: 'ArrowRight' })
     expect(wrapper.props('modelValue')).toBe(55)
   })
 })
 
-describe('VdSelect', () => {
+describe('FSelect', () => {
   it('opens, selects an item, and reflects the title', async () => {
-    const wrapper = mountWith(VdSelect, {
+    const wrapper = mountWith(FSelect, {
       props: {
         modelValue: undefined,
         items: [
@@ -154,17 +154,17 @@ describe('VdSelect', () => {
         'onUpdate:modelValue': (v: unknown) => wrapper.setProps({ modelValue: v }),
       },
     })
-    await wrapper.find('.vd-field').trigger('click')
-    expect(wrapper.findAll('.vd-select__option')).toHaveLength(2)
-    await wrapper.findAll('.vd-select__option')[1].trigger('click')
+    await wrapper.find('.fui-field').trigger('click')
+    expect(wrapper.findAll('.fui-select__option')).toHaveLength(2)
+    await wrapper.findAll('.fui-select__option')[1].trigger('click')
     expect(wrapper.props('modelValue')).toBe(2)
-    expect(wrapper.find('.vd-select__selection').text()).toContain('Two')
+    expect(wrapper.find('.fui-select__selection').text()).toContain('Two')
   })
 })
 
-describe('VdUpload', () => {
+describe('FUpload', () => {
   it('lists files added through the input', async () => {
-    const wrapper = mountWith(VdUpload, {
+    const wrapper = mountWith(FUpload, {
       props: {
         modelValue: [],
         'onUpdate:modelValue': (v: File[]) => wrapper.setProps({ modelValue: v }),
@@ -174,19 +174,19 @@ describe('VdUpload', () => {
     const input = wrapper.find('input[type="file"]')
     Object.defineProperty(input.element, 'files', { value: [file] })
     await input.trigger('change')
-    expect(wrapper.find('.vd-upload__name').text()).toBe('note.txt')
+    expect(wrapper.find('.fui-upload__name').text()).toBe('note.txt')
   })
 })
 
-describe('VdForm', () => {
+describe('FForm', () => {
   it('validates registered fields and blocks submit when invalid', async () => {
-    const wrapper = mountWith(VdForm, {
+    const wrapper = mountWith(FForm, {
       slots: {
-        default: () => h(VdInput, { modelValue: '', rules: [(v: string) => !!v || 'Required'] }),
+        default: () => h(FInput, { modelValue: '', rules: [(v: string) => !!v || 'Required'] }),
       },
     })
     await wrapper.find('form').trigger('submit')
     expect(wrapper.emitted('submit')).toBeUndefined()
-    expect(wrapper.find('.vd-field__messages--error').text()).toBe('Required')
+    expect(wrapper.find('.fui-field__messages--error').text()).toBe('Required')
   })
 })

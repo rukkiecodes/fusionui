@@ -1,9 +1,9 @@
 {
-  "name": "vue-dl-monorepo",
+  "name": "fusionui-monorepo",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Vue DL — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
+  "description": "FusionUI — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "engines": {
@@ -11,8 +11,8 @@
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/* build",
-    "dev": "pnpm --filter @vue-dl/docs dev",
-    "dev:docs": "pnpm --filter @vue-dl/docs dev",
+    "dev": "pnpm --filter @fusionui/docs dev",
+    "dev:docs": "pnpm --filter @fusionui/docs dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

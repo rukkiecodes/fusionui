@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useTheme } from 'vue-dl'
+import { useTheme } from '@fusionui/vue'
 import { nav } from './nav'
 
 const theme = useTheme()
@@ -22,7 +22,7 @@ function toggleTheme() {
 
 <template>
   <div class="docs" :class="theme.themeClasses.value">
-    <vd-navbar square not-line class="docs__bar">
+    <f-navbar square not-line class="docs__bar">
       <template #left>
         <button
           v-if="!isDesktop"
@@ -30,27 +30,27 @@ function toggleTheme() {
           aria-label="Menu"
           @click.stop="drawer = !drawer"
         >
-          <vd-icon icon="menu" />
+          <f-icon icon="menu" />
         </button>
         <router-link to="/" class="docs__brand">
-          <vd-icon icon="feather" color="primary" />
-          <strong>Vue DL</strong>
+          <f-icon icon="feather" color="primary" />
+          <strong>FusionUI</strong>
         </router-link>
       </template>
       <template #right>
-        <vd-btn variant="text" :icon="theme.isDark.value ? 'sun' : 'moon'" @click="toggleTheme" />
-        <vd-btn
+        <f-btn variant="text" :icon="theme.isDark.value ? 'sun' : 'moon'" @click="toggleTheme" />
+        <f-btn
           variant="text"
-          href="https://github.com/rukkiecodes/vue-dl"
+          href="https://github.com/rukkiecodes/fusionui"
           target="_blank"
           icon="github"
           aria-label="GitHub"
         />
       </template>
-    </vd-navbar>
+    </f-navbar>
 
     <div class="docs__body">
-      <vd-sidebar
+      <f-sidebar
         :model-value="route.path"
         :permanent="isDesktop"
         :open="drawer"
@@ -59,18 +59,18 @@ function toggleTheme() {
         @update:model-value="drawer = false"
       >
         <template v-if="!isDesktop" #logo>
-          <vd-icon icon="feather" color="primary" size="medium" />
+          <f-icon icon="feather" color="primary" size="medium" />
         </template>
 
-        <vd-sidebar-group v-for="section in nav" :key="section.title" open>
+        <f-sidebar-group v-for="section in nav" :key="section.title" open>
           <template #header>
-            <vd-sidebar-item>{{ section.title }}</vd-sidebar-item>
+            <f-sidebar-item>{{ section.title }}</f-sidebar-item>
           </template>
-          <vd-sidebar-item v-for="item in section.items" :id="item.to" :key="item.to" :to="item.to">
+          <f-sidebar-item v-for="item in section.items" :id="item.to" :key="item.to" :to="item.to">
             {{ item.title }}
-          </vd-sidebar-item>
-        </vd-sidebar-group>
-      </vd-sidebar>
+          </f-sidebar-item>
+        </f-sidebar-group>
+      </f-sidebar>
 
       <main class="docs__main">
         <article class="docs__content markdown-body">

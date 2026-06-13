@@ -4,7 +4,7 @@ const pw = ref('s3cr3t')
 </script>
 
 <template>
-  <vd-input
+  <f-input
     v-model="pw"
     type="password"
     label="Password"

@@ -1,0 +1,10 @@
+{
+  "displayName": "FPagination",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

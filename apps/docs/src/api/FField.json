@@ -1,0 +1,10 @@
+{
+  "displayName": "FField",
+  "props": {},
+  "events": {
+    "click:clear": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

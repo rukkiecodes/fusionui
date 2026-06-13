@@ -6,7 +6,7 @@ const b = ref('')
 
 <template>
   <div style="display: flex; gap: 24px; flex-wrap: wrap">
-    <vd-input v-model="a" label="Top label" placeholder="Email" />
-    <vd-input v-model="b" label="Floating label" label-placeholder />
+    <f-input v-model="a" label="Top label" placeholder="Email" />
+    <f-input v-model="b" label="Floating label" label-placeholder />
   </div>
 </template>

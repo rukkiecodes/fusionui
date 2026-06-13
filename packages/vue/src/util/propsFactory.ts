@@ -11,7 +11,7 @@ import type { ComponentObjectPropsOptions, Prop } from 'vue'
  * const makeVdBtnProps = propsFactory({
  *   flat: Boolean,
  *   ...makeVariantProps({ variant: 'elevated' }),
- * }, 'VdBtn')
+ * }, 'FBtn')
  *
  * props: makeVdBtnProps()                 // base
  * props: makeVdBtnProps({ flat: true })   // override a default

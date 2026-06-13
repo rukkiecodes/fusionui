@@ -5,7 +5,7 @@ import type { ObjectDirective } from 'vue'
 
 export { Ripple, ClickOutside, Intersect }
 
-/** Directive registry consumed by `createVueDL().install`. Keys become `v-<key>`. */
+/** Directive registry consumed by `createFusionUI().install`. Keys become `v-<key>`. */
 export const directives: Record<string, ObjectDirective<any>> = {
   ripple: Ripple,
   'click-outside': ClickOutside,

@@ -1,0 +1,10 @@
+{
+  "displayName": "FCollapse",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

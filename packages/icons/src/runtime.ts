@@ -30,14 +30,14 @@ function toPascal(name: string): string {
 
 /**
  * Builds a tree-shakeable functional component for a single Feather icon. The
- * SVG sizes to `1em` so the parent `<VdIcon>` controls size via `font-size` and
+ * SVG sizes to `1em` so the parent `<FIcon>` controls size via `font-size` and
  * color via `currentColor`.
  */
 export function createFeatherIcon(name: string, nodes: FeatherIconNode[]): FeatherIcon {
   const Icon: FunctionalComponent = (_props, { attrs }) =>
     h(
       'svg',
-      mergeProps(SVG_BASE, { class: ['vd-feather', `vd-feather-${name}`] }, attrs),
+      mergeProps(SVG_BASE, { class: ['fui-feather', `fui-feather-${name}`] }, attrs),
       nodes.map(([tag, nodeAttrs], i) => h(tag, { key: i, ...nodeAttrs }))
     )
   Icon.displayName = `Feather${toPascal(name)}`

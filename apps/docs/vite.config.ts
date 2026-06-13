@@ -15,8 +15,11 @@ export default defineConfig({
     alias: [
       // Resolve the library to its SOURCE so editing packages/vue/src
       // hot-reloads live in the docs (the "build & preview together" guarantee).
-      { find: /^vue-dl\/styles$/, replacement: r('../../packages/vue/src/styles/main.scss') },
-      { find: /^vue-dl$/, replacement: r('../../packages/vue/src/index.ts') },
+      {
+        find: /^@fusionui\/vue\/styles$/,
+        replacement: r('../../packages/vue/src/styles/main.scss'),
+      },
+      { find: /^@fusionui\/vue$/, replacement: r('../../packages/vue/src/index.ts') },
       { find: '@', replacement: r('./src') },
     ],
   },
@@ -34,6 +37,6 @@ export default defineConfig({
   ],
   optimizeDeps: {
     // Don't pre-bundle the workspace library/icons so source edits reflect live.
-    exclude: ['vue-dl', '@vue-dl/icons-feather'],
+    exclude: ['@fusionui/vue', '@fusionui/icons'],
   },
 })

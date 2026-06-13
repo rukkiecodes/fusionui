@@ -6,32 +6,32 @@ const reduce = ref(true)
 
 <template>
   <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 640px">
-    <vd-btn variant="flat" size="small" style="align-self: center" @click="reduce = !reduce">
+    <f-btn variant="flat" size="small" style="align-self: center" @click="reduce = !reduce">
       {{ reduce ? 'Expand' : 'Reduce' }}
-    </vd-btn>
+    </f-btn>
     <div class="sidebar-demo">
-      <vd-sidebar v-model="active" permanent :reduce="reduce" hover-expand>
+      <f-sidebar v-model="active" permanent :reduce="reduce" hover-expand>
         <template #logo>
-          <vd-icon icon="feather" color="primary" size="medium" />
+          <f-icon icon="feather" color="primary" size="medium" />
         </template>
 
-        <vd-sidebar-item id="home">
-          <template #icon><vd-icon icon="home" size="small" /></template>
+        <f-sidebar-item id="home">
+          <template #icon><f-icon icon="home" size="small" /></template>
           Home
-        </vd-sidebar-item>
-        <vd-sidebar-item id="chat">
-          <template #icon><vd-icon icon="message-circle" size="small" /></template>
+        </f-sidebar-item>
+        <f-sidebar-item id="chat">
+          <template #icon><f-icon icon="message-circle" size="small" /></template>
           Chat
-        </vd-sidebar-item>
-        <vd-sidebar-item id="friends">
-          <template #icon><vd-icon icon="users" size="small" /></template>
+        </f-sidebar-item>
+        <f-sidebar-item id="friends">
+          <template #icon><f-icon icon="users" size="small" /></template>
           Friends
-        </vd-sidebar-item>
-        <vd-sidebar-item id="library">
-          <template #icon><vd-icon icon="folder" size="small" /></template>
+        </f-sidebar-item>
+        <f-sidebar-item id="library">
+          <template #icon><f-icon icon="folder" size="small" /></template>
           Library
-        </vd-sidebar-item>
-      </vd-sidebar>
+        </f-sidebar-item>
+      </f-sidebar>
     </div>
   </div>
 </template>
@@ -42,6 +42,6 @@ const reduce = ref(true)
   height: 380px;
   overflow: hidden;
   border-radius: 14px;
-  background: rgba(var(--vd-theme-on-surface), 0.03);
+  background: rgba(var(--fui-theme-on-surface), 0.03);
 }
 </style>

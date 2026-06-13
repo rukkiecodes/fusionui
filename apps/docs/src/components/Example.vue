@@ -66,7 +66,7 @@ async function copy() {
 
     <div class="example__toolbar">
       <button class="example__tool" :title="copied ? 'Copied' : 'Copy source'" @click="copy">
-        <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+        <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
       </button>
       <span class="example__divider" />
       <button
@@ -75,7 +75,7 @@ async function copy() {
         title="Toggle source"
         @click="toggleCode"
       >
-        <vd-icon :icon="showCode ? 'eye-off' : 'code'" size="small" />
+        <f-icon :icon="showCode ? 'eye-off' : 'code'" size="small" />
       </button>
     </div>
 

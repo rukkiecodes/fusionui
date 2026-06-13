@@ -1,0 +1,13 @@
+{
+  "displayName": "FChip",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "click:close": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

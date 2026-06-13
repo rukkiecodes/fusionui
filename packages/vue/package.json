@@ -1,7 +1,7 @@
 {
-  "name": "vue-dl",
+  "name": "@fusionui/vue",
   "version": "0.0.0",
-  "description": "Vue DL — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
+  "description": "FusionUI — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
   "type": "module",
   "license": "MIT",
   "keywords": [
@@ -39,12 +39,12 @@
         "types": "./dist/types/index.d.ts",
         "import": "./dist/index.js"
       },
-      "./styles": "./dist/vue-dl.css"
+      "./styles": "./dist/fusionui.css"
     }
   },
   "scripts": {
     "build": "vite build && pnpm build:css && pnpm build:types",
-    "build:css": "sass src/styles/main.scss dist/vue-dl.css --no-source-map --style=compressed",
+    "build:css": "sass src/styles/main.scss dist/fusionui.css --no-source-map --style=compressed",
     "build:types": "tsc -p tsconfig.build.json",
     "dev": "vite build --watch",
     "typecheck": "tsc --noEmit -p tsconfig.json",
@@ -55,7 +55,7 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
-    "@vue-dl/icons-feather": "workspace:*"
+    "@fusionui/icons": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue-jsx": "^4.1.1",

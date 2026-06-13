@@ -5,8 +5,8 @@ const active = ref(0)
 
 <template>
   <div class="d-flex" style="gap: 12px; align-items: center">
-    <vd-btn :active="active === 0" @click="active = 0">Active</vd-btn>
-    <vd-btn :active="active === 1" @click="active = 1">Default</vd-btn>
-    <vd-btn disabled>Disabled</vd-btn>
+    <f-btn :active="active === 0" @click="active = 0">Active</f-btn>
+    <f-btn :active="active === 1" @click="active = 1">Default</f-btn>
+    <f-btn disabled>Disabled</f-btn>
   </div>
 </template>

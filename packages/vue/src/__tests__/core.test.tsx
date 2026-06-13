@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import {
-  createVueDL,
+  createFusionUI,
   genericComponent,
   makeVariantProps,
   Ripple,
@@ -9,16 +9,16 @@ import {
   useVariant,
 } from '../index'
 
-// A throwaway component that exercises the full pipeline: createVueDL install →
+// A throwaway component that exercises the full pipeline: createFusionUI install →
 // provide/inject → propsFactory → genericComponent → useVariant/useColor → useRender.
-const VdProbe = genericComponent()({
-  name: 'VdProbe',
+const FProbe = genericComponent()({
+  name: 'FProbe',
   props: makeVariantProps({ variant: 'elevated' }),
   setup(props: { color?: string | null; variant?: string }) {
     const { colorClasses, colorStyles, variantClasses } = useVariant(props as never)
     useRender(() => (
       <div
-        class={['vd-probe', ...variantClasses.value, ...colorClasses.value]}
+        class={['fui-probe', ...variantClasses.value, ...colorClasses.value]}
         style={colorStyles.value}
       >
         probe
@@ -28,17 +28,17 @@ const VdProbe = genericComponent()({
 })
 
 function mountProbe(props: Record<string, unknown>) {
-  return mount(VdProbe as any, {
+  return mount(FProbe as any, {
     props,
-    global: { plugins: [createVueDL()] },
+    global: { plugins: [createFusionUI()] },
   })
 }
 
-describe('createVueDL + component pipeline', () => {
+describe('createFusionUI + component pipeline', () => {
   it('installs and renders a component built from the runtime', () => {
     const wrapper = mountProbe({})
-    expect(wrapper.classes()).toContain('vd-probe')
-    expect(wrapper.classes()).toContain('vd-probe--variant-elevated')
+    expect(wrapper.classes()).toContain('fui-probe')
+    expect(wrapper.classes()).toContain('fui-probe--variant-elevated')
   })
 
   it('resolves a named theme color to a utility class', () => {
@@ -72,8 +72,8 @@ describe('v-ripple directive', () => {
     Ripple.mounted?.(el, { value: true, modifiers: {} } as never, null as never, null as never)
     el.dispatchEvent(new Event('pointerdown'))
 
-    expect(el.querySelector('.vd-ripple__container')).not.toBeNull()
-    expect(el.classList.contains('vd-ripple')).toBe(true)
+    expect(el.querySelector('.fui-ripple__container')).not.toBeNull()
+    expect(el.classList.contains('fui-ripple')).toBe(true)
 
     el.remove()
   })
@@ -85,7 +85,7 @@ describe('v-ripple directive', () => {
     Ripple.mounted?.(el, { value: false, modifiers: {} } as never, null as never, null as never)
     el.dispatchEvent(new Event('pointerdown'))
 
-    expect(el.querySelector('.vd-ripple__container')).toBeNull()
+    expect(el.querySelector('.fui-ripple__container')).toBeNull()
     el.remove()
   })
 })

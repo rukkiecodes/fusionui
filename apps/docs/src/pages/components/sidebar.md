@@ -1,6 +1,6 @@
 # Sidebar
 
-`VdSidebar` is a clean navigation drawer with `logo`, `header`, default, and
+`FSidebar` is a clean navigation drawer with `logo`, `header`, default, and
 `footer` slots. Items show a rounded active indicator, and the whole drawer can
 collapse into a Discord-style icon rail.
 
@@ -14,7 +14,7 @@ the layout; without it the sidebar is a fixed overlay controlled with
 
 ## Groups
 
-`VdSidebarGroup` nests items under a collapsible header — it opens
+`FSidebarGroup` nests items under a collapsible header — it opens
 automatically when it contains the active item.
 
 <Example file="sidebar/group" />
@@ -28,4 +28,4 @@ it while hovered.
 
 ## API
 
-<ApiTable name="VdSidebar" />
+<ApiTable name="FSidebar" />

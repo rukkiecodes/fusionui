@@ -34,7 +34,7 @@ const code = computed(() => {
   if (cfg.loading) a.push('loading')
   if (cfg.block) a.push('block')
   if (cfg.disabled) a.push('disabled')
-  return `<vd-input\n  ${a.join('\n  ')}\n/>`
+  return `<f-input\n  ${a.join('\n  ')}\n/>`
 })
 
 async function copy() {
@@ -65,17 +65,17 @@ function reset() {
       </div>
       <div class="pg__bar-actions">
         <button class="pg__icon" title="Reset" @click="reset">
-          <vd-icon icon="refresh-cw" size="small" />
+          <f-icon icon="refresh-cw" size="small" />
         </button>
         <button class="pg__icon" title="Copy code" @click="copy">
-          <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+          <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
         </button>
       </div>
     </div>
 
     <div class="pg__body">
       <div class="pg__preview">
-        <vd-input
+        <f-input
           v-model="model"
           :label="cfg.label"
           :label-placeholder="cfg.labelPlaceholder"
@@ -93,15 +93,15 @@ function reset() {
 
       <div class="pg__config">
         <p class="pg__config-title">Configuration</p>
-        <vd-input v-model="cfg.label" label="Label" label-placeholder />
-        <vd-select v-model="cfg.color" :items="colors" label="Color" />
+        <f-input v-model="cfg.label" label="Label" label-placeholder />
+        <f-select v-model="cfg.color" :items="colors" label="Color" />
         <div class="pg__checks">
-          <vd-checkbox v-model="cfg.labelPlaceholder" label="Floating label" />
-          <vd-checkbox v-model="cfg.prependIcon" label="Prepend icon" />
-          <vd-checkbox v-model="cfg.clearable" label="Clearable" />
-          <vd-checkbox v-model="cfg.loading" label="Loading" />
-          <vd-checkbox v-model="cfg.block" label="Block" />
-          <vd-checkbox v-model="cfg.disabled" label="Disabled" />
+          <f-checkbox v-model="cfg.labelPlaceholder" label="Floating label" />
+          <f-checkbox v-model="cfg.prependIcon" label="Prepend icon" />
+          <f-checkbox v-model="cfg.clearable" label="Clearable" />
+          <f-checkbox v-model="cfg.loading" label="Loading" />
+          <f-checkbox v-model="cfg.block" label="Block" />
+          <f-checkbox v-model="cfg.disabled" label="Disabled" />
         </div>
       </div>
     </div>

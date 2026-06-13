@@ -1,10 +1,10 @@
 <template>
-  <vd-card type="10" style="max-width: 340px">
+  <f-card type="10" style="max-width: 340px">
     <template #front>
       <div class="cc cc--front">
         <div class="cc-top">
           <span class="cc-bank">VUE BANK</span>
-          <vd-icon icon="wifi" />
+          <f-icon icon="wifi" />
         </div>
         <div class="cc-chip" />
         <div class="cc-number">4921 8830 2217 6043</div>
@@ -27,11 +27,11 @@
         <div class="cc-tag">VUE BANK · Customer service 1-800-VUE-BANK</div>
       </div>
     </template>
-  </vd-card>
+  </f-card>
 </template>
 
 <style scoped>
-:deep(.vd-card) {
+:deep(.fui-card) {
   height: 214px;
 }
 

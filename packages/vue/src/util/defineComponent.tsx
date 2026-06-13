@@ -6,8 +6,8 @@ import { getCurrentInstance } from './getCurrentInstance'
 type ComponentOptionsLike = Record<string, any>
 
 /**
- * Wraps Vue's `defineComponent` so every Vue DL component automatically applies
- * the hierarchical defaults system (global / per-component / `VdDefaultsProvider`)
+ * Wraps Vue's `defineComponent` so every FusionUI component automatically applies
+ * the hierarchical defaults system (global / per-component / `FDefaultsProvider`)
  * before its own setup runs.
  */
 export function defineComponent<T extends ComponentOptionsLike>(options: T): DefineComponent {
@@ -28,7 +28,7 @@ export function defineComponent<T extends ComponentOptionsLike>(options: T): Def
  * parameter while still flowing through `defineComponent`:
  *
  * ```ts
- * export const VdBtn = genericComponent<VdBtnSlots>()({ name: 'VdBtn', ... })
+ * export const FBtn = genericComponent<FBtnSlots>()({ name: 'FBtn', ... })
  * ```
  */
 export function genericComponent<Slots = Record<string, any>>() {

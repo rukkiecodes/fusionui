@@ -1,0 +1,10 @@
+{
+  "displayName": "FOverlay",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

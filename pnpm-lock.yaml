@@ -62,18 +62,18 @@ importers:
 
   apps/docs:
     dependencies:
-      '@vue-dl/icons-feather':
+      '@fusionui/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@fusionui/vue':
+        specifier: workspace:*
+        version: link:../../packages/vue
       prismjs:
         specifier: ^1.29.0
         version: 1.30.0
       vue:
         specifier: ^3.5.13
         version: 3.5.38(typescript@5.9.3)
-      vue-dl:
-        specifier: workspace:*
-        version: link:../../packages/vue
       vue-router:
         specifier: ^4.5.0
         version: 4.6.4(vue@3.5.38(typescript@5.9.3))
@@ -108,10 +108,10 @@ importers:
 
   packages/api-generator:
     dependencies:
-      '@vue-dl/icons-feather':
+      '@fusionui/icons':
         specifier: workspace:*
         version: link:../icons
-      vue-dl:
+      '@fusionui/vue':
         specifier: workspace:*
         version: link:../vue
     devDependencies:
@@ -151,7 +151,7 @@ importers:
 
   packages/vue:
     dependencies:
-      '@vue-dl/icons-feather':
+      '@fusionui/icons':
         specifier: workspace:*
         version: link:../icons
     devDependencies:

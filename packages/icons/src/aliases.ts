@@ -1,6 +1,6 @@
-// Curated semantic icon aliases used internally by Vue DL components (e.g. the
+// Curated semantic icon aliases used internally by FusionUI components (e.g. the
 // close button on an alert resolves `$close`). Wired as the default aliases in
-// vue-dl's createIcons, so they always work without registering the full set.
+// fusionui's createIcons, so they always work without registering the full set.
 // This pulls only the ~two dozen icons referenced below — not all 287.
 
 import type { FeatherIcon } from './runtime'

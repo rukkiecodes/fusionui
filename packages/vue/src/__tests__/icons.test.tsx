@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Bell, featherAliases } from '@vue-dl/icons-feather'
-import { createVueDL, VdIcon, createIcons } from '../index'
+import { Bell, featherAliases } from '@fusionui/icons'
+import { createFusionUI, FIcon, createIcons } from '../index'
 
 function mountIcon(props: Record<string, unknown>) {
-  return mount(VdIcon as any, {
+  return mount(FIcon as any, {
     props,
-    global: { plugins: [createVueDL()] },
+    global: { plugins: [createFusionUI()] },
   })
 }
 
@@ -25,14 +25,14 @@ describe('createIcons', () => {
   })
 })
 
-describe('VdIcon', () => {
+describe('FIcon', () => {
   it('renders a Feather component icon as an svg', () => {
     const wrapper = mountIcon({ icon: Bell })
     const svg = wrapper.find('svg')
     expect(svg.exists()).toBe(true)
     // Feather bell = two paths
     expect(wrapper.findAll('path').length).toBe(2)
-    expect(svg.classes()).toContain('vd-feather-bell')
+    expect(svg.classes()).toContain('fui-feather-bell')
   })
 
   it('resolves a $ alias to the mapped feather icon', () => {
@@ -57,8 +57,8 @@ describe('VdIcon', () => {
 
   it('adds spacing + spin modifier classes', () => {
     const wrapper = mountIcon({ icon: Bell, start: true, spin: true })
-    expect(wrapper.classes()).toContain('vd-icon--start')
-    expect(wrapper.classes()).toContain('vd-icon--spin')
+    expect(wrapper.classes()).toContain('fui-icon--start')
+    expect(wrapper.classes()).toContain('fui-icon--spin')
   })
 
   it('renders a raw SVG path string via the svg set', () => {

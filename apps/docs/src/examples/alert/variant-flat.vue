@@ -1,6 +1,6 @@
 <template>
-  <vd-alert variant="flat" color="primary" style="max-width: 560px">
+  <f-alert variant="flat" color="primary" style="max-width: 560px">
     <template #title>Flat</template>
-    The <b>flat</b> variant of the Vue DL alert.
-  </vd-alert>
+    The <b>flat</b> variant of the FusionUI alert.
+  </f-alert>
 </template>

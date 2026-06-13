@@ -4,5 +4,5 @@ const v = ref('')
 </script>
 
 <template>
-  <vd-input v-model="v" placeholder="Name" loading />
+  <f-input v-model="v" placeholder="Name" loading />
 </template>

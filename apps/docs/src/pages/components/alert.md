@@ -1,6 +1,6 @@
 # Alert
 
-`VdAlert` surfaces contextual messages — with a title, an icon, collapsible
+`FAlert` surfaces contextual messages — with a title, an icon, collapsible
 content, a progress bar, pagination, and seven looks.
 
 ## Usage
@@ -96,4 +96,4 @@ content with previous / next controls.
 
 ## API
 
-<ApiTable name="VdAlert" />
+<ApiTable name="FAlert" />

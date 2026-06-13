@@ -2,7 +2,7 @@
 // alpha, large blur) — the signature "Vuesax shadow". Levels 0–24 so the
 // elevation utility and useElevation composable have a full range.
 
-$vd-shadows: (
+$fui-shadows: (
   0: none,
   1: (
     0 2px 8px 0 rgba(0, 0, 0, 0.04),
@@ -80,10 +80,10 @@ $vd-shadows: (
 
 // Colored hover glow offset used by interactive components (button/card lift).
 // Vuesax v4 floats the element with a tight, deep colored shadow.
-$vd-shadow-hover-spread: 0 10px 20px -10px !default;
+$fui-shadow-hover-spread: 0 10px 20px -10px !default;
 
 // Floating-button colored shadow (resting elevation for floating variant).
-$vd-shadow-floating: 0 8px 20px -6px !default;
+$fui-shadow-floating: 0 8px 20px -6px !default;
 
 // The signature soft "Vuesax shadow" resting elevation.
-$vd-shadow-rest: 0 5px 20px 0 rgba(0, 0, 0, 0.05) !default;
+$fui-shadow-rest: 0 5px 20px 0 rgba(0, 0, 0, 0.05) !default;

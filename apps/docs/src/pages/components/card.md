@@ -1,6 +1,6 @@
 # Card
 
-Cards contain content and actions about a single subject. `VdCard` is built
+Cards contain content and actions about a single subject. `FCard` is built
 from slots — drop in an `img`, a `title`, some `text`, and overlay
 `interactions` — and pick one of five layout `type`s, each with its own hover
 animation.
@@ -120,11 +120,11 @@ Header, square media, the action row, then the caption.
 
 ## Group
 
-Wrap several cards in `VdCardGroup` for a horizontal, swipeable carousel with
+Wrap several cards in `FCardGroup` for a horizontal, swipeable carousel with
 previous / next controls.
 
 <Example file="card/group" />
 
 ## API
 
-<ApiTable name="VdCard" />
+<ApiTable name="FCard" />

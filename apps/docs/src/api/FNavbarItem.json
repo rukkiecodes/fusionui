@@ -1,0 +1,10 @@
+{
+  "displayName": "FNavbarItem",
+  "props": {},
+  "events": {
+    "click": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

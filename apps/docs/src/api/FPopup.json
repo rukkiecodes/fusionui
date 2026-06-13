@@ -1,0 +1,10 @@
+{
+  "displayName": "FPopup",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

@@ -2,32 +2,32 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { h } from 'vue'
 import {
-  createVueDL,
-  VdMenu,
-  VdPopup,
-  VdTooltip,
-  VdTabs,
-  VdTab,
-  VdTabPanel,
-  VdTabsWindow,
-  VdPagination,
-  VdList,
-  VdListItem,
-  VdCollapse,
-  VdTable,
-  VdBreadcrumb,
+  createFusionUI,
+  FMenu,
+  FPopup,
+  FTooltip,
+  FTabs,
+  FTab,
+  FTabPanel,
+  FTabsWindow,
+  FPagination,
+  FList,
+  FListItem,
+  FCollapse,
+  FTable,
+  FBreadcrumb,
 } from '../index'
 
 function mountWith(component: any, options: Record<string, any> = {}): any {
   return mount(component, {
     ...options,
-    global: { plugins: [createVueDL()], ...(options.global ?? {}) },
+    global: { plugins: [createFusionUI()], ...(options.global ?? {}) },
   })
 }
 
-describe('VdMenu', () => {
+describe('FMenu', () => {
   it('toggles content from the activator and closes on content click', async () => {
-    const wrapper = mountWith(VdMenu, {
+    const wrapper = mountWith(FMenu, {
       slots: {
         activator: ({ props }: any) =>
           h('button', { class: 'act', onClick: props.onClick }, 'Open'),
@@ -37,14 +37,14 @@ describe('VdMenu', () => {
     expect(wrapper.find('.menu-body').exists()).toBe(false)
     await wrapper.find('.act').trigger('click')
     expect(wrapper.find('.menu-body').exists()).toBe(true)
-    await wrapper.find('.vd-menu__content').trigger('click')
+    await wrapper.find('.fui-menu__content').trigger('click')
     expect(wrapper.find('.menu-body').exists()).toBe(false)
   })
 })
 
-describe('VdPopup', () => {
+describe('FPopup', () => {
   it('opens via activator and teleports a dialog to the body', async () => {
-    const wrapper = mountWith(VdPopup, {
+    const wrapper = mountWith(FPopup, {
       attachTo: document.body,
       props: { title: 'Hello' },
       slots: {
@@ -54,40 +54,40 @@ describe('VdPopup', () => {
       },
     })
     await wrapper.find('.open').trigger('click')
-    expect(document.body.querySelector('.vd-popup')).not.toBeNull()
-    expect(document.body.querySelector('.vd-popup__title')?.textContent).toBe('Hello')
+    expect(document.body.querySelector('.fui-popup')).not.toBeNull()
+    expect(document.body.querySelector('.fui-popup__title')?.textContent).toBe('Hello')
     wrapper.unmount()
   })
 })
 
-describe('VdTooltip', () => {
+describe('FTooltip', () => {
   it('reveals the tooltip on hover', async () => {
-    const wrapper = mountWith(VdTooltip, {
+    const wrapper = mountWith(FTooltip, {
       props: { text: 'Tip!' },
       slots: { default: () => h('span', 'target') },
     })
-    expect(wrapper.find('.vd-tooltip__content').exists()).toBe(false)
+    expect(wrapper.find('.fui-tooltip__content').exists()).toBe(false)
     await wrapper.trigger('mouseenter')
-    expect(wrapper.find('.vd-tooltip__content').text()).toBe('Tip!')
+    expect(wrapper.find('.fui-tooltip__content').text()).toBe('Tip!')
   })
 })
 
-describe('VdTabs', () => {
+describe('FTabs', () => {
   it('selects tabs and swaps panels', async () => {
     const Host = {
       setup() {
         return () =>
           h('div', [
-            h(VdTabs, { modelValue: 'a', 'onUpdate:modelValue': () => {} }, () => [
-              h(VdTab, { value: 'a', text: 'A' }),
-              h(VdTab, { value: 'b', text: 'B' }),
+            h(FTabs, { modelValue: 'a', 'onUpdate:modelValue': () => {} }, () => [
+              h(FTab, { value: 'a', text: 'A' }),
+              h(FTab, { value: 'b', text: 'B' }),
             ]),
           ])
       },
     }
     const wrapper = mountWith(Host)
-    const tabs = wrapper.findAll('.vd-tab')
-    expect(tabs[0].classes()).toContain('vd-tab--active')
+    const tabs = wrapper.findAll('.fui-tab')
+    expect(tabs[0].classes()).toContain('fui-tab--active')
     await tabs[1].trigger('click')
     expect(wrapper.emitted).toBeTruthy()
   })
@@ -97,10 +97,10 @@ describe('VdTabs', () => {
       setup() {
         return () =>
           h('div', [
-            h(VdTabs, { modelValue: 'a' }, () => [h(VdTab, { value: 'a', text: 'A' })]),
-            h(VdTabsWindow, { modelValue: 'a' }, () => [
-              h(VdTabPanel, { value: 'a' }, () => 'Panel A'),
-              h(VdTabPanel, { value: 'b' }, () => 'Panel B'),
+            h(FTabs, { modelValue: 'a' }, () => [h(FTab, { value: 'a', text: 'A' })]),
+            h(FTabsWindow, { modelValue: 'a' }, () => [
+              h(FTabPanel, { value: 'a' }, () => 'Panel A'),
+              h(FTabPanel, { value: 'b' }, () => 'Panel B'),
             ]),
           ])
       },
@@ -111,16 +111,16 @@ describe('VdTabs', () => {
   })
 })
 
-describe('VdPagination', () => {
+describe('FPagination', () => {
   it('navigates pages and clamps', async () => {
-    const wrapper = mountWith(VdPagination, {
+    const wrapper = mountWith(FPagination, {
       props: {
         modelValue: 1,
         length: 5,
         'onUpdate:modelValue': (v: number) => wrapper.setProps({ modelValue: v }),
       },
     })
-    const buttons = wrapper.findAll('.vd-pagination__btn')
+    const buttons = wrapper.findAll('.fui-pagination__btn')
     // prev disabled at page 1
     expect((buttons[0].element as HTMLButtonElement).disabled).toBe(true)
     await buttons[buttons.length - 1].trigger('click') // next
@@ -128,47 +128,47 @@ describe('VdPagination', () => {
   })
 })
 
-describe('VdList / VdCollapse / VdTable / VdBreadcrumb', () => {
-  it('VdListItem emits click', async () => {
-    const wrapper = mountWith(VdList, {
-      slots: { default: () => h(VdListItem, { title: 'Item', link: true }) },
+describe('FList / FCollapse / FTable / FBreadcrumb', () => {
+  it('FListItem emits click', async () => {
+    const wrapper = mountWith(FList, {
+      slots: { default: () => h(FListItem, { title: 'Item', link: true }) },
     })
-    await wrapper.find('.vd-list-item').trigger('click')
-    expect(wrapper.findComponent(VdListItem).emitted('click')).toHaveLength(1)
+    await wrapper.find('.fui-list-item').trigger('click')
+    expect(wrapper.findComponent(FListItem).emitted('click')).toHaveLength(1)
   })
 
-  it('VdCollapse toggles open', async () => {
-    const wrapper = mountWith(VdCollapse, {
+  it('FCollapse toggles open', async () => {
+    const wrapper = mountWith(FCollapse, {
       props: {
         title: 'Section',
         'onUpdate:modelValue': (v: boolean) => wrapper.setProps({ modelValue: v }),
       },
       slots: { default: () => 'Body' },
     })
-    expect(wrapper.classes()).not.toContain('vd-collapse--open')
-    await wrapper.find('.vd-collapse__header').trigger('click')
+    expect(wrapper.classes()).not.toContain('fui-collapse--open')
+    await wrapper.find('.fui-collapse__header').trigger('click')
     expect(wrapper.props('modelValue')).toBe(true)
   })
 
-  it('VdTable sorts rows on sortable header click', async () => {
-    const wrapper = mountWith(VdTable, {
+  it('FTable sorts rows on sortable header click', async () => {
+    const wrapper = mountWith(FTable, {
       props: {
         headers: [{ title: 'N', key: 'n', sortable: true }],
         items: [{ n: 3 }, { n: 1 }, { n: 2 }],
       },
     })
-    await wrapper.find('.vd-table__th--sortable').trigger('click')
-    const cells = wrapper.findAll('.vd-table__td').map((c: any) => c.text())
+    await wrapper.find('.fui-table__th--sortable').trigger('click')
+    const cells = wrapper.findAll('.fui-table__td').map((c: any) => c.text())
     expect(cells).toEqual(['1', '2', '3'])
   })
 
-  it('VdBreadcrumb renders links and a current page', () => {
-    const wrapper = mountWith(VdBreadcrumb, {
+  it('FBreadcrumb renders links and a current page', () => {
+    const wrapper = mountWith(FBreadcrumb, {
       props: {
         items: [{ title: 'Home', href: '/' }, { title: 'Library' }],
       },
     })
     expect(wrapper.find('a').attributes('href')).toBe('/')
-    expect(wrapper.find('.vd-breadcrumb__item--active').text()).toBe('Library')
+    expect(wrapper.find('.fui-breadcrumb__item--active').text()).toBe('Library')
   })
 })

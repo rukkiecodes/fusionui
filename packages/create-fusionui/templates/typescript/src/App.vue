@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useNotify, useTheme } from 'vue-dl'
+import { useNotify, useTheme } from '@fusionui/vue'
 
 const { notify } = useNotify()
 const theme = useTheme()
@@ -8,43 +8,43 @@ const count = ref(0)
 </script>
 
 <template>
-  <vd-navbar fixed flat>
+  <f-navbar fixed flat>
     <template #brand>
-      <vd-icon icon="feather" color="primary" />
-      <span>Vue DL</span>
+      <f-icon icon="feather" color="primary" />
+      <span>FusionUI</span>
     </template>
-    <vd-spacer />
+    <f-spacer />
     <template #append>
-      <vd-btn variant="text" :icon="theme.isDark.value ? 'sun' : 'moon'" @click="theme.toggle()" />
+      <f-btn variant="text" :icon="theme.isDark.value ? 'sun' : 'moon'" @click="theme.toggle()" />
     </template>
-  </vd-navbar>
+  </f-navbar>
 
   <main style="max-width: 760px; margin: 40px auto; padding: 0 20px">
-    <vd-card
+    <f-card
       style="margin-bottom: 24px"
-      title="Welcome to Vue DL"
+      title="Welcome to FusionUI"
       subtitle="Built with Vite + Vue 3"
     >
-      <vd-card-text>
+      <f-card-text>
         Edit <code>src/App.vue</code> and save to reload. Explore the components and the soft,
         Vuesax-inspired design.
-      </vd-card-text>
-      <vd-card-actions>
-        <vd-btn color="primary" prepend-icon="zap" @click="count++">Clicked {{ count }}×</vd-btn>
-        <vd-btn
+      </f-card-text>
+      <f-card-actions>
+        <f-btn color="primary" prepend-icon="zap" @click="count++">Clicked {{ count }}×</f-btn>
+        <f-btn
           variant="tonal"
           color="success"
-          @click="notify.success({ title: 'Nice!', text: 'Vue DL is working.' })"
+          @click="notify.success({ title: 'Nice!', text: 'FusionUI is working.' })"
         >
           Notify
-        </vd-btn>
-      </vd-card-actions>
-    </vd-card>
+        </f-btn>
+      </f-card-actions>
+    </f-card>
 
     <div style="display: flex; gap: 10px; flex-wrap: wrap">
-      <vd-chip color="primary">primary</vd-chip>
-      <vd-chip color="success" variant="outlined">success</vd-chip>
-      <vd-chip color="danger" prepend-icon="$warning">danger</vd-chip>
+      <f-chip color="primary">primary</f-chip>
+      <f-chip color="success" variant="outlined">success</f-chip>
+      <f-chip color="danger" prepend-icon="$warning">danger</f-chip>
     </div>
   </main>
 </template>

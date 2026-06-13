@@ -1,0 +1,58 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-overlay__scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .fui-overlay__content {
+    position: fixed;
+    inset: 0;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    padding: 24px;
+
+    > * {
+      pointer-events: auto;
+    }
+  }
+
+  // Transitions
+  .fui-fade-enter-active,
+  .fui-fade-leave-active {
+    transition: opacity 0.2s settings.$fui-transition-timing;
+  }
+  .fui-fade-enter-from,
+  .fui-fade-leave-to {
+    opacity: 0;
+  }
+
+  .fui-dialog-transition-enter-active {
+    transition: all 0.25s settings.$fui-transition-timing;
+  }
+  .fui-dialog-transition-leave-active {
+    transition: all 0.2s settings.$fui-transition-timing;
+  }
+  .fui-dialog-transition-enter-from,
+  .fui-dialog-transition-leave-to {
+    opacity: 0;
+    transform: scale(0.9) translateY(12px);
+  }
+
+  .fui-menu-transition-enter-active,
+  .fui-menu-transition-leave-active {
+    transition: all 0.18s settings.$fui-transition-timing;
+  }
+  .fui-menu-transition-enter-from,
+  .fui-menu-transition-leave-to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}

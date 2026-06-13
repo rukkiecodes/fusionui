@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@vue-dl/docs", "@vue-dl/api-generator"]
+  "ignore": ["@fusionui/docs", "@fusionui/api-generator"]
 }

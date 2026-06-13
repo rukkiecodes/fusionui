@@ -11,14 +11,14 @@ import { createIcons, IconSymbol } from './composables/icons'
 import type { IconOptions } from './composables/icons'
 import { directives as builtinDirectives } from './directives'
 import { components as builtinComponents } from './components'
-import { VdServices } from './services/VdServices'
+import { FServices } from './services/FServices'
 import { useNotify } from './services/notify/useNotify'
 import { useLoading } from './services/loading/useLoading'
 import { useDialog } from './services/dialog/useDialog'
 
-export interface VueDLOptions {
+export interface FusionUIOptions {
   /** A preset that is deep-merged under the rest of the options. */
-  blueprint?: Partial<VueDLOptions>
+  blueprint?: Partial<FusionUIOptions>
   components?: Record<string, Component>
   directives?: Record<string, unknown>
   defaults?: DefaultsInstance
@@ -30,7 +30,7 @@ export interface VueDLOptions {
   services?: boolean
 }
 
-export interface VueDLInstance {
+export interface FusionUIInstance {
   install: (app: App) => void
   defaults: ReturnType<typeof createDefaults>
   display: ReturnType<typeof createDisplay>
@@ -39,14 +39,14 @@ export interface VueDLInstance {
 }
 
 /**
- * Creates the Vue DL plugin. Wire it up with `app.use(createVueDL({ ... }))`.
+ * Creates the FusionUI plugin. Wire it up with `app.use(createFusionUI({ ... }))`.
  */
-export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
+export function createFusionUI(options: FusionUIOptions = {}): FusionUIInstance {
   const { blueprint, ...rest } = options
   const merged = mergeDeep(
     (blueprint ?? {}) as Record<string, unknown>,
     rest as Record<string, unknown>
-  ) as VueDLOptions
+  ) as FusionUIOptions
 
   const scope = effectScope()
   const instance = scope.run(() => {
@@ -57,7 +57,7 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
 
     // Registers everything on an app (directives, components, provides, theme).
     // Shared by the main install and the services host app.
-    function applyVueDL(app: App): void {
+    function applyFusionUI(app: App): void {
       for (const key in builtinDirectives) {
         app.directive(key, builtinDirectives[key])
       }
@@ -85,15 +85,15 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
       if (typeof document === 'undefined') return
       servicesMounted = true
       const host = document.createElement('div')
-      host.className = 'vd-services-host'
+      host.className = 'fui-services-host'
       document.body.appendChild(host)
-      const servicesApp = createApp(VdServices)
-      applyVueDL(servicesApp)
+      const servicesApp = createApp(FServices)
+      applyFusionUI(servicesApp)
       servicesApp.mount(host)
     }
 
     function install(app: App): void {
-      applyVueDL(app)
+      applyFusionUI(app)
       app.config.globalProperties.$vd = {
         notify: useNotify().notify,
         loading: useLoading(),
@@ -105,5 +105,5 @@ export function createVueDL(options: VueDLOptions = {}): VueDLInstance {
     return { install, defaults, display, theme, icons }
   })
 
-  return instance as VueDLInstance
+  return instance as FusionUIInstance
 }

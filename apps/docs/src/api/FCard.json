@@ -1,0 +1,40 @@
+{
+  "displayName": "FCard",
+  "props": {},
+  "events": {},
+  "slots": {
+    "img": {
+      "description": "The card image or media."
+    },
+    "title": {
+      "description": "Heading shown above the text."
+    },
+    "text": {
+      "description": "Body copy."
+    },
+    "interactions": {
+      "description": "Buttons overlaid on the image (likes, comments, …)."
+    },
+    "front": {
+      "description": "Front face of the flip card (type 10)."
+    },
+    "back": {
+      "description": "Back face of the flip card (type 10)."
+    },
+    "avatar": {
+      "description": "Avatar shown in the header (social types 12–14)."
+    },
+    "header": {
+      "description": "Name / handle / meta beside the avatar (social types 12–14)."
+    },
+    "actions": {
+      "description": "Footer action row (social types 12–14)."
+    },
+    "buttons": {
+      "description": "A footer row of actions below the text."
+    },
+    "default": {
+      "description": "Free-form content appended inside the card."
+    }
+  }
+}

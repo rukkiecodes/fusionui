@@ -17,10 +17,10 @@ function open() {
 
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 560px">
-    <vd-btn variant="flat" @click="open">Open alert (5s)</vd-btn>
-    <vd-alert v-model="active" :progress="progress" color="primary">
+    <f-btn variant="flat" @click="open">Open alert (5s)</f-btn>
+    <f-alert v-model="active" :progress="progress" color="primary">
       <template #title>Auto-closing</template>
       This alert dismisses itself when the progress bar fills up.
-    </vd-alert>
+    </f-alert>
   </div>
 </template>

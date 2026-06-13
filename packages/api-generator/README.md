@@ -1,4 +1,4 @@
-# @vue-dl/api-generator
+# @fusionui/api-generator
 
 Generates the component API reference consumed by the docs `<ApiTable>`.
 
@@ -8,7 +8,7 @@ spreads already merged) plus its `emits`. Output goes to
 `apps/docs/src/api/<Component>.json`.
 
 ```bash
-pnpm --filter @vue-dl/api-generator generate
+pnpm --filter @fusionui/api-generator generate
 ```
 
 ## Description overlays

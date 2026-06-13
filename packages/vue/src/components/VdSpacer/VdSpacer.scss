@@ -1,7 +1,0 @@
-@use '../../styles/tools';
-
-@include tools.layer('components') {
-  .vd-spacer {
-    flex-grow: 1;
-  }
-}

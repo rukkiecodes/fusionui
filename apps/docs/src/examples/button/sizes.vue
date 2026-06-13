@@ -1,9 +1,9 @@
 <template>
   <div class="d-flex" style="gap: 12px; align-items: center; flex-wrap: wrap">
-    <vd-btn size="x-small">x-small</vd-btn>
-    <vd-btn size="small">small</vd-btn>
-    <vd-btn>default</vd-btn>
-    <vd-btn size="large">large</vd-btn>
-    <vd-btn size="x-large">x-large</vd-btn>
+    <f-btn size="x-small">x-small</f-btn>
+    <f-btn size="small">small</f-btn>
+    <f-btn>default</f-btn>
+    <f-btn size="large">large</f-btn>
+    <f-btn size="x-large">x-large</f-btn>
   </div>
 </template>

@@ -1,0 +1,10 @@
+{
+  "displayName": "FTabs",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

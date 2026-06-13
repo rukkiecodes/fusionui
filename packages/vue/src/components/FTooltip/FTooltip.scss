@@ -1,0 +1,53 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-tooltip {
+    position: relative;
+    display: inline-flex;
+
+    &__content {
+      position: absolute;
+      z-index: 200;
+      white-space: nowrap;
+      padding: 6px 10px;
+      border-radius: var(--fui-radius-sm);
+      background-color: rgba(var(--fui-theme-dark), 0.92);
+      color: rgb(var(--fui-theme-on-dark, 255, 255, 255));
+      font-size: 0.78rem;
+      box-shadow: settings.$fui-shadow-rest;
+      pointer-events: none;
+      animation: fui-tooltip-in 0.15s settings.$fui-transition-timing;
+
+      &--top {
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &--bottom {
+        top: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &--left {
+        right: calc(100% + 6px);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &--right {
+        left: calc(100% + 6px);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  @keyframes fui-tooltip-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

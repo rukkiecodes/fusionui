@@ -1,0 +1,97 @@
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // Vuesax navbar — a clean rounded bar with a sliding active line.
+  .fui-navbar {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    background-color: rgb(var(--fui-theme-surface));
+    color: rgba(var(--fui-theme-on-surface), 0.92);
+    transition: all 0.25s ease;
+
+    &--square {
+      border-radius: 0;
+    }
+    &--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    &--shadow {
+      box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
+    }
+    &--hidden {
+      transform: translateY(-100%);
+    }
+    &--padding {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    &__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 44px;
+      padding: 0 15px;
+    }
+
+    &__left {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+    &__center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &__right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    // The sliding active indicator.
+    &__line {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+      background: rgb(var(--fui-theme-primary));
+      transition: all 0.25s ease;
+
+      &--still {
+        transition: none;
+      }
+    }
+
+    &__item {
+      padding: 13px 15px;
+      border: 0;
+      margin: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.7;
+      cursor: pointer;
+      transition:
+        all 0.25s ease,
+        color 0s;
+
+      &:hover,
+      &--active {
+        opacity: 1;
+      }
+    }
+  }
+}

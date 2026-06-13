@@ -1,0 +1,13 @@
+{
+  "displayName": "FForm",
+  "props": {},
+  "events": {
+    "submit": {
+      "description": ""
+    },
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

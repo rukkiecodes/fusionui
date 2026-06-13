@@ -1,0 +1,84 @@
+import { computed, h } from 'vue'
+import type { PropType } from 'vue'
+import { genericComponent, useRender } from '../../util/defineComponent'
+import { propsFactory } from '../../util/propsFactory'
+import { makeComponentProps } from '../../composables/component'
+import { makeThemeProps, provideTheme } from '../../composables/theme'
+import { useProxiedModel } from '../../composables/proxiedModel'
+import { FBtn } from '../FBtn'
+
+export const makeVdInputNumberProps = propsFactory(
+  {
+    modelValue: { type: [Number, String] as PropType<number | string>, default: 0 },
+    min: { type: Number, default: -Infinity },
+    max: { type: Number, default: Infinity },
+    step: { type: Number, default: 1 },
+    color: String as PropType<string>,
+    disabled: Boolean,
+    ...makeThemeProps(),
+    ...makeComponentProps(),
+  },
+  'FInputNumber'
+)
+
+export const FInputNumber = genericComponent()({
+  name: 'FInputNumber',
+  props: makeVdInputNumberProps(),
+  emits: { 'update:modelValue': (_v: number) => true },
+  setup(props: any) {
+    provideTheme(props)
+    const model = useProxiedModel(props, 'modelValue', 0)
+    const numeric = computed(() => Number(model.value) || 0)
+
+    function clamp(v: number): number {
+      return Math.min(props.max, Math.max(props.min, v))
+    }
+    function step(direction: number): void {
+      if (props.disabled) return
+      model.value = clamp(numeric.value + direction * props.step)
+    }
+
+    useRender(() =>
+      h(
+        'div',
+        {
+          class: [
+            'fui-input-number',
+            { 'fui-input-number--disabled': props.disabled },
+            props.class,
+          ],
+          style: props.style,
+        },
+        [
+          h(FBtn, {
+            class: 'fui-input-number__btn',
+            icon: '$decrement',
+            variant: 'tonal',
+            color: props.color,
+            size: 'small',
+            disabled: props.disabled || numeric.value <= props.min,
+            onClick: () => step(-1),
+          }),
+          h('input', {
+            class: 'fui-input-number__el',
+            type: 'number',
+            value: numeric.value,
+            disabled: props.disabled,
+            onInput: (e: Event) => {
+              model.value = clamp(Number((e.target as HTMLInputElement).value) || 0)
+            },
+          }),
+          h(FBtn, {
+            class: 'fui-input-number__btn',
+            icon: '$increment',
+            variant: 'tonal',
+            color: props.color,
+            size: 'small',
+            disabled: props.disabled || numeric.value >= props.max,
+            onClick: () => step(1),
+          }),
+        ]
+      )
+    )
+  },
+})

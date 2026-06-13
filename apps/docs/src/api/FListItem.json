@@ -1,0 +1,10 @@
+{
+  "displayName": "FListItem",
+  "props": {},
+  "events": {
+    "click": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

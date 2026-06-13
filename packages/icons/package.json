@@ -1,13 +1,13 @@
 {
-  "name": "@vue-dl/icons-feather",
+  "name": "@fusionui/icons",
   "version": "0.0.0",
-  "description": "Feather icon set for Vue DL — the default icon pack.",
+  "description": "Feather icon set for FusionUI — the default icon pack.",
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
   "keywords": [
     "vue",
-    "vue-dl",
+    "@fusionui/vue",
     "icons",
     "feather",
     "svg"

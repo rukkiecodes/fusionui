@@ -1,0 +1,45 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-badge {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+
+    &__badge {
+      position: absolute;
+      top: 0;
+      inset-inline-end: 0;
+      transform: translate(50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: var(--fui-radius-pill);
+      background-color: rgb(var(--fui-theme-danger));
+      color: rgb(var(--fui-theme-on-danger));
+      font-size: 0.7rem;
+      font-weight: settings.$fui-font-weight-bold;
+      line-height: 1;
+      box-shadow: settings.$fui-shadow-rest;
+
+      &--dot {
+        min-width: 10px;
+        width: 10px;
+        height: 10px;
+        padding: 0;
+      }
+    }
+
+    &--inline {
+      .fui-badge__badge {
+        position: static;
+        transform: none;
+        margin-inline-start: 6px;
+      }
+    }
+  }
+}

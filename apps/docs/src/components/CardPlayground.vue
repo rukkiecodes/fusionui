@@ -60,49 +60,49 @@ const code = computed(() => {
   const attrs: string[] = []
   if (type.value !== '1') attrs.push(`type="${type.value}"`)
   if (type.value === '6' && cfg.parallax !== 280) attrs.push(`:parallax="${cfg.parallax}"`)
-  lines.push(`<vd-card${attrs.length ? ' ' + attrs.join(' ') : ''}>`)
+  lines.push(`<f-card${attrs.length ? ' ' + attrs.join(' ') : ''}>`)
   if (cfg.title) lines.push(`  <template #title><h3>${cfg.title}</h3></template>`)
   lines.push(`  <template #img><img src="/cards/${cfg.image}" alt="" /></template>`)
   if (cfg.text) lines.push(`  <template #text><p>${cfg.text}</p></template>`)
   if (cfg.interactions) {
     lines.push(`  <template #interactions>`)
-    lines.push(`    <vd-btn icon="heart" color="danger" />`)
-    lines.push(`    <vd-btn color="primary" prepend-icon="message-circle">54</vd-btn>`)
+    lines.push(`    <f-btn icon="heart" color="danger" />`)
+    lines.push(`    <f-btn color="primary" prepend-icon="message-circle">54</f-btn>`)
     lines.push(`  </template>`)
   }
-  lines.push(`</vd-card>`)
+  lines.push(`</f-card>`)
   return lines.join('\n')
 })
 
 function flipCode() {
   return [
-    `<vd-card type="10">`,
+    `<f-card type="10">`,
     `  <template #front>`,
     `    <img src="/cards/${cfg.image}" alt="" />`,
     `  </template>`,
     `  <template #back>`,
     `    <h3>${cfg.title}</h3>`,
     `    <p>${cfg.text}</p>`,
-    `    <vd-btn color="primary" size="small">Shop now</vd-btn>`,
+    `    <f-btn color="primary" size="small">Shop now</f-btn>`,
     `  </template>`,
-    `</vd-card>`,
+    `</f-card>`,
   ].join('\n')
 }
 
 function deckCode() {
   return [
-    `<vd-card type="11" style="max-width: 280px">`,
+    `<f-card type="11" style="max-width: 280px">`,
     `  <div v-for="p in people" :key="p.name">`,
     `    <img :src="p.src" alt="" />`,
     `    <div class="deck-name">{{ p.name }}</div>`,
     `  </div>`,
-    `</vd-card>`,
+    `</f-card>`,
   ].join('\n')
 }
 
 function socialCode() {
   const t = type.value
-  const l: string[] = [`<vd-card type="${t}">`]
+  const l: string[] = [`<f-card type="${t}">`]
   l.push(`  <template #avatar><img src="/cards/foto1.png" alt="" /></template>`)
   l.push(`  <template #header>`)
   l.push(`    <strong>${cfg.title}</strong>`)
@@ -112,22 +112,22 @@ function socialCode() {
   l.push(`  <template #img><img src="/cards/${cfg.image}" alt="" /></template>`)
   l.push(`  <template #actions>`)
   if (t === '12') {
-    l.push(`    <button class="vd-act"><vd-icon icon="message-circle" size="small" /> 12</button>`)
-    l.push(`    <button class="vd-act"><vd-icon icon="repeat" size="small" /> 48</button>`)
-    l.push(`    <button class="vd-act"><vd-icon icon="heart" size="small" /> 312</button>`)
-    l.push(`    <button class="vd-act"><vd-icon icon="bar-chart-2" size="small" /> 9.8k</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="message-circle" size="small" /> 12</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="repeat" size="small" /> 48</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="heart" size="small" /> 312</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="bar-chart-2" size="small" /> 9.8k</button>`)
   } else if (t === '13') {
-    l.push(`    <button class="vd-act"><vd-icon icon="thumbs-up" size="small" /> Like</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="thumbs-up" size="small" /> Like</button>`)
     l.push(
-      `    <button class="vd-act"><vd-icon icon="message-circle" size="small" /> Comment</button>`
+      `    <button class="fui-act"><f-icon icon="message-circle" size="small" /> Comment</button>`
     )
-    l.push(`    <button class="vd-act"><vd-icon icon="share-2" size="small" /> Share</button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="share-2" size="small" /> Share</button>`)
   } else {
-    l.push(`    <button class="vd-act"><vd-icon icon="heart" /></button>`)
-    l.push(`    <button class="vd-act"><vd-icon icon="message-circle" /></button>`)
-    l.push(`    <button class="vd-act"><vd-icon icon="send" /></button>`)
-    l.push(`    <vd-spacer />`)
-    l.push(`    <button class="vd-act"><vd-icon icon="bookmark" /></button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="heart" /></button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="message-circle" /></button>`)
+    l.push(`    <button class="fui-act"><f-icon icon="send" /></button>`)
+    l.push(`    <f-spacer />`)
+    l.push(`    <button class="fui-act"><f-icon icon="bookmark" /></button>`)
   }
   l.push(`  </template>`)
   if (t === '14') {
@@ -136,7 +136,7 @@ function socialCode() {
     l.push(`    <p><strong>${cfg.title}</strong> ${cfg.text}</p>`)
     l.push(`  </template>`)
   }
-  l.push(`</vd-card>`)
+  l.push(`</f-card>`)
   return l.join('\n')
 }
 
@@ -167,10 +167,10 @@ function reset() {
       </div>
       <div class="pg__bar-actions">
         <button class="pg__icon" title="Reset" @click="reset">
-          <vd-icon icon="refresh-cw" size="small" />
+          <f-icon icon="refresh-cw" size="small" />
         </button>
         <button class="pg__icon" title="Copy code" @click="copy">
-          <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+          <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
         </button>
       </div>
     </div>
@@ -178,25 +178,25 @@ function reset() {
     <div class="pg__body">
       <div class="pg__preview">
         <!-- Flip (10) -->
-        <vd-card v-if="isFlip" type="10">
+        <f-card v-if="isFlip" type="10">
           <template #front><img :src="imgUrl" alt="" /></template>
           <template #back>
             <h3>{{ cfg.title }}</h3>
             <p>{{ cfg.text }}</p>
-            <vd-btn color="primary" size="small">Shop now</vd-btn>
+            <f-btn color="primary" size="small">Shop now</f-btn>
           </template>
-        </vd-card>
+        </f-card>
 
         <!-- Swipe deck (11) -->
-        <vd-card v-else-if="isDeck" type="11" style="max-width: 280px">
+        <f-card v-else-if="isDeck" type="11" style="max-width: 280px">
           <div v-for="p in deckPeople" :key="p.name">
             <img :src="deckUrl(p.src)" alt="" />
             <div class="pg-deck-name">{{ p.name }}</div>
           </div>
-        </vd-card>
+        </f-card>
 
         <!-- Social feed cards (12–14) -->
-        <vd-card v-else-if="isSocial" :type="type">
+        <f-card v-else-if="isSocial" :type="type">
           <template #avatar><img :src="avatarUrl" alt="" /></template>
           <template #header>
             <strong>{{ cfg.title }}</strong>
@@ -208,22 +208,22 @@ function reset() {
           <template #img><img :src="imgUrl" alt="" /></template>
           <template #actions>
             <template v-if="type === '12'">
-              <button class="vd-act"><vd-icon icon="message-circle" size="small" /> 12</button>
-              <button class="vd-act"><vd-icon icon="repeat" size="small" /> 48</button>
-              <button class="vd-act"><vd-icon icon="heart" size="small" /> 312</button>
-              <button class="vd-act"><vd-icon icon="bar-chart-2" size="small" /> 9.8k</button>
+              <button class="fui-act"><f-icon icon="message-circle" size="small" /> 12</button>
+              <button class="fui-act"><f-icon icon="repeat" size="small" /> 48</button>
+              <button class="fui-act"><f-icon icon="heart" size="small" /> 312</button>
+              <button class="fui-act"><f-icon icon="bar-chart-2" size="small" /> 9.8k</button>
             </template>
             <template v-else-if="type === '13'">
-              <button class="vd-act"><vd-icon icon="thumbs-up" size="small" /> Like</button>
-              <button class="vd-act"><vd-icon icon="message-circle" size="small" /> Comment</button>
-              <button class="vd-act"><vd-icon icon="share-2" size="small" /> Share</button>
+              <button class="fui-act"><f-icon icon="thumbs-up" size="small" /> Like</button>
+              <button class="fui-act"><f-icon icon="message-circle" size="small" /> Comment</button>
+              <button class="fui-act"><f-icon icon="share-2" size="small" /> Share</button>
             </template>
             <template v-else>
-              <button class="vd-act"><vd-icon icon="heart" /></button>
-              <button class="vd-act"><vd-icon icon="message-circle" /></button>
-              <button class="vd-act"><vd-icon icon="send" /></button>
-              <vd-spacer />
-              <button class="vd-act"><vd-icon icon="bookmark" /></button>
+              <button class="fui-act"><f-icon icon="heart" /></button>
+              <button class="fui-act"><f-icon icon="message-circle" /></button>
+              <button class="fui-act"><f-icon icon="send" /></button>
+              <f-spacer />
+              <button class="fui-act"><f-icon icon="bookmark" /></button>
             </template>
           </template>
           <template v-if="type === '14'" #text>
@@ -232,10 +232,10 @@ function reset() {
               <strong>{{ cfg.title }}</strong> {{ cfg.text }}
             </p>
           </template>
-        </vd-card>
+        </f-card>
 
         <!-- Image-based cards (1–9) -->
-        <vd-card v-else :type="type" :parallax="cfg.parallax" style="max-width: 320px">
+        <f-card v-else :type="type" :parallax="cfg.parallax" style="max-width: 320px">
           <template v-if="cfg.title" #title
             ><h3>{{ cfg.title }}</h3></template
           >
@@ -244,23 +244,23 @@ function reset() {
             ><p>{{ cfg.text }}</p></template
           >
           <template v-if="cfg.interactions" #interactions>
-            <vd-btn icon="heart" color="danger" />
-            <vd-btn color="primary" prepend-icon="message-circle">54</vd-btn>
+            <f-btn icon="heart" color="danger" />
+            <f-btn color="primary" prepend-icon="message-circle">54</f-btn>
           </template>
-        </vd-card>
+        </f-card>
       </div>
 
       <div class="pg__config">
         <p class="pg__config-title">Configuration</p>
-        <vd-input v-model="cfg.title" :label="isSocial ? 'Name' : 'Title'" label-placeholder />
-        <vd-input v-model="cfg.text" :label="isSocial ? 'Content' : 'Text'" label-placeholder />
-        <vd-select v-if="!isDeck" v-model="cfg.image" :items="images" label="Image" />
+        <f-input v-model="cfg.title" :label="isSocial ? 'Name' : 'Title'" label-placeholder />
+        <f-input v-model="cfg.text" :label="isSocial ? 'Content' : 'Text'" label-placeholder />
+        <f-select v-if="!isDeck" v-model="cfg.image" :items="images" label="Image" />
         <div v-if="isImage" class="pg__checks">
-          <vd-checkbox v-model="cfg.interactions" label="Interactions" />
+          <f-checkbox v-model="cfg.interactions" label="Interactions" />
         </div>
         <div v-if="type === '6'" class="pg__slider">
           <p class="pg__config-title">Parallax intensity — {{ cfg.parallax }}px</p>
-          <vd-slider v-model="cfg.parallax" :min="20" :max="600" :step="10" color="primary" />
+          <f-slider v-model="cfg.parallax" :min="20" :max="600" :step="10" color="primary" />
         </div>
         <p v-if="isDeck" class="pg__hint">Drag the top card left or right to swipe.</p>
       </div>

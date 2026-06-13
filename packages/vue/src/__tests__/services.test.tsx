@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import {
-  createVueDL,
+  createFusionUI,
   useNotify,
   useLoading,
   useDialog,
@@ -11,8 +11,8 @@ import {
   dialogQueue,
   clearNotify,
   closeAllLoading,
-  VdNotifyHost,
-  VdDialogHost,
+  FNotifyHost,
+  FDialogHost,
 } from '../index'
 
 afterEach(() => {
@@ -79,10 +79,10 @@ describe('useLoading', () => {
 describe('useDialog', () => {
   it('confirm resolves true when accepted in the host', async () => {
     const result = useDialog().confirm({ title: 'Sure?', text: 'Proceed' })
-    mount(VdDialogHost, { global: { plugins: [createVueDL({ services: false })] } })
+    mount(FDialogHost, { global: { plugins: [createFusionUI({ services: false })] } })
     await nextTick()
 
-    const actions = document.body.querySelectorAll('.vd-popup__actions .vd-btn')
+    const actions = document.body.querySelectorAll('.fui-popup__actions .fui-btn')
     expect(actions.length).toBe(2)
     ;(actions[actions.length - 1] as HTMLElement).dispatchEvent(
       new MouseEvent('click', { bubbles: true })
@@ -105,14 +105,14 @@ describe('useDialog', () => {
   })
 })
 
-describe('VdNotifyHost', () => {
+describe('FNotifyHost', () => {
   it('renders queued notifications', async () => {
-    const wrapper = mount(VdNotifyHost, {
-      global: { plugins: [createVueDL({ services: false })] },
+    const wrapper = mount(FNotifyHost, {
+      global: { plugins: [createFusionUI({ services: false })] },
     })
     useNotify().notify({ title: 'Rendered', color: 'primary', duration: 0 })
     await nextTick()
-    expect(wrapper.find('.vd-notify').exists()).toBe(true)
+    expect(wrapper.find('.fui-notify').exists()).toBe(true)
     expect(wrapper.text()).toContain('Rendered')
   })
 })

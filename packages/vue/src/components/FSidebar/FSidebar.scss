@@ -1,0 +1,222 @@
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // Vuesax sidebar — a clean rounded drawer with a Discord-style icon rail.
+  .fui-sidebar {
+    --fui-sidebar-width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: calc(100% - 50px);
+    max-width: var(--fui-sidebar-width);
+    height: 100vh;
+    border-radius: 0 30px 30px 0;
+    background-color: rgb(var(--fui-theme-surface));
+    color: rgba(var(--fui-theme-on-surface), 0.92);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.07);
+    transform: translateX(-110%);
+    transition: all 0.25s ease;
+
+    &--open {
+      transform: translateX(0);
+    }
+    &--right {
+      left: auto;
+      right: 0;
+      border-radius: 30px 0 0 30px;
+      transform: translateX(110%);
+
+      &.fui-sidebar--open {
+        transform: translateX(0);
+      }
+    }
+    &--permanent {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      box-shadow: none;
+    }
+    &--square {
+      border-radius: 0;
+    }
+    &--reduce {
+      max-width: 50px;
+
+      .fui-sidebar__item-text,
+      .fui-sidebar__group-chevron,
+      .fui-sidebar__group-header span,
+      .fui-sidebar__logo,
+      .fui-sidebar__header {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .fui-sidebar__item--has-icon .fui-sidebar__item-text {
+        visibility: hidden;
+      }
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 18px 0;
+      transition: opacity 0.25s ease;
+
+      img {
+        max-width: 120px;
+        max-height: 35px;
+      }
+    }
+
+    &__header,
+    &__footer {
+      width: 100%;
+      padding: 10px;
+      transition: opacity 0.25s ease;
+    }
+
+    &__body {
+      flex: 1 1 auto;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+    }
+
+    // ---- Item -------------------------------------------------------------
+    &__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: all 0.25s ease;
+
+      // Rounded active pill that slides in from the left edge (Vuesax).
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        z-index: 2;
+        width: 10px;
+        height: 100%;
+        border-radius: 0 20px 20px 0;
+        background: rgb(var(--fui-theme-primary));
+        transform: translateX(-10px);
+        transition: all 0.25s ease;
+      }
+
+      &:hover {
+        opacity: 1;
+        padding-left: 25px;
+      }
+      &--active {
+        opacity: 1;
+        color: rgb(var(--fui-theme-primary));
+
+        &::after {
+          transform: translateX(0);
+        }
+      }
+      &--active:not(&--has-icon) {
+        padding-left: 25px;
+      }
+
+      &--has-icon {
+        padding: 0;
+
+        &:hover,
+        &.fui-sidebar__item--active {
+          padding-left: 8px;
+        }
+      }
+    }
+
+    &__item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 50px;
+      height: 47px;
+      font-size: 1.1rem;
+    }
+
+    &__item-text {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: opacity 0.25s ease;
+    }
+
+    &--no-line &__item::after {
+      display: none;
+    }
+
+    // ---- Group ------------------------------------------------------------
+    &__group-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      user-select: none;
+
+      // The header usually holds a fui-sidebar-item; keep it inert-looking.
+      .fui-sidebar__item::after {
+        display: none;
+      }
+    }
+
+    &__group-chevron {
+      position: absolute;
+      right: 14px;
+      opacity: 0.5;
+      transition: transform 0.25s ease;
+    }
+
+    &__group--open > &__group-header &__group-chevron {
+      transform: rotate(180deg);
+    }
+
+    &__group-content {
+      width: 100%;
+      overflow: hidden;
+      transition: height 0.25s ease;
+
+      .fui-sidebar__item {
+        font-size: 0.85rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 26px;
+
+        &:hover,
+        &.fui-sidebar__item--active {
+          padding-left: 34px;
+        }
+      }
+    }
+
+    &__group--open {
+      background: rgba(var(--fui-theme-on-surface), 0.025);
+      border-radius: 0 15px 15px 0;
+    }
+  }
+}

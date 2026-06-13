@@ -1,7 +1,7 @@
 {
-  "name": "@vue-dl/docs",
+  "name": "@fusionui/docs",
   "version": "0.0.0",
-  "description": "Documentation website for Vue DL with live component previews.",
+  "description": "Documentation website for FusionUI with live component previews.",
   "type": "module",
   "license": "MIT",
   "private": true,
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "vue": "^3.5.13",
-    "vue-dl": "workspace:*",
-    "@vue-dl/icons-feather": "workspace:*",
+    "@fusionui/vue": "workspace:*",
+    "@fusionui/icons": "workspace:*",
     "vue-router": "^4.5.0",
     "prismjs": "^1.29.0"
   },

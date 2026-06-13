@@ -1,0 +1,41 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-input-number {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &__el {
+      width: 64px;
+      text-align: center;
+      border: 2px solid transparent;
+      border-radius: var(--fui-radius-md);
+      background: rgb(var(--fui-surface-2));
+      color: rgba(var(--fui-theme-on-surface), 0.92);
+      font: inherit;
+      padding: 8px 6px;
+      outline: none;
+      transition: settings.$fui-transition;
+
+      &:focus {
+        border-color: rgb(var(--fui-theme-primary));
+        background: rgb(var(--fui-theme-surface));
+      }
+
+      // hide native spinners
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      appearance: textfield;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

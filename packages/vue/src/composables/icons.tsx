@@ -1,6 +1,6 @@
 import { computed, defineComponent, h, inject, toValue } from 'vue'
 import type { Component, FunctionalComponent, InjectionKey, MaybeRefOrGetter, PropType } from 'vue'
-import { featherAliases } from '@vue-dl/icons-feather'
+import { featherAliases } from '@fusionui/icons'
 import { propsFactory } from '../util/propsFactory'
 
 // Icon framework: resolves an icon value (alias / set:name / raw SVG / component)
@@ -34,11 +34,11 @@ export interface InternalIconOptions {
   aliases: IconAliases
 }
 
-export const IconSymbol: InjectionKey<InternalIconOptions> = Symbol.for('vuedl:icons')
+export const IconSymbol: InjectionKey<InternalIconOptions> = Symbol.for('fusionui:icons')
 
 /** Renders a single-path or multi-node SVG icon (Feather icons are multi-node). */
-export const VdSvgIcon = defineComponent({
-  name: 'VdSvgIcon',
+export const FSvgIcon = defineComponent({
+  name: 'FSvgIcon',
   props: iconRendererProps,
   setup(props) {
     return () => {
@@ -47,7 +47,7 @@ export const VdSvgIcon = defineComponent({
         : typeof props.icon === 'string'
           ? [h('path', { d: props.icon })]
           : []
-      return h(props.tag, { class: 'vd-icon__svg' }, [
+      return h(props.tag, { class: 'fui-icon__svg' }, [
         h(
           'svg',
           {
@@ -70,15 +70,15 @@ export const VdSvgIcon = defineComponent({
 })
 
 /** Renders a component icon (e.g. a generated Feather component). */
-export const VdComponentIcon = defineComponent({
-  name: 'VdComponentIcon',
+export const FComponentIcon = defineComponent({
+  name: 'FComponentIcon',
   props: iconRendererProps,
   setup(props) {
     return () => {
       const Icon = props.icon
       return h(
         props.tag,
-        { class: 'vd-icon__component' },
+        { class: 'fui-icon__component' },
         typeof Icon === 'function' || (Icon && typeof Icon === 'object')
           ? [h(Icon as Component)]
           : []
@@ -90,7 +90,7 @@ export const VdComponentIcon = defineComponent({
 export function createIcons(options: IconOptions = {}): InternalIconOptions {
   return {
     defaultSet: options.defaultSet ?? 'feather',
-    sets: { svg: { component: VdSvgIcon }, ...options.sets },
+    sets: { svg: { component: FSvgIcon }, ...options.sets },
     aliases: { ...featherAliases, ...options.aliases },
   }
 }
@@ -112,12 +112,11 @@ export const makeIconProps = propsFactory(
 /** Resolves an icon value (alias, `set:name`, raw SVG, or component) to a renderer. */
 export function useIcon(iconProp: MaybeRefOrGetter<IconValue | undefined>) {
   const icons = inject(IconSymbol)
-  if (!icons) throw new Error('[Vue DL] Could not find icon configuration')
+  if (!icons) throw new Error('[FusionUI] Could not find icon configuration')
 
   return computed(() => {
     let icon = toValue(iconProp)
-    if (icon == null)
-      return { component: VdComponentIcon, icon: undefined as IconValue | undefined }
+    if (icon == null) return { component: FComponentIcon, icon: undefined as IconValue | undefined }
 
     if (typeof icon === 'string') {
       icon = icon.trim()
@@ -127,15 +126,15 @@ export function useIcon(iconProp: MaybeRefOrGetter<IconValue | undefined>) {
     }
 
     if (Array.isArray(icon)) {
-      return { component: VdSvgIcon, icon }
+      return { component: FSvgIcon, icon }
     }
     if (typeof icon !== 'string') {
-      return { component: VdComponentIcon, icon }
+      return { component: FComponentIcon, icon }
     }
 
     const setName = Object.keys(icons.sets).find(s => (icon as string).startsWith(`${s}:`))
     const iconName = setName ? icon.slice(setName.length + 1) : icon
-    const set = icons.sets[setName ?? icons.defaultSet] ?? { component: VdSvgIcon }
+    const set = icons.sets[setName ?? icons.defaultSet] ?? { component: FSvgIcon }
     return { component: set.component, icon: iconName }
   })
 }

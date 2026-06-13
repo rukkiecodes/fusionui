@@ -1,0 +1,10 @@
+{
+  "displayName": "FRadioGroup",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

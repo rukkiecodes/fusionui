@@ -21,7 +21,7 @@ export interface FormProvide {
   readonly: ComputedRef<boolean>
 }
 
-export const FormSymbol: InjectionKey<FormProvide> = Symbol.for('vuedl:form')
+export const FormSymbol: InjectionKey<FormProvide> = Symbol.for('fusionui:form')
 
 export const makeFormProps = propsFactory(
   {

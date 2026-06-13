@@ -1,0 +1,52 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-slider {
+    --fui-slider-color: var(--fui-theme-primary);
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+
+    &__track {
+      position: relative;
+      flex: 1 1 auto;
+      height: 6px;
+      border-radius: 9999px;
+      background-color: rgba(var(--fui-theme-on-surface), 0.18);
+      cursor: pointer;
+    }
+
+    &__fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: inherit;
+      background-color: rgb(var(--fui-slider-color));
+    }
+
+    &__thumb {
+      position: absolute;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: rgb(var(--fui-slider-color));
+      box-shadow: 0 3px 10px -2px rgb(var(--fui-slider-color));
+      transform: translate(-50%, -50%);
+      cursor: grab;
+      transition: box-shadow settings.$fui-transition-duration;
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 6px rgba(var(--fui-slider-color), 0.2);
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

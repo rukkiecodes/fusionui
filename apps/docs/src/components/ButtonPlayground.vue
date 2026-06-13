@@ -44,8 +44,8 @@ const code = computed(() => {
   if (cfg.block) a.push('block')
   if (cfg.loading) a.push('loading')
   if (cfg.disabled) a.push('disabled')
-  if (!a.length) return `<vd-btn>${cfg.text}</vd-btn>`
-  return `<vd-btn\n  ${a.join('\n  ')}\n>\n  ${cfg.text}\n</vd-btn>`
+  if (!a.length) return `<f-btn>${cfg.text}</f-btn>`
+  return `<f-btn\n  ${a.join('\n  ')}\n>\n  ${cfg.text}\n</f-btn>`
 })
 
 async function copy() {
@@ -75,17 +75,17 @@ function reset() {
       </div>
       <div class="pg__bar-actions">
         <button class="pg__icon" title="Reset" @click="reset">
-          <vd-icon icon="refresh-cw" size="small" />
+          <f-icon icon="refresh-cw" size="small" />
         </button>
         <button class="pg__icon" title="Copy code" @click="copy">
-          <vd-icon :icon="copied ? 'check' : 'copy'" size="small" />
+          <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
         </button>
       </div>
     </div>
 
     <div class="pg__body">
       <div class="pg__preview">
-        <vd-btn
+        <f-btn
           :variant="variant"
           :color="cfg.color"
           :size="cfg.size"
@@ -97,21 +97,21 @@ function reset() {
           :disabled="cfg.disabled"
         >
           {{ cfg.text }}
-        </vd-btn>
+        </f-btn>
       </div>
 
       <div class="pg__config">
         <p class="pg__config-title">Configuration</p>
-        <vd-input v-model="cfg.text" label="Text" label-placeholder />
-        <vd-select v-model="cfg.color" :items="colors" label="Color" />
-        <vd-select v-model="cfg.size" :items="sizes" label="Size" />
+        <f-input v-model="cfg.text" label="Text" label-placeholder />
+        <f-select v-model="cfg.color" :items="colors" label="Color" />
+        <f-select v-model="cfg.size" :items="sizes" label="Size" />
         <div class="pg__checks">
-          <vd-checkbox v-model="cfg.prependIcon" label="Prepend icon" />
-          <vd-checkbox v-model="cfg.appendIcon" label="Append icon" />
-          <vd-checkbox v-model="cfg.rounded" label="Rounded (pill)" />
-          <vd-checkbox v-model="cfg.block" label="Block" />
-          <vd-checkbox v-model="cfg.loading" label="Loading" />
-          <vd-checkbox v-model="cfg.disabled" label="Disabled" />
+          <f-checkbox v-model="cfg.prependIcon" label="Prepend icon" />
+          <f-checkbox v-model="cfg.appendIcon" label="Append icon" />
+          <f-checkbox v-model="cfg.rounded" label="Rounded (pill)" />
+          <f-checkbox v-model="cfg.block" label="Block" />
+          <f-checkbox v-model="cfg.loading" label="Loading" />
+          <f-checkbox v-model="cfg.disabled" label="Disabled" />
         </div>
       </div>
     </div>

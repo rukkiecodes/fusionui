@@ -1,0 +1,367 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-field {
+    --fui-field-color: var(--fui-theme-primary);
+    display: inline-flex;
+    flex-direction: column;
+    font-family: var(--fui-font-family);
+    // Match Vuesax's compact density (input ≈ 38px tall, 13.3px text).
+    // Fixed width: overlays (icons, spinner, clear) are absolutely positioned,
+    // so nothing that appears inside ever resizes the field or shifts the
+    // layout around it.
+    font-size: 0.83rem;
+    width: 200px;
+
+    &--block {
+      display: flex;
+      width: 100%;
+    }
+
+    &__control {
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 11px;
+      min-height: 38px;
+      background-color: rgb(var(--fui-surface-2));
+      border: 2px solid transparent;
+      border-radius: var(--fui-radius-md);
+      transition: settings.$fui-transition;
+    }
+
+    &__input {
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: rgba(var(--fui-theme-on-surface), 0.9);
+        font: inherit;
+        line-height: 1.5;
+        padding: 5px 0;
+        transition: padding 0.25s ease;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+    }
+
+    // Labels (Vuesax). `label-placeholder` reads as placeholder text at rest
+    // and floats up above the field on focus/value; a plain `label` is pinned
+    // permanently in that same floated spot. The floated label keeps the plain
+    // text color — no accent — so focusing never flashes color around the field.
+    &--floating-label,
+    &--pinned-label {
+      margin-top: 18px;
+    }
+    &__label {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      white-space: nowrap;
+      color: rgba(var(--fui-theme-on-surface), 0.5);
+      transition: settings.$fui-transition-fast;
+    }
+    &--floating-label.fui-field--active &__label,
+    &__label--pinned {
+      top: -7px;
+      left: 2px !important;
+      transform: translateY(-100%);
+      font-size: 0.75rem;
+      color: rgba(var(--fui-theme-on-surface), 0.9);
+    }
+
+    // Prepend / append icons always sit in a little card that lifts out on
+    // focus (Vuesax) — matches the fill at rest, pops as the fill darkens.
+    // Both are absolute overlays: they never contribute to layout.
+    &__prepend,
+    &__append {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: rgb(var(--fui-surface-2));
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+    &__prepend {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      margin-top: -15px;
+    }
+    &__after {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      margin-top: -15px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    // Reserve room for the overlays so text never collides or shifts.
+    &--has-prepend &__input {
+      padding-left: 31px;
+    }
+    &--has-after &__input {
+      padding-right: 31px;
+    }
+    &--has-prepend &__label {
+      left: 31px;
+    }
+    &--focused &__prepend {
+      transform: translate(-8px, -9px);
+      box-shadow: -12px 12px 20px -10px rgba(0, 0, 0, 0.3);
+    }
+    &--focused &__append {
+      transform: translate(8px, -9px);
+      box-shadow: 12px 12px 20px -10px rgba(0, 0, 0, 0.3);
+    }
+    &--colored.fui-field--focused &__prepend,
+    &--colored.fui-field--focused &__append {
+      color: rgb(var(--fui-field-color));
+    }
+    &__icon {
+      flex-shrink: 0;
+      color: rgba(var(--fui-theme-on-surface), 0.5);
+      transition: settings.$fui-transition;
+    }
+    // Icons only take the accent when the field is explicitly colored.
+    &--colored.fui-field--focused &__icon {
+      color: rgb(var(--fui-field-color));
+    }
+
+    &__clear,
+    &__reveal {
+      cursor: pointer;
+      pointer-events: auto;
+      &:hover {
+        color: rgb(var(--fui-field-color));
+      }
+    }
+    &__clear:hover {
+      color: rgb(var(--fui-theme-danger));
+    }
+
+    // Loading spinner
+    &__loading {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 2px solid rgb(var(--fui-field-color));
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: fui-field-spin 0.8s linear infinite;
+      }
+    }
+
+    // ---------- Default variant (filled, Vuesax) ----------
+    // A soft gray fill (gray-2) that lightens slightly on focus — staying
+    // visible — while a colored, rounded bottom border slides in and the text
+    // nudges to the right.
+    &--variant-default {
+      .fui-field__control {
+        background-color: rgb(var(--fui-surface-2));
+        border: 2px solid transparent;
+      }
+      &.fui-field--focused .fui-field__control {
+        background-color: rgb(var(--fui-surface-3));
+      }
+      &.fui-field--focused .fui-field__input input,
+      &.fui-field--focused .fui-field__input textarea {
+        padding-left: 5px;
+      }
+      // Explicitly colored fields get the Vuesax colored bottom border.
+      &.fui-field--colored.fui-field--focused .fui-field__control {
+        border-bottom-color: rgb(var(--fui-field-color));
+      }
+    }
+
+    // Colored fields tint the floated / pinned label while focused.
+    &--colored.fui-field--focused &__label--pinned,
+    &--colored.fui-field--floating-label.fui-field--focused &__label {
+      color: rgb(var(--fui-field-color));
+    }
+
+    // ---------- Underlined variant ----------
+    &--variant-underlined {
+      .fui-field__control {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .fui-field__line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: rgba(var(--fui-theme-on-surface), 0.2);
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          background-color: rgb(var(--fui-field-color));
+          transform: translateX(-50%);
+          transition: width 0.25s settings.$fui-transition-timing;
+        }
+      }
+      &.fui-field--focused .fui-field__line::after {
+        width: 100%;
+      }
+    }
+
+    // ---------- Shadow variant ----------
+    &--variant-shadow {
+      .fui-field__control {
+        background-color: rgb(var(--fui-theme-surface));
+        border: 2px solid transparent;
+        box-shadow: 0 4px 18px -6px rgba(0, 0, 0, 0.12);
+      }
+      &.fui-field--focused .fui-field__control {
+        transform: translateY(2px);
+        box-shadow: 0 10px 24px -8px rgba(var(--fui-field-color), 0.45);
+      }
+    }
+
+    // ---------- States (validation + manual `state`) ----------
+    // Vuesax: the whole field tints with the state color — fill, text,
+    // placeholder, label, and icons — without a harsh border.
+    &--tinted {
+      .fui-field__control {
+        background-color: rgba(var(--fui-field-color), 0.12);
+      }
+      .fui-field__input input,
+      .fui-field__input textarea,
+      .fui-field__input select {
+        color: rgb(var(--fui-field-color));
+
+        &::placeholder {
+          color: rgba(var(--fui-field-color), 0.6);
+        }
+      }
+      .fui-field__label,
+      .fui-field__icon {
+        color: rgb(var(--fui-field-color));
+      }
+      .fui-field__prepend,
+      .fui-field__append {
+        background: rgba(var(--fui-field-color), 0.12);
+      }
+    }
+    &--tinted.fui-field--focused .fui-field__control {
+      background-color: rgba(var(--fui-field-color), 0.16);
+    }
+
+    // ---------- Square / transparent ----------
+    &--square .fui-field__control {
+      border-radius: 0;
+    }
+    &--transparent .fui-field__control {
+      background-color: transparent;
+    }
+
+    // ---------- Strength / progress bar ----------
+    &__progress {
+      position: relative;
+      height: 3px;
+      margin-top: 6px;
+      border-radius: 3px;
+      background-color: rgba(var(--fui-theme-on-surface), 0.1);
+      overflow: hidden;
+
+      &-bar {
+        height: 100%;
+        border-radius: 3px;
+        transition:
+          width 0.25s ease,
+          background-color 0.25s ease;
+      }
+      &--danger &-bar {
+        background-color: rgb(var(--fui-theme-danger));
+      }
+      &--warning &-bar {
+        background-color: rgb(var(--fui-theme-warning));
+      }
+      &--success &-bar {
+        background-color: rgb(var(--fui-theme-success));
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &__messages {
+      min-height: 18px;
+      margin-top: 5px;
+      padding: 0 6px;
+      font-size: 0.72rem;
+      color: rgba(var(--fui-theme-on-surface), 0.55);
+      transition: settings.$fui-transition-fast;
+
+      &--error {
+        color: rgb(var(--fui-theme-danger));
+      }
+    }
+
+    // Vuesax `message-{color}` slots.
+    &__message {
+      margin-top: 4px;
+      padding: 0 6px;
+      font-size: 0.72rem;
+
+      &--success {
+        color: rgb(var(--fui-theme-success));
+      }
+      &--danger {
+        color: rgb(var(--fui-theme-danger));
+      }
+      &--warn {
+        color: rgb(var(--fui-theme-warning));
+      }
+      &--primary {
+        color: rgb(var(--fui-theme-primary));
+      }
+    }
+    &--success &__messages {
+      color: rgb(var(--fui-theme-success));
+    }
+  }
+
+  @keyframes fui-field-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

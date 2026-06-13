@@ -16,10 +16,8 @@ function upload() {
 
 <template>
   <div class="d-flex" style="gap: 12px; align-items: center; flex-wrap: wrap">
-    <vd-btn :loading="loading" @click="load">Save</vd-btn>
-    <vd-btn :loading="loading" color="success" variant="tonal" @click="load">Submit</vd-btn>
-    <vd-btn :upload="uploading" color="primary" prepend-icon="upload" @click="upload"
-      >Upload</vd-btn
-    >
+    <f-btn :loading="loading" @click="load">Save</f-btn>
+    <f-btn :loading="loading" color="success" variant="tonal" @click="load">Submit</f-btn>
+    <f-btn :upload="uploading" color="primary" prepend-icon="upload" @click="upload">Upload</f-btn>
   </div>
 </template>

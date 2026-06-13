@@ -1,0 +1,55 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-list {
+    padding: 8px;
+    background-color: rgb(var(--fui-theme-surface));
+
+    &--nav {
+      padding: 8px;
+    }
+  }
+
+  .fui-list-item {
+    --fui-list-item-color: var(--fui-theme-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: var(--fui-radius-sm);
+    transition: background-color settings.$fui-transition-duration;
+
+    &__content {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &__title {
+      font-size: 0.95rem;
+    }
+
+    &__subtitle {
+      font-size: 0.8rem;
+      opacity: 0.65;
+    }
+
+    &--link {
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(var(--fui-theme-on-surface), 0.06);
+      }
+    }
+
+    &--active {
+      background-color: rgba(var(--fui-list-item-color), 0.12);
+      color: rgb(var(--fui-list-item-color));
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

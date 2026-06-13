@@ -1,6 +1,6 @@
 # Button
 
-Buttons are a fundamental part of any project. With Vue DL you add a great
+Buttons are a fundamental part of any project. With FusionUI you add a great
 button with a single line of code — every button ships with all of its states
 (`active`, `focus`, `hover`, `disabled`) so implementation stays simple.
 
@@ -115,7 +115,7 @@ Provide an `animate` slot and an `animation-type`
 
 ## Button group
 
-Group buttons into a single connected control with `VdBtnGroup` — `v-model`
+Group buttons into a single connected control with `FBtnGroup` — `v-model`
 tracks the selected value.
 
 <Example file="button/group" />
@@ -128,4 +128,4 @@ Set `href` to render the button as an anchor.
 
 ## API
 
-<ApiTable name="VdBtn" />
+<ApiTable name="FBtn" />

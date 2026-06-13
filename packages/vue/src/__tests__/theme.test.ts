@@ -1,27 +1,27 @@
 import { describe, expect, it } from 'vitest'
 import { createTheme } from '../composables/theme'
-import { createVueDL } from '../index'
+import { createFusionUI } from '../index'
 
 describe('theme engine', () => {
   it('generates rgb-triplet css variables from the palette', () => {
     const theme = createTheme()
-    expect(theme.styles.value).toContain('--vd-theme-primary: 25,91,255')
-    expect(theme.styles.value).toContain('--vd-theme-background: 255,255,255')
+    expect(theme.styles.value).toContain('--fui-theme-primary: 25,91,255')
+    expect(theme.styles.value).toContain('--fui-theme-background: 255,255,255')
   })
 
   it('uses curated on-colors and auto-derives the rest', () => {
     const theme = createTheme()
     // curated: white on primary, dark on warning
-    expect(theme.styles.value).toContain('--vd-theme-on-primary: 255,255,255')
-    expect(theme.styles.value).toContain('--vd-theme-on-warning: 30,30,30')
+    expect(theme.styles.value).toContain('--fui-theme-on-primary: 255,255,255')
+    expect(theme.styles.value).toContain('--fui-theme-on-warning: 30,30,30')
     // curated blue-gray body text on light surfaces (Vuesax v4 #2c3e50)
-    expect(theme.styles.value).toContain('--vd-theme-on-background: 44,62,80')
+    expect(theme.styles.value).toContain('--fui-theme-on-background: 44,62,80')
   })
 
   it('emits color utility classes that reference the variables', () => {
     const theme = createTheme()
     expect(theme.styles.value).toContain('.bg-primary')
-    expect(theme.styles.value).toContain('background-color: rgb(var(--vd-theme-primary))')
+    expect(theme.styles.value).toContain('background-color: rgb(var(--fui-theme-primary))')
     expect(theme.styles.value).toContain('.text-primary')
     expect(theme.styles.value).toContain('.border-primary')
   })
@@ -29,10 +29,10 @@ describe('theme engine', () => {
   it('wraps output in cascade layers', () => {
     const theme = createTheme()
     expect(theme.styles.value).toContain(
-      '@layer vd-tokens, vd-theme, vd-base, vd-components, vd-utilities;'
+      '@layer fui-tokens, fui-theme, fui-base, fui-components, fui-utilities;'
     )
-    expect(theme.styles.value).toContain('@layer vd-theme {')
-    expect(theme.styles.value).toContain('@layer vd-utilities {')
+    expect(theme.styles.value).toContain('@layer fui-theme {')
+    expect(theme.styles.value).toContain('@layer fui-utilities {')
   })
 
   it('change() and toggle() switch the active theme', () => {
@@ -57,13 +57,13 @@ describe('theme engine', () => {
   })
 
   it('injects a stylesheet and root class on install', () => {
-    const vuedl = createVueDL({ theme: { defaultTheme: 'dark' } })
+    const fusionui = createFusionUI({ theme: { defaultTheme: 'dark' } })
     const app = { provide() {}, directive() {}, component() {}, mixin() {} } as never
-    vuedl.theme.install(app)
+    fusionui.theme.install(app)
 
-    const style = document.getElementById('vue-dl-theme-stylesheet')
+    const style = document.getElementById('fusionui-theme-stylesheet')
     expect(style).not.toBeNull()
-    expect(style?.textContent).toContain('--vd-theme-primary')
-    expect(document.documentElement.classList.contains('vd-theme--dark')).toBe(true)
+    expect(style?.textContent).toContain('--fui-theme-primary')
+    expect(document.documentElement.classList.contains('fui-theme--dark')).toBe(true)
   })
 })

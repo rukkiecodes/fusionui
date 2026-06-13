@@ -1,0 +1,66 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-tabs {
+    --fui-tabs-color: var(--fui-theme-primary);
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
+
+    &--align-center {
+      justify-content: center;
+    }
+    &--align-end {
+      justify-content: flex-end;
+    }
+    &--grow .fui-tab {
+      flex: 1 1 auto;
+    }
+
+    &__indicator {
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      background-color: rgb(var(--fui-tabs-color));
+      border-radius: 2px;
+      transition:
+        left 0.25s settings.$fui-transition-timing,
+        width 0.25s settings.$fui-transition-timing;
+    }
+  }
+
+  .fui-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 46px;
+    padding: 0 18px;
+    border: none;
+    background: transparent;
+    color: rgba(var(--fui-theme-on-surface), 0.7);
+    font: inherit;
+    font-weight: settings.$fui-font-weight-medium;
+    cursor: pointer;
+    transition: color settings.$fui-transition-duration;
+
+    &:hover {
+      color: rgb(var(--fui-tabs-color));
+    }
+
+    &--active {
+      color: rgb(var(--fui-tabs-color));
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .fui-tab-panel {
+    padding: 18px 4px;
+  }
+}

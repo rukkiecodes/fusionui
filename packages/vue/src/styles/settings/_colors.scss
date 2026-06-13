@@ -1,7 +1,7 @@
 // Vuesax palette. Mirrors the defaults in composables/theme.ts so SASS-authored
 // components can reference the same source of truth at build time if needed.
 
-$vd-palette: (
+$fui-palette: (
   'primary': #1f74ff,
   'secondary': #7931b1,
   'success': #46c93a,
@@ -12,5 +12,5 @@ $vd-palette: (
 ) !default;
 
 // Semantic surface colors (light theme baseline)
-$vd-background: #ffffff !default;
-$vd-surface: #ffffff !default;
+$fui-background: #ffffff !default;
+$fui-surface: #ffffff !default;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// create-vue-dl — scaffold a Vite + Vue 3 project preconfigured with Vue DL.
+// create-fusionui — scaffold a Vite + Vue 3 project preconfigured with FusionUI.
 //
-//   npm create vue-dl@latest [dir] [--ts] [--template <name>] [--no-install] [-y]
+//   npm create fusionui@latest [dir] [--ts] [--template <name>] [--no-install] [-y]
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
@@ -25,10 +25,10 @@ const argv = minimist(process.argv.slice(2), {
 
 if (argv.help) {
   console.log(`
-${bold('create-vue-dl')} — scaffold a Vue 3 + Vue DL app
+${bold('create-fusionui')} — scaffold a Vue 3 + FusionUI app
 
 ${bold('Usage')}
-  npm create vue-dl@latest [dir] [options]
+  npm create fusionui@latest [dir] [options]
 
 ${bold('Options')}
   -t, --template <name>   ${TEMPLATES.join(' | ')}
@@ -81,7 +81,7 @@ async function run() {
       type: 'text',
       name: 'projectName',
       message: 'Project name:',
-      initial: 'my-vue-dl-app',
+      initial: 'my-fusionui-app',
     })
   }
   if (!template && !skipPrompts) {
@@ -158,7 +158,7 @@ ${green('✔ Done!')} Next steps:
   ${cyan(`cd ${targetDir}`)}${install ? '' : `\n  ${cyan(`${pm} install`)}`}
   ${cyan(runCmd)}
 
-Docs: ${cyan('https://github.com/vue-dl/vue-dl')}
+Docs: ${cyan('https://github.com/fusionui/fusionui')}
 `)
 }
 

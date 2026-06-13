@@ -6,5 +6,5 @@ const progress = computed(() => checks.reduce((p, re) => p + (re.test(pwd.value)
 </script>
 
 <template>
-  <vd-input v-model="pwd" type="password" label="Password" :progress="progress" />
+  <f-input v-model="pwd" type="password" label="Password" :progress="progress" />
 </template>

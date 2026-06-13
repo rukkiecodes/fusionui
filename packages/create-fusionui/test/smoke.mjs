@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const cli = join(here, '..', 'index.mjs')
-const tmp = mkdtempSync(join(tmpdir(), 'vue-dl-create-'))
+const tmp = mkdtempSync(join(tmpdir(), 'fusionui-create-'))
 
 function assert(cond, msg) {
   if (!cond) {
@@ -38,7 +38,7 @@ try {
   assert(existsSync(join(jsApp, 'src/main.js')), 'js: src/main.js exists')
   assert(!existsSync(join(jsApp, 'src/main.ts')), 'js: no TS entry')
 
-  console.log('✔ create-vue-dl smoke test passed')
+  console.log('✔ create-fusionui smoke test passed')
 } finally {
   rmSync(tmp, { recursive: true, force: true })
 }

@@ -7,7 +7,7 @@ export type DefaultsInstance = Record<string, Record<string, unknown> | undefine
   global?: Record<string, unknown>
 }
 
-export const DefaultsSymbol: InjectionKey<Ref<DefaultsInstance>> = Symbol.for('vuedl:defaults')
+export const DefaultsSymbol: InjectionKey<Ref<DefaultsInstance>> = Symbol.for('fusionui:defaults')
 
 export function createDefaults(options?: DefaultsInstance): Ref<DefaultsInstance> {
   return ref(options ?? {})
@@ -15,12 +15,12 @@ export function createDefaults(options?: DefaultsInstance): Ref<DefaultsInstance
 
 export function injectDefaults(): Ref<DefaultsInstance> {
   const defaults = inject(DefaultsSymbol)
-  if (!defaults) throw new Error('[Vue DL] Could not find defaults instance')
+  if (!defaults) throw new Error('[FusionUI] Could not find defaults instance')
   return defaults
 }
 
 /**
- * Scoped override of defaults (powers `<VdDefaultsProvider>`). Merges the new
+ * Scoped override of defaults (powers `<FDefaultsProvider>`). Merges the new
  * defaults over whatever is currently provided.
  */
 export function provideDefaults(defaults?: DefaultsInstance): Ref<DefaultsInstance> {

@@ -3,51 +3,51 @@
 @use 'tools';
 @use 'components';
 
-// Cascade layer order. Everything Vue DL ships is layered so unlayered consumer
-// styles always win. The theme runtime injects into vd-theme / vd-utilities.
-@layer vd-tokens, vd-theme, vd-base, vd-components, vd-utilities;
+// Cascade layer order. Everything FusionUI ships is layered so unlayered consumer
+// styles always win. The theme runtime injects into fui-theme / fui-utilities.
+@layer fui-tokens, fui-theme, fui-base, fui-components, fui-utilities;
 
 // ---------------------------------------------------------------------------
 // Design tokens as CSS custom properties (overridable by consumers)
 // ---------------------------------------------------------------------------
-@layer vd-tokens {
+@layer fui-tokens {
   :root {
-    --vd-radius-sm: #{settings.$vd-radius-sm};
-    --vd-radius-md: #{settings.$vd-radius-md};
-    --vd-radius-lg: #{settings.$vd-radius-lg};
-    --vd-radius-xl: #{settings.$vd-radius-xl};
-    --vd-radius-pill: #{settings.$vd-radius-pill};
-    --vd-radius-circle: #{settings.$vd-radius-circle};
+    --fui-radius-sm: #{settings.$fui-radius-sm};
+    --fui-radius-md: #{settings.$fui-radius-md};
+    --fui-radius-lg: #{settings.$fui-radius-lg};
+    --fui-radius-xl: #{settings.$fui-radius-xl};
+    --fui-radius-pill: #{settings.$fui-radius-pill};
+    --fui-radius-circle: #{settings.$fui-radius-circle};
 
-    --vd-transition-duration: #{settings.$vd-transition-duration};
-    --vd-transition-timing: #{settings.$vd-transition-timing};
-    --vd-transition: #{settings.$vd-transition};
+    --fui-transition-duration: #{settings.$fui-transition-duration};
+    --fui-transition-timing: #{settings.$fui-transition-timing};
+    --fui-transition: #{settings.$fui-transition};
 
-    --vd-font-family: #{settings.$vd-font-family};
-    --vd-font-weight-regular: #{settings.$vd-font-weight-regular};
-    --vd-font-weight-medium: #{settings.$vd-font-weight-medium};
-    --vd-font-weight-bold: #{settings.$vd-font-weight-bold};
+    --fui-font-family: #{settings.$fui-font-family};
+    --fui-font-weight-regular: #{settings.$fui-font-weight-regular};
+    --fui-font-weight-medium: #{settings.$fui-font-weight-medium};
+    --fui-font-weight-bold: #{settings.$fui-font-weight-bold};
 
-    --vd-spacer: #{settings.$vd-spacer};
+    --fui-spacer: #{settings.$fui-spacer};
   }
 }
 
 // ---------------------------------------------------------------------------
 // Base / reset
 // ---------------------------------------------------------------------------
-@layer vd-base {
+@layer fui-base {
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
 
-  .vd-application {
-    font-family: var(--vd-font-family);
+  .fui-application {
+    font-family: var(--fui-font-family);
     line-height: 1.5;
-    letter-spacing: #{settings.$vd-letter-spacing};
-    background-color: rgb(var(--vd-theme-background));
-    color: rgba(var(--vd-theme-on-background), var(--vd-high-emphasis-opacity, 0.92));
+    letter-spacing: #{settings.$fui-letter-spacing};
+    background-color: rgb(var(--fui-theme-background));
+    color: rgba(var(--fui-theme-on-background), var(--fui-high-emphasis-opacity, 0.92));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -56,8 +56,8 @@
 // ---------------------------------------------------------------------------
 // Component-level styles that don't belong to a single component
 // ---------------------------------------------------------------------------
-@layer vd-components {
-  .vd-icon {
+@layer fui-components {
+  .fui-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -67,32 +67,32 @@
     flex-shrink: 0;
   }
 
-  .vd-icon svg {
+  .fui-icon svg {
     width: 1em;
     height: 1em;
   }
 
-  .vd-icon--start {
+  .fui-icon--start {
     margin-inline-end: 8px;
   }
-  .vd-icon--end {
+  .fui-icon--end {
     margin-inline-start: 8px;
   }
-  .vd-icon--spin svg {
-    animation: vd-spin 1s linear infinite;
+  .fui-icon--spin svg {
+    animation: fui-spin 1s linear infinite;
   }
 
-  @keyframes vd-spin {
+  @keyframes fui-spin {
     to {
       transform: rotate(360deg);
     }
   }
 
-  .vd-ripple {
+  .fui-ripple {
     overflow: hidden;
   }
 
-  .vd-ripple__container {
+  .fui-ripple__container {
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -100,7 +100,7 @@
     overflow: hidden;
   }
 
-  .vd-ripple__effect {
+  .fui-ripple__effect {
     position: absolute;
     width: 0;
     height: 0;
@@ -114,8 +114,8 @@
       opacity 0.6s ease;
     background: radial-gradient(
       circle,
-      rgba(var(--vd-ripple-color, 255, 255, 255), 0.05),
-      rgba(var(--vd-ripple-color, 255, 255, 255), 0.55)
+      rgba(var(--fui-ripple-color, 255, 255, 255), 0.05),
+      rgba(var(--fui-ripple-color, 255, 255, 255), 0.55)
     );
     will-change: width, height, opacity;
   }
@@ -124,33 +124,33 @@
 // ---------------------------------------------------------------------------
 // Static utilities (color utilities are generated at runtime by the theme)
 // ---------------------------------------------------------------------------
-@layer vd-utilities {
-  @each $level, $shadow in settings.$vd-shadows {
+@layer fui-utilities {
+  @each $level, $shadow in settings.$fui-shadows {
     .elevation-#{$level} {
       box-shadow: #{$shadow} !important;
     }
   }
 
   .rounded {
-    border-radius: var(--vd-radius-md) !important;
+    border-radius: var(--fui-radius-md) !important;
   }
   .rounded-0 {
     border-radius: 0 !important;
   }
   .rounded-sm {
-    border-radius: var(--vd-radius-sm) !important;
+    border-radius: var(--fui-radius-sm) !important;
   }
   .rounded-md {
-    border-radius: var(--vd-radius-md) !important;
+    border-radius: var(--fui-radius-md) !important;
   }
   .rounded-lg {
-    border-radius: var(--vd-radius-lg) !important;
+    border-radius: var(--fui-radius-lg) !important;
   }
   .rounded-pill {
-    border-radius: var(--vd-radius-pill) !important;
+    border-radius: var(--fui-radius-pill) !important;
   }
   .rounded-circle {
-    border-radius: var(--vd-radius-circle) !important;
+    border-radius: var(--fui-radius-circle) !important;
   }
 
   .d-none {

@@ -1,0 +1,10 @@
+{
+  "displayName": "FCheckbox",
+  "props": {},
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

@@ -2,7 +2,7 @@
 // Adds a custom icon to the Feather set, then regenerates the modules.
 //
 //   node scripts/add-icon.mjs <name> <path-to-svg>
-//   pnpm --filter @vue-dl/icons-feather add-icon my-logo ./my-logo.svg
+//   pnpm --filter @fusionui/icons add-icon my-logo ./my-logo.svg
 //
 // The SVG must follow Feather conventions so it matches the rest of the set:
 //   - 24x24 viewBox
@@ -32,4 +32,4 @@ if (!existsSync(src)) {
 
 copyFileSync(src, join(__dirname, '..', 'svg', `${name}.svg`))
 execFileSync('node', [join(__dirname, 'build-icons.mjs')], { stdio: 'inherit' })
-console.log(`Added icon "${name}". Import it as the PascalCase export from @vue-dl/icons-feather.`)
+console.log(`Added icon "${name}". Import it as the PascalCase export from @fusionui/icons.`)

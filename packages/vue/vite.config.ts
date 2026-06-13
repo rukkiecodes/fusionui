@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      external: ['vue', '@vue-dl/icons-feather'],
+      external: ['vue', '@fusionui/icons'],
       output: { exports: 'named' },
     },
     emptyOutDir: true,

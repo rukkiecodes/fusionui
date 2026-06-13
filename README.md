@@ -1,23 +1,23 @@
-# Vue DL — Vue Design Library
+# FusionUI
 
-A Vue 3 component framework with the engineering **stability of [Vuetify](https://vuetifyjs.com)**
-and the visual **polish of [Vuesax](https://vuesax.com)** — powered by Feather icons.
+A non-generic, performance-obsessed design system for the Vue ecosystem —
+the engineering **stability of [Vuetify](https://vuetifyjs.com)** with the
+visual **polish of [Vuesax](https://vuesax.com)**, unified by a single source
+of design truth and a signature GPU-accelerated visual layer.
 
-> 🚧 **Status:** early development. Foundation scaffolding is in place (Batch 01).
-> See [`plans/`](./plans) for the full build roadmap.
+> 🚧 **Status:** active development. Docs deploy from `main` to
+> [rukkiecodes.github.io/fusionui](https://rukkiecodes.github.io/fusionui/).
 
 ## Monorepo layout
 
 ```
 packages/
-  vue-dl/            # the component library (core)
-  icons-feather/     # @vue-dl/icons-feather — default Feather icon set
-  api-generator/     # @vue-dl/api-generator — generates component API docs
-  create-vue-dl/     # `npm create vue-dl` scaffolding CLI
+  vue/               # @fusionui/vue — the Vue 3 component library
+  icons/             # @fusionui/icons — default Feather icon set
+  api-generator/     # @fusionui/api-generator — generates component API docs
+  create-fusionui/   # `npm create fusionui` scaffolding CLI
 apps/
   docs/              # documentation website (live component preview)
-templates/           # starter templates used by the CLI
-plans/               # batched build plans
 ```
 
 ## Prerequisites

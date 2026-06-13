@@ -7,14 +7,14 @@ const addr = ref('')
 
 <template>
   <div style="display: flex; gap: 18px 16px; flex-wrap: wrap; justify-content: center">
-    <vd-input v-model="name" variant="shadow" placeholder="Name" />
-    <vd-input
+    <f-input v-model="name" variant="shadow" placeholder="Name" />
+    <f-input
       v-model="pass"
       type="password"
       variant="shadow"
       placeholder="Password"
       prepend-icon="lock"
     />
-    <vd-input v-model="addr" variant="shadow" placeholder="Address" append-icon="map-pin" />
+    <f-input v-model="addr" variant="shadow" placeholder="Address" append-icon="map-pin" />
   </div>
 </template>

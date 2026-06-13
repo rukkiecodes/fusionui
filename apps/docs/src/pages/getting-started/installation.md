@@ -5,14 +5,14 @@
 The fastest way to start is the project scaffolder:
 
 ```bash
-npm create vue-dl@latest
-# or: pnpm create vue-dl / yarn create vue-dl / bun create vue-dl
+npm create fusionui@latest
+# or: pnpm create fusionui / yarn create fusionui / bun create fusionui
 ```
 
 ## Add to an existing project
 
 ```bash
-pnpm add vue-dl @vue-dl/icons-feather
+pnpm add fusionui @fusionui/icons
 ```
 
 Register the plugin and import the styles:
@@ -20,12 +20,12 @@ Register the plugin and import the styles:
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import { createVueDL } from 'vue-dl'
-import { featherSet, featherAliases } from '@vue-dl/icons-feather'
-import 'vue-dl/styles'
+import { createFusionUI } from '@fusionui/vue'
+import { featherSet, featherAliases } from '@fusionui/icons'
+import '@fusionui/vue/styles'
 import App from './App.vue'
 
-const vuedl = createVueDL({
+const fusionui = createFusionUI({
   theme: { defaultTheme: 'light' },
   icons: {
     defaultSet: 'feather',
@@ -34,7 +34,7 @@ const vuedl = createVueDL({
   },
 })
 
-createApp(App).use(vuedl).mount('#app')
+createApp(App).use(fusionui).mount('#app')
 ```
 
 That's it — every `Vd*` component is registered globally:
