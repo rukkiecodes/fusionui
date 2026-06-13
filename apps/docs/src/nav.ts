@@ -16,6 +16,7 @@ export const nav: NavSection[] = [
       { title: 'Installation', to: '/getting-started/installation' },
       { title: 'Design Tokens', to: '/getting-started/design-tokens' },
       { title: 'Theme & Colors', to: '/getting-started/theme' },
+      { title: 'Native (mobile)', to: '/getting-started/native' },
       { title: 'Icons', to: '/getting-started/icons' },
     ],
   },

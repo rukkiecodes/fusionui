@@ -1,0 +1,51 @@
+{
+  "name": "@fusionui/native",
+  "version": "0.0.0",
+  "description": "FusionUI for mobile — Expo + React Native components that mirror the web contracts, sharing tokens and the signature visual identity (liquid glass via Skia/SKSL).",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./engine/liquid-glass": {
+      "types": "./src/engine/liquid-glass/index.ts",
+      "default": "./src/engine/liquid-glass/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "echo \"[native] ships source; consumers bundle via Metro\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.74",
+    "@shopify/react-native-skia": ">=1.0.0",
+    "react-native-reanimated": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "expo-glass-effect": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@fusionui/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@shopify/react-native-skia": "^1.5.0",
+    "@types/react": "^18.3.0",
+    "react": "^18.3.1",
+    "react-native": "^0.76.0",
+    "react-native-reanimated": "^3.16.0",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}
