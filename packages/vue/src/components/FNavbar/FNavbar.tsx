@@ -16,7 +16,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
-import { gooCornerPath } from '../../util/gooCorner'
+import { shellCornerSvg } from '../../engine/shell'
 
 interface NavbarContext {
   activeId: Ref<string | undefined>
@@ -210,7 +210,7 @@ export const FNavbar = genericComponent()({
                   width: `${props.cornerSize}px`,
                   height: `${props.cornerSize}px`,
                   backgroundColor: 'inherit',
-                  clipPath: `path('${gooCornerPath(props.cornerSize)}')`,
+                  clipPath: `path('${shellCornerSvg(props.cornerSize)}')`,
                   pointerEvents: 'none',
                 },
               })
