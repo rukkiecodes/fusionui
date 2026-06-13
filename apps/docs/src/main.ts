@@ -15,6 +15,7 @@ import GlassPlayground from './components/GlassPlayground.vue'
 import GooPlayground from './components/GooPlayground.vue'
 import ShaderPlayground from './components/ShaderPlayground.vue'
 import ChartPlayground from './components/ChartPlayground.vue'
+import DashboardExample from './components/DashboardExample.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -40,4 +41,5 @@ createApp(App)
   .component('GooPlayground', GooPlayground)
   .component('ShaderPlayground', ShaderPlayground)
   .component('ChartPlayground', ChartPlayground)
+  .component('DashboardExample', DashboardExample)
   .mount('#app')

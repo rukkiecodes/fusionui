@@ -38,7 +38,12 @@ function toggleTheme() {
         </router-link>
       </template>
       <template #right>
-        <f-btn variant="text" :icon="theme.isDark.value ? 'sun' : 'moon'" @click="toggleTheme" />
+        <f-btn
+          variant="text"
+          :icon="theme.isDark.value ? 'sun' : 'moon'"
+          :aria-label="theme.isDark.value ? 'Switch to light theme' : 'Switch to dark theme'"
+          @click="toggleTheme"
+        />
         <f-btn
           variant="text"
           href="https://github.com/rukkiecodes/fusionui"

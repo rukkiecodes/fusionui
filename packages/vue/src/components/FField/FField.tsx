@@ -11,6 +11,10 @@ import { FIcon } from '../FIcon'
 export type FieldVariant = 'default' | 'underlined' | 'shadow'
 export type FieldState = 'success' | 'danger' | 'warning' | 'primary' | 'dark'
 
+// Stable per-instance id so the <label for> binds to the slotted control. A
+// counter (not Math.random) keeps SSR and client markup identical.
+let fieldUid = 0
+
 export const makeFFieldProps = propsFactory(
   {
     label: String as PropType<string>,
@@ -47,6 +51,8 @@ export const FField = genericComponent()({
   emits: { 'click:clear': (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     provideTheme(props)
+
+    const fieldId = `fui-field-${++fieldUid}`
 
     const hasError = computed(() => props.errorMessages.length > 0)
     const hasSuccess = computed(() => !hasError.value && props.successMessages.length > 0)
@@ -141,11 +147,15 @@ export const FField = genericComponent()({
               floating || pinned
                 ? h(
                     'label',
-                    { class: ['fui-field__label', { 'fui-field__label--pinned': pinned }] },
+                    {
+                      for: fieldId,
+                      class: ['fui-field__label', { 'fui-field__label--pinned': pinned }],
+                    },
                     props.label
                   )
                 : null,
-              slots.default?.(),
+              // Pass the id to the slotted control so the label binds to it.
+              slots.default?.({ id: fieldId }),
             ]),
             // Right-side overlay — absolutely positioned so showing/hiding the
             // spinner or clear button never resizes the field.

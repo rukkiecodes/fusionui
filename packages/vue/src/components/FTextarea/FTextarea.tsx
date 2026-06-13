@@ -51,8 +51,9 @@ export const FTextarea = genericComponent()({
           theme: props.theme,
         },
         {
-          default: () =>
+          default: ({ id }: { id?: string }) =>
             h('textarea', {
+              id,
               class: 'fui-textarea__el',
               rows: props.rows,
               value: model.value,

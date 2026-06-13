@@ -101,8 +101,9 @@ export const FInput = genericComponent()({
           },
         },
         {
-          default: () =>
+          default: ({ id }: { id?: string }) =>
             h('input', {
+              id,
               class: 'fui-input__el',
               type: inputType.value,
               value: model.value,

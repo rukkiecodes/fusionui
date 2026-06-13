@@ -35,4 +35,8 @@ export const nav: NavSection[] = [
       { title: 'Chart', to: '/components/chart' },
     ],
   },
+  {
+    title: 'Examples',
+    items: [{ title: 'Dashboard', to: '/examples/dashboard' }],
+  },
 ]

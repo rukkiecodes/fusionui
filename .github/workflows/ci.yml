@@ -38,5 +38,8 @@ jobs:
       - name: Build packages
         run: pnpm build
 
+      - name: Bundle-size budgets
+        run: pnpm size
+
       - name: Build docs
         run: pnpm --filter @fusionui/docs build

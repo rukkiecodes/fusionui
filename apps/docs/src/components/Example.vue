@@ -65,7 +65,12 @@ async function copy() {
     </div>
 
     <div class="example__toolbar">
-      <button class="example__tool" :title="copied ? 'Copied' : 'Copy source'" @click="copy">
+      <button
+        class="example__tool"
+        :title="copied ? 'Copied' : 'Copy source'"
+        :aria-label="copied ? 'Copied' : 'Copy source'"
+        @click="copy"
+      >
         <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
       </button>
       <span class="example__divider" />
@@ -73,6 +78,7 @@ async function copy() {
         class="example__tool"
         :class="{ 'example__tool--active': showCode }"
         title="Toggle source"
+        aria-label="Toggle source code"
         @click="toggleCode"
       >
         <f-icon :icon="showCode ? 'eye-off' : 'code'" size="small" />
