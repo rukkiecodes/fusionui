@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, onBeforeUnmount, ref, watch } from 'vue'
 import type { CSSProperties } from 'vue'
 import { FLoadingSpinner } from './FLoadingSpinner'
 import { loadingQueue } from './useLoading'
@@ -25,8 +25,40 @@ const clampPct = (n: number) => Math.max(0, Math.min(100, n))
 export const FLoadingHost = defineComponent({
   name: 'FLoadingHost',
   setup() {
-    return () =>
-      loadingQueue.map(item => {
+    // A scoped (target) overlay is positioned from the target's viewport rect.
+    // Re-measure on scroll/resize so it tracks the element instead of staying
+    // pinned to the viewport. Capture-phase scroll catches nested containers too.
+    const tick = ref(0)
+    let raf = 0
+    let listening = false
+    function schedule() {
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        raf = 0
+        tick.value++
+      })
+    }
+    function setListeners(on: boolean) {
+      if (typeof window === 'undefined' || on === listening) return
+      const fn = on ? window.addEventListener : window.removeEventListener
+      fn('scroll', schedule, true)
+      fn('resize', schedule)
+      listening = on
+    }
+    watch(
+      () => loadingQueue.some(i => !!i.target),
+      hasScoped => setListeners(hasScoped),
+      { immediate: true }
+    )
+    onBeforeUnmount(() => {
+      setListeners(false)
+      if (raf) cancelAnimationFrame(raf)
+    })
+
+    return () => {
+      // Re-read on every scroll/resize tick so scoped overlays follow the target.
+      void tick.value
+      return loadingQueue.map(item => {
         const el = resolveTarget(item.target)
         let style: CSSProperties
         if (el) {
@@ -77,5 +109,6 @@ export const FLoadingHost = defineComponent({
           ]
         )
       })
+    }
   },
 })
