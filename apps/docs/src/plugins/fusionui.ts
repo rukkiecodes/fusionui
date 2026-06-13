@@ -1,5 +1,5 @@
 import { createFusionUI } from '@fusionui/vue'
-import { featherSet, featherAliases } from '@fusionui/icons'
+import { fusionSet, fusionAliases } from '@fusionui/icons'
 
 // Default to the operating system's color scheme, and follow it live.
 const media =
@@ -8,9 +8,9 @@ const media =
 const fusionui = createFusionUI({
   theme: { defaultTheme: media?.matches ? 'dark' : 'light' },
   icons: {
-    defaultSet: 'feather',
-    sets: { feather: featherSet },
-    aliases: featherAliases,
+    defaultSet: 'fusion',
+    sets: { fusion: fusionSet },
+    aliases: fusionAliases,
   },
 })
 

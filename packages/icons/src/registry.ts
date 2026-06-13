@@ -1479,3 +1479,6 @@ export const featherIcons: Record<string, FeatherIcon> = {
   'zoom-in': ZoomIn,
   'zoom-out': ZoomOut,
 }
+
+/** Every icon name (kebab-case), in sorted order. */
+export const iconNames: string[] = Object.keys(featherIcons)

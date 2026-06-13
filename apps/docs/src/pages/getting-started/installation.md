@@ -21,16 +21,16 @@ Register the plugin and import the styles:
 // main.ts
 import { createApp } from 'vue'
 import { createFusionUI } from '@fusionui/vue'
-import { featherSet, featherAliases } from '@fusionui/icons'
+import { fusionSet, fusionAliases } from '@fusionui/icons'
 import '@fusionui/vue/styles'
 import App from './App.vue'
 
 const fusionui = createFusionUI({
   theme: { defaultTheme: 'light' },
   icons: {
-    defaultSet: 'feather',
-    sets: { feather: featherSet },
-    aliases: featherAliases,
+    defaultSet: 'fusion',
+    sets: { fusion: fusionSet },
+    aliases: fusionAliases,
   },
 })
 

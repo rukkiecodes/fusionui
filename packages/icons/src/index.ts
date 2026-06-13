@@ -3,6 +3,11 @@
 export * from './runtime'
 export { featherSet } from './set'
 export { featherAliases } from './aliases'
+export { featherIcons, iconNames } from './registry'
+// Brand-forward aliases — this is the FusionUI icon set.
+export { featherSet as fusionSet } from './set'
+export { featherAliases as fusionAliases } from './aliases'
+export { featherIcons as fusionIcons } from './registry'
 export { Acorn } from './icons/acorn'
 export { Activity } from './icons/activity'
 export { Airplay } from './icons/airplay'

@@ -1,7 +1,15 @@
 # Icons
 
-FusionUI uses [Feather](https://feathericons.com)-style icons by default — 737
-clean, stroke-based icons (the original Feather set plus 450 extended icons).
+FusionUI ships its own set of clean, stroke-based **FusionUI icons** — a large,
+growing library that renders through `<f-icon>` and tree-shakes down to just the
+icons you actually use. More icons land over time, so the catalogue keeps growing.
+
+## Browse the icons
+
+Search by name and page through the full set. Click any icon to copy its
+`<f-icon>` snippet.
+
+<IconGallery />
 
 ## Usage
 
@@ -33,10 +41,13 @@ Components reference icons through `$` aliases, which you can use too:
 <f-icon icon="$close" />
 ```
 
-## Custom icons
+## Add your own
 
-Add your own Feather-style SVG (24×24, `stroke="currentColor"`, 2px stroke):
+Drop a stroke-based SVG (24×24, `stroke="currentColor"`, 2px stroke) into the set:
 
 ```bash
 pnpm --filter @fusionui/icons add-icon my-logo ./my-logo.svg
 ```
+
+It's then available everywhere by name — `<f-icon icon="my-logo" />` — and as a
+tree-shakeable `MyLogo` export.

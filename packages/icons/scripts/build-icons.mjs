@@ -91,6 +91,11 @@ writeFileSync(
     `export * from './runtime'\n` +
     `export { featherSet } from './set'\n` +
     `export { featherAliases } from './aliases'\n` +
+    `export { featherIcons, iconNames } from './registry'\n` +
+    `// Brand-forward aliases — this is the FusionUI icon set.\n` +
+    `export { featherSet as fusionSet } from './set'\n` +
+    `export { featherAliases as fusionAliases } from './aliases'\n` +
+    `export { featherIcons as fusionIcons } from './registry'\n` +
     exports.join('\n') +
     '\n'
 )
@@ -102,7 +107,9 @@ writeFileSync(
     `\n\nimport type { FeatherIcon } from './runtime'\n\n` +
     `export const featherIcons: Record<string, FeatherIcon> = {\n` +
     registry.map(r => `  '${r.name}': ${r.pascal},`).join('\n') +
-    `\n}\n`
+    `\n}\n\n` +
+    `/** Every icon name (kebab-case), in sorted order. */\n` +
+    `export const iconNames: string[] = Object.keys(featherIcons)\n`
 )
 
-console.log(`Generated ${files.length} Feather icon modules + index + registry.`)
+console.log(`Generated ${files.length} FusionUI icon modules + index + registry.`)

@@ -17,6 +17,7 @@ import ShaderPlayground from './components/ShaderPlayground.vue'
 import ChartPlayground from './components/ChartPlayground.vue'
 import DashboardExample from './components/DashboardExample.vue'
 import NativeSnack from './components/NativeSnack.vue'
+import IconGallery from './components/IconGallery.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -44,4 +45,5 @@ createApp(App)
   .component('ChartPlayground', ChartPlayground)
   .component('DashboardExample', DashboardExample)
   .component('NativeSnack', NativeSnack)
+  .component('IconGallery', IconGallery)
   .mount('#app')
