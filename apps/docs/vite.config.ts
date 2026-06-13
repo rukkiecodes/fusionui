@@ -13,10 +13,10 @@ export default defineConfig({
   base: process.env.DOCS_BASE ?? '/',
   resolve: {
     alias: [
-      // Resolve the library to its SOURCE so editing packages/vue-dl/src
+      // Resolve the library to its SOURCE so editing packages/vue/src
       // hot-reloads live in the docs (the "build & preview together" guarantee).
-      { find: /^vue-dl\/styles$/, replacement: r('../../packages/vue-dl/src/styles/main.scss') },
-      { find: /^vue-dl$/, replacement: r('../../packages/vue-dl/src/index.ts') },
+      { find: /^vue-dl\/styles$/, replacement: r('../../packages/vue/src/styles/main.scss') },
+      { find: /^vue-dl$/, replacement: r('../../packages/vue/src/index.ts') },
       { find: '@', replacement: r('./src') },
     ],
   },

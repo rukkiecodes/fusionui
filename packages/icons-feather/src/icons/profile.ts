@@ -1,6 +1,0 @@
-import { createFeatherIcon } from '../runtime'
-
-export const Profile = /*#__PURE__*/ createFeatherIcon('profile', [
-  ['circle', { "cx": "12", "cy": "8", "r": "4" }],
-  ['path', { "d": "M5 20a7 7 0 0 1 14 0" }],
-])
