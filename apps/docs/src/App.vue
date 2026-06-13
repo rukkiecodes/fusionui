@@ -27,7 +27,7 @@ function toggleTheme() {
       not-line
       class="docs__bar"
       :goo-corner="isDesktop"
-      :corner-size="26"
+      :corner-size="34"
       sidebar-selector=".docs__sidebar"
     >
       <template #left>

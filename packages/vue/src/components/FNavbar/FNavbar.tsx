@@ -140,6 +140,12 @@ export const FNavbar = genericComponent()({
       window.addEventListener('resize', onResize, { passive: true })
       if (props.gooCorner) {
         measureGoo()
+        // Re-measure after layout/fonts settle so the junction reliably draws
+        // even if the sidebar wasn't fully laid out on the first tick.
+        requestAnimationFrame(measureGoo)
+        setTimeout(measureGoo, 120)
+        setTimeout(measureGoo, 400)
+        window.addEventListener('load', measureGoo)
         const sb = document.querySelector(props.sidebarSelector)
         if (sb && typeof ResizeObserver !== 'undefined') {
           gooObserver = new ResizeObserver(() => measureGoo())
@@ -154,6 +160,7 @@ export const FNavbar = genericComponent()({
       window.removeEventListener('resize', onResize)
       gooObserver?.disconnect()
       window.removeEventListener('resize', measureGoo)
+      window.removeEventListener('load', measureGoo)
     })
 
     useRender(() =>
