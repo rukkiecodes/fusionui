@@ -96,6 +96,14 @@ body {
     background: var(--docs-shell);
     box-shadow: none;
     border-radius: 0;
+
+    // The shell is one flat surface — drop the group's tinted "card" highlight
+    // so the nav reads as part of the shell, not panels floating on a mismatched
+    // background.
+    .fui-sidebar__group--open {
+      background: transparent;
+      border-radius: 0;
+    }
   }
 
   &__nav-section {
