@@ -1,0 +1,97 @@
+{
+  "radius": {
+    "sm": { "$value": "8px", "$type": "dimension" },
+    "md": { "$value": "12px", "$type": "dimension" },
+    "lg": { "$value": "20px", "$type": "dimension" },
+    "xl": { "$value": "28px", "$type": "dimension" },
+    "pill": { "$value": "9999px", "$type": "dimension" },
+    "circle": { "$value": "50%", "$type": "dimension" }
+  },
+  "space": {
+    "spacer": { "$value": "4px", "$type": "dimension" },
+    "1": { "$value": "4px", "$type": "dimension" },
+    "2": { "$value": "8px", "$type": "dimension" },
+    "3": { "$value": "12px", "$type": "dimension" },
+    "4": { "$value": "16px", "$type": "dimension" },
+    "5": { "$value": "24px", "$type": "dimension" },
+    "6": { "$value": "32px", "$type": "dimension" },
+    "7": { "$value": "48px", "$type": "dimension" }
+  },
+  "font": {
+    "family": {
+      "base": {
+        "$value": "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily"
+      },
+      "mono": {
+        "$value": "'SF Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
+        "$type": "fontFamily"
+      }
+    },
+    "size": {
+      "root": { "$value": "16px", "$type": "dimension" }
+    },
+    "weight": {
+      "regular": { "$value": 400, "$type": "fontWeight" },
+      "medium": { "$value": 500, "$type": "fontWeight" },
+      "bold": { "$value": 600, "$type": "fontWeight" }
+    },
+    "letter-spacing": { "$value": "-0.011em", "$type": "dimension" }
+  },
+  "motion": {
+    "duration": {
+      "base": { "$value": "0.25s", "$type": "duration" },
+      "fast": { "$value": "0.15s", "$type": "duration" }
+    },
+    "easing": {
+      "base": { "$value": "ease", "$type": "cubicBezier" }
+    },
+    "lift": { "$value": "-3px", "$type": "dimension" },
+    "sink": { "$value": "3px", "$type": "dimension" }
+  },
+  "opacity": {
+    "hover": { "$value": 0.08, "$type": "number" },
+    "focus": { "$value": 0.12, "$type": "number" },
+    "pressed": { "$value": 0.16, "$type": "number" }
+  },
+  "z-index": {
+    "navbar": { "$value": 1000, "$type": "number" },
+    "sidebar": { "$value": 1100, "$type": "number" },
+    "overlay": { "$value": 2000, "$type": "number" },
+    "menu": { "$value": 2100, "$type": "number" },
+    "tooltip": { "$value": 2200, "$type": "number" }
+  },
+  "breakpoint": {
+    "sm": { "$value": "600px", "$type": "dimension" },
+    "md": { "$value": "880px", "$type": "dimension" },
+    "lg": { "$value": "1280px", "$type": "dimension" },
+    "xl": { "$value": "1920px", "$type": "dimension" }
+  },
+  "shadow": {
+    "0": { "$value": { "y": 0, "blur": 0, "alpha": 0 }, "$type": "fui-shadow" },
+    "1": { "$value": { "y": 2, "blur": 8, "alpha": 0.04 }, "$type": "fui-shadow" },
+    "2": { "$value": { "y": 3, "blur": 12, "alpha": 0.05 }, "$type": "fui-shadow" },
+    "3": { "$value": { "y": 5, "blur": 20, "alpha": 0.05 }, "$type": "fui-shadow" },
+    "4": { "$value": { "y": 4, "blur": 25, "alpha": 0.1 }, "$type": "fui-shadow" },
+    "5": { "$value": { "y": 6, "blur": 28, "alpha": 0.1 }, "$type": "fui-shadow" },
+    "6": { "$value": { "y": 8, "blur": 30, "alpha": 0.12 }, "$type": "fui-shadow" },
+    "7": { "$value": { "y": 9, "blur": 32, "alpha": 0.12 }, "$type": "fui-shadow" },
+    "8": { "$value": { "y": 10, "blur": 34, "alpha": 0.14 }, "$type": "fui-shadow" },
+    "9": { "$value": { "y": 11, "blur": 36, "alpha": 0.14 }, "$type": "fui-shadow" },
+    "10": { "$value": { "y": 12, "blur": 38, "alpha": 0.16 }, "$type": "fui-shadow" },
+    "11": { "$value": { "y": 13, "blur": 40, "alpha": 0.16 }, "$type": "fui-shadow" },
+    "12": { "$value": { "y": 14, "blur": 42, "alpha": 0.18 }, "$type": "fui-shadow" },
+    "13": { "$value": { "y": 15, "blur": 44, "alpha": 0.18 }, "$type": "fui-shadow" },
+    "14": { "$value": { "y": 16, "blur": 46, "alpha": 0.2 }, "$type": "fui-shadow" },
+    "15": { "$value": { "y": 17, "blur": 48, "alpha": 0.2 }, "$type": "fui-shadow" },
+    "16": { "$value": { "y": 18, "blur": 50, "alpha": 0.22 }, "$type": "fui-shadow" },
+    "17": { "$value": { "y": 19, "blur": 52, "alpha": 0.22 }, "$type": "fui-shadow" },
+    "18": { "$value": { "y": 20, "blur": 54, "alpha": 0.24 }, "$type": "fui-shadow" },
+    "19": { "$value": { "y": 21, "blur": 56, "alpha": 0.24 }, "$type": "fui-shadow" },
+    "20": { "$value": { "y": 22, "blur": 58, "alpha": 0.26 }, "$type": "fui-shadow" },
+    "21": { "$value": { "y": 23, "blur": 60, "alpha": 0.26 }, "$type": "fui-shadow" },
+    "22": { "$value": { "y": 24, "blur": 62, "alpha": 0.28 }, "$type": "fui-shadow" },
+    "23": { "$value": { "y": 25, "blur": 64, "alpha": 0.28 }, "$type": "fui-shadow" },
+    "24": { "$value": { "y": 26, "blur": 66, "alpha": 0.3 }, "$type": "fui-shadow" }
+  }
+}

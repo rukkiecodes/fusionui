@@ -55,7 +55,8 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
-    "@fusionui/icons": "workspace:*"
+    "@fusionui/icons": "workspace:*",
+    "@fusionui/tokens": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue-jsx": "^4.1.1",

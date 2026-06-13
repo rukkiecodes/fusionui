@@ -65,6 +65,9 @@ importers:
       '@fusionui/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@fusionui/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       '@fusionui/vue':
         specifier: workspace:*
         version: link:../../packages/vue
@@ -149,11 +152,16 @@ importers:
         specifier: ^3.5.13
         version: 3.5.38(typescript@5.9.3)
 
+  packages/tokens: {}
+
   packages/vue:
     dependencies:
       '@fusionui/icons':
         specifier: workspace:*
         version: link:../icons
+      '@fusionui/tokens':
+        specifier: workspace:*
+        version: link:../tokens
     devDependencies:
       '@vitejs/plugin-vue-jsx':
         specifier: ^4.1.1

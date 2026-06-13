@@ -1,0 +1,57 @@
+# Design tokens
+
+FusionUI's design language lives in one place — the **`@fusionui/tokens`**
+package. Colors, spacing, radii, typography, motion and elevation are authored
+once and generated for every platform:
+
+| Output                                                                       | Consumed by                                   |
+| ---------------------------------------------------------------------------- | --------------------------------------------- |
+| `@fusionui/tokens/css` — `--fui-*` custom properties (light + dark scopes)   | any web app, SSR, no-JS                       |
+| `@fusionui/tokens/scss` — `$fui-*` SASS vars/maps                            | `@fusionui/vue` component styles (build time) |
+| `@fusionui/tokens` — typed TS object                                         | web logic + the runtime theme engine          |
+| `@fusionui/tokens/native` — RN-friendly object (ms, numbers, shadow objects) | `@fusionui/native`                            |
+
+Components never hard-code a hex or pixel value — they read tokens. Re-theming a
+brand is a token override, not a fork. Everything below is rendered live from the
+generated TS output.
+
+## Color
+
+The Vuesax v4 palette. Each named color is emitted as an RGB triplet
+(`--fui-theme-primary: 25,91,255`) so components can compose alpha. Light and
+dark values are shown side by side.
+
+<TokensCatalog group="color" />
+
+## Radius
+
+Soft, Apple-like corners — 8px small controls, 12px buttons/inputs, 20px cards.
+
+<TokensCatalog group="radius" />
+
+## Spacing
+
+A 4px base scale for consistent, generous whitespace.
+
+<TokensCatalog group="space" />
+
+## Elevation
+
+The signature Vuesax soft shadow — gentle, low-alpha, large-blur. A 0–24 ramp;
+a representative slice is shown.
+
+<TokensCatalog group="shadow" />
+
+## Typography
+
+Apple system font first, Inter as the refined cross-platform fallback, with
+slightly tightened tracking.
+
+<TokensCatalog group="type" />
+
+## Motion
+
+The Vuesax heartbeat — `0.25s ease` everywhere, `0.15s` for fast interactions,
+a `-3px` hover lift.
+
+<TokensCatalog group="motion" />

@@ -1,0 +1,32 @@
+{
+  "name": "@fusionui/tokens",
+  "version": "0.0.0",
+  "description": "FusionUI design tokens — the single source of design truth, generated for web (CSS/SCSS/TS) and native (RN).",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/ts/index.d.ts",
+      "import": "./dist/ts/index.js"
+    },
+    "./native": {
+      "types": "./dist/native/index.d.ts",
+      "import": "./dist/native/index.js"
+    },
+    "./css": "./dist/css/tokens.css",
+    "./scss": "./dist/scss/_tokens.scss"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "echo \"[tokens] typecheck via generated d.ts\"",
+    "test": "node build.mjs && node --test"
+  }
+}

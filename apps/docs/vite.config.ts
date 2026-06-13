@@ -37,6 +37,6 @@ export default defineConfig({
   ],
   optimizeDeps: {
     // Don't pre-bundle the workspace library/icons so source edits reflect live.
-    exclude: ['@fusionui/vue', '@fusionui/icons'],
+    exclude: ['@fusionui/vue', '@fusionui/icons', '@fusionui/tokens'],
   },
 })

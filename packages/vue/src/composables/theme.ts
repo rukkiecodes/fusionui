@@ -1,5 +1,6 @@
 import { computed, inject, provide, ref } from 'vue'
 import type { App, ComputedRef, InjectionKey, PropType, Ref } from 'vue'
+import { themes as tokenThemes } from '@fusionui/tokens'
 import { propsFactory } from '../util/propsFactory'
 import { isLightColor, parseColor } from '../util/colors'
 
@@ -36,80 +37,12 @@ export const ThemeSymbol: InjectionKey<ThemeInstance> = Symbol.for('fusionui:the
 const LAYER_ORDER = '@layer fui-tokens, fui-theme, fui-base, fui-components, fui-utilities;'
 const STYLE_ID = 'fusionui-theme-stylesheet'
 
-// Variables that differ between light and dark surfaces (Vuesax v4 DNA).
-// `surface-2` is the subtle gray fill used by inputs/selects (Vuesax gray-2).
-const lightVariables: Record<string, string | number> = {
-  'border-color': '#2c3e50',
-  'border-opacity': 0.12,
-  'high-emphasis-opacity': 0.92,
-  'medium-emphasis-opacity': 0.6,
-  'disabled-opacity': 0.38,
-  'surface-2': '#f4f7f8',
-  'surface-3': '#f0f3f4',
-  'shadow-rest': '0 5px 20px 0 rgba(0, 0, 0, 0.05)',
-}
-
-const darkVariables: Record<string, string | number> = {
-  'border-color': '#ffffff',
-  'border-opacity': 0.16,
-  'high-emphasis-opacity': 1,
-  'medium-emphasis-opacity': 0.7,
-  'disabled-opacity': 0.5,
-  'surface-2': '#26282c',
-  'surface-3': '#1c1e21',
-  'shadow-rest': '0 5px 20px 0 rgba(0, 0, 0, 0.4)',
-}
-
-// Vuesax palette (see plans/03-theme-design-tokens.md). `on-*` colors are
-// curated for the intended look; any color without one falls back to an
-// auto-derived contrast color (see onColor).
-const vuesaxLight: ThemeDefinition = {
-  dark: false,
-  colors: {
-    background: '#ffffff',
-    surface: '#ffffff',
-    primary: '#195bff',
-    secondary: '#7d33ff',
-    success: '#46c93a',
-    danger: '#ff4757',
-    warning: '#ffba00',
-    dark: '#1e1e1e',
-    light: '#f4f7f8',
-    'on-background': '#2c3e50',
-    'on-surface': '#2c3e50',
-    'on-primary': '#ffffff',
-    'on-secondary': '#ffffff',
-    'on-success': '#ffffff',
-    'on-danger': '#ffffff',
-    'on-warning': '#1e1e1e',
-    'on-light': '#2c3e50',
-  },
-  variables: lightVariables,
-}
-
-const vuesaxDark: ThemeDefinition = {
-  dark: true,
-  colors: {
-    background: '#1e2023',
-    surface: '#26282c',
-    primary: '#195bff',
-    secondary: '#9b6bff',
-    success: '#46c93a',
-    danger: '#ff4757',
-    warning: '#ffba00',
-    dark: '#f4f7f8',
-    light: '#2a2c30',
-    'on-background': '#ffffff',
-    'on-surface': '#ffffff',
-    'on-primary': '#ffffff',
-    'on-secondary': '#ffffff',
-    'on-success': '#ffffff',
-    'on-danger': '#ffffff',
-    'on-warning': '#1e1e1e',
-    'on-light': '#ffffff',
-  },
-  variables: darkVariables,
-}
+// The two default themes (palette + per-surface variables) come from
+// @fusionui/tokens — the single source of design truth. The runtime generation
+// logic below (triplet conversion, on-color derivation, CSS-var injection) is
+// unchanged; only the literal values moved out to the tokens package.
+const vuesaxLight: ThemeDefinition = tokenThemes.light
+const vuesaxDark: ThemeDefinition = tokenThemes.dark
 
 function colorToTriplet(value: string): string {
   const { r, g, b } = parseColor(value)

@@ -14,6 +14,7 @@ export const nav: NavSection[] = [
     items: [
       { title: 'Introduction', to: '/' },
       { title: 'Installation', to: '/getting-started/installation' },
+      { title: 'Design Tokens', to: '/getting-started/design-tokens' },
       { title: 'Theme & Colors', to: '/getting-started/theme' },
       { title: 'Icons', to: '/getting-started/icons' },
     ],

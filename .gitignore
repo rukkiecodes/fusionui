@@ -7,6 +7,11 @@ dist/
 lib/
 *.tsbuildinfo
 
+# @fusionui/tokens ships its generated outputs (single source of truth → css/scss/
+# ts/native). Committed so consumers and CI/deploy need no extra build step.
+!packages/tokens/dist/
+!packages/tokens/dist/**
+
 # test / coverage
 coverage/
 .nyc_output/

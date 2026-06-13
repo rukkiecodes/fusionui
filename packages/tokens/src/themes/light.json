@@ -1,0 +1,32 @@
+{
+  "dark": false,
+  "colors": {
+    "background": "#ffffff",
+    "surface": "#ffffff",
+    "primary": "#195bff",
+    "secondary": "#7d33ff",
+    "success": "#46c93a",
+    "danger": "#ff4757",
+    "warning": "#ffba00",
+    "dark": "#1e1e1e",
+    "light": "#f4f7f8",
+    "on-background": "#2c3e50",
+    "on-surface": "#2c3e50",
+    "on-primary": "#ffffff",
+    "on-secondary": "#ffffff",
+    "on-success": "#ffffff",
+    "on-danger": "#ffffff",
+    "on-warning": "#1e1e1e",
+    "on-light": "#2c3e50"
+  },
+  "variables": {
+    "border-color": "#2c3e50",
+    "border-opacity": 0.12,
+    "high-emphasis-opacity": 0.92,
+    "medium-emphasis-opacity": 0.6,
+    "disabled-opacity": 0.38,
+    "surface-2": "#f4f7f8",
+    "surface-3": "#f0f3f4",
+    "shadow-rest": "0 5px 20px 0 rgba(0, 0, 0, 0.05)"
+  }
+}

@@ -10,6 +10,7 @@ import ButtonPlayground from './components/ButtonPlayground.vue'
 import InputPlayground from './components/InputPlayground.vue'
 import CardPlayground from './components/CardPlayground.vue'
 import AlertPlayground from './components/AlertPlayground.vue'
+import TokensCatalog from './components/TokensCatalog.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -30,4 +31,5 @@ createApp(App)
   .component('InputPlayground', InputPlayground)
   .component('CardPlayground', CardPlayground)
   .component('AlertPlayground', AlertPlayground)
+  .component('TokensCatalog', TokensCatalog)
   .mount('#app')
