@@ -28,6 +28,7 @@ export const nav: NavSection[] = [
       { title: 'Form Inputs', to: '/components/inputs' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
+      { title: 'Liquid Glass', to: '/components/liquid-glass' },
     ],
   },
 ]

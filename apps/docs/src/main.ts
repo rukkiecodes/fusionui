@@ -11,6 +11,7 @@ import InputPlayground from './components/InputPlayground.vue'
 import CardPlayground from './components/CardPlayground.vue'
 import AlertPlayground from './components/AlertPlayground.vue'
 import TokensCatalog from './components/TokensCatalog.vue'
+import GlassPlayground from './components/GlassPlayground.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -32,4 +33,5 @@ createApp(App)
   .component('CardPlayground', CardPlayground)
   .component('AlertPlayground', AlertPlayground)
   .component('TokensCatalog', TokensCatalog)
+  .component('GlassPlayground', GlassPlayground)
   .mount('#app')

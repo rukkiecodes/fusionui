@@ -33,6 +33,7 @@ import { FBreadcrumb } from './FBreadcrumb'
 import { FPagination } from './FPagination'
 import { FCollapse } from './FCollapse'
 import { FTable } from './FTable'
+import { FGlass } from './FGlass'
 
 export * from './FIcon'
 export * from './FBtn'
@@ -68,6 +69,7 @@ export * from './FBreadcrumb'
 export * from './FPagination'
 export * from './FCollapse'
 export * from './FTable'
+export * from './FGlass'
 
 /** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
@@ -118,4 +120,5 @@ export const components: Record<string, Component> = {
   FPagination,
   FCollapse,
   FTable,
+  FGlass,
 }
