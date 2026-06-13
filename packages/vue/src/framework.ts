@@ -94,7 +94,7 @@ export function createFusionUI(options: FusionUIOptions = {}): FusionUIInstance 
 
     function install(app: App): void {
       applyFusionUI(app)
-      app.config.globalProperties.$vd = {
+      app.config.globalProperties.$fui = {
         notify: useNotify().notify,
         loading: useLoading(),
         dialog: useDialog(),
