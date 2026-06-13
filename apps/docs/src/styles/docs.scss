@@ -25,14 +25,29 @@ body {
 .docs {
   min-height: 100vh;
 
-  // The top bar is a FNavbar dressed in the docs chrome.
+  // The Vuesax layout model: navbar + sidebar form a single tinted "shell"
+  // (one background), and the documentation content is a brighter, inset sheet
+  // clearly separated from that shell.
+  &.fui-theme--light {
+    --docs-shell: #f1f4f6;
+    --docs-content: #ffffff;
+    --docs-edge: rgba(44, 62, 80, 0.09);
+  }
+  &.fui-theme--dark {
+    --docs-shell: #15161a;
+    --docs-content: #1e2023;
+    --docs-edge: rgba(255, 255, 255, 0.07);
+  }
+  background-color: var(--docs-shell);
+
+  // The top bar and the sidebar share the shell background, so they read as one
+  // navigation frame distinct from the content.
   &__bar.fui-navbar {
     position: sticky;
     top: 0;
     z-index: 20;
-    background-color: rgba(var(--fui-theme-surface), 0.8);
-    backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.07);
+    background-color: var(--docs-shell);
+    border-bottom: 1px solid var(--docs-edge);
 
     .fui-navbar__inner {
       min-height: var(--docs-bar-height);
@@ -65,16 +80,17 @@ body {
     align-items: flex-start;
   }
 
-  // The desktop sidebar is a permanent FSidebar blended into the page.
+  // The desktop sidebar is a permanent FSidebar painted with the shell color —
+  // the same background as the navbar.
   &__sidebar.fui-sidebar {
     position: sticky;
     top: var(--docs-bar-height);
     width: var(--docs-sidebar-width);
     max-width: var(--docs-sidebar-width);
     height: calc(100vh - var(--docs-bar-height));
-    padding: 20px 0;
+    padding: 22px 14px;
     flex-shrink: 0;
-    background: transparent;
+    background: var(--docs-shell);
     box-shadow: none;
     border-radius: 0;
   }
@@ -113,11 +129,17 @@ body {
     }
   }
 
+  // The content is an inset sheet: a distinct, brighter surface, separated from
+  // the shell by an edge line and a rounded top-left corner (Vuesax inset look).
   &__main {
     flex: 1 1 auto;
     min-width: 0;
     display: flex;
     justify-content: center;
+    background-color: var(--docs-content);
+    border-left: 1px solid var(--docs-edge);
+    border-top-left-radius: 20px;
+    min-height: calc(100vh - var(--docs-bar-height));
   }
 
   &__content {
@@ -623,8 +645,10 @@ body {
   .docs__menu-btn {
     display: inline-flex;
   }
-  // (Mobile uses the FSidebar overlay mode — no extra styling needed.)
-  .docs__sidebar-unused {
-    display: none;
+  // On mobile the sidebar is an overlay drawer, so the content fills the width —
+  // drop the inset edge/round it had next to the desktop sidebar.
+  .docs__main {
+    border-left: none;
+    border-top-left-radius: 0;
   }
 }
