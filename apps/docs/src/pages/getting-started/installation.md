@@ -12,7 +12,7 @@ npm create fusionui@latest
 ## Add to an existing project
 
 ```bash
-pnpm add fusionui @fusionui/icons
+pnpm add @fusionui/vue @fusionui/icons
 ```
 
 Register the plugin and import the styles:
@@ -37,6 +37,6 @@ const fusionui = createFusionUI({
 createApp(App).use(fusionui).mount('#app')
 ```
 
-That's it — every `Vd*` component is registered globally:
+That's it — every `F*` component is registered globally:
 
-<Example file="button/colors-loading" />
+<Example file="button/colors" />
