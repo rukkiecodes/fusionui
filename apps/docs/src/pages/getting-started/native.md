@@ -10,6 +10,10 @@ API (names, props, variants, states), the interaction/a11y semantics, and the
 visual identity are shared; only the rendering code is reimplemented.
 `<FButton variant="primary" loading>` feels identical on web and mobile.
 
+## Preview
+
+<NativePreview />
+
 ## Install
 
 ```bash
