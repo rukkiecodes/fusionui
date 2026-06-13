@@ -69,6 +69,10 @@ export const FLoadingHost = defineComponent({
             left: `${rect.left}px`,
             width: `${rect.width}px`,
             height: `${rect.height}px`,
+            // Match the target's rounding so the overlay nests into the card
+            // instead of sitting on it as a sharp rectangle.
+            borderRadius: getComputedStyle(el).borderRadius,
+            overflow: 'hidden',
           }
         } else {
           style = { position: 'fixed', inset: '0' }
