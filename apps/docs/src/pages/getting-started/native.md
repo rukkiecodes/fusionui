@@ -47,11 +47,16 @@ browser via CanvasKit (`WithSkiaWeb`). On a real device this is the GPU `Backdro
 ## Install
 
 ```bash
-npx expo install @shopify/react-native-skia react-native-reanimated
+npx expo install @shopify/react-native-skia react-native-reanimated expo-linear-gradient
 npm i @fusionui/native @fusionui/tokens
 # iOS 26 real Liquid Glass (optional):
 npx expo install expo-glass-effect
 ```
+
+`react-native-reanimated` drives the press springs and the switch/focus
+transitions; `expo-linear-gradient` backs the `gradient` button variant (it
+falls back to a solid fill if absent); `@shopify/react-native-skia` renders the
+liquid glass.
 
 ## Usage
 

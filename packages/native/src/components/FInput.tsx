@@ -1,11 +1,18 @@
 /**
  * FInput — the React Native sibling of the web <FInput>/<FField>. Same contract:
  * label, placeholder, value/onChangeText, disabled, and an error/message surface.
- * The Vuesax gray fill + 2px transparent border that colors on focus.
+ * The Vuesax gray fill + a 2px border that animates (Reanimated) to the accent on
+ * focus — danger when in error — matching the web field's smooth focus.
  */
-import { useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import type { StyleProp, TextInputProps, ViewStyle } from 'react-native'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  interpolateColor,
+  ReduceMotion,
+} from 'react-native-reanimated'
 import { useFusionTheme, useColor } from '../theme'
 
 export interface FInputProps extends Pick<
@@ -37,38 +44,57 @@ export function FInput({
   ...textProps
 }: FInputProps) {
   const theme = useFusionTheme()
-  const [focused, setFocused] = useState(false)
   const accent = useColor(color) ?? color
   const danger = useColor('danger') ?? '#ff4757'
+  const neutral = String(theme.variables['surface-3'] ?? '#e0e4e8')
   const fill = String(theme.variables['surface-2'] ?? theme.colors.light)
-  const borderColor = error ? danger : focused ? accent : 'transparent'
+
+  // 0→1 focus value crossfades the border to the accent (timing, not spring —
+  // a spring would overshoot the interpolated color) and lifts the field 2px.
+  const f = useSharedValue(0)
+  const borderStyle = useAnimatedStyle(() => ({
+    borderColor: error ? danger : interpolateColor(f.value, [0, 1], [neutral, accent]),
+    transform: [{ translateY: -2 * f.value }],
+  }))
+
+  const onFocus = () => {
+    f.value = withTiming(1, {
+      duration: theme.motion.duration.base,
+      reduceMotion: ReduceMotion.System,
+    })
+  }
+  const onBlur = () => {
+    f.value = withTiming(0, {
+      duration: theme.motion.duration.base,
+      reduceMotion: ReduceMotion.System,
+    })
+  }
 
   return (
     <View style={[styles.wrap, style]}>
       {label ? (
         <Text style={[styles.label, { color: theme.colors['on-surface'] }]}>{label}</Text>
       ) : null}
-      <TextInput
-        editable={!disabled}
-        value={value}
-        onChangeText={onChangeText}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        placeholderTextColor={withAlpha(String(theme.colors['on-surface'] ?? '#2c3e50'), 0.45)}
-        accessibilityLabel={label}
-        accessibilityState={{ disabled }}
+      <Animated.View
         style={[
-          styles.input,
-          {
-            backgroundColor: fill,
-            borderColor,
-            borderRadius: theme.radius.md,
-            color: theme.colors['on-surface'],
-            opacity: disabled ? 0.5 : 1,
-          },
+          styles.border,
+          { backgroundColor: fill, borderRadius: theme.radius.md, opacity: disabled ? 0.5 : 1 },
+          borderStyle,
         ]}
-        {...textProps}
-      />
+      >
+        <TextInput
+          editable={!disabled}
+          value={value}
+          onChangeText={onChangeText}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholderTextColor={withAlpha(String(theme.colors['on-surface'] ?? '#2c3e50'), 0.45)}
+          accessibilityLabel={label}
+          accessibilityState={{ disabled }}
+          style={[styles.input, { color: theme.colors['on-surface'] }]}
+          {...textProps}
+        />
+      </Animated.View>
       {error ? (
         <Text style={[styles.msg, { color: danger }]}>{error}</Text>
       ) : message ? (
@@ -96,6 +122,7 @@ function withAlpha(hex: string, alpha: number): string {
 const styles = StyleSheet.create({
   wrap: { gap: 6, alignSelf: 'stretch' },
   label: { fontSize: 13, fontWeight: '500' },
-  input: { minHeight: 44, paddingHorizontal: 14, paddingVertical: 8, borderWidth: 2, fontSize: 15 },
+  border: { borderWidth: 2 },
+  input: { minHeight: 40, paddingHorizontal: 12, paddingVertical: 8, fontSize: 15 },
   msg: { fontSize: 12 },
 })
