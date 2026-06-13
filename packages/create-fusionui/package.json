@@ -1,6 +1,6 @@
 {
   "name": "create-fusionui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The FusionUI CLI — scaffold (init), add components, and brand themes for Vue + Expo.",
   "type": "module",
   "license": "MIT",
