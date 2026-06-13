@@ -19,7 +19,8 @@
     "**/*.scss"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "exports": {
     ".": {

@@ -1,0 +1,25 @@
+{
+  "name": "{{projectName}}",
+  "version": "0.0.0",
+  "private": true,
+  "main": "expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "@fusionui/native": "latest",
+    "@fusionui/tokens": "latest",
+    "@shopify/react-native-skia": "^1.5.0",
+    "expo": "~52.0.0",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-reanimated": "~3.16.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.0",
+    "typescript": "^5.7.3"
+  }
+}

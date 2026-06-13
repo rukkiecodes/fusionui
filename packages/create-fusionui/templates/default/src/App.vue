@@ -41,10 +41,30 @@ const count = ref(0)
       </f-card-actions>
     </f-card>
 
-    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px">
       <f-chip color="primary">primary</f-chip>
       <f-chip color="success" variant="outlined">success</f-chip>
       <f-chip color="danger" prepend-icon="$warning">danger</f-chip>
+    </div>
+
+    <!-- The signature liquid-glass surface, floating over a gradient. -->
+    <div
+      style="
+        position: relative;
+        height: 200px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: linear-gradient(120deg, #195bff, #7d33ff 60%, #ff4757);
+      "
+    >
+      <f-glass
+        :radius="24"
+        :depth="16"
+        interactive
+        style="position: absolute; inset: 40px; display: grid; place-items: center"
+      >
+        <strong style="color: #fff">Liquid glass</strong>
+      </f-glass>
     </div>
   </main>
 </template>
