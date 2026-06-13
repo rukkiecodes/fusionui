@@ -15,6 +15,8 @@ export default ts.config(
       '.claude/**',
       'extras/**',
       'plans/**',
+      // Self-contained Expo Snack source (JSX in .js, shipped as raw text).
+      'apps/docs/src/snack/**',
       '**/*.md',
       // Generated Feather icon modules
       'packages/icons/src/icons/**',

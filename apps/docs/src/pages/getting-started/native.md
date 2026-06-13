@@ -14,6 +14,16 @@ visual identity are shared; only the rendering code is reimplemented.
 
 <NativePreview />
 
+## Run it live
+
+The same screen, running for real in **Expo Snack** — edit the code inline, or
+press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it
+on your phone. The components are inlined as pure React Native (Snack can't
+import the unpublished `@fusionui/native`), but every value comes straight from
+`@fusionui/tokens` — so this is what ships on a device.
+
+<NativeSnack />
+
 ## Install
 
 ```bash
