@@ -37,3 +37,8 @@ GLSL/
 depot_tools/
 skia/
 threejs-skills/
+extras/
+FusionUI.txt
+plans/
+CLAUDE.md
+.claude/
