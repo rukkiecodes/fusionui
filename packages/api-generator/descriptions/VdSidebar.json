@@ -1,0 +1,23 @@
+{
+  "props": {
+    "modelValue": "Active item id (use `v-model`).",
+    "open": "Drawer visibility in overlay mode (use `v-model:open`); closes on outside click.",
+    "permanent": "Renders in place as part of the layout instead of a fixed overlay.",
+    "reduce": "Collapses the drawer to a 50px Discord-style icon rail.",
+    "hoverExpand": "Expands the reduced rail while hovered.",
+    "right": "Docks the drawer to the right edge.",
+    "square": "Removes the rounded corners.",
+    "notLineActive": "Hides the rounded active-line indicator.",
+    "width": "Drawer width (px or any CSS size)."
+  },
+  "events": {
+    "update:modelValue": "Emitted when an item is activated.",
+    "update:open": "Emitted when the overlay drawer opens or closes."
+  },
+  "slots": {
+    "logo": "Logo area at the top.",
+    "header": "Content below the logo (e.g. a user card).",
+    "default": "The items — `vd-sidebar-item` and `vd-sidebar-group`.",
+    "footer": "Pinned to the bottom."
+  }
+}

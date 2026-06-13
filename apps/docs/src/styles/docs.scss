@@ -25,18 +25,19 @@ body {
 .docs {
   min-height: 100vh;
 
-  &__bar {
+  // The top bar is a VdNavbar dressed in the docs chrome.
+  &__bar.vd-navbar {
     position: sticky;
     top: 0;
     z-index: 20;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    height: var(--docs-bar-height);
-    padding: 0 24px;
     background-color: rgba(var(--vd-theme-surface), 0.8);
     backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid rgba(var(--vd-theme-on-surface), 0.07);
+
+    .vd-navbar__inner {
+      min-height: var(--docs-bar-height);
+      padding: 0 24px;
+    }
   }
 
   &__brand {
@@ -64,14 +65,18 @@ body {
     align-items: flex-start;
   }
 
-  &__sidebar {
+  // The desktop sidebar is a permanent VdSidebar blended into the page.
+  &__sidebar.vd-sidebar {
     position: sticky;
     top: var(--docs-bar-height);
     width: var(--docs-sidebar-width);
+    max-width: var(--docs-sidebar-width);
     height: calc(100vh - var(--docs-bar-height));
-    overflow-y: auto;
-    padding: 28px 16px;
+    padding: 20px 0;
     flex-shrink: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
   }
 
   &__nav-section {
@@ -618,17 +623,8 @@ body {
   .docs__menu-btn {
     display: inline-flex;
   }
-  .docs__sidebar {
-    position: fixed;
-    left: 0;
-    z-index: 30;
-    background-color: rgb(var(--vd-theme-surface));
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.25);
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
-
-    &--open {
-      transform: translateX(0);
-    }
+  // (Mobile uses the VdSidebar overlay mode — no extra styling needed.)
+  .docs__sidebar-unused {
+    display: none;
   }
 }

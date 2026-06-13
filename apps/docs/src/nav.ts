@@ -25,6 +25,8 @@ export const nav: NavSection[] = [
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },
       { title: 'Form Inputs', to: '/components/inputs' },
+      { title: 'Navbar', to: '/components/navbar' },
+      { title: 'Sidebar', to: '/components/sidebar' },
     ],
   },
 ]

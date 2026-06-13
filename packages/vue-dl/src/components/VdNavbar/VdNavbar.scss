@@ -1,47 +1,97 @@
-@use '../../styles/settings';
 @use '../../styles/tools';
 
 @include tools.layer('components') {
+  // Vuesax navbar — a clean rounded bar with a sliding active line.
   .vd-navbar {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    height: 60px;
-    padding: 0 20px;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    border-radius: 0 0 15px 15px;
     background-color: rgb(var(--vd-theme-surface));
-    color: rgba(var(--vd-theme-on-surface), 0.87);
-    box-shadow: settings.$vd-shadow-rest;
+    color: rgba(var(--vd-theme-on-surface), 0.92);
+    transition: all 0.25s ease;
 
-    &--flat {
-      box-shadow: none;
-      border-bottom: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+    &--square {
+      border-radius: 0;
     }
-
     &--fixed {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 50;
+      left: 0;
+    }
+    &--shadow {
+      box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.1);
+    }
+    &--hidden {
+      transform: translateY(-100%);
+    }
+    &--padding {
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
 
-    &__brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: settings.$vd-font-weight-bold;
-      font-size: 1.15rem;
-    }
-
-    &__content {
+    &__inner {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex: 1 1 auto;
+      justify-content: space-between;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 44px;
+      padding: 0 15px;
     }
 
-    &__append {
-      display: inline-flex;
+    &__left {
+      display: flex;
       align-items: center;
+      justify-content: flex-start;
       gap: 8px;
+    }
+    &__center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &__right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    // The sliding active indicator.
+    &__line {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+      background: rgb(var(--vd-theme-primary));
+      transition: all 0.25s ease;
+
+      &--still {
+        transition: none;
+      }
+    }
+
+    &__item {
+      padding: 13px 15px;
+      border: 0;
+      margin: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.7;
+      cursor: pointer;
+      transition:
+        all 0.25s ease,
+        color 0s;
+
+      &:hover,
+      &--active {
+        opacity: 1;
+      }
     }
   }
 }

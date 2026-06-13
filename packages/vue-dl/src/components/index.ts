@@ -27,8 +27,8 @@ import { VdMenu } from './VdMenu'
 import { VdTooltip } from './VdTooltip'
 import { VdList, VdListItem } from './VdList'
 import { VdTabs, VdTab, VdTabPanel, VdTabsWindow } from './VdTabs'
-import { VdNavbar } from './VdNavbar'
-import { VdSidebar } from './VdSidebar'
+import { VdNavbar, VdNavbarItem } from './VdNavbar'
+import { VdSidebar, VdSidebarItem, VdSidebarGroup } from './VdSidebar'
 import { VdBreadcrumb } from './VdBreadcrumb'
 import { VdPagination } from './VdPagination'
 import { VdCollapse } from './VdCollapse'
@@ -110,7 +110,10 @@ export const components: Record<string, Component> = {
   VdTabPanel,
   VdTabsWindow,
   VdNavbar,
+  VdNavbarItem,
   VdSidebar,
+  VdSidebarItem,
+  VdSidebarGroup,
   VdBreadcrumb,
   VdPagination,
   VdCollapse,

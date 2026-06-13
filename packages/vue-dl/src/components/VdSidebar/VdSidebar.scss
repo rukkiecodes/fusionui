@@ -1,56 +1,222 @@
-@use '../../styles/settings';
 @use '../../styles/tools';
 
 @include tools.layer('components') {
+  // Vuesax sidebar — a clean rounded drawer with a Discord-style icon rail.
   .vd-sidebar {
+    --vd-sidebar-width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: calc(100% - 50px);
+    max-width: var(--vd-sidebar-width);
+    height: 100vh;
+    border-radius: 0 30px 30px 0;
     background-color: rgb(var(--vd-theme-surface));
-    color: rgba(var(--vd-theme-on-surface), 0.87);
-    overflow-y: auto;
+    color: rgba(var(--vd-theme-on-surface), 0.92);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.07);
+    transform: translateX(-110%);
+    transition: all 0.25s ease;
 
-    &--permanent {
-      border-right: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
-    }
-
-    &:not(&--permanent) {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      z-index: 2001;
-      box-shadow: settings.$vd-shadow-rest;
-    }
-
-    &--left {
-      left: 0;
+    &--open {
+      transform: translateX(0);
     }
     &--right {
+      left: auto;
       right: 0;
-      border-right: none;
-      border-left: 1px solid rgba(var(--vd-theme-on-surface), 0.08);
+      border-radius: 30px 0 0 30px;
+      transform: translateX(110%);
+
+      &.vd-sidebar--open {
+        transform: translateX(0);
+      }
+    }
+    &--permanent {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      box-shadow: none;
+    }
+    &--square {
+      border-radius: 0;
+    }
+    &--reduce {
+      max-width: 50px;
+
+      .vd-sidebar__item-text,
+      .vd-sidebar__group-chevron,
+      .vd-sidebar__group-header span,
+      .vd-sidebar__logo,
+      .vd-sidebar__header {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .vd-sidebar__item--has-icon .vd-sidebar__item-text {
+        visibility: hidden;
+      }
     }
 
-    &__scrim {
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-  }
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 18px 0;
+      transition: opacity 0.25s ease;
 
-  .vd-sidebar-left-enter-active,
-  .vd-sidebar-left-leave-active,
-  .vd-sidebar-right-enter-active,
-  .vd-sidebar-right-leave-active {
-    transition: transform 0.25s settings.$vd-transition-timing;
-  }
-  .vd-sidebar-left-enter-from,
-  .vd-sidebar-left-leave-to {
-    transform: translateX(-100%);
-  }
-  .vd-sidebar-right-enter-from,
-  .vd-sidebar-right-leave-to {
-    transform: translateX(100%);
+      img {
+        max-width: 120px;
+        max-height: 35px;
+      }
+    }
+
+    &__header,
+    &__footer {
+      width: 100%;
+      padding: 10px;
+      transition: opacity 0.25s ease;
+    }
+
+    &__body {
+      flex: 1 1 auto;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+    }
+
+    // ---- Item -------------------------------------------------------------
+    &__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: all 0.25s ease;
+
+      // Rounded active pill that slides in from the left edge (Vuesax).
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        z-index: 2;
+        width: 10px;
+        height: 100%;
+        border-radius: 0 20px 20px 0;
+        background: rgb(var(--vd-theme-primary));
+        transform: translateX(-10px);
+        transition: all 0.25s ease;
+      }
+
+      &:hover {
+        opacity: 1;
+        padding-left: 25px;
+      }
+      &--active {
+        opacity: 1;
+        color: rgb(var(--vd-theme-primary));
+
+        &::after {
+          transform: translateX(0);
+        }
+      }
+      &--active:not(&--has-icon) {
+        padding-left: 25px;
+      }
+
+      &--has-icon {
+        padding: 0;
+
+        &:hover,
+        &.vd-sidebar__item--active {
+          padding-left: 8px;
+        }
+      }
+    }
+
+    &__item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 50px;
+      height: 47px;
+      font-size: 1.1rem;
+    }
+
+    &__item-text {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: opacity 0.25s ease;
+    }
+
+    &--no-line &__item::after {
+      display: none;
+    }
+
+    // ---- Group ------------------------------------------------------------
+    &__group-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      user-select: none;
+
+      // The header usually holds a vd-sidebar-item; keep it inert-looking.
+      .vd-sidebar__item::after {
+        display: none;
+      }
+    }
+
+    &__group-chevron {
+      position: absolute;
+      right: 14px;
+      opacity: 0.5;
+      transition: transform 0.25s ease;
+    }
+
+    &__group--open > &__group-header &__group-chevron {
+      transform: rotate(180deg);
+    }
+
+    &__group-content {
+      width: 100%;
+      overflow: hidden;
+      transition: height 0.25s ease;
+
+      .vd-sidebar__item {
+        font-size: 0.85rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 26px;
+
+        &:hover,
+        &.vd-sidebar__item--active {
+          padding-left: 34px;
+        }
+      }
+    }
+
+    &__group--open {
+      background: rgba(var(--vd-theme-on-surface), 0.025);
+      border-radius: 0 15px 15px 0;
+    }
   }
 }

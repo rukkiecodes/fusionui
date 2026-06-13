@@ -1,1 +1,8 @@
-export { VdSidebar, makeVdSidebarProps } from './VdSidebar'
+export {
+  VdSidebar,
+  VdSidebarItem,
+  VdSidebarGroup,
+  makeVdSidebarProps,
+  makeVdSidebarItemProps,
+  makeVdSidebarGroupProps,
+} from './VdSidebar'
