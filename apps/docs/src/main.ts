@@ -14,6 +14,7 @@ import TokensCatalog from './components/TokensCatalog.vue'
 import GlassPlayground from './components/GlassPlayground.vue'
 import GooPlayground from './components/GooPlayground.vue'
 import ShaderPlayground from './components/ShaderPlayground.vue'
+import ChartPlayground from './components/ChartPlayground.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -38,4 +39,5 @@ createApp(App)
   .component('GlassPlayground', GlassPlayground)
   .component('GooPlayground', GooPlayground)
   .component('ShaderPlayground', ShaderPlayground)
+  .component('ChartPlayground', ChartPlayground)
   .mount('#app')

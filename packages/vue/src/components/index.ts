@@ -35,6 +35,7 @@ import { FCollapse } from './FCollapse'
 import { FTable } from './FTable'
 import { FGlass } from './FGlass'
 import { FGoo } from './FGoo'
+import { FLineChart } from './FLineChart'
 
 export * from './FIcon'
 export * from './FBtn'
@@ -72,6 +73,7 @@ export * from './FCollapse'
 export * from './FTable'
 export * from './FGlass'
 export * from './FGoo'
+export * from './FLineChart'
 
 /** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
@@ -124,4 +126,5 @@ export const components: Record<string, Component> = {
   FTable,
   FGlass,
   FGoo,
+  FLineChart,
 }
