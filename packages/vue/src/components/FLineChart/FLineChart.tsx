@@ -47,6 +47,8 @@ export const makeFLineChartProps = propsFactory(
     showGrid: { type: Boolean, default: true },
     showAxes: { type: Boolean, default: true },
     tickCount: { type: Number, default: 6 },
+    /** Accessible text alternative for the chart (it conveys data). */
+    label: { type: String, default: 'Line chart' },
     ...makeThemeProps(),
     ...makeComponentProps(),
   },
@@ -114,8 +116,16 @@ export const FLineChart = genericComponent()({
     useRender(() => {
       const { linePath, areaPath, xTicks, yTicks, m } = model.value
       return (
-        <div ref={root} class={['fui-line-chart', props.class]} style={props.style} {...attrs}>
-          <svg class="fui-line-chart__svg" width="100%" height="100%">
+        <div
+          ref={root}
+          class={['fui-line-chart', props.class]}
+          style={props.style}
+          role="img"
+          aria-label={props.label}
+          {...attrs}
+        >
+          <svg class="fui-line-chart__svg" width="100%" height="100%" aria-hidden="true">
+            <title>{props.label}</title>
             <defs>
               <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stop-color={stroke.value} stop-opacity="0.32" />

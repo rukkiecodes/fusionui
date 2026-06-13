@@ -20,6 +20,7 @@ interface State {
   visible: boolean
   disposed: boolean
   onPointer?: (e: PointerEvent) => void
+  onVisibility?: () => void
 }
 
 const store = new WeakMap<HTMLElement, State>()
@@ -114,6 +115,13 @@ export const vShader: Directive<HTMLElement, ShaderDirectiveValue | undefined> =
     )
     state.io.observe(el)
 
+    // Pause when the tab is backgrounded (the IO only covers off-screen).
+    state.onVisibility = () => {
+      if (document.hidden) state.runner?.stop()
+      else if (state.visible && state.runner) state.runner.start()
+    }
+    document.addEventListener('visibilitychange', state.onVisibility)
+
     if (def.usesPointer) {
       state.onPointer = (e: PointerEvent) => {
         const r = el.getBoundingClientRect()
@@ -138,6 +146,7 @@ export const vShader: Directive<HTMLElement, ShaderDirectiveValue | undefined> =
     state.disposed = true
     state.io?.disconnect()
     if (state.onPointer) el.removeEventListener('pointermove', state.onPointer)
+    if (state.onVisibility) document.removeEventListener('visibilitychange', state.onVisibility)
     state.runner?.destroy()
     state.canvas?.remove()
     store.delete(el)

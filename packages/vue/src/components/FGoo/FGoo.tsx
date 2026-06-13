@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
@@ -70,7 +70,7 @@ export const FGoo = genericComponent()({
         vy: (Math.random() - 0.5) * 40,
       }))
 
-    const { path, circles, setPointer, clearPointer, impulse } = useGooey(
+    const { path, circles, clearPointer, impulse, system, wake } = useGooey(
       root,
       initial.map(b => ({ ...b, vx: b.vx ?? 0, vy: b.vy ?? 0 })),
       {
@@ -90,12 +90,45 @@ export const FGoo = genericComponent()({
       }
     )
 
+    // Field + physics props are live: push them into the running system so a
+    // playground (or any reactive parent) re-tunes the goo without remounting.
+    watch(
+      () => [
+        props.kernel,
+        props.reach,
+        props.cohesion,
+        props.gather,
+        props.viscosity,
+        props.gravity,
+      ],
+      () => {
+        system.setParams({
+          field: { kernel: props.kernel, threshold: props.reach },
+          physics: {
+            cohesion: props.cohesion,
+            gather: props.gather,
+            viscosity: props.viscosity,
+            gravity: props.gravity,
+          },
+        })
+        wake()
+      },
+      { deep: true }
+    )
+
     const fill = computed(() => props.color || 'rgb(var(--fui-theme-primary))')
 
+    // Read the pointer strength/radius live off props (not the construction-time
+    // closure) so changing them mid-flight takes effect.
     function onMove(e: PointerEvent) {
-      if (!props.pointer) return
-      const r = root.value!.getBoundingClientRect()
-      setPointer(e.clientX - r.left, e.clientY - r.top)
+      if (!props.pointer || !root.value) return
+      const r = root.value.getBoundingClientRect()
+      system.pointer.x = e.clientX - r.left
+      system.pointer.y = e.clientY - r.top
+      system.pointer.strength = props.pointer
+      system.pointer.radius = props.pointerRadius
+      system.pointer.active = true
+      wake()
     }
 
     useRender(() => (
@@ -107,7 +140,7 @@ export const FGoo = genericComponent()({
         onPointerleave={() => clearPointer()}
         {...attrs}
       >
-        <svg class="fui-goo__svg" preserveAspectRatio="none">
+        <svg class="fui-goo__svg" preserveAspectRatio="none" aria-hidden="true">
           {props.mode === 'filter' && (
             <defs>
               <filter id={GOO_FILTER_ID}>

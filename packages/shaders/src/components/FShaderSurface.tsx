@@ -75,6 +75,19 @@ export const FShaderSurface = defineComponent({
       values.pointer = [(e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height]
     }
 
+    // Pause the loop when the tab is backgrounded — the IntersectionObserver
+    // only covers off-screen, not a hidden tab whose surface is still in view.
+    function onVisibility() {
+      if (typeof document === 'undefined') return
+      if (document.hidden) runner?.stop()
+      else if (visible && runner) runner.start()
+    }
+
+    function syncPointerListener() {
+      root.value?.removeEventListener('pointermove', onPointer) // no-op if absent
+      if (effectDef().usesPointer) root.value?.addEventListener('pointermove', onPointer)
+    }
+
     onMounted(() => {
       if (!shouldRunShader()) return // static fallback only
       io = new IntersectionObserver(
@@ -90,7 +103,8 @@ export const FShaderSurface = defineComponent({
         { threshold: 0.01 }
       )
       if (root.value) io.observe(root.value)
-      if (effectDef().usesPointer) root.value?.addEventListener('pointermove', onPointer)
+      syncPointerListener()
+      document.addEventListener('visibilitychange', onVisibility)
     })
 
     watch(
@@ -102,13 +116,15 @@ export const FShaderSurface = defineComponent({
       }
     )
 
-    // Switching the effect needs a fresh program.
+    // Switching the effect needs a fresh program — and the pointer listener
+    // must be reconciled, since usesPointer differs between effects.
     watch(
       () => props.effect,
       () => {
         runner?.destroy()
         runner = null
         live.value = false
+        syncPointerListener()
         if (visible) void ensureRunner()
       }
     )
@@ -116,6 +132,8 @@ export const FShaderSurface = defineComponent({
     onBeforeUnmount(() => {
       disposed = true
       io?.disconnect()
+      if (typeof document !== 'undefined')
+        document.removeEventListener('visibilitychange', onVisibility)
       root.value?.removeEventListener('pointermove', onPointer)
       runner?.destroy()
       runner = null
