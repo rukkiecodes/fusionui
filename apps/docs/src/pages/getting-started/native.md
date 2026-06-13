@@ -10,19 +10,29 @@ API (names, props, variants, states), the interaction/a11y semantics, and the
 visual identity are shared; only the rendering code is reimplemented.
 `<FButton variant="primary" loading>` feels identical on web and mobile.
 
-## Preview
+## Components, live
 
-<NativePreview />
+Each component runs for real in its **own Expo Snack** — edit the code inline, or
+press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it on
+your phone. Snack can't import the unpublished `@fusionui/native`, so each is a
+self-contained, pure–React Native mirror — but every value comes straight from
+`@fusionui/tokens`, so this is what ships on a device.
 
-## Run it live
+### Button
 
-The same screen, running for real in **Expo Snack** — edit the code inline, or
-press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it
-on your phone. The components are inlined as pure React Native (Snack can't
-import the unpublished `@fusionui/native`), but every value comes straight from
-`@fusionui/tokens` — so this is what ships on a device.
+<NativeSnack name="button" />
 
-<NativeSnack />
+### Input
+
+<NativeSnack name="input" />
+
+### Switch
+
+<NativeSnack name="switch" />
+
+### Card
+
+<NativeSnack name="card" />
 
 ## Install
 
