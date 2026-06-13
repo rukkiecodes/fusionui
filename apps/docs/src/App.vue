@@ -22,7 +22,14 @@ function toggleTheme() {
 
 <template>
   <div class="docs" :class="theme.themeClasses.value">
-    <f-navbar square not-line class="docs__bar">
+    <f-navbar
+      square
+      not-line
+      class="docs__bar"
+      :goo-corner="isDesktop"
+      :corner-size="26"
+      sidebar-selector=".docs__sidebar"
+    >
       <template #left>
         <button
           v-if="!isDesktop"

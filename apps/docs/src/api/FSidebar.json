@@ -1,6 +1,69 @@
 {
   "displayName": "FSidebar",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "String",
+      "required": false,
+      "description": "Active item id (use `v-model`)."
+    },
+    "open": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Drawer visibility in overlay mode (use `v-model:open`); closes on outside click."
+    },
+    "permanent": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Renders in place as part of the layout instead of a fixed overlay."
+    },
+    "reduce": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Collapses the drawer to a 50px Discord-style icon rail."
+    },
+    "hoverExpand": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Expands the reduced rail while hovered."
+    },
+    "right": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Docks the drawer to the right edge."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Removes the rounded corners."
+    },
+    "notLineActive": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Hides the rounded active-line indicator."
+    },
+    "width": {
+      "type": "String | Number",
+      "default": "260",
+      "required": false,
+      "description": "Drawer width (px or any CSS size)."
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": "Emitted when an item is activated."

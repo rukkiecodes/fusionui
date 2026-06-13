@@ -16,6 +16,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
+import { gooCornerPath } from '../../util/gooCorner'
 
 interface NavbarContext {
   activeId: Ref<string | undefined>
@@ -43,6 +44,14 @@ export const makeFNavbarProps = propsFactory(
     notLine: Boolean,
     // CSS selector of the scroll container (defaults to the window).
     targetScroll: String as PropType<string>,
+    // Detect a permanent sidebar below the navbar and form a fluid concave
+    // ("negative radius") junction where the shell meets the recessed content —
+    // the fusion-goo smooth-min of the two edges.
+    gooCorner: Boolean,
+    // Blend radius (px) of that junction.
+    cornerSize: { type: Number, default: 22 },
+    // Selector for the docked sidebar the navbar pairs with.
+    sidebarSelector: { type: String as PropType<string>, default: '.fui-sidebar' },
     ...makeThemeProps(),
     ...makeComponentProps(),
   },
@@ -65,6 +74,23 @@ export const FNavbar = genericComponent()({
     const shadowActive = ref(false)
     const paddingActive = ref(false)
     let lastScrollTop = 0
+
+    // Goo-corner junction state (the sidebar width is detected; the fillet
+    // colour comes from `background: inherit`, so it tracks the theme for free).
+    const sidebarW = ref(0)
+    let gooObserver: ResizeObserver | null = null
+
+    function measureGoo() {
+      const root = rootRef.value
+      if (!props.gooCorner || typeof document === 'undefined' || !root) return
+      const navRect = root.getBoundingClientRect()
+      const sb = document.querySelector(props.sidebarSelector) as HTMLElement | null
+      const r = sb?.getBoundingClientRect()
+      // Only a permanent, left-docked sidebar sitting below the navbar forms the
+      // junction (ignore mobile overlay drawers).
+      sidebarW.value =
+        r && r.width > 0 && r.left <= navRect.left + 2 && r.top >= navRect.bottom - 2 ? r.width : 0
+    }
 
     function moveLine(el: HTMLElement, transition = true) {
       lineNoTransition.value = !transition
@@ -112,11 +138,22 @@ export const FNavbar = genericComponent()({
       if (typeof window === 'undefined') return
       scrollEl().addEventListener('scroll', onScroll as EventListener, { passive: true })
       window.addEventListener('resize', onResize, { passive: true })
+      if (props.gooCorner) {
+        measureGoo()
+        const sb = document.querySelector(props.sidebarSelector)
+        if (sb && typeof ResizeObserver !== 'undefined') {
+          gooObserver = new ResizeObserver(() => measureGoo())
+          gooObserver.observe(sb)
+        }
+        window.addEventListener('resize', measureGoo, { passive: true })
+      }
     })
     onBeforeUnmount(() => {
       if (typeof window === 'undefined') return
       scrollEl().removeEventListener('scroll', onScroll as EventListener)
       window.removeEventListener('resize', onResize)
+      gooObserver?.disconnect()
+      window.removeEventListener('resize', measureGoo)
     })
 
     useRender(() =>
@@ -147,6 +184,27 @@ export const FNavbar = genericComponent()({
             ? h('div', {
                 class: ['fui-navbar__line', { 'fui-navbar__line--still': lineNoTransition.value }],
                 style: { left: `${lineLeft.value}px`, width: `${lineWidth.value}px` },
+              })
+            : null,
+          // Fluid negative-radius junction with a detected sidebar: a shell-
+          // coloured concave fillet hanging just below the navbar at the sidebar's
+          // right edge, carved into the recessed content. `background: inherit`
+          // matches the navbar's shell colour and tracks the theme automatically;
+          // the clip-path is the fusion-goo concave curve.
+          props.gooCorner && sidebarW.value > 0
+            ? h('div', {
+                class: 'fui-navbar__goo',
+                'aria-hidden': 'true',
+                style: {
+                  position: 'absolute',
+                  left: `${sidebarW.value}px`,
+                  top: '100%',
+                  width: `${props.cornerSize}px`,
+                  height: `${props.cornerSize}px`,
+                  backgroundColor: 'inherit',
+                  clipPath: `path('${gooCornerPath(props.cornerSize)}')`,
+                  pointerEvents: 'none',
+                },
               })
             : null,
         ]

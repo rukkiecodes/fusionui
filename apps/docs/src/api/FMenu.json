@@ -1,6 +1,51 @@
 {
   "displayName": "FMenu",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "location": {
+      "type": "String",
+      "default": "bottom",
+      "required": false,
+      "description": ""
+    },
+    "openOnHover": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "closeOnContentClick": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "contentClass": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

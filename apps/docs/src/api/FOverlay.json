@@ -1,6 +1,46 @@
 {
   "displayName": "FOverlay",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "persistent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "scrim": {
+      "type": "Boolean | String",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "contentClass": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "transition": {
+      "type": "String",
+      "default": "fui-dialog-transition",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

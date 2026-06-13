@@ -1,6 +1,39 @@
 {
   "displayName": "FCollapse",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

@@ -1,35 +1,61 @@
 {
-  "displayName": "FCheckbox",
+  "displayName": "FLineChart",
   "props": {
-    "modelValue": {
-      "type": "any",
-      "default": "false",
+    "data": {
+      "type": "Array",
+      "default": "[]",
       "required": false,
       "description": ""
     },
-    "value": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "label": {
+    "curve": {
       "type": "String",
+      "default": "monotone",
+      "required": false,
+      "description": ""
+    },
+    "area": {
+      "type": "Boolean",
       "required": false,
       "description": ""
     },
     "color": {
       "type": "String",
-      "default": "primary",
       "required": false,
       "description": ""
     },
-    "indeterminate": {
-      "type": "Boolean",
+    "strokeWidth": {
+      "type": "Number",
+      "default": "2",
       "required": false,
       "description": ""
     },
-    "disabled": {
+    "zero": {
       "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "showGrid": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "showAxes": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "tickCount": {
+      "type": "Number",
+      "default": "6",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "default": "Line chart",
       "required": false,
       "description": ""
     },
@@ -50,10 +76,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

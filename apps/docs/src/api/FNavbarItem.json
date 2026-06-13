@@ -1,6 +1,44 @@
 {
   "displayName": "FNavbarItem",
-  "props": {},
+  "props": {
+    "id": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "active": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "to": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "href": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "target": {
+      "type": "String",
+      "default": "_blank",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "click": {
       "description": ""

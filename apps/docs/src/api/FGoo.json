@@ -1,36 +1,26 @@
 {
-  "displayName": "FSelect",
+  "displayName": "FGoo",
   "props": {
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "items": {
+    "blobs": {
       "type": "Array",
-      "default": "[]",
       "required": false,
       "description": ""
     },
-    "itemTitle": {
-      "type": "String",
-      "default": "title",
+    "count": {
+      "type": "Number",
+      "default": "6",
       "required": false,
       "description": ""
     },
-    "itemValue": {
-      "type": "String",
-      "default": "value",
+    "minRadius": {
+      "type": "Number",
+      "default": "22",
       "required": false,
       "description": ""
     },
-    "label": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "placeholder": {
-      "type": "String",
+    "maxRadius": {
+      "type": "Number",
+      "default": "46",
       "required": false,
       "description": ""
     },
@@ -39,62 +29,63 @@
       "required": false,
       "description": ""
     },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "clearable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "hint": {
+    "kernel": {
       "type": "String",
+      "default": "cubic",
       "required": false,
       "description": ""
     },
-    "persistentHint": {
-      "type": "Boolean",
+    "reach": {
+      "type": "Number",
+      "default": "0.5",
       "required": false,
       "description": ""
     },
-    "rules": {
+    "cohesion": {
+      "type": "Number",
+      "default": "45",
+      "required": false,
+      "description": ""
+    },
+    "gather": {
+      "type": "Number",
+      "default": "4",
+      "required": false,
+      "description": ""
+    },
+    "viscosity": {
+      "type": "Number",
+      "default": "1.4",
+      "required": false,
+      "description": ""
+    },
+    "gravity": {
       "type": "Array",
-      "default": "[]",
+      "default": "[0,0]",
       "required": false,
       "description": ""
     },
-    "error": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "errorMessages": {
-      "type": "String | Array",
-      "default": "[]",
-      "required": false,
-      "description": ""
-    },
-    "successMessages": {
-      "type": "String | Array",
-      "default": "[]",
-      "required": false,
-      "description": ""
-    },
-    "validateOn": {
+    "mode": {
       "type": "String",
-      "default": "input",
+      "default": "contour",
       "required": false,
       "description": ""
     },
-    "disabled": {
-      "type": "Boolean",
+    "pointer": {
+      "type": "Number",
+      "default": "0",
       "required": false,
       "description": ""
     },
-    "readonly": {
-      "type": "Boolean",
+    "pointerRadius": {
+      "type": "Number",
+      "default": "150",
+      "required": false,
+      "description": ""
+    },
+    "cell": {
+      "type": "Number",
+      "default": "8",
       "required": false,
       "description": ""
     },
@@ -115,10 +106,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

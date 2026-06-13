@@ -1,6 +1,51 @@
 {
   "displayName": "FPopup",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "String | Number",
+      "default": "440",
+      "required": false,
+      "description": ""
+    },
+    "persistent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "closable": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

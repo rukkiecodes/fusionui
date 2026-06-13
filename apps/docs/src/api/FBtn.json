@@ -1,6 +1,144 @@
 {
   "displayName": "FBtn",
-  "props": {},
+  "props": {
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": "A theme color name (primary, success…) or any CSS color."
+    },
+    "variant": {
+      "type": "String",
+      "default": "elevated",
+      "required": false,
+      "description": "Visual style — elevated, flat, tonal, outlined, text, plain, gradient, relief, line, floating, or shadow."
+    },
+    "icon": {
+      "type": "Boolean | String | Object | Function",
+      "required": false,
+      "description": "Renders a compact, icon-only button when set to an icon value."
+    },
+    "prependIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": "Icon shown before the label."
+    },
+    "appendIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": "Icon shown after the label."
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "block": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Stretches the button to the full container width."
+    },
+    "circle": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Makes an icon button fully circular."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Removes the border radius."
+    },
+    "active": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Forces the active/pressed look (e.g. a selected toggle)."
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shows the dual-ring loader overlay and blocks interaction."
+    },
+    "upload": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shows an upload progress sweep overlay."
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Disables the button."
+    },
+    "ripple": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "href": {
+      "type": "String",
+      "required": false,
+      "description": "Renders the button as an <a> link."
+    },
+    "animationType": {
+      "type": "String",
+      "default": "",
+      "required": false,
+      "description": "Reveals the `animate` slot on hover — horizontal, vertical, scale, or rotate."
+    },
+    "value": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "size": {
+      "type": "String | Number",
+      "default": "default",
+      "required": false,
+      "description": "x-small, small, default, large, or x-large."
+    },
+    "border": {
+      "type": "Boolean | Number | String",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tile": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "elevation": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "button",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "click": {
       "description": "Emitted on click when the button is not disabled or loading."

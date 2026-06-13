@@ -1,6 +1,43 @@
 {
   "displayName": "FRadio",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "value": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

@@ -1,6 +1,83 @@
 {
   "displayName": "FAlert",
-  "props": {},
+  "props": {
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": "Visual style — default, solid, border, shadow, gradient, flat, or relief."
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": "Accent color — a theme name (primary, success…) or any CSS color."
+    },
+    "type": {
+      "type": "String",
+      "required": false,
+      "description": "Semantic shortcut (success, info, warning, error) that sets a color and a leading icon."
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": "Title text (shorthand for the `title` slot)."
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": "Body text (shorthand for the default slot)."
+    },
+    "icon": {
+      "type": "Boolean | String | Object | Function",
+      "required": false,
+      "description": "Leading icon name, or false to hide the type icon."
+    },
+    "closable": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shows a dismiss button that hides the alert."
+    },
+    "progress": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": "0–100 value for the bottom progress bar."
+    },
+    "hiddenContent": {
+      "type": "Boolean",
+      "default": "null",
+      "required": false,
+      "description": "Boolean (use `v-model:hidden-content`) — makes the title collapse/expand the content."
+    },
+    "page": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": "Current page for the `page-N` slots (use `v-model:page`)."
+    },
+    "modelValue": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": "Visibility (use `v-model`)."
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": "Emitted when the alert is dismissed."

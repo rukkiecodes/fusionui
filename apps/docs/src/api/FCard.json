@@ -1,6 +1,61 @@
 {
   "displayName": "FCard",
-  "props": {},
+  "props": {
+    "type": {
+      "type": "String | Number",
+      "default": "1",
+      "required": false,
+      "description": "Layout style. 1 (default) settles + zooms on hover, 2 reveals a gradient caption, 3 is horizontal, 4 has a frosted caption, 5 pops the caption over the image, 6 parallaxes the image on scroll, 8 dodges the cursor, 9 follows the cursor, 10 flips to a back face when the cursor is near, 11 is a Tinder-style swipe deck, 12 an X feed post, 13 a Facebook post, 14 an Instagram post."
+    },
+    "parallax": {
+      "type": "Number | String",
+      "default": "280",
+      "required": false,
+      "description": "Type 6 only — how far (px) the image drifts across a full scroll pass. Higher is more intense (default 280)."
+    },
+    "image": {
+      "type": "String",
+      "required": false,
+      "description": "Image URL for the card media (shorthand for the `img` slot)."
+    },
+    "img": {
+      "type": "String",
+      "required": false,
+      "description": "Alias of `image`."
+    },
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": "Heading text (shorthand for the `title` slot)."
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": "Body text (shorthand for the `text` slot)."
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": "The root element tag."
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {},
   "slots": {
     "img": {

@@ -1,6 +1,58 @@
 {
   "displayName": "FSlider",
-  "props": {},
+  "props": {
+    "modelValue": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "Number",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "Number",
+      "default": "100",
+      "required": false,
+      "description": ""
+    },
+    "step": {
+      "type": "Number",
+      "default": "1",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

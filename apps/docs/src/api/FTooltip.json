@@ -1,6 +1,29 @@
 {
   "displayName": "FTooltip",
-  "props": {},
+  "props": {
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "location": {
+      "type": "String",
+      "default": "top",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {},
   "slots": {}
 }

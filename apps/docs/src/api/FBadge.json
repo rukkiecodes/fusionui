@@ -1,6 +1,50 @@
 {
   "displayName": "FBadge",
-  "props": {},
+  "props": {
+    "content": {
+      "type": "String | Number",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "danger",
+      "required": false,
+      "description": ""
+    },
+    "dot": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "inline": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "modelValue": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {},
   "slots": {}
 }

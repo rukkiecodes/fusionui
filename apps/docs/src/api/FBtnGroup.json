@@ -1,6 +1,53 @@
 {
   "displayName": "FBtnGroup",
-  "props": {},
+  "props": {
+    "divided": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "multiple": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "mandatory": {
+      "type": "Boolean | String",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tile": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
   "events": {
     "update:modelValue": {
       "description": ""

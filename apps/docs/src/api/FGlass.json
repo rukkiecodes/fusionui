@@ -1,40 +1,62 @@
 {
-  "displayName": "FProgressLinear",
+  "displayName": "FGlass",
   "props": {
-    "modelValue": {
+    "radius": {
       "type": "Number | String",
-      "default": "0",
+      "default": "24",
       "required": false,
       "description": ""
     },
-    "indeterminate": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "height": {
+    "bezel": {
       "type": "Number | String",
-      "default": "4",
+      "default": "18",
       "required": false,
       "description": ""
     },
-    "color": {
+    "depth": {
+      "type": "Number | String",
+      "default": "14",
+      "required": false,
+      "description": ""
+    },
+    "ior": {
+      "type": "Number | String",
+      "default": "1.45",
+      "required": false,
+      "description": ""
+    },
+    "profile": {
       "type": "String",
+      "default": "lens",
       "required": false,
       "description": ""
     },
-    "striped": {
+    "blur": {
+      "type": "Number | String",
+      "default": "2",
+      "required": false,
+      "description": ""
+    },
+    "saturation": {
+      "type": "Number | String",
+      "default": "1.6",
+      "required": false,
+      "description": ""
+    },
+    "tint": {
+      "type": "String",
+      "default": "rgba(255,255,255,0.10)",
+      "required": false,
+      "description": ""
+    },
+    "interactive": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
+    "tag": {
+      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },

@@ -28,26 +28,29 @@ body {
   // The Vuesax layout model: navbar + sidebar form a single tinted "shell"
   // (one background), and the documentation content is a brighter, inset sheet
   // clearly separated from that shell.
+  // Shell (navbar + sidebar) is the brighter frame; the content is the recessed
+  // surface it wraps. Exact palette per spec.
   &.fui-theme--light {
-    --docs-shell: #f1f4f6;
-    --docs-content: #ffffff;
-    --docs-edge: rgba(44, 62, 80, 0.09);
+    --docs-shell: #ffffff;
+    --docs-content: #f4f7f8;
+    --docs-edge: rgba(44, 62, 80, 0.08);
   }
   &.fui-theme--dark {
-    --docs-shell: #15161a;
-    --docs-content: #1e2023;
-    --docs-edge: rgba(255, 255, 255, 0.07);
+    --docs-shell: #1e2023;
+    --docs-content: #18191c;
+    --docs-edge: rgba(255, 255, 255, 0.06);
   }
   background-color: var(--docs-shell);
 
   // The top bar and the sidebar share the shell background, so they read as one
-  // navigation frame distinct from the content.
+  // navigation frame distinct from the content. overflow:visible lets the goo
+  // corner hang below the bar into the content junction.
   &__bar.fui-navbar {
     position: sticky;
     top: 0;
     z-index: 20;
     background-color: var(--docs-shell);
-    border-bottom: 1px solid var(--docs-edge);
+    overflow: visible;
 
     .fui-navbar__inner {
       min-height: var(--docs-bar-height);
@@ -129,16 +132,15 @@ body {
     }
   }
 
-  // The content is an inset sheet: a distinct, brighter surface, separated from
-  // the shell by an edge line and a rounded top-left corner (Vuesax inset look).
+  // The content is the recessed surface the shell wraps. The fluid concave
+  // junction at its top-left is drawn by the navbar's goo corner, so the corner
+  // itself stays square here (the shell-coloured fillet carves it).
   &__main {
     flex: 1 1 auto;
     min-width: 0;
     display: flex;
     justify-content: center;
     background-color: var(--docs-content);
-    border-left: 1px solid var(--docs-edge);
-    border-top-left-radius: 20px;
     min-height: calc(100vh - var(--docs-bar-height));
   }
 
