@@ -15,21 +15,21 @@ export function smin(a: number, b: number, k: number): number {
 }
 
 /**
- * SVG path for the shell-side of a fluid concave corner, in a local box of
- * `size`×`size` whose (0,0) is the junction point and whose content fills the
- * bottom-right. Fill the path with the **shell colour** to carve the negative
- * radius into the content beneath it.
+ * SVG path for the shell-coloured fillet that sits in the junction corner, in a
+ * local box of `size`×`size` whose (0,0) is the junction point and whose content
+ * fills the bottom-right. Fill it with the **shell colour**: it occupies only the
+ * small wedge between the corner and a quarter-round, so the content beneath
+ * reads with a clean **convex** rounded corner nestled into the shell — i.e. the
+ * *shell's* inside corner carries the negative (concave) radius, which is how the
+ * navbar + sidebar frame flows around the content (the Vuesax look).
  *
- * The curve is the `smin` isoline of the navbar-bottom (y=0) and sidebar-right
- * (x=0) edges: it leaves the axes at `size` and bows in to ~`size/4` at the
- * diagonal (a cubic Bézier matches that midpoint, so the path stays crisp and
- * resolution-independent without per-frame sampling).
+ * The curve is a quarter arc centred at (size, size); the cubic controls sit one
+ * `smin`-blend in from the axes so it stays crisp and resolution-independent.
  */
 export function gooCornerPath(size: number): string {
   const s = Math.max(size, 0)
-  // The shell bulges into the content corner along a quarter arc centred on the
-  // junction (0,0): the content edge curves *away* from the corner, a concave
-  // negative radius. 0.5523 is the circle Bézier constant for a true quarter arc.
-  const k = s * 0.5523
-  return `M0 0 L${s} 0 C${s} ${k} ${k} ${s} 0 ${s} Z`
+  // 0.4477 = 1 − 0.5523 (the quarter-circle Bézier constant) → controls one blend
+  // in from each axis, giving the content's convex corner / shell's concave fillet.
+  const c = s * 0.4477
+  return `M0 0 L${s} 0 C${c} 0 0 ${c} 0 ${s} Z`
 }

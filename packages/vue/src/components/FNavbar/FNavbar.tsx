@@ -193,11 +193,12 @@ export const FNavbar = genericComponent()({
                 style: { left: `${lineLeft.value}px`, width: `${lineWidth.value}px` },
               })
             : null,
-          // Fluid negative-radius junction with a detected sidebar: a shell-
-          // coloured concave fillet hanging just below the navbar at the sidebar's
-          // right edge, carved into the recessed content. `background: inherit`
-          // matches the navbar's shell colour and tracks the theme automatically;
-          // the clip-path is the fusion-goo concave curve.
+          // Fluid junction with a detected sidebar: a shell-coloured fillet in the
+          // corner where the navbar bottom + sidebar right meet the content, so
+          // the content reads with a convex rounded corner nestled into the shell
+          // (the shell's inside corner carries the negative radius — Vuesax look).
+          // `background: inherit` matches the shell colour and tracks the theme;
+          // the clip-path is the fusion-goo corner curve.
           props.gooCorner && sidebarW.value > 0
             ? h('div', {
                 class: 'fui-navbar__goo',
