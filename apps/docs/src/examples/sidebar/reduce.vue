@@ -10,7 +10,7 @@ const reduce = ref(true)
       {{ reduce ? 'Expand' : 'Reduce' }}
     </f-btn>
     <div class="sidebar-demo">
-      <f-sidebar v-model="active" permanent :reduce="reduce" hover-expand>
+      <f-sidebar v-model="active" permanent :reduce="reduce">
         <template #logo>
           <f-icon icon="feather" color="primary" size="medium" />
         </template>

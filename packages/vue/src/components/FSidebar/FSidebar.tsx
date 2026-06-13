@@ -16,6 +16,7 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { convertToUnit } from '../../util/helpers'
+import { parseColor } from '../../util/colors'
 import { FIcon } from '../FIcon'
 
 interface SidebarContext {
@@ -25,6 +26,16 @@ interface SidebarContext {
 }
 
 export const FSidebarKey: InjectionKey<SidebarContext> = Symbol.for('fusionui:sidebar')
+
+/** Resolve a color name/CSS color to an `r, g, b` triplet for rgb(var(--…)). */
+function resolveColorTriplet(color?: string): string | null {
+  if (!color) return null
+  if (color.startsWith('#') || color.startsWith('rgb')) {
+    const { r, g, b } = parseColor(color)
+    return `${r}, ${g}, ${b}`
+  }
+  return `var(--fui-theme-${color})`
+}
 
 export const makeFSidebarProps = propsFactory(
   {
@@ -42,6 +53,10 @@ export const makeFSidebarProps = propsFactory(
     square: Boolean,
     // Hide the rounded active-line indicator.
     notLineActive: Boolean,
+    // Fill the drawer with a theme color (primary, success…) or any CSS color.
+    color: String as PropType<string>,
+    // Force white text (useful on a colored drawer).
+    textWhite: Boolean,
     width: { type: [String, Number] as PropType<string | number>, default: 260 },
     ...makeThemeProps(),
     ...makeComponentProps(),
@@ -63,6 +78,7 @@ export const FSidebar = genericComponent()({
 
     const hovered = ref(false)
     const reduced = computed(() => props.reduce && !(props.hoverExpand && hovered.value))
+    const sidebarColor = computed(() => resolveColorTriplet(props.color))
 
     provide(FSidebarKey, {
       activeId: model,
@@ -109,10 +125,16 @@ export const FSidebar = genericComponent()({
               'fui-sidebar--right': props.right,
               'fui-sidebar--square': props.square,
               'fui-sidebar--no-line': props.notLineActive,
+              'fui-sidebar--colored': !!sidebarColor.value,
+              'fui-sidebar--text-white': props.textWhite,
             },
             props.class,
           ],
-          style: [{ '--fui-sidebar-width': convertToUnit(props.width) }, props.style],
+          style: [
+            { '--fui-sidebar-width': convertToUnit(props.width) },
+            sidebarColor.value ? { '--fui-sidebar-color': sidebarColor.value } : null,
+            props.style,
+          ],
           onMouseenter: () => {
             hovered.value = true
           },

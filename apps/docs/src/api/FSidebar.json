@@ -41,6 +41,16 @@
       "required": false,
       "description": "Hides the rounded active-line indicator."
     },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "textWhite": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "width": {
       "type": "String | Number",
       "default": "260",
