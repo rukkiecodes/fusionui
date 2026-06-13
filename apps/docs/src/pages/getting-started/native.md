@@ -40,13 +40,14 @@ export default function App() {
 
 ## Component parity
 
-| Web (`@fusionui/vue`) | Native (`@fusionui/native`) | Shared contract                                            |
-| --------------------- | --------------------------- | ---------------------------------------------------------- |
-| `<f-btn>`             | `<FButton>`                 | `variant`, `color`, `size`, `loading`, `disabled`, `block` |
-| `<f-card>`            | `<FCard>`                   | `flat`, `padding`, `radius`                                |
-| `<f-input>`           | `<FInput>`                  | `label`, `value`, `disabled`, `error`, `message`           |
-| `<f-switch>`          | `<FSwitch>`                 | `value`, `color`, `disabled`                               |
-| `<f-glass>`           | `<LiquidGlassView>`         | `radius`, glass `options` — same SDF→Snell engine          |
+| Web (`@fusionui/vue`)  | Native (`@fusionui/native`) | Shared contract                                                                    |
+| ---------------------- | --------------------------- | ---------------------------------------------------------------------------------- |
+| `<f-btn>`              | `<FButton>`                 | `variant`, `color`, `size`, `loading`, `disabled`, `block`                         |
+| `<f-card>`             | `<FCard>`                   | `flat`, `padding`, `radius`                                                        |
+| `<f-input>`            | `<FInput>`                  | `label`, `value`, `disabled`, `error`, `message`                                   |
+| `<f-switch>`           | `<FSwitch>`                 | `value`, `color`, `disabled`                                                       |
+| `<f-glass>`            | `<LiquidGlassView>`         | `radius`, glass `options` — same SDF→Snell engine                                  |
+| navbar + sidebar shell | `<FShell>`                  | the fluid goo junction, drawn with Skia from the same `engine/shell` path commands |
 
 A unit test enforces that the native `FButton` variants are a subset of the web
 `allowedVariants`, so the two can't silently drift.

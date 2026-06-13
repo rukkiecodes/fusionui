@@ -47,7 +47,7 @@ describe('shell engine — content panel outline', () => {
     // …and closes with the convex corner curve back to the top edge.
     const curve = cmds.find(c => c.type === 'C')!
     expect(curve).toMatchObject({ type: 'C', x: 284, y: 60 })
-    expect(cmds.at(-1)).toMatchObject({ type: 'Z' })
+    expect(cmds[cmds.length - 1]).toMatchObject({ type: 'Z' })
   })
   it('clamps the radius to the available space', () => {
     const cmds = shellContentCommands({

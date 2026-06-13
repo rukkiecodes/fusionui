@@ -21,6 +21,12 @@ export { FInput } from './components/FInput'
 export type { FInputProps } from './components/FInput'
 export { FSwitch } from './components/FSwitch'
 export type { FSwitchProps } from './components/FSwitch'
+export { FShell } from './components/FShell'
+export type { FShellProps } from './components/FShell'
+
+// The shell shape engine (goo path commands → Skia). Shared math with the web.
+export { smin, shellCornerCommands, shellContentCommands, buildSkiaPath } from './engine/shell'
+export type { PathCommand, ShellContentGeometry } from './engine/shell'
 
 // Signature visual identity — liquid glass (UIGlassEffect on iOS 26, SKSL elsewhere)
 export { LiquidGlassView } from './components/LiquidGlassView'
