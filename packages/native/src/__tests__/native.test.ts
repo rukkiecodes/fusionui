@@ -58,4 +58,17 @@ describe('component API parity with @fusionui/vue', () => {
     expect(nativeVariants.length).toBeGreaterThan(0)
     for (const v of nativeVariants) expect(webVariants).toContain(v)
   })
+
+  it('FAlert variants are a documented subset of the web AlertVariant union', () => {
+    const webSrc = readFileSync(join(ROOT, '../../../vue/src/components/FAlert/FAlert.tsx'), 'utf8')
+    const webBlock = webSrc.match(/AlertVariant\s*=\s*([\s\S]*?)\nexport type AlertType/)![1]
+    const webVariants = [...webBlock.matchAll(/'([a-z-]+)'/g)].map(m => m[1])
+
+    const nativeSrc = readFileSync(join(ROOT, '../components/FAlert.tsx'), 'utf8')
+    const union = nativeSrc.match(/AlertVariant\s*=\s*([^\n]+)/)![1]
+    const nativeVariants = [...union.matchAll(/'([a-z-]+)'/g)].map(m => m[1])
+
+    expect(nativeVariants.length).toBeGreaterThan(0)
+    for (const v of nativeVariants) expect(webVariants).toContain(v)
+  })
 })

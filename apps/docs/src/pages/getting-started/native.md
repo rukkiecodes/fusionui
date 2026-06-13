@@ -36,6 +36,10 @@ comes from `@fusionui/tokens`.
 
 <NativeSnack name="card" deps="react-native-reanimated" :height="560" />
 
+### Alert
+
+<NativeSnack name="alert" deps="react-native-reanimated,expo-linear-gradient" :height="720" />
+
 ### Liquid glass
 
 The signature effect — a Skia refraction slab over a live backdrop, rendered in the
@@ -85,11 +89,12 @@ export default function App() {
 | `<f-card>`             | `<FCard>`                   | `flat`, `padding`, `radius`                                                        |
 | `<f-input>`            | `<FInput>`                  | `label`, `value`, `disabled`, `error`, `message`                                   |
 | `<f-switch>`           | `<FSwitch>`                 | `value`, `color`, `disabled`                                                       |
+| `<f-alert>`            | `<FAlert>`                  | `variant`, `color`, `type`, `title`, `text`, `closable`, `progress`                |
 | `<f-glass>`            | `<LiquidGlassView>`         | `radius`, glass `options` — same SDF→Snell engine                                  |
 | navbar + sidebar shell | `<FShell>`                  | the fluid goo junction, drawn with Skia from the same `engine/shell` path commands |
 
-A unit test enforces that the native `FButton` variants are a subset of the web
-`allowedVariants`, so the two can't silently drift.
+Unit tests enforce that the native `FButton` and `FAlert` variant unions are
+subsets of their web counterparts, so the platforms can't silently drift.
 
 ## Liquid glass on native
 

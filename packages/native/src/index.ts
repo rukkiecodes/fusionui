@@ -21,6 +21,8 @@ export { FInput } from './components/FInput'
 export type { FInputProps } from './components/FInput'
 export { FSwitch } from './components/FSwitch'
 export type { FSwitchProps } from './components/FSwitch'
+export { FAlert } from './components/FAlert'
+export type { FAlertProps, AlertVariant, AlertType } from './components/FAlert'
 export { FShell } from './components/FShell'
 export type { FShellProps } from './components/FShell'
 
