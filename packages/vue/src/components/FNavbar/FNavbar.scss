@@ -93,5 +93,97 @@
         opacity: 1;
       }
     }
+
+    // ---- Colored bar -----------------------------------------------------
+    &--colored {
+      background-color: rgb(var(--fui-navbar-color));
+      color: rgba(255, 255, 255, 0.85);
+
+      .fui-navbar__line {
+        background: #fff;
+      }
+    }
+    &--text-white {
+      color: #fff;
+
+      .fui-navbar__item {
+        color: #fff;
+      }
+    }
+
+    // ---- Group dropdown --------------------------------------------------
+    &__group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    &__group-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    &__item--header {
+      opacity: 1;
+      font-weight: 700;
+      cursor: default;
+    }
+    &__dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      z-index: 200;
+      min-width: 168px;
+      padding: 8px;
+      border-radius: 13px;
+      background: rgb(30, 32, 35);
+      box-shadow: 0 12px 34px -10px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, 6px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s;
+
+      .fui-navbar__item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 9px 14px;
+        border-radius: 8px;
+        text-align: left;
+        opacity: 1;
+        color: rgba(255, 255, 255, 0.7);
+        white-space: nowrap;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.06);
+          color: #fff;
+        }
+        &--active {
+          color: #fff;
+
+          &::before {
+            content: '•';
+            margin-right: 8px;
+            color: rgb(var(--fui-theme-primary));
+          }
+        }
+        &--header {
+          color: #fff;
+          padding-bottom: 4px;
+
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+    }
+    &__group:hover &__dropdown,
+    &__group:focus-within &__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
   }
 }

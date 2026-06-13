@@ -27,7 +27,7 @@ import { FMenu } from './FMenu'
 import { FTooltip } from './FTooltip'
 import { FList, FListItem } from './FList'
 import { FTabs, FTab, FTabPanel, FTabsWindow } from './FTabs'
-import { FNavbar, FNavbarItem } from './FNavbar'
+import { FNavbar, FNavbarItem, FNavbarGroup } from './FNavbar'
 import { FSidebar, FSidebarItem, FSidebarGroup } from './FSidebar'
 import { FBreadcrumb } from './FBreadcrumb'
 import { FPagination } from './FPagination'
@@ -117,6 +117,7 @@ export const components: Record<string, Component> = {
   FTabsWindow,
   FNavbar,
   FNavbarItem,
+  FNavbarGroup,
   FSidebar,
   FSidebarItem,
   FSidebarGroup,

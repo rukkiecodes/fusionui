@@ -16,6 +16,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
+import { parseColor } from '../../util/colors'
 import { shellCornerSvg } from '../../engine/shell'
 
 interface NavbarContext {
@@ -26,6 +27,19 @@ interface NavbarContext {
 }
 
 export const FNavbarKey: InjectionKey<NavbarContext> = Symbol.for('fusionui:navbar')
+// Items rendered inside a group's dropdown track their own active state (a dot)
+// and must NOT move the navbar's sliding line (which stays under the group).
+export const FNavbarInDropdownKey: InjectionKey<boolean> = Symbol.for('fusionui:navbar-dropdown')
+
+/** Resolve a color name/CSS color to an `r, g, b` triplet for rgb(var(--…)). */
+function resolveColorTriplet(color?: string): string | null {
+  if (!color) return null
+  if (color.startsWith('#') || color.startsWith('rgb')) {
+    const { r, g, b } = parseColor(color)
+    return `${r}, ${g}, ${b}`
+  }
+  return `var(--fui-theme-${color})`
+}
 
 export const makeFNavbarProps = propsFactory(
   {
@@ -42,6 +56,10 @@ export const makeFNavbarProps = propsFactory(
     square: Boolean,
     // Hide the sliding active line.
     notLine: Boolean,
+    // Fill the bar with a theme color (primary, success…) or any CSS color.
+    color: String as PropType<string>,
+    // Force white text (useful on a colored or dark bar).
+    textWhite: Boolean,
     // CSS selector of the scroll container (defaults to the window).
     targetScroll: String as PropType<string>,
     // Detect a permanent sidebar below the navbar and form a fluid concave
@@ -65,6 +83,7 @@ export const FNavbar = genericComponent()({
   setup(props: any, { slots }: any) {
     provideTheme(props)
     const model = useProxiedModel(props, 'modelValue', undefined)
+    const navbarColor = computed(() => resolveColorTriplet(props.color))
 
     const rootRef = ref<HTMLElement>()
     const lineLeft = ref(0)
@@ -95,8 +114,14 @@ export const FNavbar = genericComponent()({
     function moveLine(el: HTMLElement, transition = true) {
       lineNoTransition.value = !transition
       nextTick(() => {
-        lineLeft.value = el.offsetLeft
-        lineWidth.value = el.scrollWidth
+        const root = rootRef.value
+        if (!root) return
+        // Measure against the root rect so nesting (e.g. a positioned group
+        // wrapper) doesn't throw off the line position.
+        const er = el.getBoundingClientRect()
+        const rr = root.getBoundingClientRect()
+        lineLeft.value = er.left - rr.left
+        lineWidth.value = er.width
       })
     }
     function clearLine() {
@@ -176,10 +201,15 @@ export const FNavbar = genericComponent()({
               'fui-navbar--hidden': hidden.value,
               'fui-navbar--square': props.square,
               'fui-navbar--padding': props.paddingScroll && !paddingActive.value,
+              'fui-navbar--colored': !!navbarColor.value,
+              'fui-navbar--text-white': props.textWhite,
             },
             props.class,
           ],
-          style: props.style,
+          style: [
+            navbarColor.value ? { '--fui-navbar-color': navbarColor.value } : null,
+            props.style,
+          ],
         },
         [
           h('div', { class: 'fui-navbar__inner' }, [
@@ -225,6 +255,8 @@ export const makeFNavbarItemProps = propsFactory(
   {
     id: String as PropType<string>,
     active: Boolean,
+    // A non-interactive bold label (e.g. a section title inside a group dropdown).
+    header: Boolean,
     to: String as PropType<string>,
     href: String as PropType<string>,
     target: { type: String, default: '_blank' },
@@ -239,6 +271,7 @@ export const FNavbarItem = genericComponent()({
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     const navbar = inject(FNavbarKey, null)
+    const inDropdown = inject(FNavbarInDropdownKey, false)
     const el = ref<HTMLElement>()
     const vm = getCurrentInstance()
 
@@ -247,12 +280,14 @@ export const FNavbarItem = genericComponent()({
     )
 
     function syncLine(transition = true) {
+      // Dropdown items mark themselves with a dot, not the navbar line.
+      if (inDropdown) return
       if (isActive.value && el.value && navbar) navbar.moveLine(el.value, transition)
     }
 
     onMounted(() => {
       // Wait for fonts/layout to settle before measuring (Vuesax does the same).
-      setTimeout(() => syncLine(false), 150)
+      if (!inDropdown) setTimeout(() => syncLine(false), 150)
     })
     watch(isActive, val => val && nextTick(() => syncLine()))
 
@@ -267,8 +302,18 @@ export const FNavbarItem = genericComponent()({
       }
     }
 
-    useRender(() =>
-      h(
+    useRender(() => {
+      if (props.header) {
+        return h(
+          'div',
+          {
+            class: ['fui-navbar__item', 'fui-navbar__item--header', props.class],
+            style: props.style,
+          },
+          slots.default?.()
+        )
+      }
+      return h(
         'button',
         {
           ref: el,
@@ -279,6 +324,63 @@ export const FNavbarItem = genericComponent()({
         },
         slots.default?.()
       )
+    })
+  },
+})
+
+export const makeFNavbarGroupProps = propsFactory(
+  {
+    id: String as PropType<string>,
+    title: String as PropType<string>,
+    active: Boolean,
+    ...makeComponentProps(),
+  },
+  'FNavbarGroup'
+)
+
+export const FNavbarGroup = genericComponent()({
+  name: 'FNavbarGroup',
+  props: makeFNavbarGroupProps(),
+  emits: { click: (_e: MouseEvent) => true },
+  setup(props: any, { slots, emit }: any) {
+    const navbar = inject(FNavbarKey, null)
+    const triggerEl = ref<HTMLElement>()
+    // Items in this group's dropdown shouldn't drive the navbar line.
+    provide(FNavbarInDropdownKey, true)
+
+    const isActive = computed(
+      () => props.active || (!!props.id && navbar?.activeId.value === props.id)
+    )
+
+    function syncLine(transition = true) {
+      if (isActive.value && triggerEl.value && navbar) navbar.moveLine(triggerEl.value, transition)
+    }
+    onMounted(() => setTimeout(() => syncLine(false), 150))
+    watch(isActive, val => val && nextTick(() => syncLine()))
+
+    function onClick(e: MouseEvent) {
+      emit('click', e)
+      if (props.id && navbar) navbar.setActive(props.id)
+    }
+
+    useRender(() =>
+      h('div', { class: ['fui-navbar__group', props.class], style: props.style }, [
+        h(
+          'button',
+          {
+            ref: triggerEl,
+            type: 'button',
+            class: [
+              'fui-navbar__item',
+              'fui-navbar__group-trigger',
+              { 'fui-navbar__item--active': isActive.value },
+            ],
+            onClick,
+          },
+          slots.label ? slots.label() : props.title
+        ),
+        h('div', { class: 'fui-navbar__dropdown' }, slots.default?.()),
+      ])
     )
   },
 })

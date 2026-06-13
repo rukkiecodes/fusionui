@@ -1,1 +1,8 @@
-export { FNavbar, FNavbarItem, makeFNavbarProps, makeFNavbarItemProps } from './FNavbar'
+export {
+  FNavbar,
+  FNavbarItem,
+  FNavbarGroup,
+  makeFNavbarProps,
+  makeFNavbarItemProps,
+  makeFNavbarGroupProps,
+} from './FNavbar'

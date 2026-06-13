@@ -41,6 +41,16 @@
       "required": false,
       "description": "Hides the sliding active line."
     },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "textWhite": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "targetScroll": {
       "type": "String",
       "required": false,
