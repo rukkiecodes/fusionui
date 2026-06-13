@@ -29,6 +29,7 @@ export const nav: NavSection[] = [
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
       { title: 'Liquid Glass', to: '/components/liquid-glass' },
+      { title: 'Goo', to: '/components/goo' },
     ],
   },
 ]
