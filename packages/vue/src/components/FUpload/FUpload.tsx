@@ -8,7 +8,7 @@ import { useProxiedModel } from '../../composables/proxiedModel'
 import { FBtn } from '../FBtn'
 import { FIcon } from '../FIcon'
 
-export const makeVdUploadProps = propsFactory(
+export const makeFUploadProps = propsFactory(
   {
     modelValue: { type: Array as PropType<File[]>, default: () => [] },
     accept: String as PropType<string>,
@@ -24,7 +24,7 @@ export const makeVdUploadProps = propsFactory(
 
 export const FUpload = genericComponent()({
   name: 'FUpload',
-  props: makeVdUploadProps(),
+  props: makeFUploadProps(),
   emits: { 'update:modelValue': (_v: File[]) => true },
   setup(props: any) {
     provideTheme(props)

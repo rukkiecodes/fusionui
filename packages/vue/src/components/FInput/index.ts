@@ -1,1 +1,1 @@
-export { FInput, makeVdInputProps } from './FInput'
+export { FInput, makeFInputProps } from './FInput'

@@ -11,7 +11,7 @@ export interface BreadcrumbItem {
   disabled?: boolean
 }
 
-export const makeVdBreadcrumbProps = propsFactory(
+export const makeFBreadcrumbProps = propsFactory(
   {
     items: { type: Array as PropType<(BreadcrumbItem | string)[]>, default: () => [] },
     divider: { type: String, default: '$next' },
@@ -22,7 +22,7 @@ export const makeVdBreadcrumbProps = propsFactory(
 
 export const FBreadcrumb = genericComponent()({
   name: 'FBreadcrumb',
-  props: makeVdBreadcrumbProps(),
+  props: makeFBreadcrumbProps(),
   setup(props: any, { slots }: any) {
     useRender(() => {
       const items = props.items.map((i: BreadcrumbItem | string) =>

@@ -1,3 +1,3 @@
-export { FRadioGroup, makeVdRadioGroupProps } from './FRadioGroup'
-export { FRadio, makeVdRadioProps } from './FRadio'
+export { FRadioGroup, makeFRadioGroupProps } from './FRadioGroup'
+export { FRadio, makeFRadioProps } from './FRadio'
 export { FRadioGroupSymbol } from './key'

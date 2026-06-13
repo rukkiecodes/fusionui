@@ -1,2 +1,2 @@
-export { FAlert, makeVdAlertProps } from './FAlert'
+export { FAlert, makeFAlertProps } from './FAlert'
 export type { AlertVariant, AlertType } from './FAlert'

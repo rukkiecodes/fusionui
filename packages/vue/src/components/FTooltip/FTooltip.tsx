@@ -4,7 +4,7 @@ import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 
-export const makeVdTooltipProps = propsFactory(
+export const makeFTooltipProps = propsFactory(
   {
     text: String as PropType<string>,
     location: {
@@ -18,7 +18,7 @@ export const makeVdTooltipProps = propsFactory(
 
 export const FTooltip = genericComponent()({
   name: 'FTooltip',
-  props: makeVdTooltipProps(),
+  props: makeFTooltipProps(),
   setup(props: any, { slots }: any) {
     const isActive = ref(false)
 

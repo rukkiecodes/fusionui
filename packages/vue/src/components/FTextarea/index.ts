@@ -1,1 +1,1 @@
-export { FTextarea, makeVdTextareaProps } from './FTextarea'
+export { FTextarea, makeFTextareaProps } from './FTextarea'

@@ -1,2 +1,2 @@
-export { FProgressCircular, makeVdProgressCircularProps } from './FProgressCircular'
-export { FProgressLinear, makeVdProgressLinearProps } from './FProgressLinear'
+export { FProgressCircular, makeFProgressCircularProps } from './FProgressCircular'
+export { FProgressLinear, makeFProgressLinearProps } from './FProgressLinear'

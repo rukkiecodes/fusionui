@@ -8,13 +8,13 @@ import type { ComponentObjectPropsOptions, Prop } from 'vue'
  * blueprints layer their own defaults on top of a shared definition.
  *
  * ```ts
- * const makeVdBtnProps = propsFactory({
+ * const makeFBtnProps = propsFactory({
  *   flat: Boolean,
  *   ...makeVariantProps({ variant: 'elevated' }),
  * }, 'FBtn')
  *
- * props: makeVdBtnProps()                 // base
- * props: makeVdBtnProps({ flat: true })   // override a default
+ * props: makeFBtnProps()                 // base
+ * props: makeFBtnProps({ flat: true })   // override a default
  * ```
  */
 export function propsFactory<PropsOptions extends Readonly<ComponentObjectPropsOptions>>(

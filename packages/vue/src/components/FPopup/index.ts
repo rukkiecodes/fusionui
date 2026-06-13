@@ -1,1 +1,1 @@
-export { FPopup, makeVdPopupProps } from './FPopup'
+export { FPopup, makeFPopupProps } from './FPopup'

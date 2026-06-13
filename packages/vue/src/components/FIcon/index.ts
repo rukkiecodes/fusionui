@@ -1,1 +1,1 @@
-export { FIcon, makeVdIconProps } from './FIcon'
+export { FIcon, makeFIconProps } from './FIcon'

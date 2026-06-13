@@ -4,7 +4,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeFormProps, createForm } from '../../composables/form'
 
-export const makeVdFormProps = propsFactory(
+export const makeFFormProps = propsFactory(
   {
     ...makeFormProps(),
     ...makeComponentProps(),
@@ -14,7 +14,7 @@ export const makeVdFormProps = propsFactory(
 
 export const FForm = genericComponent()({
   name: 'FForm',
-  props: makeVdFormProps(),
+  props: makeFFormProps(),
   emits: {
     submit: (_e: Event) => true,
     'update:modelValue': (_v: boolean | null) => true,

@@ -8,7 +8,7 @@ import { useProxiedModel } from '../../composables/proxiedModel'
 import { getUid } from '../../util/helpers'
 import { FRadioGroupSymbol } from './key'
 
-export const makeVdRadioGroupProps = propsFactory(
+export const makeFRadioGroupProps = propsFactory(
   {
     modelValue: { type: null as unknown as PropType<unknown>, default: undefined },
     label: String as PropType<string>,
@@ -23,7 +23,7 @@ export const makeVdRadioGroupProps = propsFactory(
 
 export const FRadioGroup = genericComponent()({
   name: 'FRadioGroup',
-  props: makeVdRadioGroupProps(),
+  props: makeFRadioGroupProps(),
   emits: { 'update:modelValue': (_v: unknown) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

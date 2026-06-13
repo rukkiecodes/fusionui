@@ -1,1 +1,1 @@
-export { FDivider, makeVdDividerProps } from './FDivider'
+export { FDivider, makeFDividerProps } from './FDivider'

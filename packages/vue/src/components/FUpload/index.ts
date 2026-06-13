@@ -1,1 +1,1 @@
-export { FUpload, makeVdUploadProps } from './FUpload'
+export { FUpload, makeFUploadProps } from './FUpload'

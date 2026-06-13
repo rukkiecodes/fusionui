@@ -25,7 +25,7 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
 }
 
-export const makeVdCardProps = propsFactory(
+export const makeFCardProps = propsFactory(
   {
     // Layout style, mirroring the five Vuesax card types (1 = default).
     // Type 6 adds a scroll-driven parallax on the image.
@@ -48,7 +48,7 @@ export const makeVdCardProps = propsFactory(
 export const FCard = genericComponent()({
   name: 'FCard',
   inheritAttrs: false,
-  props: makeVdCardProps(),
+  props: makeFCardProps(),
   setup(props: any, { slots, attrs }: any) {
     provideTheme(props)
 

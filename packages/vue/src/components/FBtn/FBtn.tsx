@@ -16,7 +16,7 @@ import { useGroupItem } from '../../composables/group'
 import { FIcon } from '../FIcon'
 import { FBtnGroupSymbol } from '../FBtnGroup/key'
 
-export const makeVdBtnProps = propsFactory(
+export const makeFBtnProps = propsFactory(
   {
     ...makeVariantProps({ variant: 'elevated' }),
     color: { type: String as PropType<string>, default: 'primary' },
@@ -54,7 +54,7 @@ export const makeVdBtnProps = propsFactory(
 
 export const FBtn = genericComponent()({
   name: 'FBtn',
-  props: makeVdBtnProps(),
+  props: makeFBtnProps(),
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     provideTheme(props)

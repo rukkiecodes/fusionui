@@ -16,7 +16,7 @@ interface NormalizedItem {
   value: unknown
 }
 
-export const makeVdSelectProps = propsFactory(
+export const makeFSelectProps = propsFactory(
   {
     modelValue: { type: null as unknown as PropType<unknown>, default: undefined },
     items: { type: Array as PropType<unknown[]>, default: () => [] },
@@ -38,7 +38,7 @@ export const makeVdSelectProps = propsFactory(
 
 export const FSelect = genericComponent()({
   name: 'FSelect',
-  props: makeVdSelectProps(),
+  props: makeFSelectProps(),
   emits: { 'update:modelValue': (_v: unknown) => true },
   setup(props: any) {
     provideTheme(props)

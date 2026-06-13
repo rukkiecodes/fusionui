@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { makeGroupProps, useGroup } from '../../composables/group'
 import { FBtnGroupSymbol } from './key'
 
-export const makeVdBtnGroupProps = propsFactory(
+export const makeFBtnGroupProps = propsFactory(
   {
     divided: Boolean,
     ...makeGroupProps(),
@@ -20,7 +20,7 @@ export const makeVdBtnGroupProps = propsFactory(
 
 export const FBtnGroup = genericComponent()({
   name: 'FBtnGroup',
-  props: makeVdBtnGroupProps(),
+  props: makeFBtnGroupProps(),
   emits: { 'update:modelValue': (_v: unknown) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

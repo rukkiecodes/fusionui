@@ -1,1 +1,1 @@
-export { FAvatar, makeVdAvatarProps } from './FAvatar'
+export { FAvatar, makeFAvatarProps } from './FAvatar'

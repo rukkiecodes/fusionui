@@ -6,7 +6,7 @@ import { makeComponentProps } from '../../composables/component'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { ClickOutside } from '../../directives/click-outside'
 
-export const makeVdMenuProps = propsFactory(
+export const makeFMenuProps = propsFactory(
   {
     modelValue: { type: Boolean, default: false },
     location: {
@@ -24,7 +24,7 @@ export const makeVdMenuProps = propsFactory(
 
 export const FMenu = genericComponent()({
   name: 'FMenu',
-  props: makeVdMenuProps(),
+  props: makeFMenuProps(),
   emits: { 'update:modelValue': (_v: boolean) => true },
   setup(props: any, { slots }: any) {
     const isActive = useProxiedModel(props, 'modelValue', false)

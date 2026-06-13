@@ -11,7 +11,7 @@ import type { FieldVariant } from '../FField'
 import { FField } from '../FField'
 import { FIcon } from '../FIcon'
 
-export const makeVdInputProps = propsFactory(
+export const makeFInputProps = propsFactory(
   {
     modelValue: { type: [String, Number] as PropType<string | number>, default: '' },
     type: { type: String, default: 'text' },
@@ -40,7 +40,7 @@ export const makeVdInputProps = propsFactory(
 
 export const FInput = genericComponent()({
   name: 'FInput',
-  props: makeVdInputProps(),
+  props: makeFInputProps(),
   emits: {
     'update:modelValue': (_v: string | number) => true,
     'update:focused': (_v: boolean) => true,

@@ -11,7 +11,7 @@ import type { IconValue } from '../../composables/icons'
 import { Ripple } from '../../directives/ripple'
 import { FIcon } from '../FIcon'
 
-export const makeVdChipProps = propsFactory(
+export const makeFChipProps = propsFactory(
   {
     ...makeVariantProps({ variant: 'tonal' }),
     color: { type: String as PropType<string>, default: 'primary' },
@@ -31,7 +31,7 @@ export const makeVdChipProps = propsFactory(
 
 export const FChip = genericComponent()({
   name: 'FChip',
-  props: makeVdChipProps(),
+  props: makeFChipProps(),
   emits: {
     'update:modelValue': (_v: boolean) => true,
     'click:close': (_e: MouseEvent) => true,

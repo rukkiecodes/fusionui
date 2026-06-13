@@ -1,1 +1,1 @@
-export { FSpacer, makeVdSpacerProps } from './FSpacer'
+export { FSpacer, makeFSpacerProps } from './FSpacer'

@@ -1,1 +1,1 @@
-export { FSwitch, makeVdSwitchProps } from './FSwitch'
+export { FSwitch, makeFSwitchProps } from './FSwitch'

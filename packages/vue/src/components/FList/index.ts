@@ -1,1 +1,1 @@
-export { FList, FListItem, makeVdListProps, makeVdListItemProps } from './FList'
+export { FList, FListItem, makeFListProps, makeFListItemProps } from './FList'

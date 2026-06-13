@@ -7,7 +7,7 @@ import { useProxiedModel } from '../../composables/proxiedModel'
 
 let activeOverlays = 0
 
-export const makeVdOverlayProps = propsFactory(
+export const makeFOverlayProps = propsFactory(
   {
     modelValue: { type: Boolean, default: false },
     persistent: Boolean,
@@ -21,7 +21,7 @@ export const makeVdOverlayProps = propsFactory(
 
 export const FOverlay = genericComponent()({
   name: 'FOverlay',
-  props: makeVdOverlayProps(),
+  props: makeFOverlayProps(),
   emits: { 'update:modelValue': (_v: boolean) => true },
   setup(props: any, { slots }: any) {
     const isActive = useProxiedModel(props, 'modelValue', false)

@@ -8,7 +8,7 @@ import { makeValidationProps, useValidation } from '../../composables/validation
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FField } from '../FField'
 
-export const makeVdTextareaProps = propsFactory(
+export const makeFTextareaProps = propsFactory(
   {
     modelValue: { type: String, default: '' },
     label: String as PropType<string>,
@@ -26,7 +26,7 @@ export const makeVdTextareaProps = propsFactory(
 
 export const FTextarea = genericComponent()({
   name: 'FTextarea',
-  props: makeVdTextareaProps(),
+  props: makeFTextareaProps(),
   emits: { 'update:modelValue': (_v: string) => true },
   setup(props: any) {
     const model = useProxiedModel(props, 'modelValue', '')

@@ -1,1 +1,1 @@
-export { FTooltip, makeVdTooltipProps } from './FTooltip'
+export { FTooltip, makeFTooltipProps } from './FTooltip'

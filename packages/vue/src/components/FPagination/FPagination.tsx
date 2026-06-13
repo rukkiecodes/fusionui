@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FIcon } from '../FIcon'
 
-export const makeVdPaginationProps = propsFactory(
+export const makeFPaginationProps = propsFactory(
   {
     modelValue: { type: Number, default: 1 },
     length: { type: Number, default: 1 },
@@ -26,7 +26,7 @@ function range(start: number, end: number): number[] {
 
 export const FPagination = genericComponent()({
   name: 'FPagination',
-  props: makeVdPaginationProps(),
+  props: makeFPaginationProps(),
   emits: { 'update:modelValue': (_v: number) => true },
   setup(props: any) {
     provideTheme(props)

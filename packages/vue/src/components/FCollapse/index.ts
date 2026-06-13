@@ -1,1 +1,1 @@
-export { FCollapse, makeVdCollapseProps } from './FCollapse'
+export { FCollapse, makeFCollapseProps } from './FCollapse'

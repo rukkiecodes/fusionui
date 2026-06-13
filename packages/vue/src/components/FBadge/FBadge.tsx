@@ -6,7 +6,7 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useColor } from '../../composables/color'
 
-export const makeVdBadgeProps = propsFactory(
+export const makeFBadgeProps = propsFactory(
   {
     content: [String, Number] as PropType<string | number>,
     color: { type: String as PropType<string>, default: 'danger' },
@@ -21,7 +21,7 @@ export const makeVdBadgeProps = propsFactory(
 
 export const FBadge = genericComponent()({
   name: 'FBadge',
-  props: makeVdBadgeProps(),
+  props: makeFBadgeProps(),
   setup(props: any, { slots }: any) {
     provideTheme(props)
     const { colorClasses, colorStyles } = useColor(() => ({ background: props.color }))

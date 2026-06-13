@@ -1,2 +1,2 @@
-export { FField, makeVdFieldProps } from './FField'
+export { FField, makeFFieldProps } from './FField'
 export type { FieldVariant, FieldState } from './FField'

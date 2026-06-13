@@ -32,7 +32,7 @@ const typeIcon: Record<AlertType, string> = {
   error: '$error',
 }
 
-export const makeVdAlertProps = propsFactory(
+export const makeFAlertProps = propsFactory(
   {
     variant: { type: String as PropType<AlertVariant>, default: 'default' },
     // Accent color — a theme name (primary, success…) or any CSS color.
@@ -60,7 +60,7 @@ export const makeVdAlertProps = propsFactory(
 
 export const FAlert = genericComponent()({
   name: 'FAlert',
-  props: makeVdAlertProps(),
+  props: makeFAlertProps(),
   emits: {
     'update:modelValue': (_v: boolean) => true,
     'update:hiddenContent': (_v: boolean) => true,

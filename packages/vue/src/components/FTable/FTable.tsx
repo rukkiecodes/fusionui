@@ -13,7 +13,7 @@ export interface TableHeader {
   align?: 'start' | 'center' | 'end'
 }
 
-export const makeVdTableProps = propsFactory(
+export const makeFTableProps = propsFactory(
   {
     headers: { type: Array as PropType<TableHeader[]>, default: () => [] },
     items: { type: Array as PropType<Record<string, unknown>[]>, default: () => [] },
@@ -27,7 +27,7 @@ export const makeVdTableProps = propsFactory(
 
 export const FTable = genericComponent()({
   name: 'FTable',
-  props: makeVdTableProps(),
+  props: makeFTableProps(),
   setup(props: any, { slots }: any) {
     provideTheme(props)
     const sortKey = ref<string | null>(null)

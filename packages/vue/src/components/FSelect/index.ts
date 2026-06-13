@@ -1,1 +1,1 @@
-export { FSelect, makeVdSelectProps } from './FSelect'
+export { FSelect, makeFSelectProps } from './FSelect'

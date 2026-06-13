@@ -26,7 +26,7 @@ interface NavbarContext {
 
 export const FNavbarKey: InjectionKey<NavbarContext> = Symbol.for('fusionui:navbar')
 
-export const makeVdNavbarProps = propsFactory(
+export const makeFNavbarProps = propsFactory(
   {
     // Active item id (v-model).
     modelValue: String as PropType<string>,
@@ -51,7 +51,7 @@ export const makeVdNavbarProps = propsFactory(
 
 export const FNavbar = genericComponent()({
   name: 'FNavbar',
-  props: makeVdNavbarProps(),
+  props: makeFNavbarProps(),
   emits: { 'update:modelValue': (_v: string | undefined) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)
@@ -155,7 +155,7 @@ export const FNavbar = genericComponent()({
   },
 })
 
-export const makeVdNavbarItemProps = propsFactory(
+export const makeFNavbarItemProps = propsFactory(
   {
     id: String as PropType<string>,
     active: Boolean,
@@ -169,7 +169,7 @@ export const makeVdNavbarItemProps = propsFactory(
 
 export const FNavbarItem = genericComponent()({
   name: 'FNavbarItem',
-  props: makeVdNavbarItemProps(),
+  props: makeFNavbarItemProps(),
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     const navbar = inject(FNavbarKey, null)

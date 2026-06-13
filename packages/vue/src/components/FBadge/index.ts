@@ -1,1 +1,1 @@
-export { FBadge, makeVdBadgeProps } from './FBadge'
+export { FBadge, makeFBadgeProps } from './FBadge'

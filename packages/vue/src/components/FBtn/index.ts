@@ -1,1 +1,1 @@
-export { FBtn, makeVdBtnProps } from './FBtn'
+export { FBtn, makeFBtnProps } from './FBtn'

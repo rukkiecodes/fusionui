@@ -11,7 +11,7 @@ import { FIcon } from '../FIcon'
 export type FieldVariant = 'default' | 'underlined' | 'shadow'
 export type FieldState = 'success' | 'danger' | 'warning' | 'primary' | 'dark'
 
-export const makeVdFieldProps = propsFactory(
+export const makeFFieldProps = propsFactory(
   {
     label: String as PropType<string>,
     labelPlaceholder: Boolean,
@@ -43,7 +43,7 @@ export const makeVdFieldProps = propsFactory(
 
 export const FField = genericComponent()({
   name: 'FField',
-  props: makeVdFieldProps(),
+  props: makeFFieldProps(),
   emits: { 'click:clear': (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     provideTheme(props)

@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FTabsSymbol } from './key'
 
-export const makeVdTabsProps = propsFactory(
+export const makeFTabsProps = propsFactory(
   {
     modelValue: { type: null as unknown as PropType<unknown>, default: undefined },
     color: { type: String as PropType<string>, default: 'primary' },
@@ -24,7 +24,7 @@ export const makeVdTabsProps = propsFactory(
 
 export const FTabs = genericComponent()({
   name: 'FTabs',
-  props: makeVdTabsProps(),
+  props: makeFTabsProps(),
   emits: { 'update:modelValue': (_v: unknown) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

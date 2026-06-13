@@ -1,1 +1,1 @@
-export { FCheckbox, makeVdCheckboxProps } from './FCheckbox'
+export { FCheckbox, makeFCheckboxProps } from './FCheckbox'

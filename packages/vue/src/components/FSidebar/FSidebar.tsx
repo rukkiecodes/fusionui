@@ -26,7 +26,7 @@ interface SidebarContext {
 
 export const FSidebarKey: InjectionKey<SidebarContext> = Symbol.for('fusionui:sidebar')
 
-export const makeVdSidebarProps = propsFactory(
+export const makeFSidebarProps = propsFactory(
   {
     // Active item id (v-model).
     modelValue: String as PropType<string>,
@@ -51,7 +51,7 @@ export const makeVdSidebarProps = propsFactory(
 
 export const FSidebar = genericComponent()({
   name: 'FSidebar',
-  props: makeVdSidebarProps(),
+  props: makeFSidebarProps(),
   emits: {
     'update:modelValue': (_v: string | undefined) => true,
     'update:open': (_v: boolean) => true,
@@ -131,7 +131,7 @@ export const FSidebar = genericComponent()({
   },
 })
 
-export const makeVdSidebarItemProps = propsFactory(
+export const makeFSidebarItemProps = propsFactory(
   {
     id: String as PropType<string>,
     active: Boolean,
@@ -145,7 +145,7 @@ export const makeVdSidebarItemProps = propsFactory(
 
 export const FSidebarItem = genericComponent()({
   name: 'FSidebarItem',
-  props: makeVdSidebarItemProps(),
+  props: makeFSidebarItemProps(),
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     const sidebar = inject(FSidebarKey, null)
@@ -191,7 +191,7 @@ export const FSidebarItem = genericComponent()({
   },
 })
 
-export const makeVdSidebarGroupProps = propsFactory(
+export const makeFSidebarGroupProps = propsFactory(
   {
     open: Boolean,
     ...makeComponentProps(),
@@ -201,7 +201,7 @@ export const makeVdSidebarGroupProps = propsFactory(
 
 export const FSidebarGroup = genericComponent()({
   name: 'FSidebarGroup',
-  props: makeVdSidebarGroupProps(),
+  props: makeFSidebarGroupProps(),
   setup(props: any, { slots }: any) {
     const isOpen = ref(props.open)
     const contentRef = ref<HTMLElement>()

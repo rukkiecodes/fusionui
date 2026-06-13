@@ -16,7 +16,7 @@ const sizeMap: Record<string, string> = {
   'x-large': '48px',
 }
 
-export const makeVdIconProps = propsFactory(
+export const makeFIconProps = propsFactory(
   {
     color: String as PropType<string>,
     size: { type: [String, Number] as PropType<string | number>, default: 'default' },
@@ -31,7 +31,7 @@ export const makeVdIconProps = propsFactory(
 
 export const FIcon = genericComponent()({
   name: 'FIcon',
-  props: makeVdIconProps(),
+  props: makeFIconProps(),
   setup(
     props: {
       icon?: unknown

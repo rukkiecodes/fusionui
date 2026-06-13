@@ -7,7 +7,7 @@ import type { IconValue } from '../../composables/icons'
 import { FIcon } from '../FIcon'
 import { FTabsSymbol } from './key'
 
-export const makeVdTabProps = propsFactory(
+export const makeFTabProps = propsFactory(
   {
     value: { type: null as unknown as PropType<unknown>, default: undefined },
     text: [String, Number] as PropType<string | number>,
@@ -20,7 +20,7 @@ export const makeVdTabProps = propsFactory(
 
 export const FTab = genericComponent()({
   name: 'FTab',
-  props: makeVdTabProps(),
+  props: makeFTabProps(),
   setup(props: any, { slots }: any) {
     const tabs = inject(FTabsSymbol, null)
     const root = ref<HTMLElement | null>(null)

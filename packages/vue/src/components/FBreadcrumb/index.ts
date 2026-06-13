@@ -1,2 +1,2 @@
-export { FBreadcrumb, makeVdBreadcrumbProps } from './FBreadcrumb'
+export { FBreadcrumb, makeFBreadcrumbProps } from './FBreadcrumb'
 export type { BreadcrumbItem } from './FBreadcrumb'

@@ -1,1 +1,1 @@
-export { FPagination, makeVdPaginationProps } from './FPagination'
+export { FPagination, makeFPaginationProps } from './FPagination'

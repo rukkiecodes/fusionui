@@ -6,7 +6,7 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 
-export const makeVdSliderProps = propsFactory(
+export const makeFSliderProps = propsFactory(
   {
     modelValue: { type: [Number, String] as PropType<number | string>, default: 0 },
     min: { type: Number, default: 0 },
@@ -22,7 +22,7 @@ export const makeVdSliderProps = propsFactory(
 
 export const FSlider = genericComponent()({
   name: 'FSlider',
-  props: makeVdSliderProps(),
+  props: makeFSliderProps(),
   emits: { 'update:modelValue': (_v: number) => true },
   setup(props: any) {
     provideTheme(props)

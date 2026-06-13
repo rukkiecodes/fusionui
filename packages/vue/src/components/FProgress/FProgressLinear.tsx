@@ -8,7 +8,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useColor } from '../../composables/color'
 import { convertToUnit } from '../../util/helpers'
 
-export const makeVdProgressLinearProps = propsFactory(
+export const makeFProgressLinearProps = propsFactory(
   {
     modelValue: { type: [Number, String] as PropType<number | string>, default: 0 },
     indeterminate: Boolean,
@@ -24,7 +24,7 @@ export const makeVdProgressLinearProps = propsFactory(
 
 export const FProgressLinear = genericComponent()({
   name: 'FProgressLinear',
-  props: makeVdProgressLinearProps(),
+  props: makeFProgressLinearProps(),
   setup(props: any) {
     provideTheme(props)
     const { roundedClasses } = useRounded(props)

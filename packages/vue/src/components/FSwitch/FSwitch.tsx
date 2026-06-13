@@ -6,7 +6,7 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 
-export const makeVdSwitchProps = propsFactory(
+export const makeFSwitchProps = propsFactory(
   {
     modelValue: { type: Boolean, default: false },
     label: String as PropType<string>,
@@ -20,7 +20,7 @@ export const makeVdSwitchProps = propsFactory(
 
 export const FSwitch = genericComponent()({
   name: 'FSwitch',
-  props: makeVdSwitchProps(),
+  props: makeFSwitchProps(),
   emits: { 'update:modelValue': (_v: boolean) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

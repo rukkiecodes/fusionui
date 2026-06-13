@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FIcon } from '../FIcon'
 
-export const makeVdCollapseProps = propsFactory(
+export const makeFCollapseProps = propsFactory(
   {
     modelValue: { type: Boolean, default: false },
     title: String as PropType<string>,
@@ -20,7 +20,7 @@ export const makeVdCollapseProps = propsFactory(
 
 export const FCollapse = genericComponent()({
   name: 'FCollapse',
-  props: makeVdCollapseProps(),
+  props: makeFCollapseProps(),
   emits: { 'update:modelValue': (_v: boolean) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

@@ -1,1 +1,1 @@
-export { FMenu, makeVdMenuProps } from './FMenu'
+export { FMenu, makeFMenuProps } from './FMenu'

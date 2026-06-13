@@ -18,7 +18,7 @@ const sizeMap: Record<string, string> = {
   'x-large': '72px',
 }
 
-export const makeVdAvatarProps = propsFactory(
+export const makeFAvatarProps = propsFactory(
   {
     color: String as PropType<string>,
     size: { type: [String, Number] as PropType<string | number>, default: 'default' },
@@ -33,7 +33,7 @@ export const makeVdAvatarProps = propsFactory(
 
 export const FAvatar = genericComponent()({
   name: 'FAvatar',
-  props: makeVdAvatarProps(),
+  props: makeFAvatarProps(),
   setup(props: any, { slots }: any) {
     provideTheme(props)
     const { roundedClasses } = useRounded(props)

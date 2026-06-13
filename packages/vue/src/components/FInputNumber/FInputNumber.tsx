@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FBtn } from '../FBtn'
 
-export const makeVdInputNumberProps = propsFactory(
+export const makeFInputNumberProps = propsFactory(
   {
     modelValue: { type: [Number, String] as PropType<number | string>, default: 0 },
     min: { type: Number, default: -Infinity },
@@ -23,7 +23,7 @@ export const makeVdInputNumberProps = propsFactory(
 
 export const FInputNumber = genericComponent()({
   name: 'FInputNumber',
-  props: makeVdInputNumberProps(),
+  props: makeFInputNumberProps(),
   emits: { 'update:modelValue': (_v: number) => true },
   setup(props: any) {
     provideTheme(props)

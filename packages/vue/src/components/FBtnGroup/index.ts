@@ -1,2 +1,2 @@
-export { FBtnGroup, makeVdBtnGroupProps } from './FBtnGroup'
+export { FBtnGroup, makeFBtnGroupProps } from './FBtnGroup'
 export { FBtnGroupSymbol } from './key'

@@ -1,1 +1,1 @@
-export { FChip, makeVdChipProps } from './FChip'
+export { FChip, makeFChipProps } from './FChip'

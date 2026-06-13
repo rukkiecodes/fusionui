@@ -1,1 +1,1 @@
-export { FSlider, makeVdSliderProps } from './FSlider'
+export { FSlider, makeFSliderProps } from './FSlider'

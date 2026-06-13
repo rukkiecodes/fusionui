@@ -5,7 +5,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { FTabsSymbol, FTabsWindowSymbol } from './key'
 
-export const makeVdTabPanelProps = propsFactory(
+export const makeFTabPanelProps = propsFactory(
   {
     value: { type: null as unknown as PropType<unknown>, default: undefined },
     ...makeComponentProps(),
@@ -15,7 +15,7 @@ export const makeVdTabPanelProps = propsFactory(
 
 export const FTabPanel = genericComponent()({
   name: 'FTabPanel',
-  props: makeVdTabPanelProps(),
+  props: makeFTabPanelProps(),
   setup(props: any, { slots }: any) {
     // Prefer the surrounding window (sibling-of-tabs pattern); fall back to the
     // tabs context when a panel is nested directly under FTabs.

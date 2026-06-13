@@ -1,1 +1,1 @@
-export { FOverlay, makeVdOverlayProps } from './FOverlay'
+export { FOverlay, makeFOverlayProps } from './FOverlay'

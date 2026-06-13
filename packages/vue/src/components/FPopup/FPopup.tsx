@@ -9,7 +9,7 @@ import { convertToUnit } from '../../util/helpers'
 import { FOverlay } from '../FOverlay'
 import { FBtn } from '../FBtn'
 
-export const makeVdPopupProps = propsFactory(
+export const makeFPopupProps = propsFactory(
   {
     modelValue: { type: Boolean, default: false },
     title: String as PropType<string>,
@@ -24,7 +24,7 @@ export const makeVdPopupProps = propsFactory(
 
 export const FPopup = genericComponent()({
   name: 'FPopup',
-  props: makeVdPopupProps(),
+  props: makeFPopupProps(),
   emits: { 'update:modelValue': (_v: boolean) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

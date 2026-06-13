@@ -6,7 +6,7 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 
-export const makeVdCheckboxProps = propsFactory(
+export const makeFCheckboxProps = propsFactory(
   {
     modelValue: { type: null as unknown as PropType<unknown>, default: false },
     value: { type: null as unknown as PropType<unknown>, default: undefined },
@@ -22,7 +22,7 @@ export const makeVdCheckboxProps = propsFactory(
 
 export const FCheckbox = genericComponent()({
   name: 'FCheckbox',
-  props: makeVdCheckboxProps(),
+  props: makeFCheckboxProps(),
   emits: { 'update:modelValue': (_v: unknown) => true },
   setup(props: any, { slots }: any) {
     provideTheme(props)

@@ -10,7 +10,7 @@ import { convertToUnit } from '../../util/helpers'
 const RADIUS = 20
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-export const makeVdProgressCircularProps = propsFactory(
+export const makeFProgressCircularProps = propsFactory(
   {
     modelValue: { type: [Number, String] as PropType<number | string>, default: 0 },
     indeterminate: Boolean,
@@ -25,7 +25,7 @@ export const makeVdProgressCircularProps = propsFactory(
 
 export const FProgressCircular = genericComponent()({
   name: 'FProgressCircular',
-  props: makeVdProgressCircularProps(),
+  props: makeFProgressCircularProps(),
   setup(props: any) {
     provideTheme(props)
     const { colorClasses, colorStyles } = useColor(() => ({ text: props.color }))

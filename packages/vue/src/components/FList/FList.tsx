@@ -7,7 +7,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import type { IconValue } from '../../composables/icons'
 import { FIcon } from '../FIcon'
 
-export const makeVdListProps = propsFactory(
+export const makeFListProps = propsFactory(
   {
     nav: Boolean,
     ...makeThemeProps(),
@@ -18,7 +18,7 @@ export const makeVdListProps = propsFactory(
 
 export const FList = genericComponent()({
   name: 'FList',
-  props: makeVdListProps(),
+  props: makeFListProps(),
   setup(props: any, { slots }: any) {
     provideTheme(props)
     useRender(() =>
@@ -35,7 +35,7 @@ export const FList = genericComponent()({
   },
 })
 
-export const makeVdListItemProps = propsFactory(
+export const makeFListItemProps = propsFactory(
   {
     title: [String, Number] as PropType<string | number>,
     subtitle: [String, Number] as PropType<string | number>,
@@ -52,7 +52,7 @@ export const makeVdListItemProps = propsFactory(
 
 export const FListItem = genericComponent()({
   name: 'FListItem',
-  props: makeVdListItemProps(),
+  props: makeFListItemProps(),
   emits: { click: (_e: MouseEvent) => true },
   setup(props: any, { slots, emit }: any) {
     useRender(() =>

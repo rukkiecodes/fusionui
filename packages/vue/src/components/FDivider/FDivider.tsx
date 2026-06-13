@@ -4,7 +4,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 
-export const makeVdDividerProps = propsFactory(
+export const makeFDividerProps = propsFactory(
   {
     vertical: Boolean,
     inset: Boolean,
@@ -16,7 +16,7 @@ export const makeVdDividerProps = propsFactory(
 
 export const FDivider = genericComponent()({
   name: 'FDivider',
-  props: makeVdDividerProps(),
+  props: makeFDividerProps(),
   setup(props: any, { slots }: any) {
     provideTheme(props)
     useRender(() =>
