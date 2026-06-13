@@ -1,12 +1,21 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '@fusionui/vue'
 import { nav } from './nav'
+import { highlightMarkdown } from './prism'
 
 const theme = useTheme()
 const route = useRoute()
 const drawer = ref(false)
+
+// Syntax-highlight the page's fenced code blocks after each navigation (the
+// markdown plugin emits them as plain text). rAF lets the new page mount first.
+watch(
+  () => route.fullPath,
+  () => nextTick(() => requestAnimationFrame(() => highlightMarkdown())),
+  { immediate: true }
+)
 
 // The sidebar is part of the layout on desktop and an overlay drawer on mobile.
 const media = typeof window !== 'undefined' ? window.matchMedia('(min-width: 880px)') : null
