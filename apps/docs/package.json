@@ -17,6 +17,7 @@
     "@fusionui/vue": "workspace:*",
     "@fusionui/icons": "workspace:*",
     "@fusionui/tokens": "workspace:*",
+    "@fusionui/shaders": "workspace:*",
     "vue-router": "^4.5.0",
     "prismjs": "^1.29.0"
   },

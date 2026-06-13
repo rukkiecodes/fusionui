@@ -12,6 +12,7 @@ export default ts.config(
       '**/lib/**',
       '**/node_modules/**',
       '**/.changeset/**',
+      '.claude/**',
       'extras/**',
       'plans/**',
       '**/*.md',

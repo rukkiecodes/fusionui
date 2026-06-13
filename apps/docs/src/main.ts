@@ -13,6 +13,7 @@ import AlertPlayground from './components/AlertPlayground.vue'
 import TokensCatalog from './components/TokensCatalog.vue'
 import GlassPlayground from './components/GlassPlayground.vue'
 import GooPlayground from './components/GooPlayground.vue'
+import ShaderPlayground from './components/ShaderPlayground.vue'
 import '@fusionui/vue/styles'
 import './styles/docs.scss'
 
@@ -36,4 +37,5 @@ createApp(App)
   .component('TokensCatalog', TokensCatalog)
   .component('GlassPlayground', GlassPlayground)
   .component('GooPlayground', GooPlayground)
+  .component('ShaderPlayground', ShaderPlayground)
   .mount('#app')
