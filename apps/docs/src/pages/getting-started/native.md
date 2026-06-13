@@ -14,25 +14,35 @@ visual identity are shared; only the rendering code is reimplemented.
 
 Each component runs for real in its **own Expo Snack** — edit the code inline, or
 press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it on
-your phone. Snack can't import the unpublished `@fusionui/native`, so each is a
-self-contained, pure–React Native mirror — but every value comes straight from
-`@fusionui/tokens`, so this is what ships on a device.
+your phone. The press springs are [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+and the liquid glass is [Skia](https://shopify.github.io/react-native-skia/), the
+same engines the package uses — so the feel matches the web. Snack can't import the
+unpublished `@fusionui/native`, so each is a self-contained mirror, but every value
+comes from `@fusionui/tokens`.
 
 ### Button
 
-<NativeSnack name="button" />
+<NativeSnack name="button" deps="react-native-reanimated,expo-linear-gradient" :height="620" />
 
 ### Input
 
-<NativeSnack name="input" />
+<NativeSnack name="input" deps="react-native-reanimated" :height="600" />
 
 ### Switch
 
-<NativeSnack name="switch" />
+<NativeSnack name="switch" deps="react-native-reanimated" :height="520" />
 
 ### Card
 
-<NativeSnack name="card" />
+<NativeSnack name="card" deps="react-native-reanimated" :height="560" />
+
+### Liquid glass
+
+The signature effect — a Skia refraction slab over a live backdrop, rendered in the
+browser via CanvasKit (`WithSkiaWeb`). On a real device this is the GPU `BackdropFilter`
+(or iOS 26's `UIGlassEffect`).
+
+<NativeSnack name="glass" deps="@shopify/react-native-skia" :height="640" />
 
 ## Install
 

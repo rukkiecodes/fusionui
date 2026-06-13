@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Animated,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native'
+import React from 'react'
+import { SafeAreaView, ScrollView, View, Text, Pressable, StyleSheet } from 'react-native'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+  withRepeat,
+  Easing,
+} from 'react-native-reanimated'
+import { LinearGradient } from 'expo-linear-gradient'
 
-// FusionUI design tokens — the exact values @fusionui/tokens ships to native.
+// ----TOKENS START----
 const T = {
   colors: {
     primary: '#195bff',
@@ -26,11 +25,10 @@ const T = {
     'on-surface': '#2c3e50',
     background: '#ffffff',
     'surface-2': '#f4f7f8',
-    'surface-3': '#f0f3f4',
+    'surface-3': '#e9eef1',
   },
   radius: { sm: 8, md: 12, lg: 20 },
-  space: { s1: 4, s2: 8, s3: 12, s4: 16, s5: 24 },
-  motion: { fast: 150 },
+  motion: { fast: 150, base: 250 },
 }
 const color = c => T.colors[c] || c
 const withAlpha = (hex, a) =>
@@ -40,171 +38,303 @@ const withAlpha = (hex, a) =>
         .toString(16)
         .padStart(2, '0')
     : hex
+// Mix two #rrggbb colors (t in 0..1) — used for the gradient variant (base -> #c026ff).
+const mix = (h1, h2, t) => {
+  const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16))
+  const a = p(h1),
+    b = p(h2)
+  const r = a.map((v, i) => Math.round(v + (b[i] - v) * t))
+  return '#' + r.map(v => v.toString(16).padStart(2, '0')).join('')
+}
 const shadowRest = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 6 },
-  shadowOpacity: 0.08,
+  shadowOpacity: 0.12,
   shadowRadius: 10,
-  elevation: 3,
+  elevation: 4,
 }
+// ----TOKENS END----
 
-// Per-size geometry — mirrors SIZES in the real FButton.tsx.
+// Size map — mirrors the real native SIZES table (padV/padH/font/radius).
 const SIZES = {
   small: { padV: 6, padH: 12, font: 13, radius: 9 },
   default: { padV: 10, padH: 18, font: 15, radius: 12 },
   large: { padV: 14, padH: 24, font: 17, radius: 15 },
 }
 
-// FButton — pure-RN sibling of the web <FBtn>. Same props/variants/states.
+// Vuesax dual-ring loader: two overlaid rings spinning at slightly different
+// speeds. Replaces the label while keeping the accent fill behind it.
+function DualRingLoader({ ringColor }) {
+  const a = useSharedValue(0)
+  const b = useSharedValue(0)
+  React.useEffect(() => {
+    a.value = withRepeat(withTiming(360, { duration: 600, easing: Easing.linear }), -1, false)
+    b.value = withRepeat(withTiming(360, { duration: 900, easing: Easing.linear }), -1, false)
+  }, [a, b])
+  const aStyle = useAnimatedStyle(() => ({ transform: [{ rotate: a.value + 'deg' }] }))
+  const bStyle = useAnimatedStyle(() => ({ transform: [{ rotate: b.value + 'deg' }] }))
+  return (
+    <View style={styles.loaderBox}>
+      <Animated.View
+        style={[
+          styles.ring,
+          {
+            borderColor: ringColor,
+            borderRightColor: 'transparent',
+            borderBottomColor: 'transparent',
+          },
+          aStyle,
+        ]}
+      />
+      <Animated.View
+        style={[
+          styles.ring,
+          styles.ringDotted,
+          {
+            borderColor: withAlpha(/^#[0-9a-f]{6}$/i.test(ringColor) ? ringColor : '#ffffff', 0.6),
+            borderRightColor: 'transparent',
+            borderBottomColor: 'transparent',
+          },
+          bStyle,
+        ]}
+      />
+    </View>
+  )
+}
+
 function FButton({
   variant = 'elevated',
-  color: colorProp = 'primary',
+  color: colorName = 'primary',
   size = 'default',
   loading = false,
   disabled = false,
   block = false,
-  prependIcon,
-  appendIcon,
   onPress,
-  style,
-  textStyle,
   children,
 }) {
-  const [pressed, setPressed] = useState(false)
-  const base = color(colorProp)
-  const onBase = color('on-' + colorProp) || '#ffffff'
+  const base = color(colorName)
+  const onBase = color('on-' + colorName)
   const sz = SIZES[size] || SIZES.default
+  const inactive = disabled // loading still shows fill, just swaps label
 
+  // Press spring — scale to 0.96 on pressIn, back to 1 on pressOut.
+  const scale = useSharedValue(1)
+  const press = useSharedValue(0) // 0..1, drives the text-variant pill fade
+  const wrapStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }))
+  const pillStyle = useAnimatedStyle(() => ({ opacity: press.value }))
+
+  // Per-variant container + label resolution (parallels FBtn.scss variants).
   const container = {
     paddingVertical: sz.padV,
     paddingHorizontal: sz.padH,
     borderRadius: sz.radius,
     alignSelf: block ? 'stretch' : 'flex-start',
   }
-  const label = { fontSize: sz.font, fontWeight: '500' }
+  let labelColor = onBase
+  let useGradient = false
+  let pillColor = null
 
   switch (variant) {
     case 'elevated':
       container.backgroundColor = base
-      Object.assign(container, shadowRest, { elevation: 4 })
-      label.color = onBase
+      // Soft COLORED shadow (shadowColor = accent), keeping the rest offset/blur.
+      Object.assign(container, shadowRest, { shadowColor: base, shadowOpacity: 0.4 })
+      labelColor = onBase
       break
     case 'flat':
       container.backgroundColor = base
-      label.color = onBase
+      labelColor = onBase
       break
     case 'tonal':
-      container.backgroundColor = withAlpha(base, 0.14)
-      label.color = base
+      container.backgroundColor = withAlpha(base, 0.15)
+      labelColor = base
       break
     case 'outlined':
       container.backgroundColor = 'transparent'
       container.borderWidth = 2
       container.borderColor = base
-      label.color = base
+      labelColor = base
       break
     case 'text':
       container.backgroundColor = 'transparent'
-      label.color = base
+      labelColor = base
+      pillColor = withAlpha(base, 0.12)
+      break
+    case 'gradient':
+      container.backgroundColor = base
+      useGradient = true
+      labelColor = '#ffffff'
       break
     default:
-      break
+      container.backgroundColor = base
   }
 
-  const isOff = disabled || loading
+  const ringColor =
+    variant === 'tonal' || variant === 'outlined' || variant === 'text' ? base : onBase
 
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ disabled: isOff, busy: loading }}
-      disabled={isOff}
-      onPress={onPress}
-      onPressIn={() => setPressed(true)}
-      onPressOut={() => setPressed(false)}
-      style={[styles.base, container, isOff && styles.disabled, pressed && styles.pressed, style]}
-    >
-      {loading ? (
-        <ActivityIndicator size="small" color={label.color} />
-      ) : (
-        <View style={styles.row}>
-          {prependIcon ? <View style={styles.icon}>{prependIcon}</View> : null}
-          {typeof children === 'string' ? (
-            <Text style={[label, textStyle]}>{children}</Text>
-          ) : (
-            children
-          )}
-          {appendIcon ? <View style={styles.icon}>{appendIcon}</View> : null}
-        </View>
-      )}
-    </Pressable>
+    <Animated.View style={[block && styles.blockWrap, wrapStyle]}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityState={{ disabled: disabled || loading, busy: loading }}
+        disabled={disabled || loading}
+        onPress={onPress}
+        onPressIn={() => {
+          scale.value = withSpring(0.96, { damping: 15, stiffness: 220 })
+          if (variant === 'text') press.value = withTiming(1, { duration: T.motion.fast })
+        }}
+        onPressOut={() => {
+          scale.value = withSpring(1, { damping: 15, stiffness: 220 })
+          if (variant === 'text') press.value = withTiming(0, { duration: T.motion.base })
+        }}
+        style={[styles.base, container, inactive && styles.disabled]}
+      >
+        {/* Gradient fill, clipped to the button radius, sits behind the label. */}
+        {useGradient ? (
+          <View style={[StyleSheet.absoluteFill, { borderRadius: sz.radius, overflow: 'hidden' }]}>
+            <LinearGradient
+              colors={[base, mix(base, '#c026ff', 0.5)]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+          </View>
+        ) : null}
+
+        {/* Text-variant pill: faint accent fill that fades in while pressed. */}
+        {pillColor ? (
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              StyleSheet.absoluteFill,
+              { borderRadius: sz.radius, backgroundColor: pillColor },
+              pillStyle,
+            ]}
+          />
+        ) : null}
+
+        {loading ? (
+          <DualRingLoader ringColor={ringColor} />
+        ) : typeof children === 'string' ? (
+          <Text style={{ color: labelColor, fontSize: sz.font, fontWeight: '600' }}>
+            {children}
+          </Text>
+        ) : (
+          children
+        )}
+      </Pressable>
+    </Animated.View>
   )
 }
 
-const styles = StyleSheet.create({
-  base: { alignItems: 'center', justifyContent: 'center' },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  icon: { alignItems: 'center', justifyContent: 'center' },
-  disabled: { opacity: 0.5 },
-  pressed: { opacity: 0.85, transform: [{ scale: 0.98 }] },
-})
+// ---------- Demo ----------
+
+function Group({ title, caption, children }) {
+  return (
+    <View style={styles.group}>
+      <Text style={styles.groupTitle}>{title}</Text>
+      {caption ? <Text style={styles.groupCaption}>{caption}</Text> : null}
+      <View style={styles.groupRow}>{children}</View>
+    </View>
+  )
+}
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: T.colors['surface-2'] }}>
-      <ScrollView contentContainerStyle={demo.page}>
-        <Text style={demo.h1}>FButton</Text>
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.h1}>FButton</Text>
+        <Text style={styles.sub}>
+          The React Native sibling of the web {'<f-btn>'} — same variants, colors, sizes and states.
+        </Text>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>VARIANTS (primary)</Text>
-          <View style={demo.row}>
-            <FButton variant="elevated">Elevated</FButton>
-            <FButton variant="flat">Flat</FButton>
-            <FButton variant="tonal">Tonal</FButton>
-            <FButton variant="outlined">Outlined</FButton>
-            <FButton variant="text">Text</FButton>
-          </View>
-        </View>
+        <Group title="VARIANTS" caption="elevated · flat · tonal · outlined · text · gradient">
+          <FButton variant="elevated">Elevated</FButton>
+          <FButton variant="flat">Flat</FButton>
+          <FButton variant="tonal">Tonal</FButton>
+          <FButton variant="outlined">Outlined</FButton>
+          <FButton variant="text">Text</FButton>
+          <FButton variant="gradient">Gradient</FButton>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>COLORS (elevated)</Text>
-          <View style={demo.row}>
-            <FButton color="primary">Primary</FButton>
-            <FButton color="success">Success</FButton>
-            <FButton color="danger">Danger</FButton>
-            <FButton color="warning">Warning</FButton>
-          </View>
-        </View>
+        <Group title="COLORS" caption="elevated · primary · success · danger · warning">
+          <FButton color="primary">Primary</FButton>
+          <FButton color="success">Success</FButton>
+          <FButton color="danger">Danger</FButton>
+          <FButton color="warning">Warning</FButton>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>SIZES</Text>
-          <View style={demo.row}>
-            <FButton size="small">Small</FButton>
-            <FButton size="default">Default</FButton>
-            <FButton size="large">Large</FButton>
-          </View>
-        </View>
+        <Group title="SIZES" caption="small · default · large">
+          <FButton size="small">Small</FButton>
+          <FButton size="default">Default</FButton>
+          <FButton size="large">Large</FButton>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>STATES</Text>
-          <View style={demo.row}>
-            <FButton loading>Loading</FButton>
-            <FButton disabled>Disabled</FButton>
-          </View>
-        </View>
+        <Group title="STATES" caption="loading · disabled">
+          <FButton loading>Saving</FButton>
+          <FButton disabled>Disabled</FButton>
+          <FButton variant="tonal" loading>
+            Loading
+          </FButton>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>BLOCK</Text>
-          <FButton block>Full-width block</FButton>
-        </View>
+        <Group title="BLOCK" caption="full-width gradient">
+          <FButton variant="gradient" size="large" block>
+            Continue
+          </FButton>
+        </Group>
+
+        <View style={{ height: 40 }} />
       </ScrollView>
     </SafeAreaView>
   )
 }
 
-const demo = StyleSheet.create({
-  page: { padding: 20, gap: 18, paddingBottom: 48 },
-  h1: { fontSize: 22, fontWeight: '700', color: T.colors['on-surface'] },
-  group: { gap: 10 },
-  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' },
-  cap: { fontSize: 12, fontWeight: '600', color: withAlpha(T.colors['on-surface'], 0.55) },
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: color('surface-2') },
+  scroll: { padding: 20 },
+  h1: { fontSize: 30, fontWeight: '800', color: color('on-surface'), marginBottom: 4 },
+  sub: {
+    fontSize: 13,
+    color: withAlpha(color('on-surface'), 0.6),
+    marginBottom: 24,
+    lineHeight: 18,
+  },
+
+  group: {
+    backgroundColor: color('surface'),
+    borderRadius: T.radius.lg,
+    padding: 18,
+    marginBottom: 18,
+    ...shadowRest,
+    shadowOpacity: 0.06,
+  },
+  groupTitle: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1,
+    color: withAlpha(color('on-surface'), 0.55),
+  },
+  groupCaption: {
+    fontSize: 12,
+    color: withAlpha(color('on-surface'), 0.4),
+    marginTop: 2,
+    marginBottom: 14,
+  },
+  groupRow: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 },
+
+  base: { alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  blockWrap: { alignSelf: 'stretch', width: '100%' },
+  disabled: { opacity: 0.5 },
+
+  loaderBox: { width: 18, height: 18, alignItems: 'center', justifyContent: 'center' },
+  ring: {
+    position: 'absolute',
+    width: 17,
+    height: 17,
+    borderRadius: 9,
+    borderWidth: 2,
+    borderStyle: 'solid',
+  },
+  ringDotted: { borderStyle: 'dotted' },
 })

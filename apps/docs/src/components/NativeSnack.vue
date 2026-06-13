@@ -3,8 +3,9 @@ import { computed, onMounted } from 'vue'
 import { useTheme } from '@fusionui/vue'
 import { scheduleSnackEmbed } from './snackEmbed'
 
-const props = withDefaults(defineProps<{ name: string; height?: number }>(), {
+const props = withDefaults(defineProps<{ name: string; height?: number; deps?: string }>(), {
   height: 560,
+  deps: '',
 })
 
 // Every dedicated snack source, as raw text. Snack can't import the unpublished
@@ -29,6 +30,7 @@ onMounted(scheduleSnackEmbed)
       class="snack__embed"
       :style="{ height: `${height}px` }"
       :data-snack-code="encoded"
+      :data-snack-dependencies="deps"
       :data-snack-name="`FusionUI — ${name}`"
       data-snack-description="A real @fusionui/native component, running live."
       data-snack-platform="web"

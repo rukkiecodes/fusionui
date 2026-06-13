@@ -1,17 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Animated,
-  ActivityIndicator,
-  StyleSheet,
-} from 'react-native'
+import React from 'react'
+import { SafeAreaView, ScrollView, View, Text, Pressable, StyleSheet } from 'react-native'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated'
 
-// FusionUI design tokens — the exact values @fusionui/tokens ships to native.
+// ----TOKENS START----
 const T = {
   colors: {
     primary: '#195bff',
@@ -26,11 +22,10 @@ const T = {
     'on-surface': '#2c3e50',
     background: '#ffffff',
     'surface-2': '#f4f7f8',
-    'surface-3': '#f0f3f4',
+    'surface-3': '#e9eef1',
   },
   radius: { sm: 8, md: 12, lg: 20 },
-  space: { s1: 4, s2: 8, s3: 12, s4: 16, s5: 24 },
-  motion: { fast: 150 },
+  motion: { fast: 150, base: 250 },
 }
 const color = c => T.colors[c] || c
 const withAlpha = (hex, a) =>
@@ -43,116 +38,146 @@ const withAlpha = (hex, a) =>
 const shadowRest = {
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 6 },
-  shadowOpacity: 0.08,
+  shadowOpacity: 0.12,
   shadowRadius: 10,
-  elevation: 3,
+  elevation: 4,
+}
+// ----TOKENS END----
+
+/**
+ * FCard — RN sibling of the web <FCard>. Vuesax soft-shadow surface: themed
+ * surface fill, lg (20) radius, soft resting shadow (0 5px 20px rgba(0,0,0,.12)).
+ * On the web it LIFTS on hover (transition all .25s); here, when pressable, we
+ * give it a Reanimated press-lift: translateY -> -4 + scale 1.01 on pressIn.
+ * `flat` drops the shadow for a subtle surface-2 fill + hairline.
+ */
+function FCard({ flat = false, padding = 16, radius = T.radius.lg, onPress, children }) {
+  const lift = useSharedValue(0) // 0 = resting, 1 = lifted
+  const pressable = typeof onPress === 'function'
+
+  const aStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: lift.value * -4 }, { scale: 1 + lift.value * 0.01 }],
+  }))
+
+  const cardStyle = [
+    styles.base,
+    {
+      backgroundColor: flat ? color('surface-2') : color('surface'),
+      borderRadius: radius,
+      padding,
+    },
+    flat ? { borderWidth: StyleSheet.hairlineWidth, borderColor: color('surface-3') } : shadowRest,
+  ]
+
+  if (!pressable) {
+    return <Animated.View style={[cardStyle, aStyle]}>{children}</Animated.View>
+  }
+
+  const onIn = () => {
+    lift.value = withSpring(1, { damping: 16, stiffness: 220 })
+  }
+  const onOut = () => {
+    lift.value = withTiming(0, { duration: T.motion.base })
+  }
+
+  return (
+    <Pressable onPress={onPress} onPressIn={onIn} onPressOut={onOut}>
+      <Animated.View style={[cardStyle, aStyle]}>{children}</Animated.View>
+    </Pressable>
+  )
 }
 
-// FCard — the React Native sibling of the web <FCard>. The Vuesax soft-shadow
-// surface: rounded (lg radius), themed surface fill, optional resting elevation.
-// Mirrors packages/native/src/components/FCard.tsx prop-for-prop.
-function FCard({ flat = false, padding, radius, style, children }) {
+// --- Tiny styled pill (just a View + Text, no extra import) ---
+function Pill({ label }) {
   return (
-    <View
-      style={[
-        styles.base,
-        {
-          backgroundColor: color('surface'),
-          borderRadius: radius != null ? radius : T.radius.lg,
-          padding: padding != null ? padding : T.space.s4,
-        },
-        !flat && shadowRest,
-        style,
-      ]}
-    >
+    <View style={[styles.pill, { backgroundColor: color('primary') }]}>
+      <Text style={[styles.pillText, { color: color('on-primary') }]}>{label}</Text>
+    </View>
+  )
+}
+
+function Group({ caption, children }) {
+  return (
+    <View style={styles.group}>
+      <Text style={styles.caption}>{caption}</Text>
       {children}
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  base: { overflow: 'visible' },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: color('on-surface'),
-    marginBottom: T.space.s2,
-  },
-  cardBody: {
-    fontSize: 13,
-    lineHeight: 19,
-    color: withAlpha(color('on-surface'), 0.7),
-  },
-})
-
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: T.colors['surface-2'] }}>
-      <ScrollView contentContainerStyle={demo.page}>
-        <Text style={demo.h1}>FCard</Text>
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.h1}>FCard</Text>
+        <Text style={styles.sub}>
+          Vuesax soft-shadow surface. Token-driven, lg radius, lifts on press.
+        </Text>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>Elevated (soft Vuesax shadow)</Text>
-          <FCard>
-            <Text style={styles.cardTitle}>Resting elevation</Text>
-            <Text style={styles.cardBody}>
-              A surface card with the default lg radius and the soft resting shadow. This is the
-              everyday FusionUI panel.
+        <Group caption="Interactive — press to feel the lift">
+          <FCard onPress={() => {}}>
+            <Text style={styles.title}>Aurora Borealis</Text>
+            <Text style={styles.body}>
+              Tap and hold this card: it rises (translateY -4) and scales a hair (1.01) on a spring,
+              then settles back — the native echo of the web hover lift.
             </Text>
           </FCard>
-        </View>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>Flat (no shadow, surface-2 fill + border)</Text>
-          <FCard
-            flat
-            style={{
-              backgroundColor: color('surface-2'),
-              borderWidth: 1,
-              borderColor: withAlpha(color('on-surface'), 0.08),
-            }}
-          >
-            <Text style={styles.cardTitle}>Flat list item</Text>
-            <Text style={styles.cardBody}>
-              The flat prop drops the resting shadow. Here it leans on a subtle border and surface-2
-              fill instead — ideal for dense lists.
+        <Group caption="Flat — no shadow, subtle surface-2 fill + hairline">
+          <FCard flat>
+            <Text style={styles.title}>Flat list item</Text>
+            <Text style={styles.body}>
+              A quieter surface for dense lists. No resting elevation, just a hairline border
+              against the page.
             </Text>
           </FCard>
-        </View>
+        </Group>
 
-        <View style={demo.group}>
-          <Text style={demo.cap}>Custom radius + tighter padding</Text>
-          <FCard radius={T.radius.sm} padding={T.space.s5}>
-            <Text style={styles.cardTitle}>radius=8, padding=24</Text>
-            <Text style={styles.cardBody}>
-              radius and padding override the lg / s4 token defaults while keeping the elevated
-              surface treatment intact.
+        <Group caption="Custom radius + inline primary pill">
+          <FCard onPress={() => {}} radius={T.radius.md} padding={18}>
+            <View style={styles.row}>
+              <Text style={styles.title}>Release notes</Text>
+              <Pill label="NEW" />
+            </View>
+            <Text style={styles.body}>
+              A tighter 12px radius and a small styled pill — pure View + Text, all from the token
+              table.
             </Text>
           </FCard>
-        </View>
-
-        <View style={demo.group}>
-          <Text style={demo.cap}>Composed (row of mini cards)</Text>
-          <View style={demo.row}>
-            <FCard style={{ flexGrow: 1, minWidth: 130 }} padding={T.space.s3}>
-              <Text style={[styles.cardTitle, { color: color('primary') }]}>128</Text>
-              <Text style={styles.cardBody}>Active sessions</Text>
-            </FCard>
-            <FCard style={{ flexGrow: 1, minWidth: 130 }} padding={T.space.s3}>
-              <Text style={[styles.cardTitle, { color: color('success') }]}>99.9%</Text>
-              <Text style={styles.cardBody}>Uptime</Text>
-            </FCard>
-          </View>
-        </View>
+        </Group>
       </ScrollView>
     </SafeAreaView>
   )
 }
 
-const demo = StyleSheet.create({
-  page: { padding: 20, gap: 18, paddingBottom: 48 },
-  h1: { fontSize: 22, fontWeight: '700', color: T.colors['on-surface'] },
-  group: { gap: 10 },
-  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, alignItems: 'center' },
-  cap: { fontSize: 12, fontWeight: '600', color: withAlpha(T.colors['on-surface'], 0.55) },
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: color('surface-2') },
+  scroll: { padding: 20, paddingBottom: 48 },
+  h1: { fontSize: 30, fontWeight: '700', color: color('on-surface') },
+  sub: { marginTop: 6, marginBottom: 20, fontSize: 14, color: withAlpha(color('on-surface'), 0.6) },
+  group: { marginBottom: 26 },
+  caption: {
+    marginBottom: 10,
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 0.4,
+    textTransform: 'uppercase',
+    color: withAlpha(color('on-surface'), 0.5),
+  },
+  base: { overflow: 'visible' },
+  title: { fontSize: 18, fontWeight: '600', color: color('on-surface') },
+  body: {
+    marginTop: 8,
+    fontSize: 14,
+    lineHeight: 21,
+    color: withAlpha(color('on-surface'), 0.8),
+  },
+  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  pill: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: T.radius.sm,
+  },
+  pillText: { fontSize: 11, fontWeight: '700', letterSpacing: 0.6 },
 })
