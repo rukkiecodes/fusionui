@@ -2,7 +2,18 @@
   "displayName": "FSwitch",
   "props": {
     "modelValue": {
-      "type": "Boolean",
+      "type": "any",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "val": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "notValue": {
+      "type": "any",
       "default": "false",
       "required": false,
       "description": ""
@@ -15,6 +26,26 @@
     "color": {
       "type": "String",
       "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "icon": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "indeterminate": {
+      "type": "Boolean",
       "required": false,
       "description": ""
     },

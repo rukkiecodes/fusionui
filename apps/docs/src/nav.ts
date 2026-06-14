@@ -27,6 +27,7 @@ export const nav: NavSection[] = [
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },
       { title: 'Checkbox', to: '/components/checkbox' },
+      { title: 'Switch', to: '/components/switch' },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Form Inputs', to: '/components/inputs' },
       { title: 'Navbar', to: '/components/navbar' },

@@ -147,24 +147,47 @@
       height: 0;
     }
 
+    // The track sizes to its on/off content; min-width keeps the bare switch.
     &__track {
       position: relative;
-      width: 44px;
-      height: 24px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      min-width: 46px;
+      height: 26px;
       border-radius: 9999px;
       background-color: rgba(var(--fui-theme-on-surface), 0.25);
       transition: settings.$fui-transition;
       flex-shrink: 0;
     }
 
+    // On/off content inside the track, padded to clear the thumb on its side.
+    &__content {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 10px 0 28px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      white-space: nowrap;
+    }
+
     &__thumb {
       position: absolute;
       top: 3px;
       left: 3px;
-      width: 18px;
-      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background-color: #fff;
+      color: rgb(var(--fui-control-color));
+      font-size: 13px;
       box-shadow: settings.$fui-shadow-rest;
       transition: settings.$fui-transition;
     }
@@ -172,14 +195,65 @@
     &--checked &__track {
       background-color: rgb(var(--fui-control-color));
     }
+    &--checked &__content {
+      padding: 0 28px 0 10px;
+    }
     &--checked &__thumb {
-      transform: translateX(20px);
+      left: calc(100% - 23px);
       box-shadow: 0 4px 12px -2px rgb(var(--fui-control-color));
+    }
+
+    // Icon mode: a transparent thumb whose (circle-slot) icon shows in white.
+    &--icon &__thumb {
+      background-color: transparent;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    // Loading: a spinner sits in the thumb.
+    &__loader {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      animation: fui-switch-spin 0.7s linear infinite;
+    }
+
+    // Square corners.
+    &--square &__track {
+      border-radius: 7px;
+    }
+    &--square &__thumb {
+      border-radius: 5px;
+    }
+
+    // Undetermined: thumb centered, track at half strength.
+    &--indeterminate &__track {
+      background-color: rgba(var(--fui-control-color), 0.5);
+    }
+    &--indeterminate &__thumb {
+      left: calc(50% - 10px);
     }
 
     &--disabled {
       opacity: 0.5;
       pointer-events: none;
+    }
+
+    &__label {
+      line-height: 1.3;
+    }
+  }
+
+  @keyframes fui-switch-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fui-switch__loader {
+      animation: none;
     }
   }
 
