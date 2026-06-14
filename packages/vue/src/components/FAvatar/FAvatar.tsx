@@ -1,11 +1,11 @@
-import { computed, h, inject, onBeforeUnmount, provide, ref } from 'vue'
-import type { InjectionKey, PropType, Ref } from 'vue'
+import { Fragment, computed, h, inject, onBeforeUnmount, provide, ref } from 'vue'
+import type { InjectionKey, PropType, Ref, VNode } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { convertToUnit } from '../../util/helpers'
-import { parseColor } from '../../util/colors'
+import { isLightColor, parseColor } from '../../util/colors'
 import type { IconValue } from '../../composables/icons'
 import { FIcon } from '../FIcon'
 
@@ -15,6 +15,9 @@ interface AvatarGroupContext {
   max: Ref<number>
   float: Ref<boolean>
   ids: Ref<symbol[]>
+  /** Total avatar count, counted from the group's slot so it's correct on the
+   *  first (and server) render — not lagged behind child registration. */
+  total: Ref<number>
   register: (id: symbol) => void
   unregister: (id: symbol) => void
 }
@@ -40,6 +43,16 @@ function colorTriplet(color?: string | null): string | null {
     return `${r}, ${g}, ${b}`
   }
   return `var(--fui-theme-${color})`
+}
+
+/** The contrasting "on" color for a fill — the theme's on-token for a named
+ *  color, or black/white by luminance for a custom one (matches FAlert). */
+function onColorTriplet(color?: string | null): string | null {
+  if (!color) return null
+  if (color.startsWith('#') || color.startsWith('rgb')) {
+    return isLightColor(color) ? '0, 0, 0' : '255, 255, 255'
+  }
+  return `var(--fui-theme-on-${color})`
 }
 
 export const makeFAvatarProps = propsFactory(
@@ -94,7 +107,7 @@ export const FAvatar = genericComponent()({
       onBeforeUnmount(() => group.unregister(id))
     }
     const index = computed(() => (group ? group.ids.value.indexOf(id) : -1))
-    const total = computed(() => (group ? group.ids.value.length : 0))
+    const total = computed(() => (group ? group.total.value : 0))
     const max = computed(() => (group ? group.max.value : 0))
     const isHidden = computed(() => max.value > 0 && index.value > max.value - 1)
     const isLatest = computed(
@@ -104,7 +117,11 @@ export const FAvatar = genericComponent()({
 
     const dimension = computed(() => sizeMap[String(props.size)] ?? convertToUnit(props.size))
     const colorVar = computed(() => colorTriplet(props.color))
+    const onVar = computed(() => onColorTriplet(props.color))
     const badgeVar = computed(() => colorTriplet(props.badgeColor) ?? 'var(--fui-theme-primary)')
+    const badgeOnVar = computed(
+      () => onColorTriplet(props.badgeColor) ?? 'var(--fui-theme-on-primary)'
+    )
 
     // Initials: 1–5 chars as-is; longer text → one letter per word (Vuesax).
     const letters = computed(() => {
@@ -148,8 +165,10 @@ export const FAvatar = genericComponent()({
           ],
           style: [
             { width: dimension.value, height: dimension.value },
-            colorVar.value ? { '--fui-avatar-color': colorVar.value } : null,
-            { '--fui-avatar-badge': badgeVar.value },
+            colorVar.value
+              ? { '--fui-avatar-color': colorVar.value, '--fui-avatar-on': onVar.value }
+              : null,
+            { '--fui-avatar-badge': badgeVar.value, '--fui-avatar-badge-on': badgeOnVar.value },
             props.style,
           ],
         },
@@ -210,16 +229,34 @@ export const makeFAvatarGroupProps = propsFactory(
   'FAvatarGroup'
 )
 
+/** Count the FAvatar children in a slot's vnodes (descending into v-for
+ *  fragments), so the group knows its total before any child registers. */
+function countAvatars(nodes?: VNode[] | null): number {
+  let n = 0
+  for (const node of nodes ?? []) {
+    if (node == null || typeof node !== 'object') continue
+    if (node.type === FAvatar) n++
+    else if (node.type === Fragment && Array.isArray(node.children))
+      n += countAvatars(node.children as VNode[])
+  }
+  return n
+}
+
 export const FAvatarGroup = genericComponent()({
   name: 'FAvatarGroup',
   props: makeFAvatarGroupProps(),
   setup(props: any, { slots }: any) {
     const ids = ref<symbol[]>([])
+    // Total comes from counting the slot's avatar vnodes, which the group
+    // evaluates before its children mount — so `+N` is right on the first (and
+    // server) render rather than appearing a tick after registration.
+    const total = computed(() => countAvatars(slots.default?.()))
 
     provide(FAvatarGroupKey, {
       max: computed(() => Number(props.max) || 0),
       float: computed(() => !!props.float),
       ids,
+      total,
       register: (regId: symbol) => {
         ids.value.push(regId)
       },

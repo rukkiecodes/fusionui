@@ -81,10 +81,11 @@
     }
   }
 
-  // Colored fill: the inner avatar takes the resolved color, text goes white.
+  // Colored fill: the inner avatar takes the resolved color, with a contrasting
+  // "on" text color (so e.g. a warning avatar is dark-on-yellow, not white).
   .fui-avatar-content--colored .fui-avatar {
     background-color: rgb(var(--fui-avatar-color));
-    color: #fff;
+    color: rgb(var(--fui-avatar-on));
   }
 
   // ---- Badge --------------------------------------------------------------
@@ -101,7 +102,7 @@
     border-radius: 50%;
     background: rgb(var(--fui-avatar-badge));
     border: 2px solid rgb(var(--fui-theme-surface));
-    color: #fff;
+    color: rgb(var(--fui-avatar-badge-on));
     font-size: 0.62rem;
     font-weight: 700;
     line-height: 1;
@@ -160,7 +161,7 @@
     height: 4px;
     margin: 0 1.5px;
     border-radius: 50%;
-    background: #fff;
+    background: rgb(var(--fui-avatar-badge-on));
     animation: fui-avatar-point 1.2s ease infinite;
 
     &:nth-child(2) {
@@ -311,6 +312,9 @@
     .fui-avatar,
     .fui-avatar img {
       transition: none;
+    }
+    .fui-avatar-content:hover .fui-avatar img {
+      transform: none;
     }
     .fui-avatar__loading-spinner {
       animation: none;

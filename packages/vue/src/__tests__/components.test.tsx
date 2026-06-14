@@ -9,6 +9,7 @@ import {
   FAlert,
   FChip,
   FAvatar,
+  FAvatarGroup,
   FBadge,
   FProgressCircular,
   FProgressLinear,
@@ -163,6 +164,18 @@ describe('FAvatar / FBadge / FProgress / FDivider / FSpacer', () => {
   it('FAvatar renders an image', () => {
     const wrapper = mountWith(FAvatar, { props: { image: '/a.png' } })
     expect(wrapper.find('img').attributes('src')).toBe('/a.png')
+  })
+
+  it('FAvatarGroup shows the +N overflow on first render', () => {
+    const wrapper = mountWith(FAvatarGroup, {
+      props: { max: 2 },
+      slots: { default: () => [h(FAvatar), h(FAvatar), h(FAvatar), h(FAvatar)] },
+    })
+    // 4 avatars, max 2 → one "+2" overlay present synchronously (no nextTick).
+    const latest = wrapper.find('.fui-avatar__latest')
+    expect(latest.exists()).toBe(true)
+    expect(latest.text()).toBe('+2')
+    expect(wrapper.findAll('.fui-avatar-content--hidden').length).toBe(2)
   })
 
   it('FBadge renders content over its slot', () => {
