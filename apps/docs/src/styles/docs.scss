@@ -107,7 +107,31 @@ body {
   }
 
   &__nav-section {
-    margin-bottom: 26px;
+    margin-bottom: 22px;
+
+    // Top-level pages sit directly under a section label (not inside a group),
+    // so the FSidebar far-left active pill would be clipped by the sidebar's
+    // inset, overflow-hidden body. Give them a clean rounded active tint and a
+    // steady padding (no hover/active indent jump) instead.
+    > .fui-sidebar__item {
+      border-radius: 10px;
+
+      &::after {
+        display: none;
+      }
+      &,
+      &:hover,
+      &.fui-sidebar__item--active {
+        padding-left: 16px;
+      }
+      &:hover {
+        background: rgba(var(--fui-theme-on-surface), 0.05);
+      }
+      &.fui-sidebar__item--active {
+        background: rgba(var(--fui-theme-primary), 0.12);
+        color: rgb(var(--fui-theme-primary));
+      }
+    }
   }
 
   &__nav-title {
@@ -116,7 +140,7 @@ body {
     letter-spacing: 0.08em;
     font-weight: 600;
     opacity: 0.5;
-    margin: 0 0 10px 14px;
+    margin: 0 0 8px 16px;
   }
 
   &__nav-link {
