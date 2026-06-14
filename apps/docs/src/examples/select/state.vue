@@ -32,7 +32,7 @@ const items = ['Approved', 'Pending', 'Rejected']
 .w {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 32px;
   justify-content: center;
 }
 .s {

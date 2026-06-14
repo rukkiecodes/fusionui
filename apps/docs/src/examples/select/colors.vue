@@ -18,7 +18,7 @@ const items = ['Primary', 'Success', 'Danger', 'Warning', 'Custom']
 .w {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 32px;
   justify-content: center;
 }
 .s {
