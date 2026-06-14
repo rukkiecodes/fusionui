@@ -58,6 +58,23 @@ body {
   }
 }
 
+// The code panels (markdown fenced blocks + the Example source view) are forced
+// dark in BOTH themes, so an on-surface thumb would go dark-on-dark and vanish
+// in light mode. Give them a light thumb (the panel's own text colour) that
+// stays visibly subtle on that dark surface regardless of theme. Width and
+// shape are inherited from the global rule above.
+.markdown-body pre,
+.markup {
+  scrollbar-color: rgba(192, 202, 245, 0.25) transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(192, 202, 245, 0.22);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(192, 202, 245, 0.4);
+  }
+}
+
 .docs {
   min-height: 100vh;
 
