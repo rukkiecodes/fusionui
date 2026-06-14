@@ -68,7 +68,9 @@ export const FCheckbox = genericComponent()({
         return h(
           'span',
           { class: 'fui-checkbox__icon' },
-          slots.icon ? slots.icon() : h(FIcon, { icon: props.icon, size: 'small' })
+          // 13px leaves breathing room inside the 16px-inner box (the check mark
+          // it replaces reads smaller than a solid glyph at the same size).
+          slots.icon ? slots.icon() : h(FIcon, { icon: props.icon, size: 13 })
         )
       }
       return h('svg', { viewBox: '0 0 24 24', class: 'fui-checkbox__mark' }, [
