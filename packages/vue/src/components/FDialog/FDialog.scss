@@ -19,6 +19,7 @@
     padding: 80px 0;
     overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
     background: rgba(0, 0, 0, 0.4);
 
     &--blur {
@@ -61,9 +62,20 @@
       min-width: auto !important;
       max-width: auto !important;
     }
-    &--scroll .fui-dialog__content {
-      max-height: calc(80vh - 200px);
-      overflow: auto;
+    // Scroll variant: cap the panel to the viewport and let only the content
+    // area scroll, keeping the header, footer and close button pinned. Flex with
+    // `min-height: 0` is what actually lets the content shrink and scroll.
+    &--scroll {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 160px);
+
+      .fui-dialog__content {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
     }
     &--not-padding {
       .fui-dialog__header,

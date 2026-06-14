@@ -19,6 +19,33 @@ function colorTriplet(color?: string | null): string | null {
   return `var(--fui-theme-${color})`
 }
 
+// Body scroll lock, ref-counted so stacked dialogs lock/unlock cleanly. The page
+// is held fixed while any dialog is open; a padding-right matching the removed
+// scrollbar keeps the layout from shifting.
+let scrollLocks = 0
+let savedOverflow = ''
+let savedPaddingRight = ''
+function lockBodyScroll() {
+  if (typeof document === 'undefined') return
+  if (scrollLocks === 0) {
+    const { body, documentElement } = document
+    savedOverflow = body.style.overflow
+    savedPaddingRight = body.style.paddingRight
+    const barWidth = window.innerWidth - documentElement.clientWidth
+    body.style.overflow = 'hidden'
+    if (barWidth > 0) body.style.paddingRight = `${barWidth}px`
+  }
+  scrollLocks++
+}
+function unlockBodyScroll() {
+  if (typeof document === 'undefined' || scrollLocks === 0) return
+  scrollLocks--
+  if (scrollLocks === 0) {
+    document.body.style.overflow = savedOverflow
+    document.body.style.paddingRight = savedPaddingRight
+  }
+}
+
 export const makeFDialogProps = propsFactory(
   {
     /** Visibility (use `v-model`). */
@@ -35,12 +62,12 @@ export const makeFDialogProps = propsFactory(
     preventClose: Boolean,
     /** Drop the header/content/footer padding. */
     notPadding: Boolean,
-    /** Lock the page scroll while open. */
-    overflowHidden: Boolean,
     /** Frost the backdrop. */
     blur: Boolean,
     /** Hard square corners. */
     square: Boolean,
+    /** @deprecated The page scroll is now always locked while a dialog is open. */
+    overflowHidden: Boolean,
     /** Shrink to the content's width. */
     autoWidth: Boolean,
     /** Scroll the content area when it's tall (instead of the page). */
@@ -89,20 +116,28 @@ export const FDialog = genericComponent()({
       if (e.key === 'Escape' && !props.preventClose) close()
     }
 
-    function setBodyLock(on: boolean) {
-      if (typeof document === 'undefined' || !props.overflowHidden) return
-      document.body.style.overflow = on ? 'hidden' : ''
+    // Balance the body lock per instance so an active dialog that unmounts still
+    // releases its lock.
+    let locked = false
+    function applyLock(on: boolean) {
+      if (on && !locked) {
+        lockBodyScroll()
+        locked = true
+      } else if (!on && locked) {
+        unlockBodyScroll()
+        locked = false
+      }
     }
 
     watch(active, v => {
       if (typeof window === 'undefined') return
       if (v) window.addEventListener('keydown', onKeydown)
       else window.removeEventListener('keydown', onKeydown)
-      setBodyLock(v)
+      applyLock(v)
     })
     onBeforeUnmount(() => {
       if (typeof window !== 'undefined') window.removeEventListener('keydown', onKeydown)
-      setBodyLock(false)
+      applyLock(false)
     })
 
     useRender(() =>

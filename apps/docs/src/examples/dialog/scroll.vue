@@ -8,7 +8,7 @@ const open = ref(false)
 
   <f-dialog v-model="open" scroll>
     <template #header><h4 style="margin: 0">Terms of service</h4></template>
-    <p v-for="n in 12" :key="n" style="margin: 0 0 12px; opacity: 0.8">
+    <p v-for="n in 24" :key="n" style="margin: 0 0 12px; opacity: 0.8">
       {{ n }}. The content area scrolls inside the dialog when it gets tall, keeping the header,
       footer and close button in place.
     </p>

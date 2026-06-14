@@ -7,7 +7,7 @@
     "notClose": "Hide the close button.",
     "preventClose": "Don't close on backdrop click / Escape — nudge with a shake instead.",
     "notPadding": "Drop the header/content/footer padding.",
-    "overflowHidden": "Lock the page scroll while the dialog is open.",
+    "overflowHidden": "Deprecated — the page scroll is now always locked while a dialog is open.",
     "blur": "Frost the backdrop with a saturated blur.",
     "square": "Hard square corners.",
     "autoWidth": "Shrink the dialog to its content's width.",

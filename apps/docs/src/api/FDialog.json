@@ -38,11 +38,6 @@
       "required": false,
       "description": "Drop the header/content/footer padding."
     },
-    "overflowHidden": {
-      "type": "Boolean",
-      "required": false,
-      "description": "Lock the page scroll while the dialog is open."
-    },
     "blur": {
       "type": "Boolean",
       "required": false,
@@ -52,6 +47,11 @@
       "type": "Boolean",
       "required": false,
       "description": "Hard square corners."
+    },
+    "overflowHidden": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Deprecated — the page scroll is now always locked while a dialog is open."
     },
     "autoWidth": {
       "type": "Boolean",
