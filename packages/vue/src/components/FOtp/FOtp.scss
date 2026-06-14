@@ -7,19 +7,22 @@
     align-items: center;
     gap: 10px;
 
+    // The box mirrors the input field: a soft surface-2 fill, a transparent
+    // border, and — on focus — the fill darkens to surface-3 with a colored
+    // bottom border sliding in (Vuesax).
     &__box {
       box-sizing: border-box;
       width: 44px;
-      height: 52px;
+      height: 48px;
       padding: 0;
       text-align: center;
       font-family: var(--fui-font-family);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      color: rgb(var(--fui-theme-on-surface));
+      color: rgba(var(--fui-theme-on-surface), 0.9);
       border: 2px solid transparent;
       border-radius: var(--fui-radius-md);
-      background-color: rgba(var(--fui-theme-on-surface), 0.06);
+      background-color: rgb(var(--fui-surface-2));
       outline: none;
       transition: settings.$fui-transition;
       caret-color: rgb(var(--fui-control-color));
@@ -28,12 +31,15 @@
         color: rgba(var(--fui-theme-on-surface), 0.3);
       }
       &:focus {
-        border-color: rgb(var(--fui-control-color));
-        box-shadow: 0 4px 16px -6px rgb(var(--fui-control-color));
+        background-color: rgb(var(--fui-surface-3));
+        border-bottom-color: rgb(var(--fui-control-color));
       }
-      &--filled {
-        border-color: rgba(var(--fui-control-color), 0.45);
-      }
+    }
+
+    // A validation state shows the colored bottom border persistently, like a
+    // colored input.
+    &--state &__box {
+      border-bottom-color: rgb(var(--fui-control-color));
     }
 
     &__sep {
@@ -54,14 +60,14 @@
 
     // Sizes
     &--small &__box {
-      width: 36px;
-      height: 44px;
-      font-size: 1.05rem;
+      width: 38px;
+      height: 40px;
+      font-size: 1rem;
     }
     &--large &__box {
-      width: 54px;
-      height: 64px;
-      font-size: 1.5rem;
+      width: 52px;
+      height: 58px;
+      font-size: 1.4rem;
     }
 
     &--square &__box {

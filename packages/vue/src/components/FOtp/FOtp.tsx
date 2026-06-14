@@ -161,6 +161,7 @@ export const FOtp = genericComponent()({
             {
               'fui-otp--square': props.square,
               'fui-otp--disabled': inactive.value,
+              'fui-otp--state': !!props.state,
             },
             props.class,
           ],
