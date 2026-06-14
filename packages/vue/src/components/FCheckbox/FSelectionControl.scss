@@ -23,6 +23,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
       width: 20px;
       height: 20px;
       border: 2px solid rgba(var(--fui-theme-on-surface), 0.4);
@@ -110,37 +111,37 @@
     }
   }
 
-  // Radio
+  // Radio — Vuesax style: on select the ring thickens into a bold colored
+  // donut with a soft glow (no separate dot).
   .fui-radio__circle {
     border-radius: 50%;
   }
-  .fui-radio__dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgb(var(--fui-control-color));
-    transform: scale(0);
-    transition: transform 0.2s settings.$fui-transition-timing;
+  .fui-radio:not(.fui-selection-control--checked):hover .fui-radio__circle {
+    border-color: rgba(var(--fui-control-color), 0.55);
   }
-  .fui-radio.fui-selection-control--checked .fui-radio__circle {
+  .fui-radio.fui-selection-control--checked:not(.fui-radio--icon) .fui-radio__circle {
+    border-width: 6px;
     border-color: rgb(var(--fui-control-color));
-  }
-  .fui-radio.fui-selection-control--checked .fui-radio__dot {
-    transform: scale(1);
+    box-shadow: 0 3px 12px -2px rgba(var(--fui-control-color), 0.4);
   }
 
-  // Custom icon inside the circle (shown when selected).
+  // Icon variant: the circle fills with the color and the icon shows in white.
+  .fui-radio--icon.fui-selection-control--checked .fui-radio__circle {
+    background-color: rgb(var(--fui-control-color));
+    border-color: rgb(var(--fui-control-color));
+    box-shadow: 0 3px 12px -2px rgba(var(--fui-control-color), 0.4);
+  }
   .fui-radio__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: rgb(var(--fui-control-color));
+    color: rgb(var(--fui-theme-on-primary));
     font-size: 12px;
     opacity: 0;
     transform: scale(0.3);
     transition: settings.$fui-transition;
   }
-  .fui-radio.fui-selection-control--checked .fui-radio__icon {
+  .fui-radio--icon.fui-selection-control--checked .fui-radio__icon {
     opacity: 1;
     transform: scale(1);
   }

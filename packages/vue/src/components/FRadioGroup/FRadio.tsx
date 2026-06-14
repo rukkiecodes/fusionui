@@ -52,16 +52,20 @@ export const FRadio = genericComponent()({
       else standalone.value = props.value
     }
 
+    const hasIcon = computed(() => !!(slots.icon || props.icon))
+
     function circleContent() {
       if (props.loading) return h('span', { class: 'fui-radio__loader' })
-      if (slots.icon || props.icon) {
+      if (hasIcon.value) {
         return h(
           'span',
           { class: 'fui-radio__icon' },
           slots.icon ? slots.icon() : h(FIcon, { icon: props.icon, size: 12 })
         )
       }
-      return h('span', { class: 'fui-radio__dot' })
+      // The selected indicator is the thickened ring on the circle itself
+      // (Vuesax style), so the default needs no inner element.
+      return null
     }
 
     useRender(() =>
@@ -75,6 +79,7 @@ export const FRadio = genericComponent()({
               'fui-selection-control--checked': isChecked.value,
               'fui-selection-control--disabled': isDisabled.value,
               'fui-radio--loading': props.loading,
+              'fui-radio--icon': hasIcon.value,
             },
             props.class,
           ],
