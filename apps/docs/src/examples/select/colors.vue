@@ -8,19 +8,20 @@ const items = ['Primary', 'Success', 'Danger', 'Warning', 'Custom']
 
 <template>
   <div class="w">
-    <f-select v-model="a" :items="items" color="primary" label="Primary" />
-    <f-select v-model="b" :items="items" color="success" label="Success" />
-    <f-select v-model="c" :items="items" color="#7d33ff" label="#7d33ff" />
+    <f-select v-model="a" :items="items" color="primary" label="Primary" class="s" />
+    <f-select v-model="b" :items="items" color="success" label="Success" class="s" />
+    <f-select v-model="c" :items="items" color="#7d33ff" label="#7d33ff" class="s" />
   </div>
 </template>
 
 <style scoped>
 .w {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+.s {
+  width: 180px;
 }
 </style>

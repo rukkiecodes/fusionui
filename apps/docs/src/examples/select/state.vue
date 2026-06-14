@@ -14,6 +14,7 @@ const items = ['Approved', 'Pending', 'Rejected']
       label="Status"
       hint="Looks good"
       persistent-hint
+      class="s"
     />
     <f-select
       v-model="b"
@@ -22,17 +23,19 @@ const items = ['Approved', 'Pending', 'Rejected']
       label="Status"
       hint="Needs another look"
       persistent-hint
+      class="s"
     />
   </div>
 </template>
 
 <style scoped>
 .w {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+.s {
+  width: 220px;
 }
 </style>
