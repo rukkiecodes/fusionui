@@ -5,6 +5,7 @@ import {
   createFusionUI,
   FMenu,
   FPopup,
+  FDialog,
   FTooltip,
   FTabs,
   FTab,
@@ -69,6 +70,42 @@ describe('FTooltip', () => {
     expect(wrapper.find('.fui-tooltip__content').exists()).toBe(false)
     await wrapper.trigger('mouseenter')
     expect(wrapper.find('.fui-tooltip__content').text()).toBe('Tip!')
+  })
+})
+
+describe('FDialog', () => {
+  function mountDialog(props: Record<string, any> = {}) {
+    const Host = {
+      components: { FDialog },
+      data: () => ({ open: true }),
+      template: `<f-dialog v-model="open" v-bind="extra"><p class="body">Hi</p></f-dialog>`,
+      computed: { extra: () => props },
+    }
+    return mountWith(Host, { global: { stubs: { teleport: true } } })
+  }
+
+  it('renders the panel and a close button while open', () => {
+    const wrapper = mountDialog()
+    expect(wrapper.find('.fui-dialog__box').exists()).toBe(true)
+    expect(wrapper.find('.fui-dialog__close').exists()).toBe(true)
+    expect(wrapper.find('.body').text()).toBe('Hi')
+  })
+
+  it('closes on a backdrop click', async () => {
+    const wrapper = mountDialog()
+    await wrapper.find('.fui-dialog').trigger('click')
+    expect(wrapper.vm.open).toBe(false)
+  })
+
+  it('does not close on a backdrop click when prevent-close', async () => {
+    const wrapper = mountDialog({ preventClose: true })
+    await wrapper.find('.fui-dialog').trigger('click')
+    expect(wrapper.vm.open).toBe(true)
+  })
+
+  it('hides the close button with not-close', () => {
+    const wrapper = mountDialog({ notClose: true })
+    expect(wrapper.find('.fui-dialog__close').exists()).toBe(false)
   })
 })
 

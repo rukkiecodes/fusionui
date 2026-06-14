@@ -1,0 +1,27 @@
+{
+  "props": {
+    "modelValue": "Visibility (use v-model).",
+    "color": "Accent color for the loading spinner — a theme name or any CSS color.",
+    "width": "A custom width (number → px, or any CSS length).",
+    "fullScreen": "Cover the whole viewport (minus a small inset).",
+    "notClose": "Hide the close button.",
+    "preventClose": "Don't close on backdrop click / Escape — nudge with a shake instead.",
+    "notPadding": "Drop the header/content/footer padding.",
+    "overflowHidden": "Lock the page scroll while the dialog is open.",
+    "blur": "Frost the backdrop with a saturated blur.",
+    "square": "Hard square corners.",
+    "autoWidth": "Shrink the dialog to its content's width.",
+    "scroll": "Scroll the content area when it's tall (instead of the page).",
+    "notCenter": "Left-align the header instead of centering it.",
+    "loading": "Show a loading spinner over the dialog."
+  },
+  "events": {
+    "update:modelValue": "Emitted when the dialog opens or closes.",
+    "close": "Emitted when the dialog is dismissed (close button, backdrop or Escape)."
+  },
+  "slots": {
+    "default": "The dialog body.",
+    "header": "The dialog title row.",
+    "footer": "A footer row, typically for actions."
+  }
+}

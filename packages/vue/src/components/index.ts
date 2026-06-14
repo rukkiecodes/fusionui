@@ -24,6 +24,7 @@ import { FUpload } from './FUpload'
 import { FForm } from './FForm'
 import { FOverlay } from './FOverlay'
 import { FPopup } from './FPopup'
+import { FDialog } from './FDialog'
 import { FMenu } from './FMenu'
 import { FTooltip } from './FTooltip'
 import { FList, FListItem } from './FList'
@@ -63,6 +64,7 @@ export * from './FUpload'
 export * from './FForm'
 export * from './FOverlay'
 export * from './FPopup'
+export * from './FDialog'
 export * from './FMenu'
 export * from './FTooltip'
 export * from './FList'
@@ -111,6 +113,7 @@ export const components: Record<string, Component> = {
   FForm,
   FOverlay,
   FPopup,
+  FDialog,
   FMenu,
   FTooltip,
   FList,

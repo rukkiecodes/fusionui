@@ -1,0 +1,112 @@
+{
+  "displayName": "FDialog",
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": "Visibility (use v-model)."
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": "Accent color for the loading spinner — a theme name or any CSS color."
+    },
+    "width": {
+      "type": "String | Number",
+      "required": false,
+      "description": "A custom width (number → px, or any CSS length)."
+    },
+    "fullScreen": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Cover the whole viewport (minus a small inset)."
+    },
+    "notClose": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Hide the close button."
+    },
+    "preventClose": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Don't close on backdrop click / Escape — nudge with a shake instead."
+    },
+    "notPadding": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Drop the header/content/footer padding."
+    },
+    "overflowHidden": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Lock the page scroll while the dialog is open."
+    },
+    "blur": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Frost the backdrop with a saturated blur."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Hard square corners."
+    },
+    "autoWidth": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Shrink the dialog to its content's width."
+    },
+    "scroll": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Scroll the content area when it's tall (instead of the page)."
+    },
+    "notCenter": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Left-align the header instead of centering it."
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Show a loading spinner over the dialog."
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when the dialog opens or closes."
+    },
+    "close": {
+      "description": "Emitted when the dialog is dismissed (close button, backdrop or Escape)."
+    }
+  },
+  "slots": {
+    "default": {
+      "description": "The dialog body."
+    },
+    "header": {
+      "description": "The dialog title row."
+    },
+    "footer": {
+      "description": "A footer row, typically for actions."
+    }
+  }
+}
