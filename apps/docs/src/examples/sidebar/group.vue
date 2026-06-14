@@ -23,10 +23,22 @@ const active = ref('alert')
           </f-sidebar-item>
         </template>
 
-        <f-sidebar-item id="button">Button</f-sidebar-item>
-        <f-sidebar-item id="card">Card</f-sidebar-item>
-        <f-sidebar-item id="alert">Alert</f-sidebar-item>
-        <f-sidebar-item id="input">Input</f-sidebar-item>
+        <f-sidebar-item id="button">
+          <template #icon><f-icon icon="check-square" size="small" /></template>
+          Button
+        </f-sidebar-item>
+        <f-sidebar-item id="card">
+          <template #icon><f-icon icon="credit-card" size="small" /></template>
+          Card
+        </f-sidebar-item>
+        <f-sidebar-item id="alert">
+          <template #icon><f-icon icon="bell" size="small" /></template>
+          Alert
+        </f-sidebar-item>
+        <f-sidebar-item id="input">
+          <template #icon><f-icon icon="edit-3" size="small" /></template>
+          Input
+        </f-sidebar-item>
       </f-sidebar-group>
 
       <f-sidebar-item id="docs">

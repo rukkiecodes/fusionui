@@ -196,39 +196,25 @@
       transform: rotate(180deg);
     }
 
+    // Vuesax group: the items indent past a faint vertical guide line that runs
+    // down the group's left edge (revealed when open). The active item brightens
+    // its own segment of that line, so the rule reads as a track — not a far-left
+    // pill. Applies to every group, single-level or nested.
     &__group-content {
+      position: relative;
       width: 100%;
       overflow: hidden;
       transition: height 0.25s ease;
 
-      .fui-sidebar__item {
-        font-size: 0.85rem;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 26px;
-
-        &:hover,
-        &.fui-sidebar__item--active {
-          padding-left: 34px;
-        }
-      }
-    }
-
-    // A nested group (Vuesax style): the items indent past a vertical guide line
-    // that runs down the group's left edge; the active item brightens its own
-    // segment of that line.
-    &__group-content &__group-content {
-      position: relative;
-
-      // The faint full-height guide line, revealed when the group is open.
+      // The faint full-height guide line.
       &::after {
         content: '';
         position: absolute;
         top: 0;
-        left: 22px;
+        left: 16px;
         width: 3px;
         height: 100%;
-        background: rgba(var(--fui-theme-primary), 0.28);
+        background: rgba(var(--fui-theme-primary), 0.3);
         border-radius: 3px;
         opacity: 0;
         transition: opacity 0.25s ease;
@@ -236,21 +222,44 @@
       }
 
       .fui-sidebar__item {
-        padding-left: 40px;
+        font-size: 0.85rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 30px;
 
         &:hover,
         &.fui-sidebar__item--active {
-          padding-left: 44px;
+          padding-left: 34px;
         }
-        // Drop the default left pill; the active bar sits on the guide line.
+
+        // Drop the default far-left pill; the active bar sits on the guide line.
         &::after {
           display: none;
         }
+
+        // Items with a leading icon: a compact icon column sitting just right of
+        // the guide line.
+        &--has-icon {
+          padding-left: 22px;
+
+          &:hover,
+          &.fui-sidebar__item--active {
+            padding-left: 26px;
+          }
+
+          .fui-sidebar__item-icon {
+            min-width: 30px;
+            height: 38px;
+            font-size: 1rem;
+          }
+        }
+
+        // The active item's bright segment, aligned to the guide line.
         &--active::before {
           content: '';
           position: absolute;
           top: 4px;
-          left: 22px;
+          left: 16px;
           width: 3px;
           height: calc(100% - 8px);
           border-radius: 3px;
@@ -259,14 +268,39 @@
         }
       }
     }
-    &__group--open > &__group-content::after,
-    &__group-content &__group--open > &__group-content::after {
-      opacity: 1;
+
+    // A nested group indents one level deeper; its guide line shifts right too.
+    &__group-content &__group-content {
+      &::after {
+        left: 34px;
+      }
+
+      .fui-sidebar__item {
+        padding-left: 48px;
+
+        &:hover,
+        &.fui-sidebar__item--active {
+          padding-left: 52px;
+        }
+
+        &--has-icon {
+          padding-left: 40px;
+
+          &:hover,
+          &.fui-sidebar__item--active {
+            padding-left: 44px;
+          }
+        }
+
+        &--active::before {
+          left: 34px;
+        }
+      }
     }
 
-    &__group--open {
-      background: rgba(var(--fui-theme-on-surface), 0.025);
-      border-radius: 0 15px 15px 0;
+    // Reveal the guide line when the owning group is open.
+    &__group--open > &__group-content::after {
+      opacity: 1;
     }
 
     // ---- Colored drawer ---------------------------------------------------
