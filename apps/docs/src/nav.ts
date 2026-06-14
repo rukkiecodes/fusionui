@@ -42,6 +42,7 @@ export const nav: NavSection[] = [
         ],
       },
       { title: 'Loading', to: '/components/loading' },
+      { title: 'Tooltip', to: '/components/tooltip' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
       { title: 'Liquid Glass', to: '/components/liquid-glass' },

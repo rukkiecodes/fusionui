@@ -2,43 +2,167 @@
 @use '../../styles/tools';
 
 @include tools.layer('components') {
+  // Vuesax tooltip — a floating bubble with a pointing arrow. The bubble is
+  // position:fixed (coords set inline from the trigger rect) so it escapes any
+  // overflow/clipping ancestor. The arrow is a rotated square sitting behind the
+  // bubble: its inner half is hidden by the bubble's own fill, only the tip pokes
+  // out. Variants (border/shadow) add a ::before fill layer so the arrow's
+  // bordered/shadowed inner half stays covered.
   .fui-tooltip {
     position: relative;
     display: inline-flex;
 
     &__content {
-      position: absolute;
-      z-index: 200;
-      white-space: nowrap;
-      padding: 6px 10px;
-      border-radius: var(--fui-radius-sm);
-      background-color: rgba(var(--fui-theme-dark), 0.92);
-      color: rgb(var(--fui-theme-on-dark, 255, 255, 255));
-      font-size: 0.78rem;
-      box-shadow: settings.$fui-shadow-rest;
+      // Accent defaults to the inverse "dark" surface (dark bubble on a light
+      // page, light bubble on a dark page).
+      z-index: 2600;
+      box-sizing: border-box;
+      max-width: 320px;
+      min-width: 30px;
+      padding: 6px 11px;
+      border-radius: var(--fui-radius-md);
+      background-color: rgb(var(--fui-theme-dark));
+      color: rgb(var(--fui-theme-on-dark));
+      font-size: 0.82rem;
+      line-height: 1.35;
+      text-align: center;
       pointer-events: none;
-      animation: fui-tooltip-in 0.15s settings.$fui-transition-timing;
+      animation: fui-tooltip-in 0.16s settings.$fui-transition-timing;
 
-      &--top {
-        bottom: calc(100% + 6px);
+      // The pointing arrow.
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: -2;
+        width: 10px;
+        height: 10px;
+        background-color: inherit;
+      }
+      &--top::after {
+        bottom: -4px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) rotate(45deg);
+        border-radius: 0 0 2px 0;
       }
-      &--bottom {
-        top: calc(100% + 6px);
+      &--bottom::after {
+        top: -4px;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) rotate(45deg);
+        border-radius: 2px 0 0 0;
       }
-      &--left {
-        right: calc(100% + 6px);
+      &--left::after {
+        right: -4px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) rotate(45deg);
+        border-radius: 0 2px 0 0;
       }
-      &--right {
-        left: calc(100% + 6px);
+      &--right::after {
+        left: -4px;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) rotate(45deg);
+        border-radius: 0 0 0 2px;
       }
+
+      &--no-arrow::after {
+        display: none;
+      }
+      &--circle {
+        border-radius: 18px;
+      }
+      &--square {
+        border-radius: 0;
+      }
+
+      &--colored {
+        background-color: rgb(var(--fui-tooltip-color));
+        color: #fff;
+      }
+
+      // Interactive tooltips need to catch the pointer.
+      &:hover {
+        pointer-events: auto;
+      }
+    }
+
+    // ---- Light variants ---------------------------------------------------
+    // A surface fill needs the ::before layer so the arrow reads cleanly.
+    &__content--border,
+    &__content--border-thick,
+    &__content--shadow {
+      background-color: rgb(var(--fui-theme-surface));
+      color: rgb(var(--fui-theme-on-surface));
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-color: inherit;
+        border-radius: inherit;
+      }
+    }
+
+    &__content--shadow {
+      box-shadow: var(--fui-shadow-rest);
+      &::after {
+        box-shadow: var(--fui-shadow-rest);
+      }
+    }
+
+    &__content--border {
+      --fui-tooltip-accent: var(--fui-tooltip-color, var(--fui-theme-on-surface));
+      border: 2px solid rgb(var(--fui-tooltip-accent));
+      &::after {
+        border: 2px solid rgb(var(--fui-tooltip-accent));
+      }
+    }
+
+    // A thick accent edge on the pointing side.
+    &__content--border-thick {
+      --fui-tooltip-accent: var(--fui-tooltip-color, var(--fui-theme-primary));
+      &.fui-tooltip__content--top {
+        border-bottom: 4px solid rgb(var(--fui-tooltip-accent));
+      }
+      &.fui-tooltip__content--bottom {
+        border-top: 4px solid rgb(var(--fui-tooltip-accent));
+      }
+      &.fui-tooltip__content--left {
+        border-right: 4px solid rgb(var(--fui-tooltip-accent));
+      }
+      &.fui-tooltip__content--right {
+        border-left: 4px solid rgb(var(--fui-tooltip-accent));
+      }
+      &::after {
+        background-color: rgb(var(--fui-tooltip-accent));
+      }
+    }
+
+    // ---- Loading ----------------------------------------------------------
+    &__content--loading {
+      min-width: 46px;
+      min-height: 30px;
+
+      .fui-tooltip__inner {
+        opacity: 0.35;
+      }
+    }
+    &__loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: translate(-50%, -50%);
+      animation: fui-tooltip-spin 0.6s linear infinite;
+    }
+
+    &__inner {
+      display: inline-block;
     }
   }
 
@@ -48,6 +172,20 @@
     }
     to {
       opacity: 1;
+    }
+  }
+  @keyframes fui-tooltip-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-tooltip__content {
+      animation: none;
+    }
+    .fui-tooltip__loading {
+      animation: none;
     }
   }
 }

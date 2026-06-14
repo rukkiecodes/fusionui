@@ -4,13 +4,81 @@
     "text": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Content text (shorthand for the `tooltip` slot)."
     },
     "location": {
       "type": "String",
       "default": "top",
       "required": false,
-      "description": ""
+      "description": "Which side of the trigger the bubble sits on — top (default), bottom, left, right."
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": "Background fill — a theme name (primary, success…) or any CSS color. Dark by default."
+    },
+    "notArrow": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Hide the pointing arrow."
+    },
+    "circle": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Softer, more rounded corners."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Hard square corners."
+    },
+    "border": {
+      "type": "Boolean",
+      "required": false,
+      "description": "A light, outlined style instead of a solid fill."
+    },
+    "borderThick": {
+      "type": "Boolean",
+      "required": false,
+      "description": "A light style with a thick accent edge on the pointing side."
+    },
+    "shadow": {
+      "type": "Boolean",
+      "required": false,
+      "description": "A light, elevated style (surface fill + shadow)."
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Show a spinner and dim the content."
+    },
+    "interactivity": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Keep the bubble open while the pointer is over it (for links/buttons inside)."
+    },
+    "notHover": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Don't open on hover — drive visibility with v-model instead."
+    },
+    "delay": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": "Delay before opening, in ms."
+    },
+    "offset": {
+      "type": "Number | String",
+      "default": "8",
+      "required": false,
+      "description": "Gap between trigger and bubble, in px."
+    },
+    "modelValue": {
+      "type": "Boolean",
+      "default": "false",
+      "required": false,
+      "description": "Controlled open state (use v-model, with not-hover)."
     },
     "class": {
       "type": "String | Array | Object",
@@ -24,6 +92,20 @@
       "description": ""
     }
   },
-  "events": {},
-  "slots": {}
+  "events": {
+    "update:modelValue": {
+      "description": "Emitted when the tooltip opens or closes."
+    }
+  },
+  "slots": {
+    "default": {
+      "description": "The trigger element."
+    },
+    "tooltip": {
+      "description": "The bubble content (overrides `text`)."
+    },
+    "activator": {
+      "description": "Alternative trigger slot; receives { active }."
+    }
+  }
 }

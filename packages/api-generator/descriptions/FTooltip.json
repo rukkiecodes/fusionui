@@ -1,0 +1,27 @@
+{
+  "props": {
+    "text": "Content text (shorthand for the `tooltip` slot).",
+    "location": "Which side of the trigger the bubble sits on — top (default), bottom, left, right.",
+    "color": "Background fill — a theme name (primary, success…) or any CSS color. Dark by default.",
+    "notArrow": "Hide the pointing arrow.",
+    "circle": "Softer, more rounded corners.",
+    "square": "Hard square corners.",
+    "border": "A light, outlined style instead of a solid fill.",
+    "borderThick": "A light style with a thick accent edge on the pointing side.",
+    "shadow": "A light, elevated style (surface fill + shadow).",
+    "loading": "Show a spinner and dim the content.",
+    "interactivity": "Keep the bubble open while the pointer is over it (for links/buttons inside).",
+    "notHover": "Don't open on hover — drive visibility with v-model instead.",
+    "delay": "Delay before opening, in ms.",
+    "offset": "Gap between trigger and bubble, in px.",
+    "modelValue": "Controlled open state (use v-model, with not-hover)."
+  },
+  "events": {
+    "update:modelValue": "Emitted when the tooltip opens or closes."
+  },
+  "slots": {
+    "default": "The trigger element.",
+    "tooltip": "The bubble content (overrides `text`).",
+    "activator": "Alternative trigger slot; receives { active }."
+  }
+}
