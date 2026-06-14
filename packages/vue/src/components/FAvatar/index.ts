@@ -1,1 +1,7 @@
-export { FAvatar, makeFAvatarProps } from './FAvatar'
+export {
+  FAvatar,
+  makeFAvatarProps,
+  FAvatarGroup,
+  makeFAvatarGroupProps,
+  FAvatarGroupKey,
+} from './FAvatar'

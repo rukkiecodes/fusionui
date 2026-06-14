@@ -1,0 +1,9 @@
+{
+  "props": {
+    "max": "Show at most N avatars; the rest collapse into a +N indicator on the last visible one.",
+    "float": "Lay avatars out side by side with spacing instead of overlapping them."
+  },
+  "slots": {
+    "default": "The FAvatar children to stack."
+  }
+}

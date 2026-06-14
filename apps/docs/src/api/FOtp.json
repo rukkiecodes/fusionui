@@ -1,0 +1,95 @@
+{
+  "displayName": "FOtp",
+  "props": {
+    "modelValue": {
+      "type": "String",
+      "default": "",
+      "required": false,
+      "description": ""
+    },
+    "length": {
+      "type": "Number | String",
+      "default": "6",
+      "required": false,
+      "description": ""
+    },
+    "type": {
+      "type": "String",
+      "default": "number",
+      "required": false,
+      "description": ""
+    },
+    "mask": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "size": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "autofocus": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "separator": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "complete": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

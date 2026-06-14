@@ -5,7 +5,7 @@ import { FBtnGroup } from './FBtnGroup'
 import { FCard, FCardGroup, FCardTitle, FCardText, FCardButtons } from './FCard'
 import { FAlert } from './FAlert'
 import { FChip } from './FChip'
-import { FAvatar } from './FAvatar'
+import { FAvatar, FAvatarGroup } from './FAvatar'
 import { FBadge } from './FBadge'
 import { FProgressCircular, FProgressLinear } from './FProgress'
 import { FDivider } from './FDivider'
@@ -90,6 +90,7 @@ export const components: Record<string, Component> = {
   FAlert,
   FChip,
   FAvatar,
+  FAvatarGroup,
   FBadge,
   FProgressCircular,
   FProgressLinear,

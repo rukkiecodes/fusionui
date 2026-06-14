@@ -63,7 +63,7 @@ const activity = [
         <div class="dash__card-head"><strong>Activity</strong></div>
         <ul class="dash__list">
           <li v-for="a in activity" :key="a.who" class="dash__item">
-            <f-avatar size="small" :color="a.color">{{ a.who[0] }}</f-avatar>
+            <f-avatar circle size="small" :color="a.color">{{ a.who[0] }}</f-avatar>
             <span class="dash__item-text"
               ><strong>{{ a.who }}</strong> {{ a.what }}</span
             >

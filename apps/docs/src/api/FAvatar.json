@@ -4,33 +4,79 @@
     "color": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "Background fill — a theme name (primary, success…) or any CSS color. Neutral if unset."
     },
     "size": {
       "type": "String | Number",
       "default": "default",
       "required": false,
-      "description": ""
+      "description": "Pixel size (number or '70'), or a named size (x-small, small, default, large, x-large)."
     },
     "image": {
       "type": "String",
       "required": false,
-      "description": ""
+      "description": "A photo URL, shown cover-fit."
     },
     "icon": {
       "type": "String | Object | Function",
       "required": false,
-      "description": ""
+      "description": "A leading icon, shown when there's no image."
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "text": {
+      "type": "String",
       "required": false,
-      "description": ""
+      "description": "Initials — shown when there's no image/icon. 1–5 chars show as-is; longer text reduces to one letter per word."
     },
-    "tile": {
+    "circle": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Render a full circle instead of the default rounded square."
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Render with hard square corners."
+    },
+    "badge": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Show a status badge."
+    },
+    "badgeColor": {
+      "type": "String",
+      "required": false,
+      "description": "Badge color (defaults to primary)."
+    },
+    "badgePosition": {
+      "type": "String",
+      "default": "bottom-right",
+      "required": false,
+      "description": "Badge corner — top-right, top-left, bottom-left, or bottom-right (default)."
+    },
+    "history": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Draw a colored story ring around the avatar (follows `color`)."
+    },
+    "historyGradient": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Draw an Instagram-style gradient ring."
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Overlay a spinner."
+    },
+    "writing": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Show animated typing dots in the badge."
+    },
+    "pointer": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Use a pointer cursor, for clickable avatars."
     },
     "theme": {
       "type": "String",
@@ -50,5 +96,15 @@
     }
   },
   "events": {},
-  "slots": {}
+  "slots": {
+    "default": {
+      "description": "Avatar content when there's no image/icon/text (e.g. custom initials)."
+    },
+    "badge": {
+      "description": "Custom badge content (e.g. a count); turns the dot into a pill."
+    },
+    "icons": {
+      "description": "A side panel of action icons revealed beside the avatar."
+    }
+  }
 }

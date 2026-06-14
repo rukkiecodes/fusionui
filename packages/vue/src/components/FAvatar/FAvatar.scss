@@ -1,25 +1,327 @@
 @use '../../styles/tools';
 
 @include tools.layer('components') {
-  .fui-avatar {
+  // Vuesax avatar — a rounded-square (35%) tile with an inner fill, plus an
+  // optional badge, "story" ring, loading overlay, typing dots, and group
+  // overlap. The badge/ring/overlays sit outside the inner avatar, which alone
+  // clips its content to the rounded shape.
+  .fui-avatar-content {
+    --fui-avatar-badge: var(--fui-theme-primary);
+
+    position: relative;
+    z-index: 1;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--fui-radius-circle);
-    overflow: hidden;
-    background-color: rgba(var(--fui-theme-on-surface), 0.08);
-    font-weight: 500;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    border-radius: 35%;
     vertical-align: middle;
     flex-shrink: 0;
+    user-select: none;
+    transition: transform 0.25s ease;
 
-    &--tile {
-      border-radius: var(--fui-radius-md);
+    &--circle {
+      border-radius: 50%;
+    }
+    &--square {
+      border-radius: 0;
+    }
+    &--pointer {
+      cursor: pointer;
+    }
+    &--hidden {
+      display: none;
+    }
+    &--has-icons {
+      margin-right: 20px;
     }
 
-    &__image {
+    &:hover .fui-avatar img {
+      transform: scale(1.06);
+    }
+  }
+
+  .fui-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+    background-color: rgba(var(--fui-theme-on-surface), 0.08);
+    color: rgba(var(--fui-theme-on-surface), 0.82);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    transition: box-shadow 0.25s ease;
+
+    .fui-icon {
+      font-size: 1.3em;
+    }
+    img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: inherit;
+      transition: transform 0.25s ease;
+    }
+
+    // Shrink longer initials so they stay inside the tile.
+    &--letter-3 {
+      font-size: 0.82em;
+    }
+    &--letter-4 {
+      font-size: 0.7em;
+    }
+    &--letter-5,
+    &--letter-6 {
+      font-size: 0.6em;
+    }
+  }
+
+  // Colored fill: the inner avatar takes the resolved color, text goes white.
+  .fui-avatar-content--colored .fui-avatar {
+    background-color: rgb(var(--fui-avatar-color));
+    color: #fff;
+  }
+
+  // ---- Badge --------------------------------------------------------------
+  .fui-avatar__badge {
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgb(var(--fui-avatar-badge));
+    border: 2px solid rgb(var(--fui-theme-surface));
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    line-height: 1;
+
+    &--top-right {
+      top: -3px;
+      bottom: auto;
+    }
+    &--top-left {
+      top: -3px;
+      left: -3px;
+      right: auto;
+      bottom: auto;
+    }
+    &--bottom-left {
+      left: -3px;
+      right: auto;
+    }
+
+    // A badge that carries content (slot or typing dots) grows to a pill.
+    &--slot,
+    &--writing {
+      width: auto;
+      height: auto;
+      min-width: 18px;
+      min-height: 18px;
+      padding: 0 4px;
+      border-radius: 9px;
+    }
+  }
+  // The circle variant tucks the badge in slightly.
+  .fui-avatar-content--circle .fui-avatar__badge {
+    right: -1px;
+    bottom: -1px;
+
+    &--top-right {
+      top: -1px;
+    }
+    &--top-left {
+      top: -1px;
+      left: -1px;
+    }
+    &--bottom-left {
+      left: -1px;
+    }
+  }
+
+  // Typing dots inside a writing badge.
+  .fui-avatar__points {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fui-avatar__point {
+    width: 4px;
+    height: 4px;
+    margin: 0 1.5px;
+    border-radius: 50%;
+    background: #fff;
+    animation: fui-avatar-point 1.2s ease infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+  }
+
+  // ---- Loading overlay ----------------------------------------------------
+  .fui-avatar__loading {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .fui-avatar__loading-spinner {
+    box-sizing: border-box;
+    width: 55%;
+    height: 55%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    animation: fui-avatar-spin 0.8s linear infinite;
+  }
+
+  // ---- Group "+N" overlay -------------------------------------------------
+  .fui-avatar__latest {
+    position: absolute;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+
+  // ---- Side icons panel ---------------------------------------------------
+  .fui-avatar__icons {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    z-index: -1;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 90%;
+    padding: 3px 3px 3px 5px;
+    border-radius: 5px;
+    background: rgba(var(--fui-theme-on-surface), 0.1);
+    font-size: 1rem;
+
+    .fui-icon {
+      cursor: pointer;
+      transition: opacity 0.25s ease;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  // ---- Story ring ---------------------------------------------------------
+  // A colored ring sits behind the avatar; the inner avatar shrinks and gets a
+  // surface-colored gap so the ring reads as a band.
+  .fui-avatar-content--history {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: rgb(var(--fui-avatar-color, var(--fui-theme-primary)));
+    }
+    .fui-avatar {
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
+      margin: 3px;
+      border: 2px solid rgb(var(--fui-theme-surface));
+    }
+  }
+  .fui-avatar-content--history-gradient::after {
+    background: linear-gradient(40deg, #f99b4a 0%, #df376b 74%, #c52d91 74%);
+  }
+
+  // ---- Group --------------------------------------------------------------
+  .fui-avatar__group {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 18px;
+
+    // Overlap: each avatar slides left over the previous, separated by a
+    // surface-colored ring; hovering nudges it aside to reveal the one behind.
+    &:not(.fui-avatar__group--float) .fui-avatar-content {
+      margin-left: -18px;
+      border: 3px solid rgb(var(--fui-theme-surface));
+      transition: transform 0.25s ease;
+
+      &:hover:not(.fui-avatar-content--has-icons) {
+        transform: translateX(-8px);
+      }
+    }
+
+    // Float: wrap with spacing instead of stacking.
+    &--float {
+      flex-wrap: wrap;
+      padding-left: 0;
+      gap: 8px;
+
+      .fui-avatar-content {
+        border: 3px solid rgb(var(--fui-theme-surface));
+      }
+    }
+  }
+
+  @keyframes fui-avatar-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes fui-avatar-point {
+    0%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.5);
+    }
+  }
+
+  // Static fallbacks for reduced motion.
+  @media (prefers-reduced-motion: reduce) {
+    .fui-avatar-content,
+    .fui-avatar,
+    .fui-avatar img {
+      transition: none;
+    }
+    .fui-avatar__loading-spinner {
+      animation: none;
+    }
+    .fui-avatar__point {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .fui-avatar__group .fui-avatar-content:hover {
+      transform: none;
     }
   }
 }

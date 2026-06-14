@@ -1,0 +1,24 @@
+{
+  "props": {
+    "color": "Background fill — a theme name (primary, success…) or any CSS color. Neutral if unset.",
+    "size": "Pixel size (number or '70'), or a named size (x-small, small, default, large, x-large).",
+    "image": "A photo URL, shown cover-fit.",
+    "icon": "A leading icon, shown when there's no image.",
+    "text": "Initials — shown when there's no image/icon. 1–5 chars show as-is; longer text reduces to one letter per word.",
+    "circle": "Render a full circle instead of the default rounded square.",
+    "square": "Render with hard square corners.",
+    "badge": "Show a status badge.",
+    "badgeColor": "Badge color (defaults to primary).",
+    "badgePosition": "Badge corner — top-right, top-left, bottom-left, or bottom-right (default).",
+    "history": "Draw a colored story ring around the avatar (follows `color`).",
+    "historyGradient": "Draw an Instagram-style gradient ring.",
+    "loading": "Overlay a spinner.",
+    "writing": "Show animated typing dots in the badge.",
+    "pointer": "Use a pointer cursor, for clickable avatars."
+  },
+  "slots": {
+    "default": "Avatar content when there's no image/icon/text (e.g. custom initials).",
+    "badge": "Custom badge content (e.g. a count); turns the dot into a pill.",
+    "icons": "A side panel of action icons revealed beside the avatar."
+  }
+}
