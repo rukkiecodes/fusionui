@@ -28,6 +28,7 @@ export const nav: NavSection[] = [
       { title: 'Alert', to: '/components/alert' },
       { title: 'Checkbox', to: '/components/checkbox' },
       { title: 'Switch', to: '/components/switch' },
+      { title: 'Radio', to: '/components/radio' },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Form Inputs', to: '/components/inputs' },
       { title: 'Select', to: '/components/select' },

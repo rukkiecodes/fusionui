@@ -21,6 +21,16 @@
       "required": false,
       "description": ""
     },
+    "icon": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "disabled": {
       "type": "Boolean",
       "required": false,

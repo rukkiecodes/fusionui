@@ -129,6 +129,45 @@
     transform: scale(1);
   }
 
+  // Custom icon inside the circle (shown when selected).
+  .fui-radio__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--fui-control-color));
+    font-size: 12px;
+    opacity: 0;
+    transform: scale(0.3);
+    transition: settings.$fui-transition;
+  }
+  .fui-radio.fui-selection-control--checked .fui-radio__icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  // Loading: a spinner sits in the circle (which tracks the control color).
+  .fui-radio--loading .fui-radio__circle {
+    border-color: rgb(var(--fui-control-color));
+  }
+  .fui-radio__loader {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgb(var(--fui-control-color));
+    border-top-color: transparent;
+    animation: fui-radio-spin 0.7s linear infinite;
+  }
+  @keyframes fui-radio-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fui-radio__loader {
+      animation: none;
+    }
+  }
+
   // Switch
   .fui-switch {
     --fui-control-color: var(--fui-theme-primary);
