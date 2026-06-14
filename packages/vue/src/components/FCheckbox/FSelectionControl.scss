@@ -304,7 +304,8 @@
   }
   .fui-radio-group--inline .fui-radio-group__items {
     flex-direction: row;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 22px;
   }
   .fui-radio-group__label {
     display: block;

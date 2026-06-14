@@ -5,7 +5,7 @@ const plan = ref('pro')
 
 <template>
   <div class="col">
-    <f-radio-group v-model="plan" label="Plan">
+    <f-radio-group v-model="plan" inline label="Plan">
       <f-radio value="free">Free</f-radio>
       <f-radio value="pro">Pro</f-radio>
       <f-radio value="team">Team</f-radio>
