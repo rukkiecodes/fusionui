@@ -23,7 +23,22 @@
       "required": false,
       "description": ""
     },
+    "icon": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
     "indeterminate": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "lineThrough": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
       "type": "Boolean",
       "required": false,
       "description": ""

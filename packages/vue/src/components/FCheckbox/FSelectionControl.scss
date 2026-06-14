@@ -64,6 +64,52 @@
     stroke-dashoffset: 0;
   }
 
+  // Custom icon in the box (shown when checked).
+  .fui-checkbox__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--fui-theme-on-primary));
+    font-size: 14px;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: settings.$fui-transition;
+  }
+  .fui-selection-control--checked .fui-checkbox__icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  // Strike the label through when checked.
+  .fui-checkbox--line-through.fui-selection-control--checked .fui-selection-control__label {
+    text-decoration: line-through;
+    opacity: 0.55;
+  }
+
+  // Loading: a spinner sits in the box (border tracks the control color).
+  .fui-checkbox--loading .fui-checkbox__box {
+    border-color: rgb(var(--fui-control-color));
+    background-color: transparent;
+  }
+  .fui-checkbox__loader {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid rgb(var(--fui-control-color));
+    border-top-color: transparent;
+    animation: fui-checkbox-spin 0.7s linear infinite;
+  }
+  @keyframes fui-checkbox-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fui-checkbox__loader {
+      animation: none;
+    }
+  }
+
   // Radio
   .fui-radio__circle {
     border-radius: 50%;
