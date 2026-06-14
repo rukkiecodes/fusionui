@@ -1,6 +1,9 @@
 export interface NavItem {
   title: string
-  to: string
+  /** A page link. Omitted when the item is a nested group (has `items`). */
+  to?: string
+  /** Nested sub-group items. */
+  items?: NavItem[]
 }
 
 export interface NavSection {
@@ -26,6 +29,17 @@ export const nav: NavSection[] = [
       { title: 'Button', to: '/components/button' },
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },
+      {
+        title: 'Form Inputs',
+        items: [
+          { title: 'Text Input', to: '/components/inputs' },
+          { title: 'Select', to: '/components/select' },
+          { title: 'Checkbox', to: '/components/checkbox' },
+          { title: 'Radio', to: '/components/radio' },
+          { title: 'Switch', to: '/components/switch' },
+          { title: 'OTP Input', to: '/components/otp' },
+        ],
+      },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
@@ -33,17 +47,6 @@ export const nav: NavSection[] = [
       { title: 'Goo', to: '/components/goo' },
       { title: 'Shaders', to: '/components/shaders' },
       { title: 'Chart', to: '/components/chart' },
-    ],
-  },
-  {
-    title: 'Form Inputs',
-    items: [
-      { title: 'Text Input', to: '/components/inputs' },
-      { title: 'Select', to: '/components/select' },
-      { title: 'Checkbox', to: '/components/checkbox' },
-      { title: 'Radio', to: '/components/radio' },
-      { title: 'Switch', to: '/components/switch' },
-      { title: 'OTP Input', to: '/components/otp' },
     ],
   },
   {

@@ -214,6 +214,16 @@
       }
     }
 
+    // A nested group: indent its items a step deeper so the hierarchy reads.
+    &__group-content &__group-content .fui-sidebar__item {
+      padding-left: 40px;
+
+      &:hover,
+      &.fui-sidebar__item--active {
+        padding-left: 48px;
+      }
+    }
+
     &__group--open {
       background: rgba(var(--fui-theme-on-surface), 0.025);
       border-radius: 0 15px 15px 0;

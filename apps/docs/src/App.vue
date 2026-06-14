@@ -87,9 +87,17 @@ function toggleTheme() {
           <template #header>
             <f-sidebar-item>{{ section.title }}</f-sidebar-item>
           </template>
-          <f-sidebar-item v-for="item in section.items" :id="item.to" :key="item.to" :to="item.to">
-            {{ item.title }}
-          </f-sidebar-item>
+          <template v-for="item in section.items" :key="item.to || item.title">
+            <f-sidebar-group v-if="item.items" open>
+              <template #header>
+                <f-sidebar-item>{{ item.title }}</f-sidebar-item>
+              </template>
+              <f-sidebar-item v-for="sub in item.items" :id="sub.to" :key="sub.to" :to="sub.to">
+                {{ sub.title }}
+              </f-sidebar-item>
+            </f-sidebar-group>
+            <f-sidebar-item v-else :id="item.to" :to="item.to">{{ item.title }}</f-sidebar-item>
+          </template>
         </f-sidebar-group>
       </f-sidebar>
 
