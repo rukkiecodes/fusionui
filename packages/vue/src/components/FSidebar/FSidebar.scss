@@ -214,14 +214,54 @@
       }
     }
 
-    // A nested group: indent its items a step deeper so the hierarchy reads.
-    &__group-content &__group-content .fui-sidebar__item {
-      padding-left: 40px;
+    // A nested group (Vuesax style): the items indent past a vertical guide line
+    // that runs down the group's left edge; the active item brightens its own
+    // segment of that line.
+    &__group-content &__group-content {
+      position: relative;
 
-      &:hover,
-      &.fui-sidebar__item--active {
-        padding-left: 48px;
+      // The faint full-height guide line, revealed when the group is open.
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 22px;
+        width: 3px;
+        height: 100%;
+        background: rgba(var(--fui-theme-primary), 0.28);
+        border-radius: 3px;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
       }
+
+      .fui-sidebar__item {
+        padding-left: 40px;
+
+        &:hover,
+        &.fui-sidebar__item--active {
+          padding-left: 44px;
+        }
+        // Drop the default left pill; the active bar sits on the guide line.
+        &::after {
+          display: none;
+        }
+        &--active::before {
+          content: '';
+          position: absolute;
+          top: 4px;
+          left: 22px;
+          width: 3px;
+          height: calc(100% - 8px);
+          border-radius: 3px;
+          background: rgb(var(--fui-theme-primary));
+          z-index: 1;
+        }
+      }
+    }
+    &__group--open > &__group-content::after,
+    &__group-content &__group--open > &__group-content::after {
+      opacity: 1;
     }
 
     &__group--open {
