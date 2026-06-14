@@ -31,6 +31,7 @@ export const nav: NavSection[] = [
       { title: 'Radio', to: '/components/radio' },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Form Inputs', to: '/components/inputs' },
+      { title: 'OTP Input', to: '/components/otp' },
       { title: 'Select', to: '/components/select' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },

@@ -1,0 +1,87 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-otp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    &__box {
+      box-sizing: border-box;
+      width: 44px;
+      height: 52px;
+      padding: 0;
+      text-align: center;
+      font-family: var(--fui-font-family);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: rgb(var(--fui-theme-on-surface));
+      border: 2px solid transparent;
+      border-radius: var(--fui-radius-md);
+      background-color: rgba(var(--fui-theme-on-surface), 0.06);
+      outline: none;
+      transition: settings.$fui-transition;
+      caret-color: rgb(var(--fui-control-color));
+
+      &::placeholder {
+        color: rgba(var(--fui-theme-on-surface), 0.3);
+      }
+      &:focus {
+        border-color: rgb(var(--fui-control-color));
+        box-shadow: 0 4px 16px -6px rgb(var(--fui-control-color));
+      }
+      &--filled {
+        border-color: rgba(var(--fui-control-color), 0.45);
+      }
+    }
+
+    &__sep {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgba(var(--fui-theme-on-surface), 0.35);
+    }
+
+    &__loader {
+      width: 18px;
+      height: 18px;
+      margin-left: 4px;
+      border-radius: 50%;
+      border: 2px solid rgb(var(--fui-control-color));
+      border-top-color: transparent;
+      animation: fui-otp-spin 0.7s linear infinite;
+    }
+
+    // Sizes
+    &--small &__box {
+      width: 36px;
+      height: 44px;
+      font-size: 1.05rem;
+    }
+    &--large &__box {
+      width: 54px;
+      height: 64px;
+      font-size: 1.5rem;
+    }
+
+    &--square &__box {
+      border-radius: var(--fui-radius-sm);
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  @keyframes fui-otp-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fui-otp__loader {
+      animation: none;
+    }
+  }
+}

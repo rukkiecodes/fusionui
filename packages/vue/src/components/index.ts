@@ -15,6 +15,7 @@ import { FInput } from './FInput'
 import { FTextarea } from './FTextarea'
 import { FInputNumber } from './FInputNumber'
 import { FSelect } from './FSelect'
+import { FOtp } from './FOtp'
 import { FCheckbox } from './FCheckbox'
 import { FRadio, FRadioGroup } from './FRadioGroup'
 import { FSwitch } from './FSwitch'
@@ -53,6 +54,7 @@ export * from './FInput'
 export * from './FTextarea'
 export * from './FInputNumber'
 export * from './FSelect'
+export * from './FOtp'
 export * from './FCheckbox'
 export * from './FRadioGroup'
 export * from './FSwitch'
@@ -98,6 +100,7 @@ export const components: Record<string, Component> = {
   FTextarea,
   FInputNumber,
   FSelect,
+  FOtp,
   FCheckbox,
   FRadio,
   FRadioGroup,
