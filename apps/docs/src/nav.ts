@@ -30,6 +30,7 @@ export const nav: NavSection[] = [
       { title: 'Switch', to: '/components/switch' },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Form Inputs', to: '/components/inputs' },
+      { title: 'Select', to: '/components/select' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
       { title: 'Liquid Glass', to: '/components/liquid-glass' },

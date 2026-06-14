@@ -9,13 +9,14 @@
       cursor: pointer;
     }
 
+    // Mirror the input's text row so the select is the same height as FInput.
     &__selection {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 4px;
-      min-height: 24px;
-      padding: 8px 0;
+      min-height: 26px;
+      padding: 5px 0;
     }
 
     &__placeholder {
@@ -26,12 +27,10 @@
       transform: rotate(180deg);
     }
 
+    // Positioned inline (position: fixed) from the field rect so it overlays
+    // any clipping ancestor.
     &__menu {
-      position: absolute;
-      z-index: 10;
-      top: calc(100% - 18px);
-      left: 0;
-      right: 0;
+      z-index: 2500;
       max-height: 240px;
       overflow-y: auto;
       background-color: rgb(var(--fui-theme-surface));
@@ -39,6 +38,26 @@
       box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.18);
       padding: 6px;
       animation: fui-select-in 0.15s settings.$fui-transition-timing;
+
+      // A thin scrollbar that blends into the menu background.
+      scrollbar-width: thin;
+      scrollbar-color: rgba(var(--fui-theme-on-surface), 0.22) transparent;
+      &::-webkit-scrollbar {
+        width: 9px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--fui-theme-on-surface), 0.18);
+        border-radius: 9px;
+        border: 3px solid transparent;
+        background-clip: padding-box;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(var(--fui-theme-on-surface), 0.32);
+        background-clip: padding-box;
+      }
     }
 
     &__option {
@@ -58,6 +77,45 @@
         color: rgb(var(--fui-theme-primary));
         font-weight: settings.$fui-font-weight-medium;
       }
+    }
+
+    // Search box (filter).
+    &__search {
+      padding: 2px 2px 6px;
+    }
+    &__search-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: var(--fui-radius-sm);
+      background-color: rgba(var(--fui-theme-on-surface), 0.06);
+      color: rgb(var(--fui-theme-on-surface));
+      font: inherit;
+      font-size: 0.9rem;
+      outline: none;
+
+      &::placeholder {
+        color: rgba(var(--fui-theme-on-surface), 0.5);
+      }
+    }
+
+    // Group header inside the menu.
+    &__group-title {
+      padding: 8px 12px 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(var(--fui-theme-on-surface), 0.45);
+    }
+
+    // Empty / loading state.
+    &__empty {
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: rgba(var(--fui-theme-on-surface), 0.5);
     }
   }
 

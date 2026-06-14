@@ -29,6 +29,11 @@
       "required": false,
       "description": ""
     },
+    "labelPlaceholder": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "placeholder": {
       "type": "String",
       "required": false,
@@ -39,13 +44,43 @@
       "required": false,
       "description": ""
     },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
     "multiple": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "collapseChips": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "filter": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
     "clearable": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "prependIcon": {
+      "type": "String | Object | Function",
       "required": false,
       "description": ""
     },
