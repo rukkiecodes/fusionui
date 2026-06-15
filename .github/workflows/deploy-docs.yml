@@ -30,7 +30,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Build docs
-        run: pnpm --filter @fusionui/docs build
+        run: pnpm --filter @rukkiecodes/docs build
         env:
           DOCS_BASE: /fusionui/
 

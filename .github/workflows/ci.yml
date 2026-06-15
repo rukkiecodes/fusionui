@@ -42,4 +42,4 @@ jobs:
         run: pnpm size
 
       - name: Build docs
-        run: pnpm --filter @fusionui/docs build
+        run: pnpm --filter @rukkiecodes/docs build

@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@fusionui/docs", "@fusionui/api-generator"]
+  "ignore": ["@rukkiecodes/docs", "@rukkiecodes/api-generator"]
 }
