@@ -125,6 +125,13 @@
     padding: 6px 18px 16px;
   }
 
+  // Recess default form fields inside the dialog so they read as filled wells on
+  // the panel — the standard field fill (--fui-surface-2) equals the panel
+  // surface in dark mode, which would make inputs vanish.
+  .fui-dialog__box .fui-field--variant-default .fui-field__control {
+    background-color: rgb(var(--fui-surface-3));
+  }
+
   // ---- Floating close button ---------------------------------------------
   .fui-dialog__close {
     position: absolute;
