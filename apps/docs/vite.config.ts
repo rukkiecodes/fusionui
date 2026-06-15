@@ -16,10 +16,10 @@ export default defineConfig({
       // Resolve the library to its SOURCE so editing packages/vue/src
       // hot-reloads live in the docs (the "build & preview together" guarantee).
       {
-        find: /^@fusionui\/vue\/styles$/,
+        find: /^@rukkiecodes\/vue\/styles$/,
         replacement: r('../../packages/vue/src/styles/main.scss'),
       },
-      { find: /^@fusionui\/vue$/, replacement: r('../../packages/vue/src/index.ts') },
+      { find: /^@rukkiecodes\/vue$/, replacement: r('../../packages/vue/src/index.ts') },
       { find: '@', replacement: r('./src') },
     ],
   },

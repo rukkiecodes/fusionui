@@ -28,7 +28,7 @@ export function toComponentName(input) {
 /** Find the @rukkiecodes/vue source tree (installed with `src`, or the monorepo). */
 export function findVueSrc(cwd = process.cwd()) {
   const candidates = [
-    join(cwd, 'node_modules', '@fusionui', 'vue', 'src'),
+    join(cwd, 'node_modules', '@rukkiecodes', 'vue', 'src'),
     // monorepo dev: walk up from this file to packages/vue/src
     join(here, '..', '..', 'vue', 'src'),
   ]

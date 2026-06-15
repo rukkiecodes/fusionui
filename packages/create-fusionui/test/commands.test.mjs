@@ -67,7 +67,7 @@ test('add --copy vendors the component graph with no @rukkiecodes/vue import lef
       join(dest, 'src', 'fusionui', 'components', 'FGlass', 'FGlass.tsx'),
       'utf8'
     )
-    assert.match(head, /Vendored from @fusionui\/vue/)
+    assert.match(head, /Vendored from @rukkiecodes\/vue/)
   } finally {
     rmSync(dest, { recursive: true, force: true })
   }
