@@ -15,8 +15,14 @@ const remember = ref(false)
     </template>
 
     <div class="dlg-form">
-      <f-input v-model="email" placeholder="Email" prepend-icon="at-sign" />
-      <f-input v-model="password" type="password" placeholder="Password" prepend-icon="lock" />
+      <f-input v-model="email" block placeholder="Email" prepend-icon="at-sign" />
+      <f-input
+        v-model="password"
+        block
+        type="password"
+        placeholder="Password"
+        prepend-icon="lock"
+      />
 
       <div class="dlg-row">
         <f-checkbox v-model="remember">Remember me</f-checkbox>
