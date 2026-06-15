@@ -1,6 +1,6 @@
 {
   "name": "@fusionui/shaders",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "FusionUI signature shader layer — a lazy-loaded WebGL2 runtime + effect catalog (animated gradient, film grain, soft glow, hover displacement).",
   "type": "module",
   "license": "MIT",
