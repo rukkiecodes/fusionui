@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/gen-ai-docs.mjs",
     "preview": "vite preview",
     "typecheck": "echo \"[docs] typecheck via build\"",
     "test": "echo \"[docs] no tests yet\""

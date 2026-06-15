@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useTheme } from '@rukkiecodes/vue'
 import { nav } from './nav'
 import { highlightMarkdown } from './prism'
+import PageActions from './components/PageActions.vue'
 
 const theme = useTheme()
 const route = useRoute()
@@ -101,6 +102,7 @@ function toggleTheme() {
 
       <main class="docs__main">
         <article class="docs__content markdown-body">
+          <PageActions />
           <router-view />
         </article>
       </main>
