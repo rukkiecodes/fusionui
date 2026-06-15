@@ -14,9 +14,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // import, so a button-only app ships a fraction of this — these budgets exist
 // to catch *regressions*, not to bound a real app's payload. Tighten as the
 // library is optimised; never loosen silently (a bump needs a reason in review).
+// Bumped (2026-06-15): the full barrel grew with the Vuesax-parity component
+// additions (Avatar, Tooltip, Dialog, Select, Radio, Switch, Checkbox, OTP,
+// Loading, Navbar, Sidebar, …). Tree-shaking means real apps still ship a
+// fraction; these ceilings track the full-barrel worst case for regressions.
 const BUDGETS = [
-  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 42 },
-  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 14 },
+  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 52 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 18 },
   { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]
