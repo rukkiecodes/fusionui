@@ -144,7 +144,10 @@ body {
     width: var(--docs-sidebar-width);
     max-width: var(--docs-sidebar-width);
     height: calc(100vh - var(--docs-bar-height));
-    padding: 22px 14px;
+    // No horizontal padding on the sidebar itself, so the scroll container (and
+    // its scrollbar) sits flush against the right edge. The nav content carries
+    // its own inset instead (see &__nav-section).
+    padding: 22px 0;
     flex-shrink: 0;
     background: var(--docs-shell);
     box-shadow: none;
@@ -161,6 +164,8 @@ body {
 
   &__nav-section {
     margin-bottom: 22px;
+    // Inset the nav content (not the sidebar), keeping the scrollbar flush.
+    padding: 0 14px;
 
     // Top-level pages sit directly under a section label (not inside a group),
     // so the FSidebar far-left active pill would be clipped by the sidebar's
