@@ -2,6 +2,9 @@
 node_modules/
 .pnpm-store/
 
+# npm auth — never commit a token-bearing .npmrc
+.npmrc
+
 # build output
 dist/
 lib/
