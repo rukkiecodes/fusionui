@@ -2,7 +2,7 @@
 // Accessibility audit — run axe-core over the built docs pages in light + dark
 // and fail on any critical/serious violation. Start the docs preview first:
 //
-//   pnpm --filter @fusionui/docs build && pnpm --filter @fusionui/docs preview --port 4173 &
+//   pnpm --filter @rukkiecodes/docs build && pnpm --filter @rukkiecodes/docs preview --port 4173 &
 //   A11Y_BASE=http://localhost:4173 node tools/a11y-check.mjs
 import { chromium } from 'playwright'
 import axe from 'axe-core'

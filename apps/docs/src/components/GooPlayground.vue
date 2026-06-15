@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref, computed } from 'vue'
-import { FGoo } from '@fusionui/vue'
+import { FGoo } from '@rukkiecodes/vue'
 
 const cfg = reactive({
   count: 7,

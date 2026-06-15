@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "vue": "^3.5.13",
-    "@fusionui/vue": "latest",
-    "@fusionui/icons": "latest"
+    "@rukkiecodes/vue": "latest",
+    "@rukkiecodes/icons": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

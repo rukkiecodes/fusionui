@@ -1,4 +1,4 @@
-# @fusionui/native
+# @rukkiecodes/native
 
 ## 0.1.0
 
@@ -13,4 +13,4 @@
 ### Patch Changes
 
 - Updated dependencies [68b6a9e]
-  - @fusionui/tokens@0.1.0
+  - @rukkiecodes/tokens@0.1.0

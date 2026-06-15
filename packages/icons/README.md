@@ -1,4 +1,4 @@
-# @fusionui/icons
+# @rukkiecodes/icons
 
 The default [Feather](https://feathericons.com)-style icon set for **FusionUI** —
 737 tree-shakeable icon components (the original Feather set plus 450 extended
@@ -13,7 +13,7 @@ Import only the icons you use:
 
 ```vue
 <script setup>
-import { Bell, Search } from '@fusionui/icons'
+import { Bell, Search } from '@rukkiecodes/icons'
 </script>
 
 <template>
@@ -28,8 +28,8 @@ Register the full set to use string names like `<f-icon icon="bell" />`. This
 pulls all 737 icons, so prefer the tree-shakeable form for app bundles:
 
 ```ts
-import { createFusionUI } from '@fusionui/vue'
-import { featherSet, featherAliases } from '@fusionui/icons'
+import { createFusionUI } from '@rukkiecodes/vue'
+import { featherSet, featherAliases } from '@rukkiecodes/icons'
 
 createFusionUI({
   icons: {
@@ -52,10 +52,10 @@ Drop a 24×24 stroke SVG (matching Feather conventions: `stroke="currentColor"`,
 `fill="none"`, 2px stroke, round caps/joins) and regenerate:
 
 ```bash
-pnpm --filter @fusionui/icons add-icon my-logo ./my-logo.svg
+pnpm --filter @rukkiecodes/icons add-icon my-logo ./my-logo.svg
 ```
 
-Then import it as the PascalCase export: `import { MyLogo } from '@fusionui/icons'`.
+Then import it as the PascalCase export: `import { MyLogo } from '@rukkiecodes/icons'`.
 
 ## Regenerating
 
@@ -63,5 +63,5 @@ Icon modules under `src/icons/` are generated from `svg/` and should not be
 edited by hand:
 
 ```bash
-pnpm --filter @fusionui/icons generate
+pnpm --filter @rukkiecodes/icons generate
 ```

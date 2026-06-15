@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useNotify, useTheme } from '@fusionui/vue'
+import { useNotify, useTheme } from '@rukkiecodes/vue'
 
 const { notify } = useNotify()
 const theme = useTheme()

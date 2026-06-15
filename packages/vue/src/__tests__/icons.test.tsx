@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Bell, featherAliases } from '@fusionui/icons'
+import { Bell, featherAliases } from '@rukkiecodes/icons'
 import { createFusionUI, FIcon, createIcons } from '../index'
 
 function mountIcon(props: Record<string, unknown>) {

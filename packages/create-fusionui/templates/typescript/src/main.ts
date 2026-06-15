@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
-import { createFusionUI } from '@fusionui/vue'
-import { featherSet, featherAliases } from '@fusionui/icons'
-import '@fusionui/vue/styles'
+import { createFusionUI } from '@rukkiecodes/vue'
+import { featherSet, featherAliases } from '@rukkiecodes/icons'
+import '@rukkiecodes/vue/styles'
 import App from './App.vue'
 
 const fusionui = createFusionUI({

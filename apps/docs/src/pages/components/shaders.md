@@ -1,6 +1,6 @@
 # Shaders
 
-`@fusionui/shaders` is the signature GPU layer — a small, **lazy-loaded** WebGL2
+`@rukkiecodes/shaders` is the signature GPU layer — a small, **lazy-loaded** WebGL2
 runtime and a catalogue of tasteful effects. The runtime never sits in the
 critical path: it loads only when a surface scrolls into view, the browser
 supports WebGL2, and the user hasn't asked to minimise motion. Otherwise the
@@ -15,7 +15,7 @@ surface — only that effect tracks the pointer.
 
 ```vue
 <script setup lang="ts">
-import { FShaderSurface } from '@fusionui/shaders'
+import { FShaderSurface } from '@rukkiecodes/shaders'
 </script>
 
 <template>
@@ -34,7 +34,7 @@ Or the `v-shader` directive on any element:
 Register `<FShaderSurface>` + `v-shader` globally with the plugin:
 
 ```ts
-import { FusionShaders } from '@fusionui/shaders'
+import { FusionShaders } from '@rukkiecodes/shaders'
 app.use(FusionShaders)
 ```
 

@@ -1,5 +1,5 @@
 <script setup>
-import { FLoadingSpinner } from '@fusionui/vue'
+import { FLoadingSpinner } from '@rukkiecodes/vue'
 
 const types = [
   'default',

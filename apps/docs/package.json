@@ -1,5 +1,5 @@
 {
-  "name": "@fusionui/docs",
+  "name": "@rukkiecodes/docs",
   "version": "0.0.0",
   "description": "Documentation website for FusionUI with live component previews.",
   "type": "module",
@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "vue": "^3.5.13",
-    "@fusionui/vue": "workspace:*",
-    "@fusionui/icons": "workspace:*",
-    "@fusionui/tokens": "workspace:*",
-    "@fusionui/shaders": "workspace:*",
+    "@rukkiecodes/vue": "workspace:*",
+    "@rukkiecodes/icons": "workspace:*",
+    "@rukkiecodes/tokens": "workspace:*",
+    "@rukkiecodes/shaders": "workspace:*",
     "vue-router": "^4.5.0",
     "prismjs": "^1.29.0"
   },

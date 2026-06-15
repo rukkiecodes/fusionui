@@ -1,4 +1,4 @@
-# @fusionui/shaders
+# @rukkiecodes/shaders
 
 ## 0.1.0
 

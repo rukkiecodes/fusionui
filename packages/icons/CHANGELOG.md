@@ -1,4 +1,4 @@
-# @fusionui/icons
+# @rukkiecodes/icons
 
 ## 0.1.0
 

@@ -1,4 +1,4 @@
-# @fusionui/vue
+# @rukkiecodes/vue
 
 ## 0.1.0
 
@@ -13,5 +13,5 @@
 ### Patch Changes
 
 - Updated dependencies [68b6a9e]
-  - @fusionui/icons@0.1.0
-  - @fusionui/tokens@0.1.0
+  - @rukkiecodes/icons@0.1.0
+  - @rukkiecodes/tokens@0.1.0

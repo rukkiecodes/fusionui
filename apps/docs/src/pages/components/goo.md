@@ -17,7 +17,7 @@ longer goo bridges; raise `gather` to pull a scattered clump into one body.
 
 ```vue
 <script setup lang="ts">
-import { FGoo } from '@fusionui/vue'
+import { FGoo } from '@rukkiecodes/vue'
 </script>
 
 <template>
@@ -29,7 +29,7 @@ import { FGoo } from '@fusionui/vue'
 Or drive the system directly for a custom component:
 
 ```ts
-import { useGooey } from '@fusionui/vue'
+import { useGooey } from '@rukkiecodes/vue'
 
 const root = ref<HTMLElement | null>(null)
 const { path, impulse, setPointer } = useGooey(root, myBlobs, {
@@ -45,7 +45,7 @@ For a single squishy blob (a gooey _button_), the pressurised spring-mass
 `SoftBody` holds its volume, deforms when poked, and wobbles back:
 
 ```ts
-import { SoftBody } from '@fusionui/vue'
+import { SoftBody } from '@rukkiecodes/vue'
 
 const drop = new SoftBody({ cx: 130, cy: 120, radius: 60 })
 drop.poke(px, py, -2000, 90) // press inward

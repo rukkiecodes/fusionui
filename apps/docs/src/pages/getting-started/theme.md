@@ -14,7 +14,7 @@ Every color-aware component accepts a named color or any CSS color:
 Use the `useTheme()` composable:
 
 ```ts
-import { useTheme } from '@fusionui/vue'
+import { useTheme } from '@rukkiecodes/vue'
 
 const theme = useTheme()
 theme.toggle() // light <-> dark

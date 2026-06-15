@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive, onBeforeUnmount, ref } from 'vue'
-import { FGlass } from '@fusionui/vue'
+import { FGlass } from '@rukkiecodes/vue'
 
 const cfg = reactive({
   radius: 28,

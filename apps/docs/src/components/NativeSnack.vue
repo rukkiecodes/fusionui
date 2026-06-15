@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { useTheme } from '@fusionui/vue'
+import { useTheme } from '@rukkiecodes/vue'
 import { scheduleSnackEmbed } from './snackEmbed'
 
 const props = withDefaults(defineProps<{ name: string; height?: number; deps?: string }>(), {
@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<{ name: string; height?: number; deps?: s
 })
 
 // Every dedicated snack source, as raw text. Snack can't import the unpublished
-// @fusionui/native, so each file is a self-contained, pure-RN mirror that inlines
-// the @fusionui/tokens values — keyed here by component name (button, input, …).
+// @rukkiecodes/native, so each file is a self-contained, pure-RN mirror that inlines
+// the @rukkiecodes/tokens values — keyed here by component name (button, input, …).
 const sources = import.meta.glob('../snacks/*.js', {
   query: '?raw',
   eager: true,
@@ -32,7 +32,7 @@ onMounted(scheduleSnackEmbed)
       :data-snack-code="encoded"
       :data-snack-dependencies="deps"
       :data-snack-name="`FusionUI — ${name}`"
-      data-snack-description="A real @fusionui/native component, running live."
+      data-snack-description="A real @rukkiecodes/native component, running live."
       data-snack-platform="web"
       data-snack-supportedplatforms="web,mydevice,ios,android"
       data-snack-preview="true"

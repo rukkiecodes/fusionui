@@ -1,6 +1,6 @@
 import { computed, inject, provide, ref } from 'vue'
 import type { App, ComputedRef, InjectionKey, PropType, Ref } from 'vue'
-import { themes as tokenThemes } from '@fusionui/tokens'
+import { themes as tokenThemes } from '@rukkiecodes/tokens'
 import { propsFactory } from '../util/propsFactory'
 import { isLightColor, parseColor } from '../util/colors'
 
@@ -38,7 +38,7 @@ const LAYER_ORDER = '@layer fui-tokens, fui-theme, fui-base, fui-components, fui
 const STYLE_ID = 'fusionui-theme-stylesheet'
 
 // The two default themes (palette + per-surface variables) come from
-// @fusionui/tokens — the single source of design truth. The runtime generation
+// @rukkiecodes/tokens — the single source of design truth. The runtime generation
 // logic below (triplet conversion, on-color derivation, CSS-var injection) is
 // unchanged; only the literal values moved out to the tokens package.
 const vuesaxLight: ThemeDefinition = tokenThemes.light

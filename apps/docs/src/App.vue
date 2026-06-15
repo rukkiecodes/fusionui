@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useTheme } from '@fusionui/vue'
+import { useTheme } from '@rukkiecodes/vue'
 import { nav } from './nav'
 import { highlightMarkdown } from './prism'
 

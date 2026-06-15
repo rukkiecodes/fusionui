@@ -1,5 +1,5 @@
-import { createFusionUI } from '@fusionui/vue'
-import { fusionSet, fusionAliases } from '@fusionui/icons'
+import { createFusionUI } from '@rukkiecodes/vue'
+import { fusionSet, fusionAliases } from '@rukkiecodes/icons'
 
 // Default to the operating system's color scheme, and follow it live.
 const media =

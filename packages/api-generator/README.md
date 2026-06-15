@@ -1,4 +1,4 @@
-# @fusionui/api-generator
+# @rukkiecodes/api-generator
 
 Generates the component API reference consumed by the docs `<ApiTable>`.
 
@@ -8,7 +8,7 @@ spreads already merged) plus its `emits`. Output goes to
 `apps/docs/src/api/<Component>.json`.
 
 ```bash
-pnpm --filter @fusionui/api-generator generate
+pnpm --filter @rukkiecodes/api-generator generate
 ```
 
 ## Description overlays

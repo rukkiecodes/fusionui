@@ -11,8 +11,8 @@
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/* build",
-    "dev": "pnpm --filter @fusionui/docs dev",
-    "dev:docs": "pnpm --filter @fusionui/docs dev",
+    "dev": "pnpm --filter @rukkiecodes/docs dev",
+    "dev:docs": "pnpm --filter @rukkiecodes/docs dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

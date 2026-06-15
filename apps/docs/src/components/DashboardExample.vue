@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FLineChart } from '@fusionui/vue'
+import { FLineChart } from '@rukkiecodes/vue'
 
 const stats = [
   { label: 'Revenue', value: '$48.2k', delta: '+12.4%', up: true, icon: 'dollar-sign' },

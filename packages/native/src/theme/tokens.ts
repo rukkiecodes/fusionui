@@ -1,6 +1,6 @@
 /**
  * Pure theme data + helpers (no React, no JSX) — testable in plain Node and
- * shared by the Provider in ./index.tsx. Fed by the @fusionui/tokens native
+ * shared by the Provider in ./index.tsx. Fed by the @rukkiecodes/tokens native
  * output: the same design truth the web theme engine consumes.
  */
 import {
@@ -12,8 +12,8 @@ import {
   zIndex,
   shadows,
   themes,
-} from '@fusionui/tokens/native'
-import type { NativeThemeDefinition, NativeShadow } from '@fusionui/tokens/native'
+} from '@rukkiecodes/tokens/native'
+import type { NativeThemeDefinition, NativeShadow } from '@rukkiecodes/tokens/native'
 
 export interface FusionTheme {
   dark: boolean

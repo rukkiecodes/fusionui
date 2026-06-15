@@ -1,5 +1,5 @@
 {
-  "name": "@fusionui/native",
+  "name": "@rukkiecodes/native",
   "version": "0.1.0",
   "description": "FusionUI for mobile — Expo + React Native components that mirror the web contracts, sharing tokens and the signature visual identity (liquid glass via Skia/SKSL).",
   "type": "module",
@@ -41,7 +41,7 @@
     }
   },
   "dependencies": {
-    "@fusionui/tokens": "workspace:*"
+    "@rukkiecodes/tokens": "workspace:*"
   },
   "devDependencies": {
     "@shopify/react-native-skia": "^1.5.0",

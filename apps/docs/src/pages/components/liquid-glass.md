@@ -16,7 +16,7 @@ bend; raise depth and bezel to thicken the glass.
 
 ```vue
 <script setup lang="ts">
-import { FGlass } from '@fusionui/vue'
+import { FGlass } from '@rukkiecodes/vue'
 </script>
 
 <template>
@@ -29,7 +29,7 @@ import { FGlass } from '@fusionui/vue'
 Or drive the engine on any element with the composable:
 
 ```ts
-import { useLiquidGlass } from '@fusionui/vue'
+import { useLiquidGlass } from '@rukkiecodes/vue'
 
 const el = ref<HTMLElement | null>(null)
 const { glassStyle, highlightStyle, refracting } = useLiquidGlass(el, {

@@ -1,5 +1,5 @@
 {
-  "name": "@fusionui/icons",
+  "name": "@rukkiecodes/icons",
   "version": "0.1.0",
   "description": "Feather icon set for FusionUI — the default icon pack.",
   "type": "module",
@@ -7,7 +7,7 @@
   "sideEffects": false,
   "keywords": [
     "vue",
-    "@fusionui/vue",
+    "@rukkiecodes/vue",
     "icons",
     "feather",
     "svg"

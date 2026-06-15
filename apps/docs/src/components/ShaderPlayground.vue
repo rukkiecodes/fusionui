@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, computed, ref } from 'vue'
-import { FShaderSurface, effects } from '@fusionui/shaders'
+import { FShaderSurface, effects } from '@rukkiecodes/shaders'
 
 const names = Object.keys(effects)
 const cfg = reactive({

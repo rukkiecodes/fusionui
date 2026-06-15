@@ -1,4 +1,4 @@
-# @fusionui/shaders
+# @rukkiecodes/shaders
 
 FusionUI's signature shader layer — a small, **lazy-loaded** WebGL2 runtime and a
 catalogue of tasteful effects. The runtime never sits in the critical path: it
@@ -10,7 +10,7 @@ fallback.
 
 ```vue
 <script setup lang="ts">
-import { FShaderSurface } from '@fusionui/shaders'
+import { FShaderSurface } from '@rukkiecodes/shaders'
 </script>
 
 <template>
@@ -29,7 +29,7 @@ Or the directive on any element:
 Register both globally with the plugin:
 
 ```ts
-import { FusionShaders } from '@fusionui/shaders'
+import { FusionShaders } from '@rukkiecodes/shaders'
 app.use(FusionShaders)
 ```
 

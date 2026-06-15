@@ -1,5 +1,5 @@
 {
-  "name": "@fusionui/api-generator",
+  "name": "@rukkiecodes/api-generator",
   "version": "0.0.0",
   "description": "Generates component API metadata (props/events) for the FusionUI docs.",
   "type": "module",
@@ -17,7 +17,7 @@
     "vue": "^3.5.13"
   },
   "dependencies": {
-    "@fusionui/vue": "workspace:*",
-    "@fusionui/icons": "workspace:*"
+    "@rukkiecodes/vue": "workspace:*",
+    "@rukkiecodes/icons": "workspace:*"
   }
 }

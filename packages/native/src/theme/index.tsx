@@ -1,5 +1,5 @@
 /**
- * FusionUI native theme — a React context fed by the @fusionui/tokens native
+ * FusionUI native theme — a React context fed by the @rukkiecodes/tokens native
  * output. Mirrors the web theming contract: a theme is a set of token
  * overrides; brand themes are token overrides too. Pure data/helpers live in
  * ./tokens (no React) so they're testable in plain Node.

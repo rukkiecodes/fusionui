@@ -8,7 +8,7 @@
 // drives every backend:
 //
 //   web:    pathToSvg(cmds)            → <path d> / clip-path: path()
-//   native: buildSkiaPath(Skia, cmds)  → SkPath  (@fusionui/native)
+//   native: buildSkiaPath(Skia, cmds)  → SkPath  (@rukkiecodes/native)
 //
 // Keep the shape math here; only the final serialise step is platform-specific.
 import { pathToSvg } from '../chart'

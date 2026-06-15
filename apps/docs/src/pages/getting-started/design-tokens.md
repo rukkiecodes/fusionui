@@ -1,15 +1,15 @@
 # Design tokens
 
-FusionUI's design language lives in one place — the **`@fusionui/tokens`**
+FusionUI's design language lives in one place — the **`@rukkiecodes/tokens`**
 package. Colors, spacing, radii, typography, motion and elevation are authored
 once and generated for every platform:
 
-| Output                                                                       | Consumed by                                   |
-| ---------------------------------------------------------------------------- | --------------------------------------------- |
-| `@fusionui/tokens/css` — `--fui-*` custom properties (light + dark scopes)   | any web app, SSR, no-JS                       |
-| `@fusionui/tokens/scss` — `$fui-*` SASS vars/maps                            | `@fusionui/vue` component styles (build time) |
-| `@fusionui/tokens` — typed TS object                                         | web logic + the runtime theme engine          |
-| `@fusionui/tokens/native` — RN-friendly object (ms, numbers, shadow objects) | `@fusionui/native`                            |
+| Output                                                                          | Consumed by                                      |
+| ------------------------------------------------------------------------------- | ------------------------------------------------ |
+| `@rukkiecodes/tokens/css` — `--fui-*` custom properties (light + dark scopes)   | any web app, SSR, no-JS                          |
+| `@rukkiecodes/tokens/scss` — `$fui-*` SASS vars/maps                            | `@rukkiecodes/vue` component styles (build time) |
+| `@rukkiecodes/tokens` — typed TS object                                         | web logic + the runtime theme engine             |
+| `@rukkiecodes/tokens/native` — RN-friendly object (ms, numbers, shadow objects) | `@rukkiecodes/native`                            |
 
 Components never hard-code a hex or pixel value — they read tokens. Re-theming a
 brand is a token override, not a fork. Everything below is rendered live from the

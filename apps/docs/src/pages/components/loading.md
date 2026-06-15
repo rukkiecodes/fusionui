@@ -5,7 +5,7 @@ close it when the work is done. It can cover the whole screen or scope to a
 single element, and it ships eleven spinner animations.
 
 ```ts
-import { useLoading } from '@fusionui/vue'
+import { useLoading } from '@rukkiecodes/vue'
 
 const loading = useLoading()
 const handle = loading.open({ type: 'points', text: 'Loading…' })

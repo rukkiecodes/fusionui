@@ -28,11 +28,11 @@ Nuxt module is a fast-follow, not a blocker).
 `tools/check-bundle-size.mjs` tracks the gzipped size of each shipped bundle
 against a ceiling (run in CI via `pnpm size`). Current:
 
-- `@fusionui/vue` full barrel: ~39 kB gz (apps tree-shake to a fraction)
-- `@fusionui/vue` CSS: ~11 kB gz
-- `@fusionui/shaders` entry: ~4 kB gz; the WebGL runtime is a **lazy ~1.3 kB-gz
+- `@rukkiecodes/vue` full barrel: ~39 kB gz (apps tree-shake to a fraction)
+- `@rukkiecodes/vue` CSS: ~11 kB gz
+- `@rukkiecodes/shaders` entry: ~4 kB gz; the WebGL runtime is a **lazy ~1.3 kB-gz
   chunk** loaded only on first on-screen use
-- `@fusionui/tokens` CSS: ~1.2 kB gz
+- `@rukkiecodes/tokens` CSS: ~1.2 kB gz
 
 ## Accessibility
 
@@ -74,11 +74,11 @@ one-off compound radii are intentional, not debt.
 
 Every signature effect has a static fallback and a reduced-motion path: `FGlass`
 (reduced-transparency → opaque; reduced-motion → no press transition), `FGoo`
-(settles to a static frame), `@fusionui/shaders` (the CSS fallback _is_ the
+(settles to a static frame), `@rukkiecodes/shaders` (the CSS fallback _is_ the
 reduced-motion path; the GL loop also pauses on `visibilitychange`).
 
 ## Release
 
 Changesets + semver are in place. **Nothing is published to npm** — the
-`@fusionui/*` names are unpublished by design; publishing requires explicit,
+`@rukkiecodes/*` names are unpublished by design; publishing requires explicit,
 fresh authorization and credentials at release time.

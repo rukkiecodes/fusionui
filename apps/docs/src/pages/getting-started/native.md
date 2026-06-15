@@ -1,6 +1,6 @@
 # Native (mobile)
 
-FusionUI extends to mobile via **`@fusionui/native`** — Expo + React Native
+FusionUI extends to mobile via **`@rukkiecodes/native`** — Expo + React Native
 components that mirror the web component contracts, share the same design
 tokens, and carry the signature liquid glass identity to native via Skia.
 
@@ -17,8 +17,8 @@ press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it 
 your phone. The press springs are [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 and the liquid glass is [Skia](https://shopify.github.io/react-native-skia/), the
 same engines the package uses — so the feel matches the web. Snack can't import the
-unpublished `@fusionui/native`, so each is a self-contained mirror, but every value
-comes from `@fusionui/tokens`.
+unpublished `@rukkiecodes/native`, so each is a self-contained mirror, but every value
+comes from `@rukkiecodes/tokens`.
 
 ### Button
 
@@ -52,7 +52,7 @@ browser via CanvasKit (`WithSkiaWeb`). On a real device this is the GPU `Backdro
 
 ```bash
 npx expo install @shopify/react-native-skia react-native-reanimated expo-linear-gradient
-npm i @fusionui/native @fusionui/tokens
+npm i @rukkiecodes/native @rukkiecodes/tokens
 # iOS 26 real Liquid Glass (optional):
 npx expo install expo-glass-effect
 ```
@@ -65,7 +65,7 @@ liquid glass.
 ## Usage
 
 ```tsx
-import { FusionProvider, FButton, FCard, FInput, LiquidGlassView } from '@fusionui/native'
+import { FusionProvider, FButton, FCard, FInput, LiquidGlassView } from '@rukkiecodes/native'
 
 export default function App() {
   return (
@@ -83,15 +83,15 @@ export default function App() {
 
 ## Component parity
 
-| Web (`@fusionui/vue`)  | Native (`@fusionui/native`) | Shared contract                                                                    |
-| ---------------------- | --------------------------- | ---------------------------------------------------------------------------------- |
-| `<f-btn>`              | `<FButton>`                 | `variant`, `color`, `size`, `loading`, `disabled`, `block`                         |
-| `<f-card>`             | `<FCard>`                   | `flat`, `padding`, `radius`                                                        |
-| `<f-input>`            | `<FInput>`                  | `label`, `value`, `disabled`, `error`, `message`                                   |
-| `<f-switch>`           | `<FSwitch>`                 | `value`, `color`, `disabled`                                                       |
-| `<f-alert>`            | `<FAlert>`                  | `variant`, `color`, `type`, `title`, `text`, `closable`, `progress`                |
-| `<f-glass>`            | `<LiquidGlassView>`         | `radius`, glass `options` — same SDF→Snell engine                                  |
-| navbar + sidebar shell | `<FShell>`                  | the fluid goo junction, drawn with Skia from the same `engine/shell` path commands |
+| Web (`@rukkiecodes/vue`) | Native (`@rukkiecodes/native`) | Shared contract                                                                    |
+| ------------------------ | ------------------------------ | ---------------------------------------------------------------------------------- |
+| `<f-btn>`                | `<FButton>`                    | `variant`, `color`, `size`, `loading`, `disabled`, `block`                         |
+| `<f-card>`               | `<FCard>`                      | `flat`, `padding`, `radius`                                                        |
+| `<f-input>`              | `<FInput>`                     | `label`, `value`, `disabled`, `error`, `message`                                   |
+| `<f-switch>`             | `<FSwitch>`                    | `value`, `color`, `disabled`                                                       |
+| `<f-alert>`              | `<FAlert>`                     | `variant`, `color`, `type`, `title`, `text`, `closable`, `progress`                |
+| `<f-glass>`              | `<LiquidGlassView>`            | `radius`, glass `options` — same SDF→Snell engine                                  |
+| navbar + sidebar shell   | `<FShell>`                     | the fluid goo junction, drawn with Skia from the same `engine/shell` path commands |
 
 Unit tests enforce that the native `FButton` and `FAlert` variant unions are
 subsets of their web counterparts, so the platforms can't silently drift.
@@ -114,7 +114,7 @@ its canvas_. Render the backdrop in-canvas, or snapshot it with
 
 ## Tokens drive everything
 
-`FusionProvider` feeds the `@fusionui/tokens` **native** output — durations in
+`FusionProvider` feeds the `@rukkiecodes/tokens` **native** output — durations in
 milliseconds, dimensions as numbers, shadows as `{ color, offsetX, offsetY,
 blur, opacity }` objects (no CSS units). The native palette is the _same_ Vuesax
 palette as the web, generated from one source, so a brand re-theme applies to

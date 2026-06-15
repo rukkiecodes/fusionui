@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useLoading } from '@fusionui/vue'
+import { useLoading } from '@rukkiecodes/vue'
 
 const loading = useLoading()
 const panel = ref(null)

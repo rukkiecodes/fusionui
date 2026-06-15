@@ -12,7 +12,7 @@ npm create fusionui@latest
 ## Add to an existing project
 
 ```bash
-pnpm add @fusionui/vue @fusionui/icons
+pnpm add @rukkiecodes/vue @rukkiecodes/icons
 ```
 
 Register the plugin and import the styles:
@@ -20,9 +20,9 @@ Register the plugin and import the styles:
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import { createFusionUI } from '@fusionui/vue'
-import { fusionSet, fusionAliases } from '@fusionui/icons'
-import '@fusionui/vue/styles'
+import { createFusionUI } from '@rukkiecodes/vue'
+import { fusionSet, fusionAliases } from '@rukkiecodes/icons'
+import '@rukkiecodes/vue/styles'
 import App from './App.vue'
 
 const fusionui = createFusionUI({

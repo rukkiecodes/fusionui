@@ -16,7 +16,7 @@ Search by name and page through the full set. Click any icon to copy its
 ```vue
 <!-- tree-shakeable: import the icon you need -->
 <script setup>
-import { Bell } from '@fusionui/icons'
+import { Bell } from '@rukkiecodes/icons'
 </script>
 
 <template>
@@ -46,7 +46,7 @@ Components reference icons through `$` aliases, which you can use too:
 Drop a stroke-based SVG (24×24, `stroke="currentColor"`, 2px stroke) into the set:
 
 ```bash
-pnpm --filter @fusionui/icons add-icon my-logo ./my-logo.svg
+pnpm --filter @rukkiecodes/icons add-icon my-logo ./my-logo.svg
 ```
 
 It's then available everywhere by name — `<f-icon icon="my-logo" />` — and as a

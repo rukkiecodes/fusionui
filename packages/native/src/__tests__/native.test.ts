@@ -45,7 +45,7 @@ describe('native liquid-glass engine — shared math with web', () => {
   })
 })
 
-describe('component API parity with @fusionui/vue', () => {
+describe('component API parity with @rukkiecodes/vue', () => {
   it('FButton variants are a documented subset of the web allowedVariants', () => {
     const webSrc = readFileSync(join(ROOT, '../../../vue/src/composables/variant.ts'), 'utf8')
     const block = webSrc.match(/allowedVariants[^=]*=\s*\[([^\]]+)\]/)![1]

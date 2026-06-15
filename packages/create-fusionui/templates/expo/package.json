@@ -9,8 +9,8 @@
     "ios": "expo start --ios"
   },
   "dependencies": {
-    "@fusionui/native": "latest",
-    "@fusionui/tokens": "latest",
+    "@rukkiecodes/native": "latest",
+    "@rukkiecodes/tokens": "latest",
     "@shopify/react-native-skia": "^1.5.0",
     "expo": "~52.0.0",
     "expo-linear-gradient": "~14.0.0",

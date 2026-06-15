@@ -1,4 +1,4 @@
-# @fusionui/tokens
+# @rukkiecodes/tokens
 
 ## 0.1.0
 

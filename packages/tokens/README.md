@@ -1,4 +1,4 @@
-# @fusionui/tokens
+# @rukkiecodes/tokens
 
 The single source of design truth for FusionUI. Colors, spacing, radii,
 typography, motion and elevation are authored once and generated for every
@@ -16,22 +16,22 @@ platform.
 
 `node build.mjs` (run by `pnpm build`) regenerates `dist/`:
 
-| Path                             | Format                                                          | Consumed by                      |
-| -------------------------------- | --------------------------------------------------------------- | -------------------------------- |
-| `dist/css/tokens.css`            | `--fui-*` custom properties, light + dark scopes                | any web app / SSR                |
-| `dist/scss/_tokens.scss`         | `$fui-*` SASS vars + `$fui-shadows` map                         | `@fusionui/vue` component styles |
-| `dist/ts/index.js` + `.d.ts`     | typed object (incl. theme defs)                                 | web logic + theme engine         |
-| `dist/native/index.js` + `.d.ts` | RN-friendly object (ms, numbers, shadow objects — no CSS units) | `@fusionui/native`               |
+| Path                             | Format                                                          | Consumed by                         |
+| -------------------------------- | --------------------------------------------------------------- | ----------------------------------- |
+| `dist/css/tokens.css`            | `--fui-*` custom properties, light + dark scopes                | any web app / SSR                   |
+| `dist/scss/_tokens.scss`         | `$fui-*` SASS vars + `$fui-shadows` map                         | `@rukkiecodes/vue` component styles |
+| `dist/ts/index.js` + `.d.ts`     | typed object (incl. theme defs)                                 | web logic + theme engine            |
+| `dist/native/index.js` + `.d.ts` | RN-friendly object (ms, numbers, shadow objects — no CSS units) | `@rukkiecodes/native`               |
 
 `dist/` is committed so consumers and CI need no extra build step.
 
 ## Package exports
 
 ```ts
-import tokens, { radius, shadows, themes } from '@fusionui/tokens'
-import native from '@fusionui/tokens/native'
-import '@fusionui/tokens/css' // CSS custom properties
-// '@fusionui/tokens/scss'             // SASS partial (@forward / @use)
+import tokens, { radius, shadows, themes } from '@rukkiecodes/tokens'
+import native from '@rukkiecodes/tokens/native'
+import '@rukkiecodes/tokens/css' // CSS custom properties
+// '@rukkiecodes/tokens/scss'             // SASS partial (@forward / @use)
 ```
 
 ## Note on tooling

@@ -10,7 +10,7 @@ import {
   FSwitch,
   LiquidGlassView,
   useFusionTheme,
-} from '@fusionui/native'
+} from '@rukkiecodes/native'
 
 function Brand() {
   const theme = useFusionTheme()

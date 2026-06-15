@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { LinearGradient } from 'expo-linear-gradient'
 
-// FusionUI design tokens — the exact values @fusionui/tokens ships to native.
+// FusionUI design tokens — the exact values @rukkiecodes/tokens ships to native.
 const T = {
   colors: {
     primary: '#195bff',

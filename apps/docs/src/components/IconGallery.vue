@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { iconNames } from '@fusionui/icons'
+import { iconNames } from '@rukkiecodes/icons'
 
 const PER_PAGE = 200
 

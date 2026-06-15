@@ -28,9 +28,9 @@ test('toComponentName maps kebab + F-prefixed names to the component dir', () =>
   assert.equal(toComponentName('FGlass'), 'FGlass')
 })
 
-test('add --copy vendors the component graph with no @fusionui/vue import left', () => {
+test('add --copy vendors the component graph with no @rukkiecodes/vue import left', () => {
   const srcRoot = findVueSrc()
-  assert.ok(srcRoot, 'should locate @fusionui/vue src in the monorepo')
+  assert.ok(srcRoot, 'should locate @rukkiecodes/vue src in the monorepo')
 
   // The graph walk reaches the component, its composable and the glass engine.
   const entry = join(srcRoot, 'components', 'FGlass', 'index.ts')
@@ -49,7 +49,7 @@ test('add --copy vendors the component graph with no @fusionui/vue import left',
     assert.ok(existsSync(join(dest, 'src', 'fusionui', 'components', 'FGlass', 'FGlass.scss')))
     assert.ok(existsSync(join(dest, 'src', 'fusionui', 'composables', 'liquidGlass.ts')))
 
-    // Acceptance: no `@fusionui/vue` import remains anywhere in the copy-in.
+    // Acceptance: no `@rukkiecodes/vue` import remains anywhere in the copy-in.
     const walk = dir =>
       readdirSync(dir).flatMap(e => {
         const p = join(dir, e)
@@ -58,8 +58,8 @@ test('add --copy vendors the component graph with no @fusionui/vue import left',
     for (const f of walk(join(dest, 'src', 'fusionui'))) {
       if (!/\.(ts|tsx)$/.test(f)) continue
       assert.ok(
-        !readFileSync(f, 'utf8').includes("from '@fusionui/vue'"),
-        `${f} still imports @fusionui/vue`
+        !readFileSync(f, 'utf8').includes("from '@rukkiecodes/vue'"),
+        `${f} still imports @rukkiecodes/vue`
       )
     }
     // Header stamped on vendored TS.

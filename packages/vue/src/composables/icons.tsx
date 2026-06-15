@@ -1,6 +1,6 @@
 import { computed, defineComponent, h, inject, toValue } from 'vue'
 import type { Component, FunctionalComponent, InjectionKey, MaybeRefOrGetter, PropType } from 'vue'
-import { featherAliases } from '@fusionui/icons'
+import { featherAliases } from '@rukkiecodes/icons'
 import { propsFactory } from '../util/propsFactory'
 
 // Icon framework: resolves an icon value (alias / set:name / raw SVG / component)

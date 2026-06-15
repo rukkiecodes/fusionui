@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      external: ['vue', '@fusionui/icons'],
+      external: ['vue', '@rukkiecodes/icons'],
       output: { exports: 'named' },
     },
     emptyOutDir: true,

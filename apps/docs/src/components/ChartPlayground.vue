@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, computed, ref } from 'vue'
-import { FLineChart } from '@fusionui/vue'
+import { FLineChart } from '@rukkiecodes/vue'
 
 const series = [
   { x: 'Mon', y: 12 },

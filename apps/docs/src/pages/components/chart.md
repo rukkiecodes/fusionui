@@ -12,7 +12,7 @@ component built on top: copy it as the starting point for your own charts.
 
 ```vue
 <script setup lang="ts">
-import { FLineChart } from '@fusionui/vue'
+import { FLineChart } from '@rukkiecodes/vue'
 
 const series = [
   { x: 'Mon', y: 12 },
@@ -35,8 +35,16 @@ const series = [
 curve → `pathToSvg` → axes from ticks.
 
 ```ts
-import { useChartDimensions } from '@fusionui/vue'
-import { scalePoint, scaleLinear, line, axisTicks, pathToSvg, curves, extent } from '@fusionui/vue'
+import { useChartDimensions } from '@rukkiecodes/vue'
+import {
+  scalePoint,
+  scaleLinear,
+  line,
+  axisTicks,
+  pathToSvg,
+  curves,
+  extent,
+} from '@rukkiecodes/vue'
 
 const { dims } = useChartDimensions(root)
 const x = scalePoint(

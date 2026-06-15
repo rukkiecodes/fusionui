@@ -12,9 +12,9 @@ of design truth and a signature GPU-accelerated visual layer.
 
 ```
 packages/
-  vue/               # @fusionui/vue — the Vue 3 component library
-  icons/             # @fusionui/icons — default Feather icon set
-  api-generator/     # @fusionui/api-generator — generates component API docs
+  vue/               # @rukkiecodes/vue — the Vue 3 component library
+  icons/             # @rukkiecodes/icons — default Feather icon set
+  api-generator/     # @rukkiecodes/api-generator — generates component API docs
   create-fusionui/   # `npm create fusionui` scaffolding CLI
 apps/
   docs/              # documentation website (live component preview)

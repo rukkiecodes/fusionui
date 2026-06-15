@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { radius, space, shadows, font, motion, opacity, themes } from '@fusionui/tokens'
+import { radius, space, shadows, font, motion, opacity, themes } from '@rukkiecodes/tokens'
 
 const props = withDefaults(
   defineProps<{ group?: 'color' | 'radius' | 'space' | 'shadow' | 'type' | 'motion' }>(),

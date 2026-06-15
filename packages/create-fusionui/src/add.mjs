@@ -4,7 +4,7 @@
 //                  and print the import/usage snippet.
 //   --copy       : the shadcn-style copy-in — vendor the component's source (and
 //                  its FusionUI-internal import subtree) into src/fusionui/, so
-//                  the team owns and can edit it. No @fusionui/vue import remains.
+//                  the team owns and can edit it. No @rukkiecodes/vue import remains.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -25,7 +25,7 @@ export function toComponentName(input) {
   return `F${pascal}`
 }
 
-/** Find the @fusionui/vue source tree (installed with `src`, or the monorepo). */
+/** Find the @rukkiecodes/vue source tree (installed with `src`, or the monorepo). */
 export function findVueSrc(cwd = process.cwd()) {
   const candidates = [
     join(cwd, 'node_modules', '@fusionui', 'vue', 'src'),
@@ -42,7 +42,7 @@ const IMPORT_RE = /(?:from|import)\s*['"]([^'"]+)['"]|import\(\s*['"]([^'"]+)['"
 
 function resolveModule(spec, fromFile) {
   const base = spec.startsWith('.') ? resolve(dirname(fromFile), spec) : null
-  if (!base) return null // external (vue, @fusionui/tokens, …) — keep as a dep
+  if (!base) return null // external (vue, @rukkiecodes/tokens, …) — keep as a dep
   const tries = ['.ts', '.tsx', '/index.ts', '/index.tsx', '']
   for (const ext of tries) {
     const p = base + ext
@@ -86,7 +86,7 @@ export function copyIn(component, srcRoot, destRoot, version = '0.0.0') {
     const rel = relative(srcRoot, file)
     const out = join(destRoot, 'fusionui', rel)
     mkdirSync(dirname(out), { recursive: true })
-    const header = `// Vendored from @fusionui/vue@${version} by \`fusionui add --copy\`.\n// You own this copy — edit freely; re-run to refresh.\n`
+    const header = `// Vendored from @rukkiecodes/vue@${version} by \`fusionui add --copy\`.\n// You own this copy — edit freely; re-run to refresh.\n`
     writeFileSync(out, header + readFileSync(file, 'utf8'))
     written.push(rel)
   }
@@ -122,7 +122,7 @@ export async function runAdd(argv) {
   if (argv.copy) {
     const srcRoot = findVueSrc(cwd)
     if (!srcRoot) {
-      console.log(red('✖ Could not find @fusionui/vue sources. Install @fusionui/vue first.'))
+      console.log(red('✖ Could not find @rukkiecodes/vue sources. Install @rukkiecodes/vue first.'))
       process.exit(1)
     }
     let written
@@ -136,8 +136,8 @@ export async function runAdd(argv) {
 ${green('✔')} Copied ${bold(component)} into ${cyan('src/fusionui/')} (${written.length} files, you own it).
   ${dim(`import { ${component} } from './fusionui/components/${component}'`)}
 
-  Base styles come from ${cyan('@fusionui/tokens/css')} (or @fusionui/vue/styles).
-  No ${cyan('@fusionui/vue')} import remains — the component is vendored.
+  Base styles come from ${cyan('@rukkiecodes/tokens/css')} (or @rukkiecodes/vue/styles).
+  No ${cyan('@rukkiecodes/vue')} import remains — the component is vendored.
 `)
     return
   }
@@ -145,18 +145,18 @@ ${green('✔')} Copied ${bold(component)} into ${cyan('src/fusionui/')} (${writt
   // Dependency model (default).
   const pkgPath = join(cwd, 'package.json')
   if (existsSync(pkgPath)) {
-    const added = ensureDep(pkgPath, '@fusionui/vue', 'latest')
+    const added = ensureDep(pkgPath, '@rukkiecodes/vue', 'latest')
     console.log(
       added
-        ? `${green('✔')} Added ${cyan('@fusionui/vue')} to package.json — run your install, then:`
-        : `${green('✔')} ${cyan('@fusionui/vue')} already a dependency. Use:`
+        ? `${green('✔')} Added ${cyan('@rukkiecodes/vue')} to package.json — run your install, then:`
+        : `${green('✔')} ${cyan('@rukkiecodes/vue')} already a dependency. Use:`
     )
   } else {
-    console.log(`${green('✔')} Install ${cyan('@fusionui/vue')}, then:`)
+    console.log(`${green('✔')} Install ${cyan('@rukkiecodes/vue')}, then:`)
   }
   const tag = component.replace(/([A-Z])/g, (m, c, i) => (i ? '-' : '') + c.toLowerCase())
   console.log(`
-  ${dim(`import { ${component} } from '@fusionui/vue'`)}
+  ${dim(`import { ${component} } from '@rukkiecodes/vue'`)}
   ${dim(`<${tag} />`)}
 
   Tip: ${cyan('fusionui add ' + input + ' --copy')} vendors the source instead (you own it).

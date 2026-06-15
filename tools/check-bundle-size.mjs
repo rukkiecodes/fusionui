@@ -15,16 +15,16 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // to catch *regressions*, not to bound a real app's payload. Tighten as the
 // library is optimised; never loosen silently (a bump needs a reason in review).
 const BUDGETS = [
-  { label: '@fusionui/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 42 },
-  { label: '@fusionui/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 14 },
-  { label: '@fusionui/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
-  { label: '@fusionui/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
+  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 42 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 14 },
+  { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
+  { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]
 
 // The lazy WebGL runtime ships as its own hashed chunk — match by prefix.
 const GLOB_BUDGETS = [
   {
-    label: '@fusionui/shaders (gl runtime, lazy)',
+    label: '@rukkiecodes/shaders (gl runtime, lazy)',
     dir: 'packages/shaders/dist',
     prefix: 'gl-',
     maxKb: 3,

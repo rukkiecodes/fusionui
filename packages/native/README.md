@@ -1,11 +1,11 @@
-# @fusionui/native
+# @rukkiecodes/native
 
 FusionUI for mobile — Expo + React Native components that **mirror the web
 component contracts** (same names, props, variants, states), share the same
 design tokens, and carry the signature **liquid glass** identity to native via
 Skia.
 
-> What's shared with `@fusionui/vue`: token values, component API (names, props,
+> What's shared with `@rukkiecodes/vue`: token values, component API (names, props,
 > variants, states), interaction/a11y semantics, and the visual identity. What's
 > reimplemented: the rendering code (RN instead of Vue). `<FButton variant="primary" loading>`
 > should feel identical on web and mobile.
@@ -14,14 +14,21 @@ Skia.
 
 ```bash
 npx expo install @shopify/react-native-skia react-native-reanimated
-npm i @fusionui/native @fusionui/tokens
+npm i @rukkiecodes/native @rukkiecodes/tokens
 # iOS 26 real Liquid Glass (optional): npx expo install expo-glass-effect
 ```
 
 ## Usage
 
 ```tsx
-import { FusionProvider, FButton, FCard, FInput, FSwitch, LiquidGlassView } from '@fusionui/native'
+import {
+  FusionProvider,
+  FButton,
+  FCard,
+  FInput,
+  FSwitch,
+  LiquidGlassView,
+} from '@rukkiecodes/native'
 
 export default function App() {
   return (
@@ -44,13 +51,13 @@ export default function App() {
 
 ## Component parity
 
-| Web (`@fusionui/vue`) | Native (`@fusionui/native`) | Shared contract                                                                                |
-| --------------------- | --------------------------- | ---------------------------------------------------------------------------------------------- |
-| `<FBtn>`              | `<FButton>`                 | `variant` (elevated/flat/tonal/outlined/text), `color`, `size`, `loading`, `disabled`, `block` |
-| `<FCard>`             | `<FCard>`                   | `flat`, `padding`, `radius`; Vuesax soft shadow                                                |
-| `<FInput>`/`<FField>` | `<FInput>`                  | `label`, `value`/`onChangeText`, `disabled`, `error`, `message`, `color`                       |
-| `<FSwitch>`           | `<FSwitch>`                 | `value`/`onValueChange`, `color`, `disabled`                                                   |
-| `<FGlass>`            | `<LiquidGlassView>`         | `radius`, glass `options` (bezel/depth/ior/…); same SDF→Snell engine                           |
+| Web (`@rukkiecodes/vue`) | Native (`@rukkiecodes/native`) | Shared contract                                                                                |
+| ------------------------ | ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `<FBtn>`                 | `<FButton>`                    | `variant` (elevated/flat/tonal/outlined/text), `color`, `size`, `loading`, `disabled`, `block` |
+| `<FCard>`                | `<FCard>`                      | `flat`, `padding`, `radius`; Vuesax soft shadow                                                |
+| `<FInput>`/`<FField>`    | `<FInput>`                     | `label`, `value`/`onChangeText`, `disabled`, `error`, `message`, `color`                       |
+| `<FSwitch>`              | `<FSwitch>`                    | `value`/`onValueChange`, `color`, `disabled`                                                   |
+| `<FGlass>`               | `<LiquidGlassView>`            | `radius`, glass `options` (bezel/depth/ior/…); same SDF→Snell engine                           |
 
 The `FButton` variants are a guaranteed **subset** of the web `allowedVariants`
 (enforced by a unit test). More MVP components (Checkbox/Radio, Modal, Navbar,
@@ -74,7 +81,7 @@ its canvas_ — render the backdrop in-canvas, or snapshot it with
 
 ## Theme
 
-`FusionProvider` feeds the `@fusionui/tokens` **native** output (durations in ms,
+`FusionProvider` feeds the `@rukkiecodes/tokens` **native** output (durations in ms,
 dimensions as numbers, shadows as `{color,offsetX,offsetY,blur,opacity}` objects).
 `useFusionTheme()` reads it; `shadowStyle(token, elevation)` maps a shadow token
 to RN's iOS `shadow*` + Android `elevation` in one call.

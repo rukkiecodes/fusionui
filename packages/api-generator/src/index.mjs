@@ -3,7 +3,7 @@
 // Vite SSR and introspecting the runtime `make*Props` factories (which already
 // have composable spreads merged) plus each component's `emits`.
 //
-//   node src/index.mjs   (pnpm --filter @fusionui/api-generator generate)
+//   node src/index.mjs   (pnpm --filter @rukkiecodes/api-generator generate)
 //
 // Output: apps/docs/src/api/<Component>.json  — globbed by docs ApiTable.vue.
 
@@ -16,7 +16,7 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs'
 const here = dirname(fileURLToPath(import.meta.url))
 const pkgRoot = join(here, '..')
 const repoRoot = join(pkgRoot, '..', '..')
-const libEntry = join(repoRoot, 'packages', '@fusionui/vue', 'src', 'index.ts')
+const libEntry = join(repoRoot, 'packages', '@rukkiecodes/vue', 'src', 'index.ts')
 const outDir = join(repoRoot, 'apps', 'docs', 'src', 'api')
 const descDir = join(pkgRoot, 'descriptions')
 
@@ -52,11 +52,11 @@ const server = await createServer({
     dedupe: ['vue'],
   },
   // The icons package ships TS source, so Vite must transpile it (not Node).
-  ssr: { noExternal: ['@fusionui/icons'] },
+  ssr: { noExternal: ['@rukkiecodes/icons'] },
 })
 
 try {
-  const mod = await server.ssrLoadModule('@fusionui/vue')
+  const mod = await server.ssrLoadModule('@rukkiecodes/vue')
   const components = mod.components ?? {}
   mkdirSync(outDir, { recursive: true })
 

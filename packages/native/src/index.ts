@@ -1,5 +1,5 @@
-// @fusionui/native — Expo + React Native components mirroring the web contracts,
-// sharing the @fusionui/tokens design truth and the signature liquid-glass identity.
+// @rukkiecodes/native — Expo + React Native components mirroring the web contracts,
+// sharing the @rukkiecodes/tokens design truth and the signature liquid-glass identity.
 
 // Theme
 export {
@@ -12,7 +12,7 @@ export {
 } from './theme'
 export type { FusionTheme, FusionProviderProps } from './theme'
 
-// Components (API-mirrored from @fusionui/vue)
+// Components (API-mirrored from @rukkiecodes/vue)
 export { FButton } from './components/FButton'
 export type { FButtonProps, FButtonVariant, FButtonSize } from './components/FButton'
 export { FCard } from './components/FCard'
