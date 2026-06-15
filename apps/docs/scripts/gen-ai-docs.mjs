@@ -14,6 +14,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { enrich, titleOf, descOf } from '../src/util/enrich.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const docs = join(here, '..')
@@ -36,90 +37,20 @@ function walk(dir) {
   return out
 }
 
-function expandExample(file) {
-  const p = join(examplesDir, file + '.vue')
-  if (!existsSync(p)) return `> _(example \`${file}\`)_`
-  return '```vue\n' + readFileSync(p, 'utf8').trimEnd() + '\n```'
+// File lookups for the shared enricher (Node fs side).
+const resolveExample = f => {
+  const p = join(examplesDir, f + '.vue')
+  return existsSync(p) ? readFileSync(p, 'utf8') : null
 }
-
-function row(cells) {
-  return '| ' + cells.join(' | ') + ' |\n'
-}
-function expandApiTable(name) {
-  const p = join(apiDir, name + '.json')
-  if (!existsSync(p)) return `> _(API: ${name})_`
-  const api = JSON.parse(readFileSync(p, 'utf8'))
-  let out =
-    `#### \`${name}\` props\n\n` +
-    row(['Prop', 'Type', 'Default', 'Description']) +
-    row(['---', '---', '---', '---'])
-  for (const [prop, d] of Object.entries(api.props || {})) {
-    out += row([
-      `\`${prop}\``,
-      `\`${d.type}\``,
-      d.default != null ? `\`${d.default}\`` : '—',
-      (d.description || '').replace(/\|/g, '\\|'),
-    ])
-  }
-  const events = Object.entries(api.events || {})
-  if (events.length) {
-    out += `\n**Events**\n\n` + row(['Event', 'Description']) + row(['---', '---'])
-    for (const [e, d] of events)
-      out += row([`\`${e}\``, (d.description || '').replace(/\|/g, '\\|')])
-  }
-  const slots = Object.entries(api.slots || {})
-  if (slots.length) {
-    out += `\n**Slots**\n\n` + row(['Slot', 'Description']) + row(['---', '---'])
-    for (const [s, d] of slots)
-      out += row([`\`${s}\``, (d.description || '').replace(/\|/g, '\\|')])
-  }
-  return out
-}
-
-const WIDGETS =
-  'TokensCatalog|IconGallery|NativeSnack|ButtonPlayground|InputPlayground|CardPlayground|AlertPlayground|GlassPlayground|GooPlayground|ShaderPlayground|ChartPlayground|DashboardExample|Markup'
-
-function enrich(md) {
-  return md
-    .replace(/<Example\s+file="([^"]+)"\s*\/>/g, (_, f) => expandExample(f))
-    .replace(/<ApiTable\s+name="([^"]+)"\s*\/>/g, (_, n) => expandApiTable(n))
-    .replace(
-      new RegExp(`<(${WIDGETS})\\b[^>]*?/?>`, 'g'),
-      () => '> _(interactive demo — see the live docs)_'
-    )
-    .replace(new RegExp(`</(${WIDGETS})>`, 'g'), '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim()
+const resolveApi = n => {
+  const p = join(apiDir, n + '.json')
+  return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null
 }
 
 function routeOf(file) {
   let key = relative(pagesDir, file).replace(/\\/g, '/').replace(/\.md$/, '')
   if (key === 'index') return '' // home
   return key.replace(/\/index$/, '')
-}
-
-function titleOf(md) {
-  const m = md.match(/^#\s+(.+)$/m)
-  return m ? m[1].trim() : 'FusionUI'
-}
-function descOf(md) {
-  const body = md.replace(/^#\s+.+$/m, '')
-  for (const line of body.split('\n')) {
-    const t = line.trim()
-    if (
-      t &&
-      !t.startsWith('#') &&
-      !t.startsWith('<') &&
-      !t.startsWith('```') &&
-      !t.startsWith('-')
-    ) {
-      return t
-        .replace(/[[\]`*]|\(([^)]*)\)/g, (_m, url) => url || '')
-        .replace(/\s+/g, ' ')
-        .slice(0, 180)
-    }
-  }
-  return ''
 }
 
 const SECTION = {
@@ -132,7 +63,7 @@ const pages = []
 for (const file of walk(pagesDir)) {
   const route = routeOf(file)
   const raw = readFileSync(file, 'utf8')
-  const md = enrich(raw)
+  const md = enrich(raw, resolveExample, resolveApi)
   const title = titleOf(raw)
   const description = descOf(raw)
   const urlPath = route ? '/' + route : '/'

@@ -1,26 +1,49 @@
 <script setup>
-// A small per-page toolbar: copy the page as Markdown, or download the
-// generated .md / .json (emitted next to the SPA by scripts/gen-ai-docs.mjs).
+// Copy the page as Markdown, or download it as .md / .json. The content is
+// built in the browser from the page's source (works in dev and prod), and
+// matches the static files the generator emits for crawlers.
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { buildPage } from '../util/page-export.mjs'
 
 const route = useRoute()
-const base = import.meta.env.BASE_URL
-const slug = computed(() => route.path.replace(/^\/+|\/+$/g, '') || 'index')
-const file = computed(() => slug.value.replace(/\//g, '-'))
-const mdUrl = computed(() => `${base}${slug.value}.md`)
-const jsonUrl = computed(() => `${base}${slug.value}.json`)
-
+const file = computed(() => (route.path.replace(/^\/+|\/+$/g, '') || 'index').replace(/\//g, '-'))
 const copied = ref(false)
-async function copyMd() {
+const busy = ref(false)
+
+function save(name, content, type) {
+  const url = URL.createObjectURL(new Blob([content], { type }))
+  const a = document.createElement('a')
+  a.href = url
+  a.download = name
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  URL.revokeObjectURL(url)
+}
+
+async function copyMarkdown() {
+  busy.value = true
   try {
-    const res = await fetch(mdUrl.value)
-    if (!res.ok) throw new Error('not found')
-    await navigator.clipboard.writeText(await res.text())
+    const page = await buildPage(route.path)
+    if (!page) return
+    await navigator.clipboard.writeText(page.mdFull)
     copied.value = true
     setTimeout(() => (copied.value = false), 1600)
-  } catch {
-    /* in dev the static files aren't generated yet */
+  } finally {
+    busy.value = false
+  }
+}
+
+async function download(kind) {
+  busy.value = true
+  try {
+    const page = await buildPage(route.path)
+    if (!page) return
+    if (kind === 'md') save(`${file.value}.md`, page.mdFull, 'text/markdown;charset=utf-8')
+    else save(`${file.value}.json`, JSON.stringify(page.json, null, 2), 'application/json')
+  } finally {
+    busy.value = false
   }
 }
 </script>
@@ -30,18 +53,31 @@ async function copyMd() {
     <button
       class="page-actions__btn"
       type="button"
+      :disabled="busy"
       title="Copy this page as Markdown"
-      @click="copyMd"
+      @click="copyMarkdown"
     >
       <f-icon :icon="copied ? 'check' : 'copy'" size="small" />
       <span>{{ copied ? 'Copied' : 'Copy as Markdown' }}</span>
     </button>
-    <a class="page-actions__btn" :href="mdUrl" :download="`${file}.md`" title="Download Markdown">
+    <button
+      class="page-actions__btn"
+      type="button"
+      :disabled="busy"
+      title="Download Markdown"
+      @click="download('md')"
+    >
       <f-icon icon="download" size="small" /><span>.md</span>
-    </a>
-    <a class="page-actions__btn" :href="jsonUrl" :download="`${file}.json`" title="Download JSON">
+    </button>
+    <button
+      class="page-actions__btn"
+      type="button"
+      :disabled="busy"
+      title="Download JSON"
+      @click="download('json')"
+    >
       <f-icon icon="download" size="small" /><span>.json</span>
-    </a>
+    </button>
   </div>
 </template>
 
@@ -70,8 +106,12 @@ async function copyMd() {
   cursor: pointer;
   transition: all 0.18s ease;
 }
-.page-actions__btn:hover {
+.page-actions__btn:hover:not(:disabled) {
   background: rgba(var(--fui-theme-primary), 0.12);
   color: rgb(var(--fui-theme-primary));
+}
+.page-actions__btn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 </style>
