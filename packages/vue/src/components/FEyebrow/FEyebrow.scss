@@ -1,0 +1,25 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-eyebrow {
+    --fui-eyebrow-color: var(--fui-theme-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--fui-radius-pill);
+    background: rgba(var(--fui-eyebrow-color), 0.1);
+    color: rgb(var(--fui-eyebrow-color));
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+
+    &__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: var(--fui-radius-circle);
+      background: currentColor;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-layout {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    background: rgb(var(--fui-theme-background));
+    color: rgb(var(--fui-theme-on-background));
+    font-family: var(--fui-font-family, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  }
+}

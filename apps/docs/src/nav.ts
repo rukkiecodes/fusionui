@@ -43,6 +43,7 @@ export const nav: NavSection[] = [
       },
       { title: 'Loading', to: '/components/loading' },
       { title: 'Dialog', to: '/components/dialog' },
+      { title: 'Menu', to: '/components/menu' },
       { title: 'Tooltip', to: '/components/tooltip' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },

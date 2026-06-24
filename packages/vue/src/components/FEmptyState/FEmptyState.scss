@@ -1,0 +1,34 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 48px 16px;
+    text-align: center;
+
+    &__icon {
+      font-size: 30px;
+      opacity: 0.5;
+    }
+
+    &__title {
+      margin: 4px 0 0;
+      font-weight: 600;
+    }
+
+    &__text {
+      margin: 0;
+      opacity: 0.6;
+      max-width: 320px;
+    }
+
+    &__action {
+      margin-top: 8px;
+    }
+  }
+}

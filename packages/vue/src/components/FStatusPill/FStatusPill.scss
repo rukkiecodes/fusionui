@@ -1,0 +1,26 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-status-pill {
+    --fui-status-color: var(--fui-theme-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--fui-radius-pill);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    background: rgba(var(--fui-status-color), 0.16);
+    color: rgb(var(--fui-status-color));
+
+    &__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--fui-radius-circle);
+      background: currentColor;
+    }
+  }
+}

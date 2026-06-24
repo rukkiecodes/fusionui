@@ -16,7 +16,9 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
+import { useLayoutItem } from '../../composables/layout'
 import { parseColor } from '../../util/colors'
+import { convertToUnit } from '../../util/helpers'
 import { shellCornerSvg } from '../../engine/shell'
 
 interface NavbarContext {
@@ -70,6 +72,13 @@ export const makeFNavbarProps = propsFactory(
     cornerSize: { type: Number, default: 22 },
     // Selector for the docked sidebar the navbar pairs with.
     sidebarSelector: { type: String as PropType<string>, default: '.fui-sidebar' },
+    // Layout stacking order when inside an <f-layout> (lower = outer). The navbar
+    // is 0 by default so it spans full width above the sidebar.
+    order: { type: Number, default: 0 },
+    // Float the bar as an "island" — a margin on every side + full rounding.
+    island: Boolean,
+    // Island margin (px). Also grows the layout slot so content clears the gap.
+    islandMargin: { type: [Number, String] as PropType<number | string>, default: 12 },
     ...makeThemeProps(),
     ...makeComponentProps(),
   },
@@ -93,6 +102,25 @@ export const FNavbar = genericComponent()({
     const shadowActive = ref(false)
     const paddingActive = ref(false)
     let lastScrollTop = 0
+
+    // Layout coordination: when inside an <f-layout>, register as the top bar so
+    // <f-main> and the sidebar inset themselves. No-op (standalone) otherwise.
+    const barHeight = ref(56)
+    let heightObserver: ResizeObserver | null = null
+    const islandMarginPx = computed(() =>
+      props.island ? parseInt(String(props.islandMargin), 10) || 0 : 0
+    )
+    const { hasLayout, layoutItemStyles } = useLayoutItem({
+      id: `fui-navbar-${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`,
+      position: ref('top') as any,
+      size: barHeight,
+      order: computed(() => Number(props.order ?? 0)) as any,
+      active: ref(true),
+      margin: islandMarginPx as any,
+    })
+    function measureHeight() {
+      if (rootRef.value) barHeight.value = rootRef.value.offsetHeight || barHeight.value
+    }
 
     // Goo-corner junction state (the sidebar width is detected; the fillet
     // colour comes from `background: inherit`, so it tracks the theme for free).
@@ -161,6 +189,13 @@ export const FNavbar = genericComponent()({
 
     onMounted(() => {
       if (typeof window === 'undefined') return
+      if (hasLayout) {
+        measureHeight()
+        if (typeof ResizeObserver !== 'undefined' && rootRef.value) {
+          heightObserver = new ResizeObserver(measureHeight)
+          heightObserver.observe(rootRef.value)
+        }
+      }
       scrollEl().addEventListener('scroll', onScroll as EventListener, { passive: true })
       window.addEventListener('resize', onResize, { passive: true })
       if (props.gooCorner) {
@@ -183,6 +218,7 @@ export const FNavbar = genericComponent()({
       if (typeof window === 'undefined') return
       scrollEl().removeEventListener('scroll', onScroll as EventListener)
       window.removeEventListener('resize', onResize)
+      heightObserver?.disconnect()
       gooObserver?.disconnect()
       window.removeEventListener('resize', measureGoo)
       window.removeEventListener('load', measureGoo)
@@ -197,6 +233,8 @@ export const FNavbar = genericComponent()({
             'fui-navbar',
             {
               'fui-navbar--fixed': props.fixed,
+              'fui-navbar--in-layout': hasLayout,
+              'fui-navbar--island': props.island,
               'fui-navbar--shadow': props.shadow || shadowActive.value,
               'fui-navbar--hidden': hidden.value,
               'fui-navbar--square': props.square,
@@ -208,6 +246,10 @@ export const FNavbar = genericComponent()({
           ],
           style: [
             navbarColor.value ? { '--fui-navbar-color': navbarColor.value } : null,
+            props.island
+              ? { '--fui-navbar-island-margin': convertToUnit(props.islandMargin) }
+              : null,
+            hasLayout ? layoutItemStyles.value : null,
             props.style,
           ],
         },

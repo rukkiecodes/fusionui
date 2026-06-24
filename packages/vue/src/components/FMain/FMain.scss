@@ -1,0 +1,14 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-main {
+    display: block;
+    min-height: 100dvh;
+    padding-top: var(--fui-layout-top, 0px);
+    padding-right: var(--fui-layout-right, 0px);
+    padding-bottom: var(--fui-layout-bottom, 0px);
+    padding-left: var(--fui-layout-left, 0px);
+    transition: padding 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

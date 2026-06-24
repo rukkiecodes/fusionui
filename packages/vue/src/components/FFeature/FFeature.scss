@@ -1,0 +1,42 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-feature {
+    padding: 24px;
+    border-radius: var(--fui-radius-lg);
+    border: 1px solid rgba(var(--fui-theme-on-background), 0.08);
+    background: rgb(var(--fui-theme-surface));
+    transition:
+      border-color 0.18s ease,
+      transform 0.18s ease;
+
+    &--hover:hover {
+      border-color: rgba(var(--fui-theme-primary), 0.5);
+      transform: translateY(-3px);
+    }
+
+    &__icon {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--fui-radius-pill);
+      background: rgba(var(--fui-theme-primary), 0.12);
+      color: rgb(var(--fui-theme-primary));
+      margin-bottom: 14px;
+    }
+
+    &__title {
+      margin: 0 0 8px;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    &__text {
+      margin: 0;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+  }
+}

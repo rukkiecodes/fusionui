@@ -1,0 +1,59 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-auth-layout {
+    --fui-auth-content-width: 420px;
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgb(var(--fui-theme-background));
+    color: rgb(var(--fui-theme-on-background));
+    font-family: var(--fui-font-family, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+
+    &--aside-right {
+      .fui-auth-layout__aside {
+        order: 2;
+      }
+      .fui-auth-layout__main {
+        order: 1;
+      }
+    }
+
+    &__aside {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+      padding: clamp(32px, 4vw, 64px);
+      color: #fff;
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+        linear-gradient(150deg, rgb(var(--fui-theme-primary)), rgba(var(--fui-theme-primary), 0.82));
+    }
+
+    &__main {
+      display: grid;
+      place-items: center;
+      overflow-y: auto;
+      padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 48px);
+    }
+
+    &__content {
+      width: 100%;
+      max-width: var(--fui-auth-content-width);
+    }
+
+    @media (max-width: 860px) {
+      height: auto;
+      min-height: 100dvh;
+      grid-template-columns: 1fr;
+
+      .fui-auth-layout__aside {
+        display: none;
+      }
+    }
+  }
+}

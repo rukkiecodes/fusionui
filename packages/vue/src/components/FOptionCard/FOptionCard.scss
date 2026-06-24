@@ -1,0 +1,92 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-option-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 18px 20px;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    border-radius: var(--fui-radius-lg);
+    border: 2px solid rgba(var(--fui-theme-on-background), 0.12);
+    background: rgb(var(--fui-theme-surface));
+    transition:
+      border-color 0.15s ease,
+      background 0.15s ease,
+      transform 0.1s ease;
+
+    &:hover {
+      border-color: rgba(var(--fui-theme-primary), 0.5);
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+
+    &--selected {
+      border-color: rgb(var(--fui-theme-primary));
+      background: rgba(var(--fui-theme-primary), 0.06);
+    }
+
+    &--disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    &__icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--fui-radius-md);
+      background: rgba(var(--fui-theme-primary), 0.12);
+      color: rgb(var(--fui-theme-primary));
+      font-size: 22px;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__title {
+      font-weight: 600;
+    }
+
+    &__text {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    &__check {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--fui-radius-circle);
+      background: rgb(var(--fui-theme-primary));
+      color: #fff;
+      font-size: 13px;
+      opacity: 0;
+      transform: scale(0.7);
+      transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    &--selected &__check {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    border-radius: var(--fui-radius-lg);
+    border: 1px solid rgba(var(--fui-theme-on-background), 0.1);
+    background: rgb(var(--fui-theme-surface));
+
+    &__icon {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--fui-radius-md);
+      background: rgba(var(--fui-theme-primary), 0.12);
+      color: rgb(var(--fui-theme-primary));
+      font-size: 20px;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    &__value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: rgb(var(--fui-theme-primary));
+    }
+
+    &__label {
+      font-size: 0.85rem;
+      opacity: 0.65;
+    }
+  }
+}

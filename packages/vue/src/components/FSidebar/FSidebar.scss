@@ -44,6 +44,21 @@
     &--square {
       border-radius: 0;
     }
+    // Float as an island: full rounding (the layout already insets it by the
+    // island margin) + a soft lift. Overrides the default right-only rounding.
+    &--island {
+      border-radius: var(--fui-radius-xl, 22px);
+      box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+    }
+    &--island.fui-sidebar--permanent {
+      box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+    }
+    // Inverse (concave) top-right corner: the fillet sits OUTSIDE the box, so the
+    // root must not clip; square the top-right so the fillet is the only corner.
+    &--inverse-corner {
+      overflow: visible;
+      border-top-right-radius: 0;
+    }
     &--reduce {
       max-width: 50px;
 

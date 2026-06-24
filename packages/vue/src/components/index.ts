@@ -38,6 +38,22 @@ import { FTable } from './FTable'
 import { FGlass } from './FGlass'
 import { FGoo } from './FGoo'
 import { FLineChart } from './FLineChart'
+import { FStat } from './FStat'
+import { FFeature } from './FFeature'
+import { FSection } from './FSection'
+import { FSteps } from './FSteps'
+import { FCta } from './FCta'
+import { FCheckList } from './FCheckList'
+import { FEyebrow } from './FEyebrow'
+import { FValueCard } from './FValueCard'
+import { FHero } from './FHero'
+import { FEmptyState } from './FEmptyState'
+import { FPageHeader } from './FPageHeader'
+import { FStatusPill } from './FStatusPill'
+import { FAuthLayout } from './FAuthLayout'
+import { FOptionCard } from './FOptionCard'
+import { FLayout } from './FLayout'
+import { FMain } from './FMain'
 
 export * from './FIcon'
 export * from './FBtn'
@@ -78,6 +94,22 @@ export * from './FTable'
 export * from './FGlass'
 export * from './FGoo'
 export * from './FLineChart'
+export * from './FStat'
+export * from './FFeature'
+export * from './FSection'
+export * from './FSteps'
+export * from './FCta'
+export * from './FCheckList'
+export * from './FEyebrow'
+export * from './FValueCard'
+export * from './FHero'
+export * from './FEmptyState'
+export * from './FPageHeader'
+export * from './FStatusPill'
+export * from './FAuthLayout'
+export * from './FOptionCard'
+export * from './FLayout'
+export * from './FMain'
 
 /** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
@@ -135,4 +167,20 @@ export const components: Record<string, Component> = {
   FGlass,
   FGoo,
   FLineChart,
+  FStat,
+  FFeature,
+  FSection,
+  FSteps,
+  FCta,
+  FCheckList,
+  FEyebrow,
+  FValueCard,
+  FHero,
+  FEmptyState,
+  FPageHeader,
+  FStatusPill,
+  FAuthLayout,
+  FOptionCard,
+  FLayout,
+  FMain,
 }

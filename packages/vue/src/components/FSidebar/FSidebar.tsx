@@ -15,6 +15,8 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
+import { useLayoutItem } from '../../composables/layout'
+import { shellCornerSvg } from '../../engine/shell'
 import { convertToUnit } from '../../util/helpers'
 import { parseColor } from '../../util/colors'
 import { FIcon } from '../FIcon'
@@ -58,6 +60,21 @@ export const makeFSidebarProps = propsFactory(
     // Force white text (useful on a colored drawer).
     textWhite: Boolean,
     width: { type: [String, Number] as PropType<string | number>, default: 260 },
+    // Layout stacking order when inside an <f-layout> (lower = outer). Default 1
+    // keeps the navbar (0) on top, full width; set `order=0` for a full-height
+    // sidebar with the navbar beside it.
+    order: { type: Number, default: 1 },
+    // ── Corner / shape options ───────────────────────────────────────────────
+    // Default edges: top-right + bottom-right rounded. `square` removes all radius.
+    // `inverseCorner` draws a concave (negative-radius) fillet at the top-right so
+    // the drawer flows into the navbar/shell (the docs "frame" look).
+    inverseCorner: Boolean,
+    // Radius (px) of the inverse-corner fillet.
+    cornerSize: { type: Number, default: 22 },
+    // Float the drawer as an "island" — a margin on every side + full rounding.
+    island: Boolean,
+    // Island margin (px). Also widens the layout slot so content clears the gap.
+    islandMargin: { type: [Number, String] as PropType<number | string>, default: 12 },
     ...makeThemeProps(),
     ...makeComponentProps(),
   },
@@ -79,6 +96,23 @@ export const FSidebar = genericComponent()({
     const hovered = ref(false)
     const reduced = computed(() => props.reduce && !(props.hoverExpand && hovered.value))
     const sidebarColor = computed(() => resolveColorTriplet(props.color))
+
+    // Layout coordination: register as a side drawer when permanent inside an
+    // <f-layout> so <f-main> insets and the navbar stacks correctly. In overlay
+    // mode (mobile, not permanent) it stays inactive and uses its own CSS.
+    const layoutWidth = computed(() => parseInt(String(convertToUnit(props.width)), 10) || 260)
+    const islandMarginPx = computed(() =>
+      props.island ? parseInt(String(props.islandMargin), 10) || 0 : 0
+    )
+    const { hasLayout, layoutItemStyles } = useLayoutItem({
+      id: `fui-sidebar-${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`,
+      position: computed(() => (props.right ? 'right' : 'left')) as any,
+      size: layoutWidth,
+      order: computed(() => Number(props.order ?? 1)) as any,
+      active: computed(() => !!props.permanent),
+      margin: islandMarginPx as any,
+    })
+    const inLayout = computed(() => hasLayout && props.permanent)
 
     provide(FSidebarKey, {
       activeId: model,
@@ -121,9 +155,12 @@ export const FSidebar = genericComponent()({
             {
               'fui-sidebar--open': isOpen.value || props.permanent,
               'fui-sidebar--permanent': props.permanent,
+              'fui-sidebar--in-layout': inLayout.value,
               'fui-sidebar--reduce': reduced.value,
               'fui-sidebar--right': props.right,
               'fui-sidebar--square': props.square,
+              'fui-sidebar--island': props.island,
+              'fui-sidebar--inverse-corner': props.inverseCorner,
               'fui-sidebar--no-line': props.notLineActive,
               'fui-sidebar--colored': !!sidebarColor.value,
               'fui-sidebar--text-white': props.textWhite,
@@ -132,7 +169,11 @@ export const FSidebar = genericComponent()({
           ],
           style: [
             { '--fui-sidebar-width': convertToUnit(props.width) },
+            props.island
+              ? { '--fui-sidebar-island-margin': convertToUnit(props.islandMargin) }
+              : null,
             sidebarColor.value ? { '--fui-sidebar-color': sidebarColor.value } : null,
+            inLayout.value ? layoutItemStyles.value : null,
             props.style,
           ],
           onMouseenter: () => {
@@ -147,6 +188,26 @@ export const FSidebar = genericComponent()({
           slots.header ? h('div', { class: 'fui-sidebar__header' }, slots.header()) : null,
           h('div', { class: 'fui-sidebar__body' }, slots.default?.()),
           slots.footer ? h('div', { class: 'fui-sidebar__footer' }, slots.footer()) : null,
+          // Concave junction at the top-right: a shell-coloured fillet (clipped to
+          // the goo curve) that carves the content's corner. `background: inherit`
+          // tracks the drawer colour for free. Needs the root overflow-visible
+          // (see &--inverse-corner in the scss).
+          props.inverseCorner && !props.right
+            ? h('div', {
+                class: 'fui-sidebar__goo',
+                'aria-hidden': 'true',
+                style: {
+                  position: 'absolute',
+                  left: '100%',
+                  top: '0',
+                  width: `${props.cornerSize}px`,
+                  height: `${props.cornerSize}px`,
+                  backgroundColor: 'inherit',
+                  clipPath: `path('${shellCornerSvg(props.cornerSize)}')`,
+                  pointerEvents: 'none',
+                },
+              })
+            : null,
         ]
       )
     )

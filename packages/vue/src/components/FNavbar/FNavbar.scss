@@ -14,6 +14,12 @@
     &--square {
       border-radius: 0;
     }
+    // Float as an island: full rounding (the layout insets it by the island
+    // margin) + a soft lift. Overrides the default bottom-only rounding.
+    &--island {
+      border-radius: var(--fui-radius-xl, 18px);
+      box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+    }
     &--fixed {
       position: fixed;
       top: 0;

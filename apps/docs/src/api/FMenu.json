@@ -5,34 +5,40 @@
       "type": "Boolean",
       "default": "false",
       "required": false,
-      "description": ""
+      "description": "Open state (v-model)."
     },
     "location": {
-      "type": "String",
+      "type": "'bottom' | 'top' | 'bottom-end' | 'top-end'",
       "default": "bottom",
       "required": false,
-      "description": ""
+      "description": "Placement of the menu relative to the activator; -end aligns the right edges."
     },
     "openOnHover": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Open while the pointer is over the activator or content."
     },
     "closeOnContentClick": {
       "type": "Boolean",
       "default": "true",
       "required": false,
-      "description": ""
+      "description": "Close the menu when its content is clicked."
+    },
+    "offset": {
+      "type": "Number",
+      "default": "6",
+      "required": false,
+      "description": "Gap in px between the activator and the menu."
     },
     "contentClass": {
       "type": "String | Array | Object",
       "required": false,
-      "description": ""
+      "description": "Class(es) applied to the teleported content element."
     },
     "disabled": {
       "type": "Boolean",
       "required": false,
-      "description": ""
+      "description": "Disable opening the menu."
     },
     "class": {
       "type": "String | Array | Object",
@@ -48,8 +54,15 @@
   },
   "events": {
     "update:modelValue": {
-      "description": ""
+      "description": "Emitted when the open state changes."
     }
   },
-  "slots": {}
+  "slots": {
+    "activator": {
+      "description": "The trigger. Receives { props, isActive } — spread props onto your element."
+    },
+    "default": {
+      "description": "Menu content. Receives { close } to dismiss programmatically."
+    }
+  }
 }
