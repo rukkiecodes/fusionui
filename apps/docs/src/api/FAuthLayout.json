@@ -1,0 +1,25 @@
+{
+  "displayName": "FAuthLayout",
+  "props": {
+    "asidePosition": {
+      "type": "'left' | 'right'",
+      "required": false,
+      "description": "Which side the branded panel sits on (the form takes the other). Default 'left'."
+    },
+    "contentWidth": {
+      "type": "String",
+      "required": false,
+      "description": "Width of the form column — any CSS length. Default '420px'."
+    },
+    "image": {
+      "type": "String",
+      "required": false,
+      "description": "Optional image URL used as the aside background, with an automatic dark overlay for legible text."
+    },
+    "inset": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Float the aside as a rounded, margined island instead of running edge-to-edge."
+    }
+  }
+}

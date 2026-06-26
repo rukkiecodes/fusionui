@@ -4,18 +4,19 @@
 @include tools.layer('components') {
   .fui-field {
     --fui-field-color: var(--fui-theme-primary);
-    display: inline-flex;
+    // Fluid by default: the field fills the width of whatever it's rendered in.
+    // Constrain it from the parent (e.g. a max-width container) when you need it
+    // narrower. Overlays (icons, spinner, clear) are absolutely positioned, so
+    // they never resize the field.
+    display: flex;
     flex-direction: column;
     font-family: var(--fui-font-family);
     // Match Vuesax's compact density (input ≈ 38px tall, 13.3px text).
-    // Fixed width: overlays (icons, spinner, clear) are absolutely positioned,
-    // so nothing that appears inside ever resizes the field or shifts the
-    // layout around it.
     font-size: 0.83rem;
-    width: 200px;
+    width: 100%;
 
+    // Kept for back-compat; same as the default now.
     &--block {
-      display: flex;
       width: 100%;
     }
 

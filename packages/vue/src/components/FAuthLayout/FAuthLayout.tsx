@@ -11,6 +11,12 @@ export const makeFAuthLayoutProps = propsFactory(
     asidePosition: { type: String as PropType<'left' | 'right'>, default: 'left' },
     /** Max width of the centered content column. */
     contentWidth: { type: String as PropType<string>, default: '420px' },
+    /** Background photo for the aside panel (URL). Adds a dark overlay so the
+     * slotted aside content stays legible. Falls back to the primary gradient. */
+    image: String as PropType<string>,
+    /** Float the aside as an inset, rounded card (margins on every side) instead
+     * of a full-bleed panel. */
+    inset: Boolean,
     ...makeThemeProps(),
     ...makeComponentProps(),
   },
@@ -32,8 +38,17 @@ export const FAuthLayout = genericComponent()({
       h(
         'div',
         {
-          class: ['fui-auth-layout', `fui-auth-layout--aside-${props.asidePosition}`, props.class],
-          style: [{ '--fui-auth-content-width': props.contentWidth }, props.style],
+          class: [
+            'fui-auth-layout',
+            `fui-auth-layout--aside-${props.asidePosition}`,
+            { 'fui-auth-layout--image': !!props.image, 'fui-auth-layout--inset': props.inset },
+            props.class,
+          ],
+          style: [
+            { '--fui-auth-content-width': props.contentWidth },
+            props.image ? { '--fui-auth-image': `url('${props.image}')` } : null,
+            props.style,
+          ],
         },
         [
           slots.aside ? h('aside', { class: 'fui-auth-layout__aside' }, slots.aside()) : null,

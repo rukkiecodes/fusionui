@@ -3,6 +3,11 @@
 `FInput` is a text field with the Vuesax look — a soft filled background, a
 stable focus, and the signature animated floating label.
 
+> **Fluid by default.** Inputs (and every field built on `FField` — select,
+> textarea, number) now fill the **full width** of their container, so they line
+> up cleanly in forms and grids. Constrain one by wrapping it or setting a
+> `max-width` / `width` on the field.
+
 ## Usage
 
 Configure an input live and copy the generated code.

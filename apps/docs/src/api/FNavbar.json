@@ -65,7 +65,24 @@
       "type": "Number",
       "default": "22",
       "required": false,
-      "description": ""
+      "description": "Radius (px) of the concave fillet where a permanent sidebar meets the navbar."
+    },
+    "order": {
+      "type": "Number",
+      "default": "0",
+      "required": false,
+      "description": "Stacking order inside an <f-layout> — lower sits outer. Default 0 keeps the navbar full-width above the sidebar."
+    },
+    "island": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Float the bar as an island — a margin on every side plus full rounding."
+    },
+    "islandMargin": {
+      "type": "Number | String",
+      "default": "12",
+      "required": false,
+      "description": "Gap around the bar when island is set (px or any CSS length)."
     },
     "sidebarSelector": {
       "type": "String",

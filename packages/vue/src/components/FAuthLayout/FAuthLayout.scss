@@ -34,6 +34,31 @@
         linear-gradient(150deg, rgb(var(--fui-theme-primary)), rgba(var(--fui-theme-primary), 0.82));
     }
 
+    // Photo background variant: the image under a dark gradient so slotted aside
+    // content stays legible.
+    &--image &__aside {
+      // Solid dark base so the panel reads as a dark card even before the photo
+      // loads (and never falls back to the primary gradient).
+      background-color: #0c0e12;
+      background-image:
+        linear-gradient(
+          165deg,
+          rgba(12, 14, 18, 0.82),
+          rgba(12, 14, 18, 0.5) 55%,
+          rgba(12, 14, 18, 0.78)
+        ),
+        var(--fui-auth-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    // Float the aside as an inset, rounded card (margins on every side).
+    &--inset &__aside {
+      margin: clamp(14px, 1.6vw, 26px);
+      border-radius: clamp(20px, 1.8vw, 30px);
+    }
+
     &__main {
       display: grid;
       place-items: center;

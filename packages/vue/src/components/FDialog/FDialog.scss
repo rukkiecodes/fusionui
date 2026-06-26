@@ -21,6 +21,9 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     background: rgba(0, 0, 0, 0.4);
+    // Teleported to <body>, outside .fui-application — restate the font so the
+    // content doesn't fall back to the browser serif default.
+    font-family: var(--fui-font-family, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
 
     &--blur {
       backdrop-filter: saturate(180%) blur(15px);

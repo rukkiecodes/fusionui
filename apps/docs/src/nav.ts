@@ -47,6 +47,8 @@ export const nav: NavSection[] = [
       { title: 'Tooltip', to: '/components/tooltip' },
       { title: 'Navbar', to: '/components/navbar' },
       { title: 'Sidebar', to: '/components/sidebar' },
+      { title: 'Layout', to: '/components/layout' },
+      { title: 'Auth Layout', to: '/components/auth-layout' },
       { title: 'Liquid Glass', to: '/components/liquid-glass' },
       { title: 'Goo', to: '/components/goo' },
       { title: 'Shaders', to: '/components/shaders' },
