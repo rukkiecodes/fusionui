@@ -42,6 +42,7 @@ export const nav: NavSection[] = [
         ],
       },
       { title: 'Loading', to: '/components/loading' },
+      { title: 'Notification', to: '/components/notification' },
       { title: 'Dialog', to: '/components/dialog' },
       { title: 'Menu', to: '/components/menu' },
       { title: 'Tooltip', to: '/components/tooltip' },

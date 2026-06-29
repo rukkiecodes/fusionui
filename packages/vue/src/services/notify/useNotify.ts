@@ -12,13 +12,28 @@ export type NotifyPosition =
 export interface NotifyOptions {
   title?: string
   text?: string
+  /** Theme colour key (primary/secondary/accent/success/warning/danger/info). */
   color?: string
+  /** Coloured edge accent (theme key). */
+  border?: string
   icon?: IconValue
   position?: NotifyPosition
   /** Auto-dismiss after N ms. `0` keeps it until dismissed. */
   duration?: number
   closable?: boolean
   progress?: boolean
+  /** Subtle tinted style instead of a filled colour. */
+  flat?: boolean
+  /** Square corners. */
+  square?: boolean
+  /** Show a spinner instead of content. */
+  loading?: boolean
+  /** `'auto'` shrinks to content, `'100%'` spans the viewport. */
+  width?: 'auto' | '100%' | string
+  /** Remove inner padding (for custom content). */
+  notPadding?: boolean
+  /** Dismiss when the body is clicked. */
+  clickClose?: boolean
   onClick?: () => void
 }
 
@@ -49,10 +64,9 @@ function push(options: NotifyOptions): NotifyHandle {
   const id = uid++
   const item: NotifyItem = {
     id,
-    position: 'top-right',
+    position: 'bottom-right',
     duration: 4000,
     closable: true,
-    color: 'primary',
     ...options,
   }
   notifyQueue.push(item)

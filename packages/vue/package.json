@@ -1,6 +1,6 @@
 {
   "name": "@rukkiecodes/vue",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "description": "FusionUI — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
   "type": "module",
   "license": "MIT",

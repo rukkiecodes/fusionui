@@ -1,5 +1,11 @@
 # @rukkiecodes/vue
 
+## 0.8.0
+
+### Minor Changes
+
+- Add the **Notification** (snackbar) service. `useNotify()` pushes toast notifications that reveal with a clip-path circle animation and stack in six screen positions. Supports `color`, `border`, `flat`, `square`, `icon`, `progress`, `loading`, `width`, `notPadding`, `clickClose`, `duration`/sticky, plus `notify.success`/`error`/`warning`/`info` shorthands. Design, transition and animation modelled on the vuesax notification.
+
 ## 0.1.0
 
 ### Minor Changes
