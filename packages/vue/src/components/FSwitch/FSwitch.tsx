@@ -102,6 +102,8 @@ export const FSwitch = genericComponent()({
             onChange: toggle,
           }),
           h('span', { class: 'fui-switch__track' }, [
+            // The colored circle that slides in from the left to fill the track.
+            h('span', { class: 'fui-switch__bg' }),
             slots.on || slots.off
               ? h('span', { class: 'fui-switch__content' }, [
                   isChecked.value ? slots.on?.() : slots.off?.(),

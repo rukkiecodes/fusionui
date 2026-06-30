@@ -1,5 +1,11 @@
 # @rukkiecodes/vue
 
+## 0.9.0
+
+### Minor Changes
+
+- Rework `FSwitch` with the vuesax-style toggle animation: a colored circle slides in from the left to fill the track with a circular wipe, the thumb slides with an active "stretch", and the track presses in (`scale`) on tap. Adds a `__bg` element; tunes track/thumb sizing, the on-state thumb glow, square + indeterminate + icon variants, and reduced-motion handling.
+
 ## 0.8.0
 
 ### Minor Changes

@@ -170,6 +170,8 @@
   }
 
   // Switch
+  // Switch — vuesax-style: a colored circle slides in from the left to fill the
+  // track; the thumb slides with an active "stretch" and the track presses in.
   .fui-switch {
     --fui-control-color: var(--fui-theme-primary);
     display: inline-flex;
@@ -187,67 +189,102 @@
       height: 0;
     }
 
-    // The track sizes to its on/off content; min-width keeps the bare switch.
+    // The track stays grey; the colored circle background fills over it.
     &__track {
       position: relative;
       box-sizing: border-box;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      min-width: 46px;
-      height: 26px;
-      border-radius: 9999px;
-      background-color: rgba(var(--fui-theme-on-surface), 0.25);
-      transition: settings.$fui-transition;
+      justify-content: center;
+      min-width: 48px;
+      height: 28px;
+      padding: 5px;
+      border-radius: 20px;
+      background-color: rgba(var(--fui-theme-on-surface), 0.2);
+      overflow: hidden;
       flex-shrink: 0;
+      transition:
+        background-color 0.25s ease,
+        transform 0.2s ease;
+    }
+    &:hover &__track {
+      background-color: rgba(var(--fui-theme-on-surface), 0.28);
+    }
+    &:active &__track {
+      transform: scale(0.9);
     }
 
-    // On/off content inside the track, padded to clear the thumb on its side.
+    // The signature reveal: a track-wide colored circle parked off to the left
+    // that slides to `left: 0` to fill the track with a circular wipe.
+    &__bg {
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      border-radius: 50%;
+      background: rgb(var(--fui-control-color));
+      z-index: 2;
+      transform: translateY(-50%);
+      transition: all 0.25s ease-out;
+    }
+    &--checked &__bg {
+      left: 0;
+      transition: all 0.25s ease;
+    }
+
+    // Optional on/off text content (clears the thumb on its side).
     &__content {
+      position: relative;
+      z-index: 9;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 100%;
-      padding: 0 10px 0 28px;
-      font-size: 0.72rem;
+      padding: 0 8px 0 26px;
+      font-size: 0.7rem;
       font-weight: 700;
       line-height: 1;
       color: #fff;
       white-space: nowrap;
+      transition: all 0.25s ease 0.05s;
+    }
+    &--checked &__content {
+      padding: 0 26px 0 8px;
     }
 
     &__thumb {
       position: absolute;
-      top: 3px;
-      left: 3px;
+      z-index: 10;
+      left: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 20px;
       height: 20px;
-      border-radius: 50%;
+      border-radius: 20px;
       background-color: #fff;
       color: rgb(var(--fui-control-color));
       font-size: 13px;
-      box-shadow: settings.$fui-shadow-rest;
-      transition: settings.$fui-transition;
-    }
-
-    &--checked &__track {
-      background-color: rgb(var(--fui-control-color));
-    }
-    &--checked &__content {
-      padding: 0 28px 0 10px;
+      transition: all 0.25s ease;
     }
     &--checked &__thumb {
-      left: calc(100% - 23px);
-      box-shadow: 0 4px 12px -2px rgb(var(--fui-control-color));
+      left: calc(100% - 24px);
+      box-shadow: -5px 0 25px 0 rgba(255, 255, 255, 0.55);
+    }
+    // Active "stretch": the thumb widens while pressed (and shifts when checked).
+    &:active &__thumb {
+      width: 25px;
+    }
+    &--checked:active &__thumb {
+      left: calc(100% - 30px);
     }
 
     // Icon mode: a transparent thumb whose (circle-slot) icon shows in white.
     &--icon &__thumb {
       background-color: transparent;
-      color: #fff;
       box-shadow: none;
+      color: #fff;
     }
 
     // Loading: a spinner sits in the thumb.
@@ -262,18 +299,23 @@
 
     // Square corners.
     &--square &__track {
-      border-radius: 7px;
+      border-radius: 6px;
+    }
+    &--square &__bg {
+      border-radius: 6px;
     }
     &--square &__thumb {
       border-radius: 5px;
     }
 
-    // Undetermined: thumb centered, track at half strength.
-    &--indeterminate &__track {
-      background-color: rgba(var(--fui-control-color), 0.5);
+    // Undetermined: thumb centered, fill at half strength.
+    &--indeterminate &__bg {
+      left: -50%;
+      opacity: 0.5;
     }
     &--indeterminate &__thumb {
-      left: calc(50% - 10px);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     &--disabled {
@@ -283,6 +325,14 @@
 
     &__label {
       line-height: 1.3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-switch__bg,
+    .fui-switch__thumb,
+    .fui-switch__track {
+      transition: none;
     }
   }
 
