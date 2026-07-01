@@ -29,6 +29,8 @@ import { FMenu } from './FMenu'
 import { FTooltip } from './FTooltip'
 import { FList, FListItem } from './FList'
 import { FTabs, FTab, FTabPanel, FTabsWindow } from './FTabs'
+import { FCarousel, FCarouselItem } from './FCarousel'
+import { FImage } from './FImage'
 import { FNavbar, FNavbarItem, FNavbarGroup } from './FNavbar'
 import { FSidebar, FSidebarItem, FSidebarGroup } from './FSidebar'
 import { FBreadcrumb } from './FBreadcrumb'
@@ -85,6 +87,8 @@ export * from './FMenu'
 export * from './FTooltip'
 export * from './FList'
 export * from './FTabs'
+export * from './FCarousel'
+export * from './FImage'
 export * from './FNavbar'
 export * from './FSidebar'
 export * from './FBreadcrumb'
@@ -154,6 +158,9 @@ export const components: Record<string, Component> = {
   FTab,
   FTabPanel,
   FTabsWindow,
+  FCarousel,
+  FCarouselItem,
+  FImage,
   FNavbar,
   FNavbarItem,
   FNavbarGroup,

@@ -30,6 +30,8 @@ export const nav: NavSection[] = [
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },
       { title: 'Avatar', to: '/components/avatar' },
+      { title: 'Image', to: '/components/image' },
+      { title: 'Carousel', to: '/components/carousel' },
       {
         title: 'Form Inputs',
         items: [

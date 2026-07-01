@@ -1,0 +1,56 @@
+@layer fui-components {
+  .fui-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.04);
+
+    &__placeholder-img,
+    &__img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    // Blurred low-res preview shown until the real image decodes.
+    &__placeholder-img {
+      object-fit: cover;
+      filter: blur(10px);
+      transform: scale(1.06);
+    }
+
+    // The real image fades in once loaded.
+    &__img {
+      opacity: 0;
+      transition: opacity var(--fui-transition-duration, 0.3s) var(--fui-transition-timing, ease);
+
+      &--loaded {
+        opacity: 1;
+      }
+    }
+
+    &__gradient {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    // Placeholder / error slot host.
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    // Arbitrary content laid over the image (default slot).
+    &__content {
+      position: absolute;
+      inset: 0;
+    }
+  }
+}

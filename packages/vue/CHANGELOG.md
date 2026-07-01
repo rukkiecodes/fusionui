@@ -1,5 +1,14 @@
 # @rukkiecodes/vue
 
+## 0.10.0
+
+### Minor Changes
+
+- Add `FImage` and `FCarousel` (with `FCarouselItem`).
+
+  - **FImage** — a responsive image in the spirit of Vuetify's `v-img`: lazy loading with a blur-up `lazy-src` placeholder, `cover`/`contain`, `aspect-ratio`, dimensions, `gradient` overlay, `eager`, fade-in on load, and `#placeholder` / `#error` slots plus `load` / `error` events.
+  - **FCarousel** / **FCarouselItem** — a carousel in the spirit of `v-carousel`: `cycle`, `interval`, `continuous`, `show-arrows` (`true`/`false`/`'hover'`), `hide-delimiters`, `delimiter-icon`, `progress`, `height`, `prev`/`next` slots, swipe and keyboard navigation. Slides render through `FImage`. Adds FusionUI conveniences: an `items` prop, a `thumbnails` strip, and a `counter`.
+
 ## 0.9.0
 
 ### Minor Changes
