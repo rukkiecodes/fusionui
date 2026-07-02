@@ -1,4 +1,15 @@
-import { Comment, Fragment, Text, computed, h, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import {
+  Comment,
+  Fragment,
+  Teleport,
+  Text,
+  computed,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from 'vue'
 import type { PropType, VNode } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
@@ -51,6 +62,8 @@ export const makeFCarouselProps = propsFactory(
     cover: { type: Boolean, default: true },
     /** Enable swipe/drag navigation. */
     touch: { type: Boolean, default: true },
+    /** Click a slide (or the expand button) to open it in a fullscreen lightbox. */
+    lightbox: Boolean,
     /** A "3 / 12" counter overlay. */
     counter: Boolean,
     /** A scrollable thumbnail strip. */
@@ -133,22 +146,54 @@ export const FCarousel = genericComponent()({
     watch(() => [props.cycle, props.interval, count.value], start)
     onBeforeUnmount(stop)
 
-    // ---- Swipe ----
+    // ---- Swipe + tap-to-open ----
     let startX = 0
     let dragging = false
     function onPointerdown(e: PointerEvent): void {
-      if (!props.touch) return
-      dragging = true
       startX = e.clientX
-      paused.value = true
+      if (props.touch) {
+        dragging = true
+        paused.value = true
+      }
     }
     function onPointerup(e: PointerEvent): void {
-      if (!dragging) return
-      dragging = false
-      paused.value = false
       const dx = e.clientX - startX
-      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)()
+      if (dragging) {
+        dragging = false
+        paused.value = false
+      }
+      if (props.touch && Math.abs(dx) > 40) {
+        ;(dx < 0 ? next : prev)()
+        return
+      }
+      // A tap (not a drag) opens the lightbox.
+      if (props.lightbox && Math.abs(dx) <= 6) lbOpen.value = true
     }
+
+    // ---- Fullscreen lightbox ----
+    const lbOpen = ref(false)
+    function onLbKey(e: KeyboardEvent): void {
+      if (e.key === 'Escape') lbOpen.value = false
+      else if (e.key === 'ArrowLeft') prev()
+      else if (e.key === 'ArrowRight') next()
+    }
+    // Wire global keys + lock body scroll while the lightbox is open.
+    watch(lbOpen, open => {
+      if (typeof document === 'undefined') return
+      paused.value = open
+      if (open) {
+        document.addEventListener('keydown', onLbKey)
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.removeEventListener('keydown', onLbKey)
+        document.body.style.overflow = ''
+      }
+    })
+    onBeforeUnmount(() => {
+      if (typeof document === 'undefined') return
+      document.removeEventListener('keydown', onLbKey)
+      document.body.style.overflow = ''
+    })
 
     function onKeydown(e: KeyboardEvent): void {
       if (e.key === 'ArrowLeft') {
@@ -177,7 +222,10 @@ export const FCarousel = genericComponent()({
         {
           class: [
             'fui-carousel',
-            { 'fui-carousel--arrows-hover': props.showArrows === 'hover' },
+            {
+              'fui-carousel--arrows-hover': props.showArrows === 'hover',
+              'fui-carousel--lightbox': props.lightbox,
+            },
             props.class,
           ],
           style: [{ '--fui-carousel-color': `var(--fui-theme-${props.color})` }, props.style],
@@ -265,6 +313,21 @@ export const FCarousel = genericComponent()({
                       h(FIcon, { icon: props.nextIcon })
                     )
                 : null,
+              // Expand → open lightbox
+              props.lightbox && n
+                ? h(
+                    'button',
+                    {
+                      class: 'fui-carousel__expand',
+                      type: 'button',
+                      'aria-label': 'View fullscreen',
+                      onClick: () => {
+                        lbOpen.value = true
+                      },
+                    },
+                    h(FIcon, { icon: 'maximize-2' })
+                  )
+                : null,
             ]
           ),
           // Delimiters (dots)
@@ -313,6 +376,100 @@ export const FCarousel = genericComponent()({
                     },
                     src ? h('img', { src, alt: '', draggable: false, loading: 'lazy' }) : undefined
                   )
+                )
+              )
+            : null,
+          // ---- Fullscreen lightbox overlay ----
+          props.lightbox && lbOpen.value
+            ? h(
+                Teleport,
+                { to: 'body' },
+                h(
+                  'div',
+                  {
+                    class: 'fui-carousel-lightbox',
+                    role: 'dialog',
+                    'aria-modal': 'true',
+                    onClick: (e: MouseEvent) => {
+                      if (e.target === e.currentTarget) lbOpen.value = false
+                    },
+                  },
+                  [
+                    h(
+                      'button',
+                      {
+                        class: 'fui-carousel-lightbox__close',
+                        type: 'button',
+                        'aria-label': 'Close',
+                        onClick: () => {
+                          lbOpen.value = false
+                        },
+                      },
+                      h(FIcon, { icon: 'x' })
+                    ),
+                    n
+                      ? h('div', { class: 'fui-carousel-lightbox__counter' }, `${cur + 1} / ${n}`)
+                      : null,
+                    n > 1
+                      ? h(
+                          'button',
+                          {
+                            class:
+                              'fui-carousel-lightbox__arrow fui-carousel-lightbox__arrow--prev',
+                            type: 'button',
+                            'aria-label': 'Previous',
+                            onClick: prev,
+                          },
+                          h(FIcon, { icon: props.prevIcon })
+                        )
+                      : null,
+                    h('div', { class: 'fui-carousel-lightbox__stage' }, [
+                      thumbs[cur]
+                        ? h('img', {
+                            class: 'fui-carousel-lightbox__img',
+                            src: thumbs[cur],
+                            alt: '',
+                          })
+                        : null,
+                    ]),
+                    n > 1
+                      ? h(
+                          'button',
+                          {
+                            class:
+                              'fui-carousel-lightbox__arrow fui-carousel-lightbox__arrow--next',
+                            type: 'button',
+                            'aria-label': 'Next',
+                            onClick: next,
+                          },
+                          h(FIcon, { icon: props.nextIcon })
+                        )
+                      : null,
+                    n > 1
+                      ? h(
+                          'div',
+                          { class: 'fui-carousel-lightbox__thumbs' },
+                          thumbs.map((src, i) =>
+                            h(
+                              'button',
+                              {
+                                key: i,
+                                type: 'button',
+                                class: [
+                                  'fui-carousel-lightbox__thumb',
+                                  { 'fui-carousel-lightbox__thumb--active': i === cur },
+                                ],
+                                'aria-label': `View image ${i + 1}`,
+                                onClick: () => go(i),
+                              },
+                              src
+                                ? h('img', { src, alt: '', draggable: false, loading: 'lazy' })
+                                : undefined
+                            )
+                          )
+                        )
+                      : null,
+                  ]
                 )
               )
             : null,

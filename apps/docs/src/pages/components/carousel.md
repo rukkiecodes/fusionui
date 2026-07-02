@@ -38,6 +38,14 @@ handy for image galleries.
 
 <Example file="carousel/thumbnails" />
 
+## Lightbox
+
+Add `lightbox` so clicking a slide (or the expand button) opens it in a
+fullscreen overlay with its own arrows, counter and thumbnail strip. Navigate
+with the arrow keys and close with <kbd>Esc</kbd> or a click on the backdrop.
+
+<Example file="carousel/lightbox" />
+
 ## Custom slides
 
 Compose slides with `FCarouselItem` (like `v-carousel-item`): give it a `src`
@@ -65,6 +73,7 @@ for an image slide, or drop arbitrary content in its default slot.
 | `aspect-ratio`            | `string \| number`   | `16 / 9`                         | Viewport ratio when `height` is unset.                    |
 | `cover`                   | `boolean`            | `true`                           | Crop item images to fill each slide.                      |
 | `touch`                   | `boolean`            | `true`                           | Enable swipe/drag navigation.                             |
+| `lightbox`                | `boolean`            | `false`                          | Click a slide to open it in a fullscreen lightbox.        |
 | `thumbnails`              | `boolean`            | `false`                          | Show a thumbnail strip.                                   |
 | `counter`                 | `boolean`            | `false`                          | Show a "3 / 12" counter overlay.                          |
 | `prev-icon` / `next-icon` | `string`             | `chevron-left` / `chevron-right` | Arrow icons.                                              |

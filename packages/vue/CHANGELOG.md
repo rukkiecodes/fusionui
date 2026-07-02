@@ -1,5 +1,11 @@
 # @rukkiecodes/vue
 
+## 0.11.0
+
+### Minor Changes
+
+- **FCarousel: fullscreen `lightbox` mode.** Add the `lightbox` prop — clicking a slide (or the new expand button) opens the image in a fullscreen overlay with its own prev/next arrows, counter and thumbnail strip. Supports arrow-key navigation, <kbd>Esc</kbd> / backdrop-click to close, body scroll-lock, and a shared active index with the inline carousel.
+
 ## 0.10.0
 
 ### Minor Changes
