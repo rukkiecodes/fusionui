@@ -41,8 +41,10 @@ handy for image galleries.
 ## Lightbox
 
 Add `lightbox` so clicking a slide (or the expand button) opens it in a
-fullscreen overlay with its own arrows, counter and thumbnail strip. Navigate
-with the arrow keys and close with <kbd>Esc</kbd> or a click on the backdrop.
+fullscreen overlay with its own arrows, counter and thumbnail strip. **Zoom**
+with the on-screen buttons, the scroll wheel or a double-click, then **drag to
+pan**. Arrow keys change slides, `+` / `-` zoom, `0` resets, and <kbd>Esc</kbd>
+or a backdrop click closes.
 
 <Example file="carousel/lightbox" />
 

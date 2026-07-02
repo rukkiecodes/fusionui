@@ -170,17 +170,82 @@ export const FCarousel = genericComponent()({
       if (props.lightbox && Math.abs(dx) <= 6) lbOpen.value = true
     }
 
-    // ---- Fullscreen lightbox ----
+    // ---- Fullscreen lightbox (with zoom + pan) ----
     const lbOpen = ref(false)
+    const lbImg = ref<HTMLImageElement | null>(null)
+    const scale = ref(1)
+    const panX = ref(0)
+    const panY = ref(0)
+    const panning = ref(false)
+    let panSX = 0
+    let panSY = 0
+    let panOX = 0
+    let panOY = 0
+
+    function resetZoom(): void {
+      scale.value = 1
+      panX.value = 0
+      panY.value = 0
+    }
+    // Keep the image edges from panning past the viewport at the current scale.
+    function clampPan(): void {
+      const el = lbImg.value
+      const maxX = el ? (el.offsetWidth * (scale.value - 1)) / 2 : 0
+      const maxY = el ? (el.offsetHeight * (scale.value - 1)) / 2 : 0
+      panX.value = Math.max(-maxX, Math.min(maxX, panX.value))
+      panY.value = Math.max(-maxY, Math.min(maxY, panY.value))
+    }
+    function zoomTo(s: number): void {
+      scale.value = Math.max(1, Math.min(4, Math.round(s * 100) / 100))
+      if (scale.value === 1) {
+        panX.value = 0
+        panY.value = 0
+      } else {
+        clampPan()
+      }
+    }
+    const zoomIn = (): void => zoomTo(scale.value + 0.5)
+    const zoomOut = (): void => zoomTo(scale.value - 0.5)
+    function onLbWheel(e: WheelEvent): void {
+      e.preventDefault()
+      zoomTo(scale.value + (e.deltaY < 0 ? 0.35 : -0.35))
+    }
+    // Drag-to-pan (only meaningful while zoomed in).
+    function onImgDown(e: PointerEvent): void {
+      if (scale.value <= 1) return
+      panning.value = true
+      panSX = e.clientX
+      panSY = e.clientY
+      panOX = panX.value
+      panOY = panY.value
+      ;(e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId)
+      e.stopPropagation()
+    }
+    function onImgMove(e: PointerEvent): void {
+      if (!panning.value) return
+      panX.value = panOX + (e.clientX - panSX)
+      panY.value = panOY + (e.clientY - panSY)
+      clampPan()
+    }
+    function onImgUp(): void {
+      panning.value = false
+    }
+
     function onLbKey(e: KeyboardEvent): void {
       if (e.key === 'Escape') lbOpen.value = false
       else if (e.key === 'ArrowLeft') prev()
       else if (e.key === 'ArrowRight') next()
+      else if (e.key === '+' || e.key === '=') zoomIn()
+      else if (e.key === '-') zoomOut()
+      else if (e.key === '0') resetZoom()
     }
+    // Reset zoom whenever the active slide changes.
+    watch(active, resetZoom)
     // Wire global keys + lock body scroll while the lightbox is open.
     watch(lbOpen, open => {
       if (typeof document === 'undefined') return
       paused.value = open
+      if (open) resetZoom()
       if (open) {
         document.addEventListener('keydown', onLbKey)
         document.body.style.overflow = 'hidden'
@@ -407,6 +472,30 @@ export const FCarousel = genericComponent()({
                       },
                       h(FIcon, { icon: 'x' })
                     ),
+                    h('div', { class: 'fui-carousel-lightbox__zoom' }, [
+                      h(
+                        'button',
+                        {
+                          class: 'fui-carousel-lightbox__zoombtn',
+                          type: 'button',
+                          'aria-label': 'Zoom out',
+                          disabled: scale.value <= 1,
+                          onClick: zoomOut,
+                        },
+                        h(FIcon, { icon: 'zoom-out' })
+                      ),
+                      h(
+                        'button',
+                        {
+                          class: 'fui-carousel-lightbox__zoombtn',
+                          type: 'button',
+                          'aria-label': 'Zoom in',
+                          disabled: scale.value >= 4,
+                          onClick: zoomIn,
+                        },
+                        h(FIcon, { icon: 'zoom-in' })
+                      ),
+                    ]),
                     n
                       ? h('div', { class: 'fui-carousel-lightbox__counter' }, `${cur + 1} / ${n}`)
                       : null,
@@ -423,12 +512,28 @@ export const FCarousel = genericComponent()({
                           h(FIcon, { icon: props.prevIcon })
                         )
                       : null,
-                    h('div', { class: 'fui-carousel-lightbox__stage' }, [
+                    h('div', { class: 'fui-carousel-lightbox__stage', onWheel: onLbWheel }, [
                       thumbs[cur]
                         ? h('img', {
-                            class: 'fui-carousel-lightbox__img',
+                            ref: lbImg,
+                            class: [
+                              'fui-carousel-lightbox__img',
+                              {
+                                'fui-carousel-lightbox__img--zoomed': scale.value > 1,
+                                'fui-carousel-lightbox__img--panning': panning.value,
+                              },
+                            ],
                             src: thumbs[cur],
                             alt: '',
+                            draggable: false,
+                            style: {
+                              transform: `translate(${panX.value}px, ${panY.value}px) scale(${scale.value})`,
+                            },
+                            onPointerdown: onImgDown,
+                            onPointermove: onImgMove,
+                            onPointerup: onImgUp,
+                            onPointercancel: onImgUp,
+                            onDblclick: () => zoomTo(scale.value > 1 ? 1 : 2.5),
                           })
                         : null,
                     ]),

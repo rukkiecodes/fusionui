@@ -1,5 +1,11 @@
 # @rukkiecodes/vue
 
+## 0.12.0
+
+### Minor Changes
+
+- **FCarousel lightbox: zoom & pan.** The fullscreen lightbox is now a zoomable image viewer — zoom with the on-screen buttons, the scroll wheel or a double-click (1–4×), then drag to pan when zoomed. Adds `+` / `-` / `0` keyboard shortcuts, clamps panning to the image bounds, and resets zoom when the slide changes or the lightbox closes.
+
 ## 0.11.0
 
 ### Minor Changes

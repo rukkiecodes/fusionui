@@ -243,11 +243,22 @@
     animation: fui-lightbox-in 0.2s ease;
 
     &__stage {
+      position: relative;
+      z-index: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       max-width: 92vw;
       max-height: 82vh;
+    }
+
+    // Keep every control above the (possibly zoomed) image.
+    &__close,
+    &__zoom,
+    &__counter,
+    &__arrow,
+    &__thumbs {
+      z-index: 10;
     }
 
     &__img {
@@ -258,6 +269,45 @@
       object-fit: contain;
       border-radius: 6px;
       box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+      transform-origin: center;
+      transition: transform 0.18s ease;
+
+      &--zoomed {
+        cursor: grab;
+      }
+      &--panning {
+        cursor: grabbing;
+        transition: none;
+      }
+    }
+
+    &__zoom {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: flex;
+      gap: 8px;
+    }
+
+    &__zoombtn {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.15s ease;
+
+      &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.24);
+      }
+      &:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
     }
 
     &__close {
