@@ -1,5 +1,23 @@
 # @rukkiecodes/vue
 
+## 0.13.0
+
+### Minor Changes
+
+- Add the layout grid system — `FContainer`, `FRow`, and `FCol`. A Vuetify-style
+  12-column flexbox grid: a centered/fluid container, a row that owns the gutter
+  (token-driven density gutters, `no-gutters`, `gap`, custom `columns`, and
+  per-breakpoint `align`/`justify`/`align-content`), and gap-aware responsive
+  columns (`cols` + `sm`/`md`/`lg`/`xl`/`xxl` spans, `auto`, `n/total` totals,
+  `offset`, `order` incl. `first`/`last`, and `align-self`). SSR-safe — layout
+  resolves entirely in CSS.
+
+- Add a responsive flexbox utility layer — global helper classes (`d-flex`,
+  `flex-row`/`column`, `flex-fill`, `justify-*`, `align-*`, `align-content-*`,
+  `align-self-*`, `order-*`, and `ga-*`/`gr-*`/`gc-*` gaps), each with
+  `-sm`/`-md`/`-lg`/`-xl`/`-xxl` breakpoint variants. Generated data-driven from
+  a `$utilities`-style map, matching Vuetify's flex helpers.
+
 ## 0.12.0
 
 ### Minor Changes
