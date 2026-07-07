@@ -1,0 +1,227 @@
+@use 'sass:map';
+@use '../settings';
+@use '../tools';
+
+// Flexbox & gap utility classes — a data-driven port of Vuetify's flex helpers
+// (their styles/settings/_utilities.scss + tools/_utilities.sass). Each entry
+// pairs a class prefix + CSS property with a value map (suffix → value); the
+// loop emits `.{class}{infix}-{suffix}` for the base (xs) breakpoint plus every
+// -sm/-md/-lg/-xl/-xxl min-width variant, into the fui-utilities cascade layer.
+//
+// Unprefixed on purpose: these are global helpers, not component (`fui-`)
+// classes. `!important` matches the existing FusionUI utility convention so a
+// helper reliably wins over a component's own layout. Gap values come from the
+// spacing tokens — no hard-coded px.
+
+$_gap: (
+  0: 0,
+  1: settings.$fui-space-1,
+  2: settings.$fui-space-2,
+  3: settings.$fui-space-3,
+  4: settings.$fui-space-4,
+  5: settings.$fui-space-5,
+  6: settings.$fui-space-6,
+  7: settings.$fui-space-7,
+  auto: auto,
+);
+
+// An ordered list (not a keyed map) so several utilities can share the `flex`
+// class prefix without map-key collisions.
+$_utilities: (
+  (
+    class: d,
+    property: display,
+    values: (
+      none: none,
+      inline: inline,
+      inline-block: inline-block,
+      block: block,
+      table: table,
+      table-row: table-row,
+      table-cell: table-cell,
+      flex: flex,
+      inline-flex: inline-flex,
+    ),
+  ),
+  (
+    class: flex,
+    property: flex,
+    values: (
+      fill: (
+        1 1 auto,
+      ),
+      '1-1': (
+        1 1 auto,
+      ),
+      '1-0': (
+        1 0 auto,
+      ),
+      '0-1': (
+        0 1 auto,
+      ),
+      '0-0': (
+        0 0 auto,
+      ),
+      '1-1-100': (
+        1 1 100%,
+      ),
+      '1-0-100': (
+        1 0 100%,
+      ),
+      '0-1-100': (
+        0 1 100%,
+      ),
+      '0-0-100': (
+        0 0 100%,
+      ),
+      '1-1-0': (
+        1 1 0,
+      ),
+      '1-0-0': (
+        1 0 0,
+      ),
+      '0-1-0': (
+        0 1 0,
+      ),
+      '0-0-0': (
+        0 0 0,
+      ),
+    ),
+  ),
+  (
+    class: flex,
+    property: flex-direction,
+    values: (
+      row: row,
+      column: column,
+      row-reverse: row-reverse,
+      column-reverse: column-reverse,
+    ),
+  ),
+  (
+    class: flex,
+    property: flex-grow,
+    values: (
+      grow-0: 0,
+      grow-1: 1,
+    ),
+  ),
+  (
+    class: flex,
+    property: flex-shrink,
+    values: (
+      shrink-0: 0,
+      shrink-1: 1,
+    ),
+  ),
+  (
+    class: flex,
+    property: flex-wrap,
+    values: (
+      wrap: wrap,
+      nowrap: nowrap,
+      wrap-reverse: wrap-reverse,
+    ),
+  ),
+  (
+    class: justify,
+    property: justify-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      space-between: space-between,
+      space-around: space-around,
+      space-evenly: space-evenly,
+    ),
+  ),
+  (
+    class: align,
+    property: align-items,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    ),
+  ),
+  (
+    class: align-content,
+    property: align-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      space-between: space-between,
+      space-around: space-around,
+      space-evenly: space-evenly,
+      stretch: stretch,
+    ),
+  ),
+  (
+    class: align-self,
+    property: align-self,
+    values: (
+      auto: auto,
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    ),
+  ),
+  (
+    class: order,
+    property: order,
+    values: (
+      first: -1,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      6: 6,
+      7: 7,
+      8: 8,
+      9: 9,
+      10: 10,
+      11: 11,
+      12: 12,
+      last: 13,
+    ),
+  ),
+  (
+    class: ga,
+    property: gap,
+    values: $_gap,
+  ),
+  (
+    class: gr,
+    property: row-gap,
+    values: $_gap,
+  ),
+  (
+    class: gc,
+    property: column-gap,
+    values: $_gap,
+  )
+);
+
+@include tools.layer('utilities') {
+  @each $bp in map.keys(tools.$grid-breakpoints) {
+    $infix: tools.breakpoint-infix($bp);
+    @include tools.media-breakpoint-up($bp) {
+      @each $u in $_utilities {
+        $class: map.get($u, class);
+        $property: map.get($u, property);
+        @each $suffix, $val in map.get($u, values) {
+          .#{$class}#{$infix}-#{$suffix} {
+            #{$property}: #{$val} !important;
+          }
+        }
+      }
+    }
+  }
+}

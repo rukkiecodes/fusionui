@@ -27,6 +27,7 @@ export const nav: NavSection[] = [
     title: 'Components',
     items: [
       { title: 'Grid', to: '/components/grid' },
+      { title: 'Flex Utilities', to: '/components/flex' },
       { title: 'Button', to: '/components/button' },
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },

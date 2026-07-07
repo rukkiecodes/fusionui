@@ -23,9 +23,12 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // and the responsive layout grid (FContainer/FRow/FCol, which emits the full
 // span/offset/order/align utility surface across 6 breakpoints). Tree-shaking
 // means real apps still ship a fraction; these track the full-barrel worst case.
+// Bumped again (2026-07-07): the responsive flexbox utility layer (styles/
+// utilities/_flex.scss — d-*/flex-*/justify-*/align-*/order-*/gap-* × 6
+// breakpoints, Vuetify-parity) adds ~3 kB gz of global helper CSS.
 const BUDGETS = [
   { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 62 },
-  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 24 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 28 },
   { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]

@@ -2,6 +2,7 @@
 @use 'settings';
 @use 'tools';
 @use 'components';
+@use 'utilities/flex';
 
 // Cascade layer order. Everything FusionUI ships is layered so unlayered consumer
 // styles always win. The theme runtime injects into fui-theme / fui-utilities.
@@ -153,18 +154,8 @@
     border-radius: var(--fui-radius-circle) !important;
   }
 
-  .d-none {
-    display: none !important;
-  }
-  .d-flex {
-    display: flex !important;
-  }
-  .d-inline-flex {
-    display: inline-flex !important;
-  }
-  .d-block {
-    display: block !important;
-  }
+  // display/flex/gap helpers (.d-flex, .justify-*, .align-*, .order-*, .ga-*, …)
+  // are generated responsively in styles/utilities/_flex.scss.
 
   .text-truncate {
     overflow: hidden !important;
