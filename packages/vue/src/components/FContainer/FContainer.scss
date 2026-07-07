@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-container {
+    width: 100%;
+    padding: tools.$container-padding-x;
+    margin-inline: auto;
+
+    // Centered container caps at a comfortable reading width per breakpoint.
+    @each $bp, $max-width in tools.$container-max-widths {
+      @include tools.media-breakpoint-up($bp) {
+        max-width: $max-width;
+      }
+    }
+  }
+
+  .fui-container--fluid {
+    max-width: 100%;
+  }
+}

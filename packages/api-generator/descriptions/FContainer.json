@@ -1,0 +1,9 @@
+{
+  "props": {
+    "fluid": "Fills 100% width at every breakpoint instead of capping at the centered max-widths.",
+    "tag": "The element the container renders as."
+  },
+  "slots": {
+    "default": "The page content, centered and padded."
+  }
+}

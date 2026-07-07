@@ -1,0 +1,53 @@
+// Grid breakpoint tooling — the SCSS source of truth for the layout grid
+// (FContainer / FRow / FCol).
+//
+// These thresholds MUST stay in lockstep with the JS `useDisplay()` composable
+// in `packages/vue/src/composables/display.ts`. The CSS grid resolves responsive
+// spans on its own (media queries), so components never read `window` — the two
+// only need to agree so `useDisplay().md` and `md="6"` flip at the same width.
+@use 'sass:map';
+
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 600px,
+  'md': 960px,
+  'lg': 1280px,
+  'xl': 1920px,
+  'xxl': 2560px,
+) !default;
+
+// Number of columns a row is divided into.
+$grid-columns: 12 !default;
+
+// Inline padding of a centered container.
+$container-padding-x: 16px !default; // --fui-space-4
+
+// Max width of a centered (non-fluid) container at each breakpoint-up.
+$container-max-widths: (
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1140px,
+  'xxl': 1320px,
+) !default;
+
+// '' for the base (xs) breakpoint, '-sm' / '-md' / … for the rest, so class
+// names read `.fui-col--cols-4` (base) and `.fui-col--cols-md-4` (md-and-up).
+@function breakpoint-infix($name) {
+  @if $name == 'xs' {
+    @return '';
+  }
+  @return '-#{$name}';
+}
+
+// Mobile-first: apply @content from `$name` width upward. xs (0) is unconditional.
+@mixin media-breakpoint-up($name) {
+  $min: map.get($grid-breakpoints, $name);
+  @if $min and $min != 0 {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

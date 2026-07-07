@@ -740,3 +740,42 @@ body {
     border-top-left-radius: 0;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Grid docs — visualizes FRow / FCol cells so spans, gutters and offsets read
+// at a glance. Kept in the docs layer only (not part of the library).
+// ---------------------------------------------------------------------------
+.grid-demo {
+  .fui-col {
+    // A soft tinted tile per column so the grid is legible in both themes.
+    > .grid-demo__cell,
+    &.grid-demo__cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 8px 12px;
+      border-radius: var(--fui-radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgb(var(--fui-theme-primary));
+      background-color: rgba(var(--fui-theme-primary), 0.12);
+      border: 1px solid rgba(var(--fui-theme-primary), 0.22);
+    }
+  }
+
+  // Outline the row so gutters/alignment are visible against the page.
+  .fui-row {
+    border-radius: var(--fui-radius-lg);
+    outline: 1px dashed rgba(var(--fui-theme-on-surface), 0.16);
+    outline-offset: 6px;
+  }
+
+  .fui-row + .fui-row {
+    margin-top: 28px;
+  }
+
+  &.grid-demo--tall .fui-col:nth-child(2) .grid-demo__cell {
+    min-height: 84px;
+  }
+}

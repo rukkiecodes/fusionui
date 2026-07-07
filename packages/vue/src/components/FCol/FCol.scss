@@ -1,0 +1,119 @@
+@use 'sass:map';
+@use '../../styles/tools';
+
+// The var-space toggle hack: a custom property set to `initial` makes any
+// `var(--x, fallback)` fall back, while a bare space keeps an empty value. That
+// lets one `flex-*` declaration switch between size / auto / grow modes without
+// media-query duplication. https://lea.verou.me/blog/2020/10/the-var-space-hack/
+$true: initial;
+$false: ' ';
+
+@include tools.layer('components') {
+  .fui-col {
+    $size: var(--fui-col-size);
+    $cols: var(--fui-col-size-columns);
+    $gap: var(--fui-col-gap-x);
+    $offset: var(--fui-col-offset);
+    $offset-cols: var(--fui-col-offset-columns);
+
+    flex-grow: var(--fui-col-is-size, 0) var(--fui-col-is-auto, 0) var(--fui-col-is-grow, 1);
+    flex-shrink: 0;
+    // gap-aware basis: the column reserves its share of (100% + gap) then trims one gap.
+    flex-basis: var(--fui-col-is-size, calc((#{$size} * (100% + #{$gap})) / #{$cols} - #{$gap}))
+      var(--fui-col-is-auto, auto) var(--fui-col-is-grow, 0);
+    max-width: 100%;
+    min-width: var(--fui-col-is-size, 0) var(--fui-col-is-auto, auto) var(--fui-col-is-grow, auto);
+
+    --fui-col-is-size: #{$false};
+    --fui-col-is-auto: #{$false};
+    --fui-col-is-grow: #{$true};
+
+    --fui-col-size-base: initial;
+    --fui-col-size-base-sm: initial;
+    --fui-col-size-base-md: initial;
+    --fui-col-size-base-lg: initial;
+    --fui-col-size-base-xl: initial;
+    --fui-col-size-base-xxl: initial;
+
+    --fui-col-offset-base: initial;
+    --fui-col-offset-base-sm: initial;
+    --fui-col-offset-base-md: initial;
+    --fui-col-offset-base-lg: initial;
+    --fui-col-offset-base-xl: initial;
+    --fui-col-offset-base-xxl: initial;
+
+    &:where([class*='fui-col--offset-']) {
+      margin-inline-start: calc(#{$offset} * (100% + #{$gap}) / #{$offset-cols});
+    }
+  }
+
+  // Cross-axis self alignment (base only, mirrors align-items values).
+  $align-self: (
+    'auto': auto,
+    'start': flex-start,
+    'end': flex-end,
+    'center': center,
+    'baseline': baseline,
+    'stretch': stretch,
+  );
+  @each $key, $value in $align-self {
+    .fui-col--align-self-#{$key} {
+      align-self: $value;
+    }
+  }
+
+  @each $bp in map.keys(tools.$grid-breakpoints) {
+    $infix: tools.breakpoint-infix($bp);
+    @include tools.media-breakpoint-up($bp) {
+      // Bare boolean breakpoint (`<f-col sm>`) → equal-width fill from that bp up.
+      @if $infix != '' {
+        .fui-col-#{$infix} {
+          --fui-col-is-size: #{$false};
+          --fui-col-is-auto: #{$false};
+          --fui-col-is-grow: #{$true};
+        }
+      }
+
+      // Fit-content column.
+      .fui-col--cols#{$infix}-auto {
+        --fui-col-is-size: #{$false};
+        --fui-col-is-auto: #{$true};
+        --fui-col-is-grow: #{$false};
+      }
+
+      // Fixed spans 1…columns.
+      @for $i from 1 through tools.$grid-columns {
+        .fui-col--cols#{$infix}-#{$i} {
+          --fui-col-size: #{$i};
+          --fui-col-is-size: #{$true};
+          --fui-col-is-auto: #{$false};
+          --fui-col-is-grow: #{$false};
+          --fui-col-size-columns: var(--fui-col-size-base#{$infix}, var(--fui-row-columns));
+        }
+      }
+
+      // Offsets 0…columns-1 (offset-0 only useful as a responsive reset).
+      @for $i from 0 through tools.$grid-columns - 1 {
+        @if not($infix == '' and $i == 0) {
+          .fui-col--offset#{$infix}-#{$i} {
+            --fui-col-offset: #{$i};
+            --fui-col-offset-columns: var(--fui-col-offset-base#{$infix}, var(--fui-row-columns));
+          }
+        }
+      }
+
+      // Order, including first / last shorthands.
+      .fui-col--order#{$infix}-first {
+        order: -1;
+      }
+      .fui-col--order#{$infix}-last {
+        order: #{tools.$grid-columns + 1};
+      }
+      @for $i from 0 through tools.$grid-columns {
+        .fui-col--order#{$infix}-#{$i} {
+          order: #{$i};
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "displayName": "FRow",
+  "props": {
+    "noGutters": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Removes the gutter gap between columns."
+    },
+    "gap": {
+      "type": "Number | String | Array",
+      "required": false,
+      "description": "Gutter override — a single value for both axes, or `[x, y]`. Accepts px numbers or any CSS length."
+    },
+    "columns": {
+      "type": "Number | String",
+      "required": false,
+      "description": "Total columns the row is divided into. Defaults to 12."
+    },
+    "align": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "Vertical alignment of columns (align-items): start, end, center, baseline, stretch."
+    },
+    "alignSm": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "align from the sm breakpoint up."
+    },
+    "alignMd": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "align from the md breakpoint up."
+    },
+    "alignLg": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "align from the lg breakpoint up."
+    },
+    "alignXl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "align from the xl breakpoint up."
+    },
+    "alignXxl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "align from the xxl breakpoint up."
+    },
+    "justify": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "Horizontal distribution of columns (justify-content): start, end, center, space-between, space-around, space-evenly."
+    },
+    "justifySm": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "justify from the sm breakpoint up."
+    },
+    "justifyMd": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "justify from the md breakpoint up."
+    },
+    "justifyLg": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "justify from the lg breakpoint up."
+    },
+    "justifyXl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "justify from the xl breakpoint up."
+    },
+    "justifyXxl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "justify from the xxl breakpoint up."
+    },
+    "alignContent": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "Alignment of wrapped rows (align-content): start, end, center, space-between, space-around, space-evenly, stretch."
+    },
+    "alignContentSm": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "alignContentMd": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "alignContentLg": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "alignContentXl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "alignContentXxl": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "density": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": "Gutter size preset — default (24px), comfortable (16px), or compact (8px)."
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": "The element the row renders as."
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {
+    "default": {
+      "description": "The FCol columns."
+    }
+  }
+}

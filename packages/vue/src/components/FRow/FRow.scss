@@ -1,0 +1,85 @@
+@use 'sass:map';
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+// Gutter gap per density — token-driven, no hard-coded px (mirrors Vuetify's
+// default / comfortable / compact grid densities: 24 / 16 / 8).
+$densities: (
+  'default': settings.$fui-space-5,
+  'comfortable': settings.$fui-space-4,
+  'compact': settings.$fui-space-2,
+);
+
+// Flexbox value translation: start/end → flex-*, everything else is itself.
+$align-items: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'baseline': baseline,
+  'stretch': stretch,
+);
+$justify-content: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'space-between': space-between,
+  'space-around': space-around,
+  'space-evenly': space-evenly,
+);
+$align-content: map.merge(
+  $justify-content,
+  (
+    'stretch': stretch,
+  )
+);
+
+@include tools.layer('components') {
+  // Rows are flex containers; columns wrap and are separated by the gutter gap.
+  .fui-row {
+    --fui-row-columns: #{tools.$grid-columns};
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    gap: var(--fui-col-gap-y) var(--fui-col-gap-x);
+
+    // Stacked rows keep the vertical gutter between them.
+    & + .fui-row {
+      margin-top: var(--fui-col-gap-y);
+    }
+  }
+
+  @each $name, $gutter in $densities {
+    .fui-row--density-#{$name} {
+      --fui-col-gap-x: #{$gutter};
+      --fui-col-gap-y: #{$gutter};
+    }
+  }
+
+  .fui-row--no-gutters {
+    --fui-col-gap-x: 0px;
+    --fui-col-gap-y: 0px;
+  }
+
+  // Alignment utilities, base + per breakpoint. Generated to match the class
+  // names FRow.tsx emits (`fui-row--align-md-center`, `fui-row--justify-center`…).
+  @each $bp in map.keys(tools.$grid-breakpoints) {
+    $infix: tools.breakpoint-infix($bp);
+    @include tools.media-breakpoint-up($bp) {
+      @each $key, $value in $align-items {
+        .fui-row--align#{$infix}-#{$key} {
+          align-items: $value;
+        }
+      }
+      @each $key, $value in $justify-content {
+        .fui-row--justify#{$infix}-#{$key} {
+          justify-content: $value;
+        }
+      }
+      @each $key, $value in $align-content {
+        .fui-row--align-content#{$infix}-#{$key} {
+          align-content: $value;
+        }
+      }
+    }
+  }
+}

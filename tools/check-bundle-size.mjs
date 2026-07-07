@@ -18,9 +18,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // additions (Avatar, Tooltip, Dialog, Select, Radio, Switch, Checkbox, OTP,
 // Loading, Navbar, Sidebar, …). Tree-shaking means real apps still ship a
 // fraction; these ceilings track the full-barrel worst case for regressions.
+// Bumped (2026-07-07): the barrel grew again — the landing/app-shell + layout
+// primitives (FLayout/FMain/FHero/FSection/FAuthLayout/…), FImage/FCarousel,
+// and the responsive layout grid (FContainer/FRow/FCol, which emits the full
+// span/offset/order/align utility surface across 6 breakpoints). Tree-shaking
+// means real apps still ship a fraction; these track the full-barrel worst case.
 const BUDGETS = [
-  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 52 },
-  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 18 },
+  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 62 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 24 },
   { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]

@@ -15,6 +15,9 @@ import {
   FProgressLinear,
   FDivider,
   FSpacer,
+  FContainer,
+  FRow,
+  FCol,
 } from '../index'
 
 function mountWith(component: any, options: Record<string, any> = {}) {
@@ -201,5 +204,64 @@ describe('FAvatar / FBadge / FProgress / FDivider / FSpacer', () => {
   it('FDivider is a separator; FSpacer grows', () => {
     expect(mountWith(FDivider).attributes('role')).toBe('separator')
     expect(mountWith(FSpacer).classes()).toContain('fui-spacer')
+  })
+})
+
+describe('Grid — FContainer / FRow / FCol', () => {
+  it('FContainer is centered by default and full-width when fluid', () => {
+    expect(mountWith(FContainer).classes()).toContain('fui-container')
+    expect(mountWith(FContainer).classes()).not.toContain('fui-container--fluid')
+    expect(mountWith(FContainer, { props: { fluid: true } }).classes()).toContain(
+      'fui-container--fluid'
+    )
+  })
+
+  it('FRow applies the default-density gutter and alignment classes', () => {
+    const wrapper = mountWith(FRow, { props: { justify: 'space-between', align: 'center' } })
+    expect(wrapper.classes()).toContain('fui-row')
+    expect(wrapper.classes()).toContain('fui-row--density-default')
+    expect(wrapper.classes()).toContain('fui-row--justify-space-between')
+    expect(wrapper.classes()).toContain('fui-row--align-center')
+  })
+
+  it('FRow density maps to the compact gutter; noGutters drops the density class', () => {
+    expect(mountWith(FRow, { props: { density: 'compact' } }).classes()).toContain(
+      'fui-row--density-compact'
+    )
+    const bare = mountWith(FRow, { props: { noGutters: true } })
+    expect(bare.classes()).toContain('fui-row--no-gutters')
+    expect(bare.classes()).not.toContain('fui-row--density-default')
+  })
+
+  it('FRow fans breakpoint alignment props out to infixed classes and sets gap vars', () => {
+    const wrapper = mountWith(FRow, { props: { justifyMd: 'center', gap: [8, 16] } })
+    expect(wrapper.classes()).toContain('fui-row--justify-md-center')
+    const style = wrapper.attributes('style') ?? ''
+    expect(style).toContain('--fui-col-gap-x: 8px')
+    expect(style).toContain('--fui-col-gap-y: 16px')
+  })
+
+  it('FCol with no cols is an equal-width fill (no size class)', () => {
+    const wrapper = mountWith(FCol)
+    expect(wrapper.classes()).toContain('fui-col')
+    expect(wrapper.classes().some(c => c.startsWith('fui-col--cols'))).toBe(false)
+  })
+
+  it('FCol maps base + responsive spans, offset, order and align-self', () => {
+    const wrapper = mountWith(FCol, {
+      props: { cols: 12, md: 6, offset: 1, order: 'last', alignSelf: 'center' },
+    })
+    expect(wrapper.classes()).toContain('fui-col--cols-12')
+    expect(wrapper.classes()).toContain('fui-col--cols-md-6')
+    expect(wrapper.classes()).toContain('fui-col--offset-1')
+    expect(wrapper.classes()).toContain('fui-col--order-last')
+    expect(wrapper.classes()).toContain('fui-col--align-self-center')
+  })
+
+  it('FCol "auto" fits content and the n/total syntax overrides the column base', () => {
+    expect(mountWith(FCol, { props: { cols: 'auto' } }).classes()).toContain('fui-col--cols-auto')
+    const wrapper = mountWith(FCol, { props: { cols: '4/6' } })
+    expect(wrapper.classes()).toContain('fui-col--cols-4')
+    expect(wrapper.attributes('style') ?? '').toContain('--fui-col-size-base: 6')
   })
 })

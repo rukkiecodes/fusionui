@@ -1,0 +1,25 @@
+{
+  "props": {
+    "noGutters": "Removes the gutter gap between columns.",
+    "gap": "Gutter override — a single value for both axes, or `[x, y]`. Accepts px numbers or any CSS length.",
+    "columns": "Total columns the row is divided into. Defaults to 12.",
+    "density": "Gutter size preset — default (24px), comfortable (16px), or compact (8px).",
+    "align": "Vertical alignment of columns (align-items): start, end, center, baseline, stretch.",
+    "alignSm": "align from the sm breakpoint up.",
+    "alignMd": "align from the md breakpoint up.",
+    "alignLg": "align from the lg breakpoint up.",
+    "alignXl": "align from the xl breakpoint up.",
+    "alignXxl": "align from the xxl breakpoint up.",
+    "justify": "Horizontal distribution of columns (justify-content): start, end, center, space-between, space-around, space-evenly.",
+    "justifySm": "justify from the sm breakpoint up.",
+    "justifyMd": "justify from the md breakpoint up.",
+    "justifyLg": "justify from the lg breakpoint up.",
+    "justifyXl": "justify from the xl breakpoint up.",
+    "justifyXxl": "justify from the xxl breakpoint up.",
+    "alignContent": "Alignment of wrapped rows (align-content): start, end, center, space-between, space-around, space-evenly, stretch.",
+    "tag": "The element the row renders as."
+  },
+  "slots": {
+    "default": "The FCol columns."
+  }
+}

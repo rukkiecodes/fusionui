@@ -1,0 +1,27 @@
+{
+  "props": {
+    "cols": "Column span for the base (xs-and-up) breakpoint: 1–12, `\"auto\"` to fit content, or `\"n/total\"` for a custom total. Falsy = equal-width fill.",
+    "sm": "Span from the sm breakpoint up.",
+    "md": "Span from the md breakpoint up.",
+    "lg": "Span from the lg breakpoint up.",
+    "xl": "Span from the xl breakpoint up.",
+    "xxl": "Span from the xxl breakpoint up.",
+    "offset": "Columns to push the column right by, from the left edge.",
+    "offsetSm": "offset from the sm breakpoint up.",
+    "offsetMd": "offset from the md breakpoint up.",
+    "offsetLg": "offset from the lg breakpoint up.",
+    "offsetXl": "offset from the xl breakpoint up.",
+    "offsetXxl": "offset from the xxl breakpoint up.",
+    "order": "Flex order — a number, or `\"first\"` / `\"last\"`.",
+    "orderSm": "order from the sm breakpoint up.",
+    "orderMd": "order from the md breakpoint up.",
+    "orderLg": "order from the lg breakpoint up.",
+    "orderXl": "order from the xl breakpoint up.",
+    "orderXxl": "order from the xxl breakpoint up.",
+    "alignSelf": "Cross-axis self alignment (align-self): auto, start, end, center, baseline, stretch.",
+    "tag": "The element the column renders as."
+  },
+  "slots": {
+    "default": "The column content."
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "displayName": "FCol",
+  "props": {
+    "cols": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Column span for the base (xs-and-up) breakpoint: 1–12, `\"auto\"` to fit content, or `\"n/total\"` for a custom total. Falsy = equal-width fill."
+    },
+    "sm": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Span from the sm breakpoint up."
+    },
+    "md": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Span from the md breakpoint up."
+    },
+    "lg": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Span from the lg breakpoint up."
+    },
+    "xl": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Span from the xl breakpoint up."
+    },
+    "xxl": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": "Span from the xxl breakpoint up."
+    },
+    "offset": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "Columns to push the column right by, from the left edge."
+    },
+    "offsetSm": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "offset from the sm breakpoint up."
+    },
+    "offsetMd": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "offset from the md breakpoint up."
+    },
+    "offsetLg": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "offset from the lg breakpoint up."
+    },
+    "offsetXl": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "offset from the xl breakpoint up."
+    },
+    "offsetXxl": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "offset from the xxl breakpoint up."
+    },
+    "order": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "Flex order — a number, or `\"first\"` / `\"last\"`."
+    },
+    "orderSm": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "order from the sm breakpoint up."
+    },
+    "orderMd": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "order from the md breakpoint up."
+    },
+    "orderLg": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "order from the lg breakpoint up."
+    },
+    "orderXl": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "order from the xl breakpoint up."
+    },
+    "orderXxl": {
+      "type": "String | Number",
+      "default": "null",
+      "required": false,
+      "description": "order from the xxl breakpoint up."
+    },
+    "alignSelf": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": "Cross-axis self alignment (align-self): auto, start, end, center, baseline, stretch."
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": "The element the column renders as."
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {
+    "default": {
+      "description": "The column content."
+    }
+  }
+}

@@ -10,6 +10,9 @@ import { FBadge } from './FBadge'
 import { FProgressCircular, FProgressLinear } from './FProgress'
 import { FDivider } from './FDivider'
 import { FSpacer } from './FSpacer'
+import { FContainer } from './FContainer'
+import { FRow } from './FRow'
+import { FCol } from './FCol'
 import { FField } from './FField'
 import { FInput } from './FInput'
 import { FTextarea } from './FTextarea'
@@ -68,6 +71,9 @@ export * from './FBadge'
 export * from './FProgress'
 export * from './FDivider'
 export * from './FSpacer'
+export * from './FContainer'
+export * from './FRow'
+export * from './FCol'
 export * from './FField'
 export * from './FInput'
 export * from './FTextarea'
@@ -134,6 +140,9 @@ export const components: Record<string, Component> = {
   FProgressLinear,
   FDivider,
   FSpacer,
+  FContainer,
+  FRow,
+  FCol,
   FField,
   FInput,
   FTextarea,

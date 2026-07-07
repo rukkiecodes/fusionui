@@ -15,6 +15,7 @@ import GlassPlayground from './components/GlassPlayground.vue'
 import GooPlayground from './components/GooPlayground.vue'
 import ShaderPlayground from './components/ShaderPlayground.vue'
 import ChartPlayground from './components/ChartPlayground.vue'
+import GridPlayground from './components/GridPlayground.vue'
 import DashboardExample from './components/DashboardExample.vue'
 import NativeSnack from './components/NativeSnack.vue'
 import IconGallery from './components/IconGallery.vue'
@@ -43,6 +44,7 @@ createApp(App)
   .component('GooPlayground', GooPlayground)
   .component('ShaderPlayground', ShaderPlayground)
   .component('ChartPlayground', ChartPlayground)
+  .component('GridPlayground', GridPlayground)
   .component('DashboardExample', DashboardExample)
   .component('NativeSnack', NativeSnack)
   .component('IconGallery', IconGallery)

@@ -1,0 +1,63 @@
+{
+  "displayName": "FContainer",
+  "props": {
+    "fluid": {
+      "type": "Boolean",
+      "required": false,
+      "description": "Fills 100% width at every breakpoint instead of capping at the centered max-widths."
+    },
+    "height": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "maxHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "maxWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": "The element the container renders as."
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {
+    "default": {
+      "description": "The page content, centered and padded."
+    }
+  }
+}
