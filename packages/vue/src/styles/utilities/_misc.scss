@@ -1,0 +1,132 @@
+@use '../settings';
+@use '../tools';
+
+// Position, inset, cursor, opacity, overflow, float, and elevation helpers.
+// Only float is responsive (matching Vuetify). Elevation pulls the shadow tokens.
+$_utilities: (
+  (
+    class: position,
+    property: position,
+    values: (
+      static: static,
+      relative: relative,
+      absolute: absolute,
+      fixed: fixed,
+      sticky: sticky,
+    ),
+  ),
+  (
+    class: top,
+    property: top,
+    values: (
+      0: 0,
+    ),
+  ),
+  (
+    class: right,
+    property: right,
+    values: (
+      0: 0,
+    ),
+  ),
+  (
+    class: bottom,
+    property: bottom,
+    values: (
+      0: 0,
+    ),
+  ),
+  (
+    class: left,
+    property: left,
+    values: (
+      0: 0,
+    ),
+  ),
+  (
+    class: cursor,
+    property: cursor,
+    values: (
+      auto: auto,
+      default: default,
+      pointer: pointer,
+      wait: wait,
+      text: text,
+      move: move,
+      help: help,
+      not-allowed: not-allowed,
+      progress: progress,
+      grab: grab,
+      grabbing: grabbing,
+      none: none,
+    ),
+  ),
+  (
+    class: opacity,
+    property: opacity,
+    values: (
+      0: 0,
+      10: 0.1,
+      20: 0.2,
+      30: 0.3,
+      40: 0.4,
+      50: 0.5,
+      60: 0.6,
+      70: 0.7,
+      80: 0.8,
+      90: 0.9,
+      100: 1,
+    ),
+  ),
+  (
+    class: overflow,
+    property: overflow,
+    values: (
+      auto: auto,
+      hidden: hidden,
+      visible: visible,
+      scroll: scroll,
+    ),
+  ),
+  (
+    class: overflow-x,
+    property: overflow-x,
+    values: (
+      auto: auto,
+      hidden: hidden,
+      visible: visible,
+      scroll: scroll,
+    ),
+  ),
+  (
+    class: overflow-y,
+    property: overflow-y,
+    values: (
+      auto: auto,
+      hidden: hidden,
+      visible: visible,
+      scroll: scroll,
+    ),
+  ),
+  (
+    class: float,
+    property: float,
+    values: (
+      none: none,
+      left: left,
+      right: right,
+      start: inline-start,
+      end: inline-end,
+    ),
+    responsive: true,
+  ),
+  (
+    class: elevation,
+    property: box-shadow,
+    values: settings.$fui-shadows,
+  )
+);
+
+@include tools.layer('utilities') {
+  @include tools.generate($_utilities);
+}

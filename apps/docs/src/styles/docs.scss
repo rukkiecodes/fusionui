@@ -818,3 +818,52 @@ body {
     margin-top: 16px;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Utility-class docs — inline demo tiles for spacing/sizing/borders/etc. so a
+// helper's effect is visible. Docs-layer only.
+// ---------------------------------------------------------------------------
+.u-demo {
+  margin: 8px 0 4px;
+  padding: 16px;
+  border-radius: var(--fui-radius-lg);
+  background: rgba(128, 128, 128, 0.06);
+  outline: 1px dashed rgba(var(--fui-theme-on-surface), 0.14);
+}
+.u-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--fui-radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(var(--fui-theme-primary));
+  background: rgba(var(--fui-theme-primary), 0.12);
+  border: 1px solid rgba(var(--fui-theme-primary), 0.22);
+}
+// A solid block (for spacing/sizing where the box edges must be obvious).
+.u-block {
+  background: rgb(var(--fui-theme-primary));
+  border-radius: var(--fui-radius-sm);
+  min-height: 40px;
+}
+.u-fill {
+  background: rgba(var(--fui-theme-primary), 0.1);
+  border: 1px solid rgba(var(--fui-theme-primary), 0.2);
+  border-radius: var(--fui-radius-sm);
+}
+// Ruler frame so margins/paddings read against a boundary.
+.u-frame {
+  display: inline-block;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(var(--fui-theme-primary), 0.08),
+    rgba(var(--fui-theme-primary), 0.08) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-radius: var(--fui-radius-sm);
+}

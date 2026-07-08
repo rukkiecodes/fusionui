@@ -26,9 +26,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // Bumped again (2026-07-07): the responsive flexbox utility layer (styles/
 // utilities/_flex.scss — d-*/flex-*/justify-*/align-*/order-*/gap-* × 6
 // breakpoints, Vuetify-parity) adds ~3 kB gz of global helper CSS.
+// Bumped (2026-07-08): completed the Vuetify-parity utility system — spacing
+// (m*/p* incl. negatives), sizing (w/h), borders + radius, text/typography,
+// position, cursor, opacity, overflow, float, elevation. Responsive spacing/
+// sizing dominate the growth; utilities aren't tree-shaken so this is the
+// full-barrel worst case (real apps ship what they use).
 const BUDGETS = [
   { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 62 },
-  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 28 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 38 },
   { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]

@@ -210,18 +210,5 @@ $_utilities: (
 );
 
 @include tools.layer('utilities') {
-  @each $bp in map.keys(tools.$grid-breakpoints) {
-    $infix: tools.breakpoint-infix($bp);
-    @include tools.media-breakpoint-up($bp) {
-      @each $u in $_utilities {
-        $class: map.get($u, class);
-        $property: map.get($u, property);
-        @each $suffix, $val in map.get($u, values) {
-          .#{$class}#{$infix}-#{$suffix} {
-            #{$property}: #{$val} !important;
-          }
-        }
-      }
-    }
-  }
+  @include tools.generate($_utilities, $force-responsive: true);
 }

@@ -1,0 +1,112 @@
+@use '../settings';
+@use '../tools';
+
+// Text & typography utilities. Structural only — theme text COLOURS
+// (text-primary, …) are generated at runtime by the theme, not here. Only
+// text-align is responsive (matching Vuetify).
+$_on: var(--fui-theme-on-surface);
+
+$_utilities: (
+  (
+    class: text,
+    property: text-align,
+    values: (
+      left: left,
+      right: right,
+      center: center,
+      justify: justify,
+      start: start,
+      end: end,
+    ),
+    responsive: true,
+  ),
+  (
+    class: text-decoration,
+    property: text-decoration,
+    values: (
+      none: none,
+      overline: overline,
+      underline: underline,
+      line-through: line-through,
+    ),
+  ),
+  (
+    class: text,
+    property: text-transform,
+    values: (
+      none: none,
+      capitalize: capitalize,
+      lowercase: lowercase,
+      uppercase: uppercase,
+    ),
+  ),
+  (
+    class: text,
+    property: white-space,
+    values: (
+      wrap: normal,
+      no-wrap: nowrap,
+      pre: pre,
+      pre-line: pre-line,
+      pre-wrap: pre-wrap,
+    ),
+  ),
+  (
+    class: text,
+    property: (
+      overflow-wrap word-break,
+    ),
+    values: (
+      break: break-word,
+    ),
+  ),
+  (
+    class: text,
+    property: (
+      white-space overflow text-overflow,
+    ),
+    values: (
+      truncate: (
+        nowrap hidden ellipsis,
+      ),
+    ),
+  ),
+  (
+    class: text,
+    property: color,
+    values: (
+      high-emphasis: rgba($_on, 0.92),
+      medium-emphasis: rgba($_on, 0.6),
+      disabled: rgba($_on, 0.38),
+    ),
+  ),
+  (
+    class: text,
+    property: font-family,
+    values: (
+      mono: settings.$fui-font-family-mono,
+    ),
+  ),
+  (
+    class: font-weight,
+    property: font-weight,
+    values: (
+      light: 300,
+      regular: settings.$fui-font-weight-regular,
+      medium: settings.$fui-font-weight-medium,
+      bold: settings.$fui-font-weight-bold,
+    ),
+  ),
+  (
+    class: font,
+    property: font-style,
+    values: (
+      italic: italic,
+      normal: normal,
+    ),
+  )
+);
+
+@include tools.layer('utilities') {
+  @include tools.generate($_utilities);
+}

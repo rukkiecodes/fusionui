@@ -3,6 +3,11 @@
 @use 'tools';
 @use 'components';
 @use 'utilities/flex';
+@use 'utilities/spacing';
+@use 'utilities/sizing';
+@use 'utilities/borders';
+@use 'utilities/text';
+@use 'utilities/misc';
 
 // Cascade layer order. Everything FusionUI ships is layered so unlayered consumer
 // styles always win. The theme runtime injects into fui-theme / fui-utilities.
@@ -122,44 +127,7 @@
   }
 }
 
-// ---------------------------------------------------------------------------
-// Static utilities (color utilities are generated at runtime by the theme)
-// ---------------------------------------------------------------------------
-@layer fui-utilities {
-  @each $level, $shadow in settings.$fui-shadows {
-    .elevation-#{$level} {
-      box-shadow: #{$shadow} !important;
-    }
-  }
-
-  .rounded {
-    border-radius: var(--fui-radius-md) !important;
-  }
-  .rounded-0 {
-    border-radius: 0 !important;
-  }
-  .rounded-sm {
-    border-radius: var(--fui-radius-sm) !important;
-  }
-  .rounded-md {
-    border-radius: var(--fui-radius-md) !important;
-  }
-  .rounded-lg {
-    border-radius: var(--fui-radius-lg) !important;
-  }
-  .rounded-pill {
-    border-radius: var(--fui-radius-pill) !important;
-  }
-  .rounded-circle {
-    border-radius: var(--fui-radius-circle) !important;
-  }
-
-  // display/flex/gap helpers (.d-flex, .justify-*, .align-*, .order-*, .ga-*, …)
-  // are generated responsively in styles/utilities/_flex.scss.
-
-  .text-truncate {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-  }
-}
+// The static utility layer (display, flex, spacing, sizing, borders, radius,
+// text, position, cursor, opacity, overflow, float, elevation) is generated
+// from data-driven maps in styles/utilities/* via tools.generate(). Theme
+// COLOUR utilities (text-*, bg-*) are injected at runtime by the theme.

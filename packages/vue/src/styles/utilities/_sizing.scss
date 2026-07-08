@@ -1,0 +1,48 @@
+@use '../tools';
+
+// Width / height utilities (percentage-based) + fill-height. w/h are responsive.
+$_w: (
+  auto: auto,
+  0: 0,
+  25: 25%,
+  33: 33%,
+  50: 50%,
+  66: 66%,
+  75: 75%,
+  100: 100%,
+);
+$_h: (
+  auto: auto,
+  screen: 100dvh,
+  0: 0,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+);
+
+$_utilities: (
+  (
+    class: w,
+    property: width,
+    values: $_w,
+    responsive: true,
+  ),
+  (
+    class: h,
+    property: height,
+    values: $_h,
+    responsive: true,
+  ),
+  (
+    class: fill,
+    property: height,
+    values: (
+      height: 100%,
+    ),
+  )
+);
+
+@include tools.layer('utilities') {
+  @include tools.generate($_utilities);
+}

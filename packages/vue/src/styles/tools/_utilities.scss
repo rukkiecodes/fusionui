@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+@use 'breakpoints';
+
+// Prettier rewrites a multi-token list literal like `(a b c)` into a
+// single-element wrapper list `(a b c,)`. Unwrap that so a space-separated
+// property/value list (`margin-right margin-left`, `1px solid <color>`) is seen
+// with its true length by the distribution logic below.
+@function _unwrap($v) {
+  @if meta.type-of($v) == 'list' and list.length($v) == 1 {
+    $inner: list.nth($v, 1);
+    @if meta.type-of($inner) == 'list' {
+      @return $inner;
+    }
+  }
+  @return $v;
+}
+
+// Data-driven utility-class generator — the shared engine behind every FusionUI
+// helper layer (flex, spacing, sizing, borders, text, …), modelled on Vuetify's
+// `generate-utility` mixin.
+//
+// Takes a list of utility definitions, each a map:
+//   (class: 'ma', property: margin, values: (0: 0, 1: 4px, …), responsive: true)
+//
+// and emits `.{class}{infix}-{suffix}` for the base (xs) breakpoint plus, when
+// `responsive: true`, every -sm/-md/-lg/-xl/-xxl min-width variant.
+//
+//   • property may be one property or a space-separated list (e.g. `mx` →
+//     `margin-right margin-left`). If the VALUE is a list the same length as the
+//     property list, values are distributed 1:1 (e.g. border → width/style/color);
+//     otherwise the whole value is applied to each property.
+//   • a `null` value key produces the bare class (`.rounded`, `.border`).
+//   • `!important` matches the FusionUI utility convention so a helper reliably
+//     wins over a component's own styles.
+@mixin generate($utilities, $force-responsive: false) {
+  @each $bp in map.keys(breakpoints.$grid-breakpoints) {
+    $infix: breakpoints.breakpoint-infix($bp);
+    @include breakpoints.media-breakpoint-up($bp) {
+      @each $u in $utilities {
+        $responsive: map.get($u, responsive) or $force-responsive;
+        @if $responsive or $infix == '' {
+          $class: map.get($u, class);
+          $props: _unwrap(map.get($u, property));
+          @if meta.type-of($props) == 'string' {
+            $props: list.append((), $props);
+          }
+          @each $suffix, $raw in map.get($u, values) {
+            $val: _unwrap($raw);
+            $mod: '-#{$suffix}';
+            @if $suffix == null {
+              $mod: '';
+            }
+            .#{$class}#{$infix}#{$mod} {
+              @for $i from 1 through list.length($props) {
+                $p: list.nth($props, $i);
+                $v: $val;
+                @if meta.type-of($val) == 'list' and list.length($props) == list.length($val) {
+                  $v: list.nth($val, $i);
+                }
+                #{$p}: #{$v} !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

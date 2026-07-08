@@ -1,0 +1,157 @@
+@use 'sass:map';
+@use '../settings';
+@use '../tools';
+
+// Margin & padding utilities. The scale is FusionUI's spacing tokens (the same
+// values components use) rather than a raw linear scale — token-driven per the
+// project rules. 0 · 1=4 · 2=8 · 3=12 · 4=16 · 5=24 · 6=32 · 7=48 (px).
+//
+// Class prefixes: m/p + a(ll) · x/y(axes) · t/r/b/l(sides) · s/e(inline
+// start/end, RTL-aware). Margins also take `auto` and negatives (`ma-n3`).
+$_space: (
+  0: 0,
+  1: settings.$fui-space-1,
+  2: settings.$fui-space-2,
+  3: settings.$fui-space-3,
+  4: settings.$fui-space-4,
+  5: settings.$fui-space-5,
+  6: settings.$fui-space-6,
+  7: settings.$fui-space-7,
+);
+$_neg: (
+  n1: -(
+      settings.$fui-space-1,
+    ),
+  n2: -(
+      settings.$fui-space-2,
+    ),
+  n3: -(
+      settings.$fui-space-3,
+    ),
+  n4: -(
+      settings.$fui-space-4,
+    ),
+  n5: -(
+      settings.$fui-space-5,
+    ),
+  n6: -(
+      settings.$fui-space-6,
+    ),
+  n7: -(
+      settings.$fui-space-7,
+    ),
+);
+$_margin: map.merge(
+  map.merge(
+    $_space,
+    (
+      auto: auto,
+    )
+  ),
+  $_neg
+);
+
+$_utilities: (
+  (
+    class: ma,
+    property: margin,
+    values: $_margin,
+  ),
+  (
+    class: mx,
+    property: (
+      margin-right margin-left,
+    ),
+    values: $_margin,
+  ),
+  (
+    class: my,
+    property: (
+      margin-top margin-bottom,
+    ),
+    values: $_margin,
+  ),
+  (
+    class: mt,
+    property: margin-top,
+    values: $_margin,
+  ),
+  (
+    class: mr,
+    property: margin-right,
+    values: $_margin,
+  ),
+  (
+    class: mb,
+    property: margin-bottom,
+    values: $_margin,
+  ),
+  (
+    class: ml,
+    property: margin-left,
+    values: $_margin,
+  ),
+  (
+    class: ms,
+    property: margin-inline-start,
+    values: $_margin,
+  ),
+  (
+    class: me,
+    property: margin-inline-end,
+    values: $_margin,
+  ),
+  (
+    class: pa,
+    property: padding,
+    values: $_space,
+  ),
+  (
+    class: px,
+    property: (
+      padding-right padding-left,
+    ),
+    values: $_space,
+  ),
+  (
+    class: py,
+    property: (
+      padding-top padding-bottom,
+    ),
+    values: $_space,
+  ),
+  (
+    class: pt,
+    property: padding-top,
+    values: $_space,
+  ),
+  (
+    class: pr,
+    property: padding-right,
+    values: $_space,
+  ),
+  (
+    class: pb,
+    property: padding-bottom,
+    values: $_space,
+  ),
+  (
+    class: pl,
+    property: padding-left,
+    values: $_space,
+  ),
+  (
+    class: ps,
+    property: padding-inline-start,
+    values: $_space,
+  ),
+  (
+    class: pe,
+    property: padding-inline-end,
+    values: $_space,
+  )
+);
+
+@include tools.layer('utilities') {
+  @include tools.generate($_utilities, $force-responsive: true);
+}

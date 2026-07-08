@@ -27,7 +27,6 @@ export const nav: NavSection[] = [
     title: 'Components',
     items: [
       { title: 'Grid', to: '/components/grid' },
-      { title: 'Flex Utilities', to: '/components/flex' },
       { title: 'Button', to: '/components/button' },
       { title: 'Card', to: '/components/card' },
       { title: 'Alert', to: '/components/alert' },
@@ -58,6 +57,20 @@ export const nav: NavSection[] = [
       { title: 'Goo', to: '/components/goo' },
       { title: 'Shaders', to: '/components/shaders' },
       { title: 'Chart', to: '/components/chart' },
+    ],
+  },
+  {
+    title: 'Utility classes',
+    items: [
+      { title: 'Flexbox', to: '/utilities/flexbox' },
+      { title: 'Spacing', to: '/utilities/spacing' },
+      { title: 'Sizing', to: '/utilities/sizing' },
+      { title: 'Display', to: '/utilities/display' },
+      { title: 'Text & Typography', to: '/utilities/text' },
+      { title: 'Borders', to: '/utilities/borders' },
+      { title: 'Elevation', to: '/utilities/elevation' },
+      { title: 'Position', to: '/utilities/position' },
+      { title: 'Opacity', to: '/utilities/opacity' },
     ],
   },
   {
