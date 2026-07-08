@@ -1,5 +1,18 @@
 # @rukkiecodes/vue
 
+## 0.14.0
+
+### Minor Changes
+
+- Complete the Vuetify-parity utility-class system. A shared data-driven generator
+  now emits the full catalog of global helper classes — spacing (`m*`/`p*` incl.
+  auto and negatives), sizing (`w-*`/`h-*`, `fill-height`), borders + radius
+  (`border*`, `rounded*`, per-side/corner via logical properties),
+  text/typography (align, weight, transform, decoration, wrap/truncate, emphasis,
+  mono), position, inset, cursor, opacity, overflow, float, and elevation — each
+  with responsive `-sm`/`-md`/`-lg`/`-xl`/`-xxl` variants where applicable. Docs
+  gain a dedicated "Utility classes" section with a page per category.
+
 ## 0.13.0
 
 ### Minor Changes
