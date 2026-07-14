@@ -8,6 +8,10 @@ of it is this directive plus a boolean.
 `createFusionUI()` registers it as **`intersect`**, so it is available as
 `v-intersect` with no import.
 
+> The `v-` prefix is Vue's, not another library's — every Vue directive is written
+> `v-<name>`, the same as `v-if` or `v-model`. See
+> [the note on `v-ripple`](/directives/ripple).
+
 ## Usage
 
 <Example file="directives/intersect-default" />

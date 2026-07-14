@@ -8,6 +8,10 @@ out of the way when the user's attention moves on.
 `createFusionUI()` registers it as **`click-outside`**, so it is available as
 `v-click-outside` with no import.
 
+> The `v-` prefix is Vue's, not another library's — every Vue directive is written
+> `v-<name>`, the same as `v-if` or `v-model`. See
+> [the note on `v-ripple`](/directives/ripple).
+
 ## Usage
 
 <Example file="directives/click-outside-default" />

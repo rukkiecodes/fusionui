@@ -9,6 +9,14 @@ yourself: a list row, a tile, a custom card.
 `createFusionUI()` registers it as **`ripple`**, so it is available as
 `v-ripple` everywhere with no import.
 
+> **Why `v-` and not `f-`?** The `v-` is Vue's, not another library's. Every Vue
+> directive is written `v-<name>` — that is the same `v-` as in `v-if`, `v-for`
+> and `v-model`, and it is the only form the template compiler recognises. Write
+> `f-ripple` and Vue treats it as a plain HTML attribute: it renders inertly into
+> the DOM and the directive never runs. FusionUI's own prefix shows up where it
+> can — components are `F*` (`<f-btn>`), CSS classes are `fui-*`, tokens are
+> `--fui-*` — but a directive has to start with `v-`.
+
 ## Usage
 
 <Example file="directives/ripple-default" />
