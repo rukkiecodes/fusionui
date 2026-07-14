@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, useColorScheme, View } from 'react-native'
 import {
   FusionProvider,
   FShell,
@@ -8,7 +8,6 @@ import {
   FCard,
   FInput,
   FSwitch,
-  LiquidGlassView,
   useFusionTheme,
 } from '@rukkiecodes/native'
 
@@ -42,29 +41,24 @@ function Screen() {
           </View>
         </View>
       </FCard>
-
-      {/* The signature liquid-glass surface over a gradient backdrop. */}
-      <View
-        style={{ height: 180, borderRadius: 20, overflow: 'hidden', backgroundColor: '#195bff' }}
-      >
-        <LiquidGlassView radius={24} style={{ position: 'absolute', inset: 28 }}>
-          <Text style={{ color: '#fff', fontWeight: '600' }}>Liquid glass</Text>
-        </LiquidGlassView>
-      </View>
     </ScrollView>
   )
 }
 
 export default function App() {
-  // FusionProvider wraps the app once so every component reads the tokens.
-  // FShell frames the screen with the navbar; the content nestles in with the
-  // fluid goo corner (drawn with Skia from the shared shell engine).
+  // Start in the device's theme, and follow it when the user switches. FusionProvider
+  // wraps the app once so every component reads the tokens; FShell frames the screen
+  // with the navbar, the content nestling in with the fluid goo corner (drawn with
+  // Skia from the shared shell engine).
+  const scheme = useColorScheme()
+
   return (
-    <FusionProvider theme="light">
+    <FusionProvider theme={scheme === 'dark' ? 'dark' : 'light'}>
       <FShell navbar={<Brand />} navbarHeight={56}>
         <Screen />
       </FShell>
-      <StatusBar style="dark" />
+      {/* `auto` picks the bar style from the device theme. */}
+      <StatusBar style="auto" />
     </FusionProvider>
   )
 }

@@ -111,14 +111,23 @@ export function genVueEntry(ctx) {
 
   return `${imports.join('\n')}
 
+// Start in whatever theme the operating system is set to, and keep following it.
+// Guarded for SSR/prerender, where there is no window to ask.
+const media =
+  typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null
+
 const fusionui = createFusionUI({
-  theme: { defaultTheme: 'light' },
+  theme: { defaultTheme: media?.matches ? 'dark' : 'light' },
   icons: {
     defaultSet: 'fusion',
     sets: { fusion: fusionSet },
     aliases: fusionAliases,
   },
 })
+
+// The user's own toggle still wins for the rest of the session — this only
+// reacts to the OS switching underneath them.
+media?.addEventListener('change', e => fusionui.theme.change(e.matches ? 'dark' : 'light'))
 
 createApp(App)
 ${chain}
@@ -207,16 +216,24 @@ import { fusionSet, fusionAliases } from '@rukkiecodes/icons'
 // Nuxt renders on the server first, so FusionUI is installed onto the Vue app
 // Nuxt already created rather than one we create ourselves.
 export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.use(
-    createFusionUI({
-      theme: { defaultTheme: 'light' },
-      icons: {
-        defaultSet: 'fusion',
-        sets: { fusion: fusionSet },
-        aliases: fusionAliases,
-      },
-    })
-  )
+  // Start in the operating system's theme. There is no window on the server, so
+  // it renders light and switches on the client — the theme is applied as CSS
+  // variables and a class on <html>, neither of which Vue hydrates, so this
+  // cannot cause a hydration mismatch.
+  const media = import.meta.client ? window.matchMedia('(prefers-color-scheme: dark)') : null
+
+  const fusionui = createFusionUI({
+    theme: { defaultTheme: media?.matches ? 'dark' : 'light' },
+    icons: {
+      defaultSet: 'fusion',
+      sets: { fusion: fusionSet },
+      aliases: fusionAliases,
+    },
+  })
+
+  media?.addEventListener('change', e => fusionui.theme.change(e.matches ? 'dark' : 'light'))
+
+  nuxtApp.vueApp.use(fusionui)
 })
 `
 }

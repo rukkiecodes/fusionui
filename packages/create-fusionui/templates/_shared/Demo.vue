@@ -64,16 +64,6 @@ const subscribed = ref(true)
       </div>
     </section>
 
-    <!-- Signature liquid-glass surface, floating over a gradient. -->
-    <section class="glasswrap">
-      <f-glass interactive :radius="26" :depth="18" class="glass">
-        <div class="glass__inner">
-          <strong>Liquid glass</strong>
-          <span>A signature FusionUI surface — move your cursor across it</span>
-        </div>
-      </f-glass>
-    </section>
-
     <!-- Component showcase -->
     <section class="showcase">
       <article class="demo">
@@ -104,7 +94,7 @@ const subscribed = ref(true)
       <article class="demo">
         <h3 class="demo__title">Get started</h3>
         <p class="demo__text">
-          50+ components, theme tokens, icons and services — all tree-shakeable.
+          133 components, design tokens, 737 icons, and notification / dialog / loading services.
         </p>
         <div class="row">
           <f-btn
@@ -214,46 +204,12 @@ body {
   margin-top: 28px;
 }
 
-/* ---------------- liquid glass ---------------- */
-.glasswrap {
-  margin: 56px 0;
-  height: 240px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: linear-gradient(120deg, #195bff, #7d33ff 58%, #ff4757);
-}
-.glass {
-  position: absolute;
-  inset: 44px;
-  display: grid;
-  place-items: center;
-}
-.glasswrap {
-  position: relative;
-}
-.glass__inner {
-  display: grid;
-  gap: 6px;
-  justify-items: center;
-  text-align: center;
-  color: #fff;
-  padding: 0 20px;
-}
-.glass__inner strong {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.glass__inner span {
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
 /* ---------------- showcase ---------------- */
 .showcase {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
+  margin-top: 56px;
 }
 .demo {
   display: flex;
@@ -303,12 +259,6 @@ body {
 @media (max-width: 560px) {
   .page {
     padding-top: 96px;
-  }
-  .glasswrap {
-    height: 200px;
-  }
-  .glass {
-    inset: 28px;
   }
 }
 </style>
