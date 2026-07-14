@@ -1,6 +1,6 @@
 {
   "name": "@rukkiecodes/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "FusionUI design tokens — the single source of design truth, generated for web (CSS/SCSS/TS) and native (RN).",
   "type": "module",
   "license": "MIT",
