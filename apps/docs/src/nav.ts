@@ -208,6 +208,10 @@ export const nav: NavSection[] = [
     ],
   },
   {
+    title: 'AI Agents',
+    items: [{ title: 'Install the skill', to: '/ai/skill' }],
+  },
+  {
     title: 'Directives',
     items: [
       { title: 'v-ripple', to: '/directives/ripple' },

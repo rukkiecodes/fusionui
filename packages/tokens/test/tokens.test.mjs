@@ -67,3 +67,30 @@ test('native: shadows are structured numeric objects', () => {
   assert.equal(typeof s.opacity, 'number')
   assert.equal(s.color, '#000000')
 })
+
+test('the shade ramp cannot drift from the palette: step 500 IS the base color', () => {
+  for (const [name, base] of Object.entries(web.palette)) {
+    assert.equal(
+      web.shades[name][500],
+      base.toLowerCase(),
+      `${name}-500 must equal the palette color it is derived from`
+    )
+  }
+})
+
+test('every palette color ships a full 50…900 ramp', () => {
+  const stops = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
+  for (const name of Object.keys(web.palette)) {
+    assert.deepEqual(Object.keys(web.shades[name]), stops, `${name} ramp`)
+    for (const stop of stops) {
+      assert.match(web.shades[name][stop], /^#[0-9a-f]{6}$/, `${name}-${stop} is a hex color`)
+    }
+  }
+})
+
+test('the ramp is emitted to CSS as rgb triplets, like every other color token', () => {
+  const css = readFileSync(dist('css/tokens.css'), 'utf8')
+  // A bare hex here would break `rgba(var(--fui-primary-100), .5)` at every call site.
+  assert.match(css, /--fui-primary-500:\s*25,91,255;/)
+  assert.match(css, /--fui-danger-900:\s*\d+,\d+,\d+;/)
+})

@@ -62,6 +62,54 @@ function luma(hex) {
 const onColor = hex => (luma(hex) > 0.18 ? '0,0,0' : '255,255,255')
 
 // ---------------------------------------------------------------------------
+// Shade scale
+// ---------------------------------------------------------------------------
+// Each theme colour is one hue, but real interfaces need a ramp of it: a tint for
+// a hover wash, a deep shade for text on a pale fill. Rather than have every app
+// invent its own (and drift), the scale is DERIVED from the palette so it can
+// never disagree with the theme colour it belongs to — step 500 IS the base.
+//
+// Mixing straight towards white/black in sRGB, which is predictable and is what
+// most systems do. The stops are the familiar 50…900.
+const SHADE_STOPS = {
+  50: ['white', 0.95],
+  100: ['white', 0.88],
+  200: ['white', 0.75],
+  300: ['white', 0.58],
+  400: ['white', 0.3],
+  500: ['base', 0],
+  600: ['black', 0.12],
+  700: ['black', 0.28],
+  800: ['black', 0.44],
+  900: ['black', 0.6],
+}
+
+const clamp255 = n => Math.max(0, Math.min(255, Math.round(n)))
+const toHex = ({ r, g, b }) =>
+  '#' + [r, g, b].map(v => clamp255(v).toString(16).padStart(2, '0')).join('')
+
+/** Mixes `hex` towards white or black by `amount` (0–1). */
+function mix(hex, towards, amount) {
+  const { r, g, b } = parseHex(hex)
+  const t = towards === 'white' ? 255 : 0
+  return toHex({
+    r: r + (t - r) * amount,
+    g: g + (t - g) * amount,
+    b: b + (t - b) * amount,
+  })
+}
+
+/** `{ 50: '#e8effe', …, 500: <base>, …, 900: '#0a244d' }` */
+function shadesOf(hex) {
+  return Object.fromEntries(
+    Object.entries(SHADE_STOPS).map(([stop, [towards, amount]]) => [
+      stop,
+      towards === 'base' ? hex.toLowerCase() : mix(hex, towards, amount),
+    ])
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Shadow helpers
 // ---------------------------------------------------------------------------
 const shadowCss = s =>
@@ -114,6 +162,12 @@ function themeVarLines(def) {
   return lines
 }
 
+// The palette, and the shade ramp derived from it. Shared by every output so the
+// CSS, SCSS and TS can never disagree about what `primary-300` is.
+const PALETTE_KEYS = ['primary', 'secondary', 'success', 'danger', 'warning', 'dark', 'light']
+const palette = Object.fromEntries(PALETTE_KEYS.map(k => [k, light.colors[k]]))
+const shades = Object.fromEntries(Object.entries(palette).map(([k, hex]) => [k, shadesOf(hex)]))
+
 // ===========================================================================
 // 1. CSS — dist/css/tokens.css
 // ===========================================================================
@@ -141,6 +195,11 @@ function buildCss() {
     ...Object.entries(zIndex).map(([k, v]) => `--fui-z-${k}: ${v};`),
     ...Object.entries(breakpoint).map(([k, v]) => `--fui-breakpoint-${k}: ${v};`),
     ...shadowKeys.map(k => `--fui-elevation-${k}: ${shadows[k]};`),
+    // RGB triplets, like every other colour token, so alpha works:
+    //   background: rgba(var(--fui-primary-100), 0.5)
+    ...Object.entries(shades).flatMap(([name, ramp]) =>
+      Object.entries(ramp).map(([stop, hex]) => `--fui-${name}-${stop}: ${triplet(hex)};`)
+    ),
   ]
   const indent = (arr, pad) => arr.map(l => pad + l).join('\n')
   const themeBlocks = [
@@ -167,6 +226,17 @@ ${themeBlocks.join('\n\n')}
 // ===========================================================================
 function buildScss() {
   const shadowMap = shadowKeys.map(k => `  ${k}: ${shadows[k]}`).join(',\n')
+  // Built here rather than inline in the SCSS template, to keep that readable.
+  const NL = '\n'
+  const shadesMap = Object.entries(shades)
+    .map(([name, ramp]) => {
+      const stops = Object.entries(ramp)
+        .map(([stop, hex]) => `    '${stop}': ${hex},`)
+        .join(NL)
+      return `  '${name}': (${NL}${stops}${NL}  ),`
+    })
+    .join(NL)
+
   const paletteMap = ['primary', 'secondary', 'success', 'danger', 'warning', 'dark', 'light']
     .map(k => `  '${k}': ${light.colors[k]}`)
     .join(',\n')
@@ -232,6 +302,11 @@ $fui-shadow-rest: ${light.variables['shadow-rest']} !default;
 $fui-palette: (
 ${paletteMap}
 ) !default;
+
+// The shade ramp derived from the palette. Step 500 is the base colour itself.
+$fui-shades: (
+${shadesMap}
+) !default;
 $fui-background: ${light.colors.background} !default;
 $fui-surface: ${light.colors.surface} !default;
 `
@@ -272,7 +347,9 @@ export const zIndex = ${JSON.stringify(obj.zIndex, null, 2)}
 export const breakpoint = ${JSON.stringify(obj.breakpoint, null, 2)}
 export const shadows = ${JSON.stringify(obj.shadows, null, 2)}
 export const themes = ${JSON.stringify(obj.themes, null, 2)}
-export const tokens = { radius, space, font, motion, opacity, zIndex, breakpoint, shadows, themes }
+export const shades = ${JSON.stringify(shades, null, 2)}
+export const palette = ${JSON.stringify(palette, null, 2)}
+export const tokens = { radius, space, font, motion, opacity, zIndex, breakpoint, shadows, themes, palette, shades }
 export default tokens
 `
   const dts = `// Generated by @rukkiecodes/tokens — do not edit.

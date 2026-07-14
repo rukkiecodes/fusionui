@@ -1,0 +1,14 @@
+@use 'sass:color';
+@use 'sass:string';
+
+// FusionUI colour tokens are emitted as RGB *triplets*, not colours, so that any
+// consumer can apply alpha to them:
+//
+//   color: rgb(var(--fui-primary-500));
+//   background: rgba(var(--fui-primary-500), 0.12);
+//
+// This turns a Sass colour into that triplet form.
+@function triplet($c) {
+  @return '#{color.channel($c, "red", $space: rgb)},' +
+    '#{color.channel($c, "green", $space: rgb)},' + '#{color.channel($c, "blue", $space: rgb)}';
+}

@@ -77,12 +77,15 @@ function toggleTheme() {
     </f-navbar>
 
     <div class="docs__body">
+      <!-- The landing page has no sidebar COLUMN, but it still needs the drawer:
+           the hamburger is the only navigation a mobile visitor has there, and
+           `v-if`-ing the sidebar away made it a dead button. So it is always
+           mounted, and only stops being permanent on the landing. -->
       <f-sidebar
-        v-if="!isHome"
         :model-value="route.path"
-        :permanent="isDesktop"
+        :permanent="isDesktop && !isHome"
         :open="drawer"
-        :class="{ docs__sidebar: isDesktop }"
+        :class="{ docs__sidebar: isDesktop && !isHome }"
         @update:open="drawer = $event"
         @update:model-value="drawer = false"
       >

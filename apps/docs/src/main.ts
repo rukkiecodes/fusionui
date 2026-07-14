@@ -20,6 +20,8 @@ import FlexPlayground from './components/FlexPlayground.vue'
 import DashboardExample from './components/DashboardExample.vue'
 import NativeSnack from './components/NativeSnack.vue'
 import IconGallery from './components/IconGallery.vue'
+import SkillInstall from './components/SkillInstall.vue'
+import PaletteGrid from './components/PaletteGrid.vue'
 import '@rukkiecodes/vue/styles'
 import './styles/docs.scss'
 
@@ -50,4 +52,6 @@ createApp(App)
   .component('DashboardExample', DashboardExample)
   .component('NativeSnack', NativeSnack)
   .component('IconGallery', IconGallery)
+  .component('SkillInstall', SkillInstall)
+  .component('PaletteGrid', PaletteGrid)
   .mount('#app')

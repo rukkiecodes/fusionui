@@ -198,9 +198,37 @@ createApp(App)
 ## Conventions
 
 - Components are \`F*\` and globally registered (kebab in templates: \`<f-btn>\`, \`<f-dialog>\`).
-- CSS classes are \`fui-*\`; design tokens are CSS vars \`--fui-*\` (e.g. \`rgb(var(--fui-theme-primary))\`). Never hard-code colors — use the tokens.
-- A \`color\` prop takes a theme name (\`primary\`, \`success\`, \`danger\`, \`warning\`) or any CSS color.
+- CSS classes are \`fui-*\`; design tokens are CSS custom properties named \`--fui-*\`.
+- A \`color\` prop takes a theme name (\`primary\`, \`secondary\`, \`success\`, \`danger\`, \`warning\`) or any CSS color.
+- A \`variant\` prop takes: \`elevated\` \`flat\` \`tonal\` \`outlined\` \`text\` \`plain\` \`gradient\` \`relief\` \`line\` \`floating\` \`shadow\`.
 - Light/dark theme is a class on \`<html>\`; toggle with \`useTheme().toggle()\`.
+- Directives: \`v-ripple\`, \`v-click-outside\`, \`v-intersect\`.
+
+## Rules that are easy to get wrong
+
+These are the mistakes to avoid — each one fails **silently**, with no warning:
+
+1. **Color tokens are RGB triplets, not colors.** \`--fui-theme-primary\` is
+   \`25,91,255\`. So \`color: var(--fui-theme-primary)\` is INVALID and the browser
+   drops the whole declaration. Always wrap it:
+   \`\`\`css
+   color: rgb(var(--fui-theme-primary));
+   background: rgba(var(--fui-theme-primary), 0.12);
+   border: 1px solid rgba(var(--fui-border-color), 0.12);  /* also a triplet */
+   \`\`\`
+2. **Never hard-code a spacing, radius, color or shadow value.** Use
+   \`var(--fui-space-1..7)\`, \`var(--fui-radius-sm|md|lg|xl|pill|circle)\`,
+   \`var(--fui-elevation-0..24)\`.
+3. **Do not fight the theme's utility classes.** \`.text-primary\` / \`.bg-primary\`
+   are injected with \`!important\` into the LAST cascade layer, so no component
+   rule can override them. Everything FusionUI ships is layered, which means your
+   own unlayered CSS always wins — you rarely need \`!important\`.
+4. **SSR-safe or it is broken.** Never touch \`window\`/\`document\` at module load;
+   do it in \`onMounted\`. Wrap genuinely client-only content in \`<f-no-ssr>\`.
+5. **Accessibility is not optional.** Interactive components need real keyboard
+   support, and every animation needs a \`prefers-reduced-motion\` path.
+6. \`createFusionUI()\` registers every component, so importing one component
+   individually does NOT reduce the bundle today.
 
 ## Components
 

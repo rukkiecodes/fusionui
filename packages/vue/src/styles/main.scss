@@ -71,6 +71,15 @@
     @each $name, $z in settings.$fui-z-index {
       --fui-z-#{$name}: #{$z};
     }
+
+    // The palette shade ramp (50…900 per colour; 500 is the base). Emitted as RGB
+    // triplets like every other colour token, so alpha works:
+    //   background: rgba(var(--fui-primary-100), 0.5)
+    @each $name, $ramp in settings.$fui-shades {
+      @each $stop, $hex in $ramp {
+        --fui-#{$name}-#{$stop}: #{tools.triplet($hex)};
+      }
+    }
   }
 }
 
