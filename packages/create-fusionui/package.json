@@ -1,6 +1,6 @@
 {
   "name": "create-fusionui",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "The FusionUI CLI — scaffold a Vue SPA, PWA, static site, Nuxt or Expo app with the presets you want; add components; brand themes.",
   "type": "module",
   "license": "MIT",

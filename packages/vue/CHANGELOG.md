@@ -1,5 +1,32 @@
 # @rukkiecodes/vue
 
+## 0.16.0
+
+### Minor Changes
+
+- Accessibility and public-API fixes found by writing the documentation against the
+  real source.
+
+  - **`FDialog` and `FOverlay` now trap focus.** They announced `aria-modal="true"`
+    while letting Tab wander off behind the scrim, which lies to a screen-reader
+    user: focus now moves into the surface on open, cycles inside it, and returns
+    to whatever opened it on close. Shared as `useFocusTrap`, because `FDialog`
+    does not build on `FOverlay` and the two would otherwise drift.
+  - **Four composables are now exported.** `useLayout`, `useGooey`,
+    `useLiquidGlass` and `useChartDimensions` existed but were never re-exported,
+    so the documented `import { useGooey } from '@rukkiecodes/vue'` did not
+    resolve. A test now asserts the public surface matches what the docs tell you
+    to import.
+  - **The ripple respects `prefers-reduced-motion`.** It had to be fixed in JS, not
+    CSS: the transition is written as an inline style, which no media query can
+    out-specify.
+  - **A custom theme now merges with the built-ins instead of replacing them.**
+    `themes: { light: { colors: { primary } } }` — overriding a single colour —
+    silently deleted the entire dark theme and left `light` holding one colour.
+    Anything you declare still wins.
+  - **`FCarousel` fills its container.** It never declared a width, so in a flex or
+    grid parent it collapsed to its content (about 70px of arrows).
+
 ## 0.15.0
 
 ### Minor Changes
