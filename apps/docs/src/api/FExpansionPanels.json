@@ -1,7 +1,18 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FExpansionPanels",
   "props": {
-    "divided": {
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -28,16 +39,6 @@
     },
     "selectedClass": {
       "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
       "required": false,
       "description": ""
     },

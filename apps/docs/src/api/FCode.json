@@ -1,33 +1,19 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FCode",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "color": {
       "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "size": {
+      "type": "String | Number",
+      "default": "default",
       "required": false,
       "description": ""
     },
@@ -38,6 +24,12 @@
     },
     "tile": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "code",
       "required": false,
       "description": ""
     },
@@ -58,10 +50,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

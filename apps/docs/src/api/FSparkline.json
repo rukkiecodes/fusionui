@@ -1,0 +1,135 @@
+{
+  "displayName": "FSparkline",
+  "props": {
+    "modelValue": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "type": {
+      "type": "String",
+      "default": "trend",
+      "required": false,
+      "description": ""
+    },
+    "smooth": {
+      "type": "Boolean | Number | String",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "fill": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "gradient": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "gradientDirection": {
+      "type": "String",
+      "default": "top",
+      "required": false,
+      "description": ""
+    },
+    "lineWidth": {
+      "type": "Number | String",
+      "default": "4",
+      "required": false,
+      "description": ""
+    },
+    "autoDraw": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "autoDrawDuration": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "autoDrawEasing": {
+      "type": "String",
+      "default": "ease",
+      "required": false,
+      "description": ""
+    },
+    "showLabels": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "labelSize": {
+      "type": "Number | String",
+      "default": "7",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "Number | String",
+      "default": "300",
+      "required": false,
+      "description": ""
+    },
+    "height": {
+      "type": "Number | String",
+      "default": "75",
+      "required": false,
+      "description": ""
+    },
+    "padding": {
+      "type": "Number | String",
+      "default": "8",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "ariaLabel": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "decorative": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {}
+}

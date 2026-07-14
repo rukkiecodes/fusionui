@@ -1,48 +1,54 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FTimelineItem",
   "props": {
-    "divided": {
-      "type": "Boolean",
+    "icon": {
+      "type": "String | Object | Function | Array",
       "required": false,
       "description": ""
     },
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "dotColor": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "iconColor": {
+      "type": "String",
       "required": false,
       "description": ""
     },
-    "tile": {
+    "size": {
+      "type": "String | Number",
+      "required": false,
+      "description": ""
+    },
+    "fillDot": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
-    "theme": {
+    "hideDot": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideOpposite": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "side": {
       "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "elevation": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },
@@ -58,10 +64,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

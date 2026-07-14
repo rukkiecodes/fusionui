@@ -1,24 +1,17 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FValueCard",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
-      "required": false,
-      "description": ""
-    },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "tag": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
+    "title": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "accent": {
       "type": "Boolean",
       "required": false,
       "description": ""

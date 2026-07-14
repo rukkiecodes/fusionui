@@ -1,0 +1,33 @@
+{
+  "displayName": "FHover",
+  "props": {
+    "modelValue": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "openDelay": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "closeDelay": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

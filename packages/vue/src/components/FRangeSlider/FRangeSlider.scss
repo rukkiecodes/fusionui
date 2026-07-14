@@ -1,0 +1,8 @@
+@use '../../styles/tools';
+@use '../FSlider/shared' as slider;
+
+// Same track/fill/thumb geometry as FSlider — only the fill is offset from the
+// left edge rather than anchored to it (the component sets `left` inline).
+@include tools.layer('components') {
+  @include slider.slider-shell('fui-range-slider');
+}

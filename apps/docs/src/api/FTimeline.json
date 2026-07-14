@@ -1,70 +1,40 @@
 {
-  "displayName": "FChip",
+  "displayName": "FTimeline",
   "props": {
-    "color": {
+    "direction": {
+      "type": "String",
+      "default": "vertical",
+      "required": false,
+      "description": ""
+    },
+    "side": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "lineThickness": {
+      "type": "String | Number",
+      "default": "2",
+      "required": false,
+      "description": ""
+    },
+    "lineColor": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "truncateLine": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "dotColor": {
       "type": "String",
       "default": "primary",
       "required": false,
       "description": ""
     },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
-    },
-    "label": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "pill": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "closable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "prependIcon": {
-      "type": "String | Object | Function",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "text": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "Boolean",
-      "default": "true",
-      "required": false,
-      "description": ""
-    },
-    "value": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "disabled": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "filter": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "iconColor": {
       "type": "String",
       "required": false,
       "description": ""
@@ -72,6 +42,28 @@
     "size": {
       "type": "String | Number",
       "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "fillDot": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideOpposite": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "density": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },
@@ -92,16 +84,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    },
-    "click:close": {
-      "description": ""
-    },
-    "click": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

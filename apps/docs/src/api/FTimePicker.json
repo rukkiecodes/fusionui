@@ -1,56 +1,72 @@
 {
-  "displayName": "FChip",
+  "displayName": "FTimePicker",
   "props": {
+    "modelValue": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "format": {
+      "type": "String",
+      "default": "24hr",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "allowedHours": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "allowedMinutes": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "allowedSeconds": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "useSeconds": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "scrollable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "default": "Select time",
+      "required": false,
+      "description": ""
+    },
+    "hideTitle": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "color": {
       "type": "String",
       "default": "primary",
       "required": false,
       "description": ""
     },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
-    },
-    "label": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "pill": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "closable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "prependIcon": {
-      "type": "String | Object | Function",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "text": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "Boolean",
-      "default": "true",
-      "required": false,
-      "description": ""
-    },
-    "value": {
-      "type": "any",
+    "width": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
@@ -59,19 +75,8 @@
       "required": false,
       "description": ""
     },
-    "filter": {
+    "readonly": {
       "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "size": {
-      "type": "String | Number",
-      "default": "default",
       "required": false,
       "description": ""
     },
@@ -96,10 +101,16 @@
     "update:modelValue": {
       "description": ""
     },
-    "click:close": {
+    "update:hour": {
       "description": ""
     },
-    "click": {
+    "update:minute": {
+      "description": ""
+    },
+    "update:second": {
+      "description": ""
+    },
+    "update:period": {
       "description": ""
     }
   },

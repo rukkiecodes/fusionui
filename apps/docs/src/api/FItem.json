@@ -1,0 +1,22 @@
+{
+  "displayName": "FItem",
+  "props": {
+    "value": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "selectedClass": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {}
+}

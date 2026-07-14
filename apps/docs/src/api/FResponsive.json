@@ -1,48 +1,43 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FResponsive",
   "props": {
-    "divided": {
-      "type": "Boolean",
+    "aspectRatio": {
+      "type": "String | Number",
       "required": false,
       "description": ""
     },
-    "modelValue": {
-      "type": "any",
+    "contentClass": {
+      "type": "String | Array | Object",
       "required": false,
       "description": ""
     },
-    "multiple": {
-      "type": "Boolean",
+    "height": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
-    "mandatory": {
-      "type": "Boolean | String",
+    "maxHeight": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
-    "max": {
-      "type": "Number",
+    "maxWidth": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
-    "selectedClass": {
-      "type": "String",
+    "minHeight": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "minWidth": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
-    "tile": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "theme": {
-      "type": "String",
+    "width": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
@@ -58,10 +53,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

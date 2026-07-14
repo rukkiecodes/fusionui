@@ -1,25 +1,19 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FCta",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
-      "required": false,
-      "description": ""
-    },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "title": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
-      "type": "Boolean",
+    "text": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "gradient",
       "required": false,
       "description": ""
     },

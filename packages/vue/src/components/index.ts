@@ -98,6 +98,15 @@ import { FDatePicker } from './FDatePicker'
 import { FDateInput } from './FDateInput'
 import { FTimePicker, FTimeInput } from './FTimePicker'
 import { FColorPicker, FColorInput } from './FColorPicker'
+import { FCalendar } from './FCalendar'
+import { FRating } from './FRating'
+import { FRangeSlider } from './FRangeSlider'
+import { FSystemBar } from './FSystemBar'
+import { FParallax } from './FParallax'
+import { FHover } from './FHover'
+import { FLazy } from './FLazy'
+import { FResponsive } from './FResponsive'
+import { FNoSsr } from './FNoSsr'
 
 export * from './FIcon'
 export * from './FBtn'
@@ -196,6 +205,15 @@ export * from './FDatePicker'
 export * from './FDateInput'
 export * from './FTimePicker'
 export * from './FColorPicker'
+export * from './FCalendar'
+export * from './FRating'
+export * from './FRangeSlider'
+export * from './FSystemBar'
+export * from './FParallax'
+export * from './FHover'
+export * from './FLazy'
+export * from './FResponsive'
+export * from './FNoSsr'
 
 /** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
@@ -321,6 +339,16 @@ export const components: Record<string, Component> = {
   FTimeInput,
   FColorPicker,
   FColorInput,
+  FCalendar,
+  FRating,
+  FRangeSlider,
+  // ---- rendering utilities ----
+  FSystemBar,
+  FParallax,
+  FHover,
+  FLazy,
+  FResponsive,
+  FNoSsr,
   // ---- data ----
   FVirtualScroll,
   FInfiniteScroll,

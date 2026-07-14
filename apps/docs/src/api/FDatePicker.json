@@ -1,0 +1,149 @@
+{
+  "displayName": "FDatePicker",
+  "props": {
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "multiple": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "range": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "String | Number | Date",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "String | Number | Date",
+      "required": false,
+      "description": ""
+    },
+    "allowedDates": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "showAdjacentMonths": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "showWeek": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "firstDayOfWeek": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "view": {
+      "type": "String",
+      "default": "month",
+      "required": false,
+      "description": ""
+    },
+    "month": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "year": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "locale": {
+      "type": "String",
+      "default": "en-US",
+      "required": false,
+      "description": ""
+    },
+    "headerFormat": {
+      "type": "String",
+      "default": "ddd, MMM D",
+      "required": false,
+      "description": ""
+    },
+    "title": {
+      "type": "String",
+      "default": "Select date",
+      "required": false,
+      "description": ""
+    },
+    "header": {
+      "type": "String",
+      "default": "Enter date",
+      "required": false,
+      "description": ""
+    },
+    "hideHeader": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "update:view": {
+      "description": ""
+    },
+    "update:month": {
+      "description": ""
+    },
+    "update:year": {
+      "description": ""
+    },
+    "click:date": {
+      "description": ""
+    },
+    "escape": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

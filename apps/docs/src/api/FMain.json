@@ -1,0 +1,18 @@
+{
+  "displayName": "FMain",
+  "props": {
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {}
+}

@@ -1,25 +1,19 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FEmptyState",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
+    "icon": {
+      "type": "String | Object | Function",
+      "default": "inbox",
       "required": false,
       "description": ""
     },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "title": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
-      "type": "Boolean",
+    "text": {
+      "type": "String",
       "required": false,
       "description": ""
     },

@@ -1,0 +1,22 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-system-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--fui-space-2);
+    padding: 0 var(--fui-space-3);
+    width: 100%;
+    font-size: 0.75rem;
+    font-weight: settings.$fui-font-weight-medium;
+    background: rgb(var(--fui-surface-2));
+    color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+
+    &--window {
+      position: sticky;
+      top: 0;
+      z-index: var(--fui-z-navbar);
+    }
+  }
+}

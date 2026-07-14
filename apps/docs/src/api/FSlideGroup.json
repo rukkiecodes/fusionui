@@ -1,8 +1,32 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FSlideGroup",
   "props": {
-    "divided": {
+    "showArrows": {
+      "type": "Boolean | String",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "centerActive": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "direction": {
+      "type": "String",
+      "default": "horizontal",
+      "required": false,
+      "description": ""
+    },
+    "prevIcon": {
+      "type": "String | Object | Function",
+      "default": "$prev",
+      "required": false,
+      "description": ""
+    },
+    "nextIcon": {
+      "type": "String | Object | Function",
+      "default": "$next",
       "required": false,
       "description": ""
     },
@@ -28,16 +52,6 @@
     },
     "selectedClass": {
       "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
       "required": false,
       "description": ""
     },

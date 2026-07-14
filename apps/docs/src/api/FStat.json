@@ -1,25 +1,24 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FStat",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
+    "value": {
+      "type": "String | Number",
       "required": false,
       "description": ""
     },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "label": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
-      "type": "Boolean",
+    "icon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
       "required": false,
       "description": ""
     },

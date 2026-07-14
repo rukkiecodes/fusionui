@@ -1,24 +1,18 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FStatusPill",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
-      "required": false,
-      "description": ""
-    },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "label": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "dot": {
       "type": "Boolean",
       "required": false,
       "description": ""

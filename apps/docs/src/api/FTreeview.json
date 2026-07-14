@@ -1,0 +1,150 @@
+{
+  "displayName": "FTreeview",
+  "props": {
+    "items": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "itemTitle": {
+      "type": "String | Function",
+      "default": "title",
+      "required": false,
+      "description": ""
+    },
+    "itemValue": {
+      "type": "String | Function",
+      "default": "value",
+      "required": false,
+      "description": ""
+    },
+    "itemChildren": {
+      "type": "String | Function",
+      "default": "children",
+      "required": false,
+      "description": ""
+    },
+    "opened": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "openAll": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "openStrategy": {
+      "type": "String",
+      "default": "multiple",
+      "required": false,
+      "description": ""
+    },
+    "openOnClick": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "selectable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "selected": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "selectStrategy": {
+      "type": "String",
+      "default": "leaf",
+      "required": false,
+      "description": ""
+    },
+    "activatable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "activated": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "multipleActive": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "search": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "customFilter": {
+      "type": "Function",
+      "required": false,
+      "description": ""
+    },
+    "loadChildren": {
+      "type": "Function",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "noDataText": {
+      "type": "String",
+      "default": "No results found",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:opened": {
+      "description": ""
+    },
+    "update:selected": {
+      "description": ""
+    },
+    "update:activated": {
+      "description": ""
+    },
+    "click:open": {
+      "description": ""
+    },
+    "click:select": {
+      "description": ""
+    },
+    "click:activate": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

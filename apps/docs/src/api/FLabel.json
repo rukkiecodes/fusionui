@@ -1,42 +1,22 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FLabel",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "text": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "for": {
+      "type": "String",
       "required": false,
       "description": ""
     },
-    "tile": {
+    "clickable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -59,7 +39,7 @@
     }
   },
   "events": {
-    "update:modelValue": {
+    "click": {
       "description": ""
     }
   },

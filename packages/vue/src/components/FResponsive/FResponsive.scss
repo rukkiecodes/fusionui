@@ -1,0 +1,16 @@
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-responsive {
+    display: flex;
+    flex: 1 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &__content {
+      flex: 1 0 0px;
+      max-width: 100%;
+    }
+  }
+}

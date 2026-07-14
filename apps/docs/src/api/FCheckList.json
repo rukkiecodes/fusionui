@@ -1,25 +1,21 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FCheckList",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
+    "items": {
+      "type": "Array",
+      "default": "[]",
       "required": false,
       "description": ""
     },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
+    "icon": {
+      "type": "String | Object | Function",
+      "default": "check",
       "required": false,
       "description": ""
     },
-    "image": {
+    "color": {
       "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "inset": {
-      "type": "Boolean",
+      "default": "primary",
       "required": false,
       "description": ""
     },

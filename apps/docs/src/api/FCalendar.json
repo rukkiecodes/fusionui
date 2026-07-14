@@ -1,42 +1,48 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FCalendar",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
-      "type": "any",
+      "type": "String | Number | Date",
       "required": false,
       "description": ""
     },
-    "multiple": {
-      "type": "Boolean",
+    "events": {
+      "type": "Array",
+      "default": "[]",
       "required": false,
       "description": ""
     },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "viewMode": {
       "type": "String",
+      "default": "month",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "firstDayOfWeek": {
+      "type": "Number | String",
+      "default": "0",
       "required": false,
       "description": ""
     },
-    "tile": {
+    "locale": {
+      "type": "String",
+      "default": "en-US",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "eventsPerDay": {
+      "type": "Number | String",
+      "default": "3",
+      "required": false,
+      "description": ""
+    },
+    "hideHeader": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -60,6 +66,15 @@
   },
   "events": {
     "update:modelValue": {
+      "description": ""
+    },
+    "update:viewMode": {
+      "description": ""
+    },
+    "click:date": {
+      "description": ""
+    },
+    "click:event": {
       "description": ""
     }
   },

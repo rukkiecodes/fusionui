@@ -1,8 +1,24 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FChipGroup",
   "props": {
-    "divided": {
+    "column": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "filter": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "tonal",
       "required": false,
       "description": ""
     },
@@ -28,16 +44,13 @@
     },
     "selectedClass": {
       "type": "String",
+      "default": "fui-chip--selected",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
+    "tag": {
+      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },

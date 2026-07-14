@@ -1,0 +1,232 @@
+{
+  "displayName": "FDateInput",
+  "props": {
+    "modelValue": {
+      "type": "any",
+      "required": false,
+      "description": ""
+    },
+    "multiple": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "range": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "format": {
+      "type": "String | Function",
+      "default": "YYYY-MM-DD",
+      "required": false,
+      "description": ""
+    },
+    "menu": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "menuLocation": {
+      "type": "String",
+      "default": "bottom",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "String | Number | Date",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "String | Number | Date",
+      "required": false,
+      "description": ""
+    },
+    "allowedDates": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "showAdjacentMonths": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "showWeek": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "firstDayOfWeek": {
+      "type": "Number | String",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "view": {
+      "type": "String",
+      "default": "month",
+      "required": false,
+      "description": ""
+    },
+    "locale": {
+      "type": "String",
+      "default": "en-US",
+      "required": false,
+      "description": ""
+    },
+    "hideHeader": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "labelPlaceholder": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "placeholder": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "transparent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "prependIcon": {
+      "type": "String | Object | Function",
+      "default": "$calendar",
+      "required": false,
+      "description": ""
+    },
+    "appendIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "clearable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "block": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hint": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "persistentHint": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rules": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "error": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "errorMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "successMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "validateOn": {
+      "type": "String",
+      "default": "input",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "update:menu": {
+      "description": ""
+    },
+    "update:focused": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

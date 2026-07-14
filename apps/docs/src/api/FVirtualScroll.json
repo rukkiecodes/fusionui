@@ -1,82 +1,78 @@
 {
-  "displayName": "FChip",
+  "displayName": "FVirtualScroll",
   "props": {
-    "color": {
+    "items": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "itemHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "estimatedItemHeight": {
+      "type": "Number | String",
+      "default": "48",
+      "required": false,
+      "description": ""
+    },
+    "itemKey": {
+      "type": "String | Function",
+      "required": false,
+      "description": ""
+    },
+    "buffer": {
+      "type": "Number | String",
+      "default": "100",
+      "required": false,
+      "description": ""
+    },
+    "renderless": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "role": {
       "type": "String",
-      "default": "primary",
+      "default": "list",
       "required": false,
       "description": ""
     },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
-    },
-    "label": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "pill": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "closable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "prependIcon": {
-      "type": "String | Object | Function",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "text": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "Boolean",
-      "default": "true",
-      "required": false,
-      "description": ""
-    },
-    "value": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "disabled": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "filter": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "itemRole": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "size": {
-      "type": "String | Number",
-      "default": "default",
+    "height": {
+      "type": "Number | String",
+      "default": "300",
       "required": false,
       "description": ""
     },
-    "theme": {
-      "type": "String",
+    "maxHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "maxWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
@@ -92,16 +88,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    },
-    "click:close": {
-      "description": ""
-    },
-    "click": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

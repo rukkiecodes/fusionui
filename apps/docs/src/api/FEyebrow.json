@@ -1,25 +1,19 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FEyebrow",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
-      "required": false,
-      "description": ""
-    },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
+    "text": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "inset": {
+    "dot": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
       "required": false,
       "description": ""
     },

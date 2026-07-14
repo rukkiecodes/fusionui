@@ -1,25 +1,9 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FHero",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
-      "required": false,
-      "description": ""
-    },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "inset": {
+    "glow": {
       "type": "Boolean",
+      "default": "true",
       "required": false,
       "description": ""
     },

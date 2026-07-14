@@ -1,29 +1,27 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FSlideGroupItem",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
+    "text": {
+      "type": "String | Number",
       "required": false,
       "description": ""
     },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
+    "icon": {
+      "type": "String | Object | Function",
       "required": false,
       "description": ""
     },
-    "image": {
-      "type": "String",
+    "value": {
+      "type": "any",
       "required": false,
       "description": ""
     },
-    "inset": {
+    "disabled": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
-    "theme": {
+    "selectedClass": {
       "type": "String",
       "required": false,
       "description": ""

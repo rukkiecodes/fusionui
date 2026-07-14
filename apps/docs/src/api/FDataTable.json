@@ -1,0 +1,259 @@
+{
+  "displayName": "FDataTable",
+  "props": {
+    "search": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "customFilter": {
+      "type": "Function",
+      "required": false,
+      "description": ""
+    },
+    "filterKeys": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loadingText": {
+      "type": "String",
+      "default": "Loading items…",
+      "required": false,
+      "description": ""
+    },
+    "noDataText": {
+      "type": "String",
+      "default": "No data available",
+      "required": false,
+      "description": ""
+    },
+    "hideDefaultHeader": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "hover": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "striped": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "fixedHeader": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "height": {
+      "type": "String | Number",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "String | Number",
+      "required": false,
+      "description": ""
+    },
+    "headers": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "items": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "itemValue": {
+      "type": "String | Function",
+      "default": "id",
+      "required": false,
+      "description": ""
+    },
+    "itemSelectable": {
+      "type": "String | Function",
+      "required": false,
+      "description": ""
+    },
+    "sortBy": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "multiSort": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "mustSort": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "customKeySort": {
+      "type": "Object",
+      "required": false,
+      "description": ""
+    },
+    "disableSort": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "showSelect": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "selectStrategy": {
+      "type": "String",
+      "default": "page",
+      "required": false,
+      "description": ""
+    },
+    "modelValue": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "showExpand": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "expandOnClick": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "expanded": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "expandStrategy": {
+      "type": "String",
+      "default": "multiple",
+      "required": false,
+      "description": ""
+    },
+    "groupBy": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "opened": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "openAll": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "page": {
+      "type": "Number | String",
+      "default": "1",
+      "required": false,
+      "description": ""
+    },
+    "itemsPerPage": {
+      "type": "Number | String",
+      "default": "10",
+      "required": false,
+      "description": ""
+    },
+    "itemsPerPageOptions": {
+      "type": "Array",
+      "default": "[10,25,50,100]",
+      "required": false,
+      "description": ""
+    },
+    "itemsPerPageText": {
+      "type": "String",
+      "default": "Items per page:",
+      "required": false,
+      "description": ""
+    },
+    "pageText": {
+      "type": "String",
+      "default": "{0}–{1} of {2}",
+      "required": false,
+      "description": ""
+    },
+    "hideDefaultFooter": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "update:page": {
+      "description": ""
+    },
+    "update:itemsPerPage": {
+      "description": ""
+    },
+    "update:sortBy": {
+      "description": ""
+    },
+    "update:groupBy": {
+      "description": ""
+    },
+    "update:opened": {
+      "description": ""
+    },
+    "update:expanded": {
+      "description": ""
+    },
+    "update:options": {
+      "description": ""
+    },
+    "click:row": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

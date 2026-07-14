@@ -61,29 +61,29 @@
       "type": "Number",
       "default": "1",
       "required": false,
-      "description": "Stacking order inside an <f-layout> — lower sits outer. Default 1 keeps the navbar (0) full-width on top; set 0 for a full-height sidebar."
+      "description": ""
     },
     "inverseCorner": {
       "type": "Boolean",
       "required": false,
-      "description": "Draw a concave (negative-radius) fillet at the top-right so the sidebar flows into the navbar."
+      "description": ""
     },
     "cornerSize": {
       "type": "Number",
       "default": "22",
       "required": false,
-      "description": "Radius (px) of the inverse-corner fillet."
+      "description": ""
     },
     "island": {
       "type": "Boolean",
       "required": false,
-      "description": "Float the drawer as an island — a margin on every side plus full rounding."
+      "description": ""
     },
     "islandMargin": {
       "type": "Number | String",
       "default": "12",
       "required": false,
-      "description": "Gap around the drawer when island is set (px or any CSS length)."
+      "description": ""
     },
     "theme": {
       "type": "String",

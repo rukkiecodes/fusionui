@@ -1,8 +1,19 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FBtnToggle",
   "props": {
     "divided": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "tonal",
       "required": false,
       "description": ""
     },

@@ -103,5 +103,13 @@
 @use '../components/FDataTable/FDataTable';
 @use '../components/FDataIterator/FDataIterator';
 @use '../components/FTreeview/FTreeview';
+@use '../components/FCalendar/FCalendar';
+@use '../components/FRating/FRating';
+@use '../components/FRangeSlider/FRangeSlider';
+
+// ---- rendering utilities ----
+@use '../components/FSystemBar/FSystemBar';
+@use '../components/FParallax/FParallax';
+@use '../components/FResponsive/FResponsive';
 
 @use '../services/services';

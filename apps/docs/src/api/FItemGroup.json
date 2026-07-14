@@ -1,11 +1,6 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FItemGroup",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
       "type": "any",
       "required": false,
@@ -28,16 +23,13 @@
     },
     "selectedClass": {
       "type": "String",
+      "default": "fui-item--selected",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
+    "tag": {
+      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },

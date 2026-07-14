@@ -1,48 +1,26 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FLazy",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
       "type": "Boolean",
+      "default": "false",
       "required": false,
       "description": ""
     },
-    "mandatory": {
-      "type": "Boolean | String",
+    "minHeight": {
+      "type": "String | Number",
       "required": false,
       "description": ""
     },
-    "max": {
-      "type": "Number",
+    "options": {
+      "type": "Object",
+      "default": "{\"rootMargin\":\"100px\"}",
       "required": false,
       "description": ""
     },
-    "selectedClass": {
+    "tag": {
       "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "theme": {
-      "type": "String",
+      "default": "div",
       "required": false,
       "description": ""
     },

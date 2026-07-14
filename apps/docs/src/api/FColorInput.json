@@ -1,0 +1,194 @@
+{
+  "displayName": "FColorInput",
+  "props": {
+    "modelValue": {
+      "type": "String | Object",
+      "required": false,
+      "description": ""
+    },
+    "mode": {
+      "type": "String",
+      "default": "hexa",
+      "required": false,
+      "description": ""
+    },
+    "menu": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "menuLocation": {
+      "type": "String",
+      "default": "bottom",
+      "required": false,
+      "description": ""
+    },
+    "showSwatches": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "swatches": {
+      "type": "Array",
+      "required": false,
+      "description": ""
+    },
+    "hideCanvas": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideInputs": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideSliders": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "labelPlaceholder": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "placeholder": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "default": "primary",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "transparent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "appendIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "clearable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "block": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hint": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "persistentHint": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rules": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "error": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "errorMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "successMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "validateOn": {
+      "type": "String",
+      "default": "input",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "update:menu": {
+      "description": ""
+    },
+    "update:mode": {
+      "description": ""
+    },
+    "update:focused": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

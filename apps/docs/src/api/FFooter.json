@@ -1,33 +1,30 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FFooter",
   "props": {
-    "divided": {
+    "app": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
-    "modelValue": {
-      "type": "any",
+    "height": {
+      "type": "Number | String",
+      "default": "auto",
       "required": false,
       "description": ""
     },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "color": {
       "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "order": {
+      "type": "Number",
+      "default": "0",
+      "required": false,
+      "description": ""
+    },
+    "border": {
+      "type": "Boolean | Number | String",
       "required": false,
       "description": ""
     },
@@ -38,6 +35,17 @@
     },
     "tile": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "elevation": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "tag": {
+      "type": "String",
+      "default": "footer",
       "required": false,
       "description": ""
     },
@@ -58,10 +66,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

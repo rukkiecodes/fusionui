@@ -1,0 +1,24 @@
+{
+  "displayName": "FBannerText",
+  "props": {
+    "tag": {
+      "type": "String",
+      "default": "div",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {}
+}

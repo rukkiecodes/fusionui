@@ -1,56 +1,63 @@
 {
-  "displayName": "FChip",
+  "displayName": "FColorPicker",
   "props": {
-    "color": {
-      "type": "String",
-      "default": "primary",
-      "required": false,
-      "description": ""
-    },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
-    },
-    "label": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "pill": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "closable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "prependIcon": {
-      "type": "String | Object | Function",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "text": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
-      "type": "Boolean",
-      "default": "true",
+      "type": "String | Object",
       "required": false,
       "description": ""
     },
-    "value": {
-      "type": "any",
+    "mode": {
+      "type": "String",
+      "default": "rgba",
+      "required": false,
+      "description": ""
+    },
+    "modes": {
+      "type": "Array",
+      "default": "[\"hex\",\"hexa\",\"rgb\",\"rgba\",\"hsl\",\"hsla\"]",
+      "required": false,
+      "description": ""
+    },
+    "hideCanvas": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideInputs": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideSliders": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hideModeSwitch": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "showSwatches": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "swatches": {
+      "type": "Array",
+      "default": "[\"#F44336\",\"#E91E63\",\"#9C27B0\",\"#3F51B5\",\"#2196F3\",\"#00BCD4\",\"#009688\",\"#4CAF50\",\"#8BC34A\",\"#FFEB3B\",\"#FF9800\",\"#795548\",\"#607D8B\",\"#000000\",\"#FFFFFF\"]",
+      "required": false,
+      "description": ""
+    },
+    "canvasHeight": {
+      "type": "String | Number",
+      "default": "150",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "String | Number",
+      "default": "300",
       "required": false,
       "description": ""
     },
@@ -59,19 +66,19 @@
       "required": false,
       "description": ""
     },
-    "filter": {
+    "elevation": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | Number | String",
+      "default": "lg",
+      "required": false,
+      "description": ""
+    },
+    "tile": {
       "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "size": {
-      "type": "String | Number",
-      "default": "default",
       "required": false,
       "description": ""
     },
@@ -96,10 +103,7 @@
     "update:modelValue": {
       "description": ""
     },
-    "click:close": {
-      "description": ""
-    },
-    "click": {
+    "update:mode": {
       "description": ""
     }
   },

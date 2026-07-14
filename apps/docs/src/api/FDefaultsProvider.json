@@ -1,0 +1,22 @@
+{
+  "displayName": "FDefaultsProvider",
+  "props": {
+    "defaults": {
+      "type": "Object",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "scoped": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {},
+  "slots": {}
+}

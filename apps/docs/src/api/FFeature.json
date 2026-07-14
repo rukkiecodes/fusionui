@@ -1,42 +1,22 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FFeature",
   "props": {
-    "divided": {
-      "type": "Boolean",
+    "icon": {
+      "type": "String | Object | Function",
       "required": false,
       "description": ""
     },
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "title": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "text": {
+      "type": "String",
       "required": false,
       "description": ""
     },
-    "tile": {
+    "hover": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -58,10 +38,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

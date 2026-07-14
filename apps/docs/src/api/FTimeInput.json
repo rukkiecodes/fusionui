@@ -1,0 +1,194 @@
+{
+  "displayName": "FTimeInput",
+  "props": {
+    "modelValue": {
+      "type": "String",
+      "default": "null",
+      "required": false,
+      "description": ""
+    },
+    "format": {
+      "type": "String",
+      "default": "24hr",
+      "required": false,
+      "description": ""
+    },
+    "min": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "max": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "allowedHours": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "allowedMinutes": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "allowedSeconds": {
+      "type": "Array | Function",
+      "required": false,
+      "description": ""
+    },
+    "useSeconds": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "scrollable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "pickerTitle": {
+      "type": "String",
+      "default": "Select time",
+      "required": false,
+      "description": ""
+    },
+    "location": {
+      "type": "String",
+      "default": "bottom",
+      "required": false,
+      "description": ""
+    },
+    "label": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "labelPlaceholder": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "placeholder": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "variant": {
+      "type": "String",
+      "default": "default",
+      "required": false,
+      "description": ""
+    },
+    "state": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "prependIcon": {
+      "type": "String | Object | Function",
+      "required": false,
+      "description": ""
+    },
+    "clearable": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "loading": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "square": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "transparent": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "hint": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "persistentHint": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rules": {
+      "type": "Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "error": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "errorMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "successMessages": {
+      "type": "String | Array",
+      "default": "[]",
+      "required": false,
+      "description": ""
+    },
+    "validateOn": {
+      "type": "String",
+      "default": "input",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "readonly": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "theme": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "class": {
+      "type": "String | Array | Object",
+      "required": false,
+      "description": ""
+    },
+    "style": {
+      "type": "String | Array | Object",
+      "default": "null",
+      "required": false,
+      "description": ""
+    }
+  },
+  "events": {
+    "update:modelValue": {
+      "description": ""
+    },
+    "update:focused": {
+      "description": ""
+    }
+  },
+  "slots": {}
+}

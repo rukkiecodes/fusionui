@@ -1,42 +1,35 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FConfirmEdit",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
       "type": "any",
       "required": false,
       "description": ""
     },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "color": {
       "type": "String",
+      "default": "primary",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "okText": {
+      "type": "String",
+      "default": "OK",
       "required": false,
       "description": ""
     },
-    "tile": {
+    "cancelText": {
+      "type": "String",
+      "default": "Cancel",
+      "required": false,
+      "description": ""
+    },
+    "disabled": {
+      "type": "Boolean | Array",
+      "required": false,
+      "description": ""
+    },
+    "hideActions": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -60,6 +53,12 @@
   },
   "events": {
     "update:modelValue": {
+      "description": ""
+    },
+    "save": {
+      "description": ""
+    },
+    "cancel": {
       "description": ""
     }
   },

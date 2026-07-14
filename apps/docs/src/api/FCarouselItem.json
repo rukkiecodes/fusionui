@@ -1,41 +1,29 @@
 {
-  "displayName": "FMenu",
+  "displayName": "FCarouselItem",
   "props": {
-    "modelValue": {
-      "type": "Boolean",
-      "default": "false",
-      "required": false,
-      "description": ""
-    },
-    "location": {
+    "src": {
       "type": "String",
-      "default": "bottom",
       "required": false,
       "description": ""
     },
-    "openOnHover": {
-      "type": "Boolean",
+    "lazySrc": {
+      "type": "String",
       "required": false,
       "description": ""
     },
-    "closeOnContentClick": {
+    "alt": {
+      "type": "String",
+      "default": "",
+      "required": false,
+      "description": ""
+    },
+    "cover": {
       "type": "Boolean",
       "default": "true",
       "required": false,
       "description": ""
     },
-    "contentClass": {
-      "type": "String | Array | Object",
-      "required": false,
-      "description": ""
-    },
-    "offset": {
-      "type": "Number",
-      "default": "6",
-      "required": false,
-      "description": ""
-    },
-    "disabled": {
+    "eager": {
       "type": "Boolean",
       "required": false,
       "description": ""
@@ -52,10 +40,6 @@
       "description": ""
     }
   },
-  "events": {
-    "update:modelValue": {
-      "description": ""
-    }
-  },
+  "events": {},
   "slots": {}
 }

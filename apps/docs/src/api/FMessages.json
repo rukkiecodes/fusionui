@@ -1,25 +1,19 @@
 {
-  "displayName": "FAuthLayout",
+  "displayName": "FMessages",
   "props": {
-    "asidePosition": {
-      "type": "String",
-      "default": "left",
+    "messages": {
+      "type": "String | Array",
+      "default": "[]",
       "required": false,
       "description": ""
     },
-    "contentWidth": {
-      "type": "String",
-      "default": "420px",
-      "required": false,
-      "description": ""
-    },
-    "image": {
-      "type": "String",
-      "required": false,
-      "description": ""
-    },
-    "inset": {
+    "active": {
       "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "color": {
+      "type": "String",
       "required": false,
       "description": ""
     },

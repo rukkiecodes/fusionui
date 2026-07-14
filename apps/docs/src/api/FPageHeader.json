@@ -1,43 +1,24 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FPageHeader",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "modelValue": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "multiple": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
-      "type": "Number",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "title": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
+    "subtitle": {
+      "type": "String",
       "required": false,
       "description": ""
     },
-    "tile": {
-      "type": "Boolean",
+    "backLabel": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "backIcon": {
+      "type": "String | Object | Function",
+      "default": "arrow-left",
       "required": false,
       "description": ""
     },
@@ -59,7 +40,7 @@
     }
   },
   "events": {
-    "update:modelValue": {
+    "back": {
       "description": ""
     }
   },

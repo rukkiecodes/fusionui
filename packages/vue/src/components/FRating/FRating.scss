@@ -1,0 +1,91 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-rating {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--fui-space-1);
+    color: rgb(var(--fui-theme-warning));
+
+    &:focus-visible {
+      outline: 2px solid rgb(var(--fui-theme-primary));
+      outline-offset: 4px;
+      border-radius: var(--fui-radius-sm);
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--fui-space-1);
+    }
+
+    &__btn {
+      display: inline-flex;
+      cursor: pointer;
+      border-radius: var(--fui-radius-sm);
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+      }
+    }
+
+    // The filled icon is stacked over the empty one and clipped, so a half rating
+    // works with any icon instead of needing a dedicated half glyph.
+    &__icon {
+      position: relative;
+      display: inline-flex;
+    }
+
+    &__empty {
+      opacity: 0.32;
+    }
+
+    &__full {
+      position: absolute;
+      inset: 0;
+      display: inline-flex;
+      overflow: hidden;
+
+      &--half {
+        width: 50%;
+      }
+    }
+
+    &__label {
+      font-size: 0.72rem;
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      white-space: nowrap;
+    }
+
+    &--readonly &__btn {
+      cursor: default;
+
+      &:hover {
+        transform: none;
+      }
+    }
+
+    &--disabled {
+      opacity: var(--fui-disabled-opacity);
+      pointer-events: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-rating__btn {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

@@ -1,42 +1,48 @@
 {
-  "displayName": "FBtnGroup",
+  "displayName": "FSpeedDial",
   "props": {
-    "divided": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
     "modelValue": {
-      "type": "any",
+      "type": "Boolean",
+      "default": "false",
       "required": false,
       "description": ""
     },
-    "multiple": {
+    "location": {
+      "type": "String",
+      "default": "top",
+      "required": false,
+      "description": ""
+    },
+    "transition": {
+      "type": "String",
+      "default": "fui-speed-dial",
+      "required": false,
+      "description": ""
+    },
+    "openOnHover": {
       "type": "Boolean",
       "required": false,
       "description": ""
     },
-    "mandatory": {
-      "type": "Boolean | String",
-      "required": false,
-      "description": ""
-    },
-    "max": {
+    "offset": {
       "type": "Number",
+      "default": "12",
       "required": false,
       "description": ""
     },
-    "selectedClass": {
+    "closeOnContentClick": {
+      "type": "Boolean",
+      "default": "true",
+      "required": false,
+      "description": ""
+    },
+    "label": {
       "type": "String",
+      "default": "Actions",
       "required": false,
       "description": ""
     },
-    "rounded": {
-      "type": "Boolean | Number | String",
-      "required": false,
-      "description": ""
-    },
-    "tile": {
+    "disabled": {
       "type": "Boolean",
       "required": false,
       "description": ""

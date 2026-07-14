@@ -1,82 +1,80 @@
 {
-  "displayName": "FChip",
+  "displayName": "FImage",
   "props": {
-    "color": {
-      "type": "String",
-      "default": "primary",
-      "required": false,
-      "description": ""
-    },
-    "variant": {
-      "type": "String",
-      "default": "tonal",
-      "required": false,
-      "description": ""
-    },
-    "label": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "pill": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "closable": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "prependIcon": {
-      "type": "String | Object | Function",
-      "required": false,
-      "description": ""
-    },
-    "link": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "text": {
+    "src": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "modelValue": {
-      "type": "Boolean",
-      "default": "true",
-      "required": false,
-      "description": ""
-    },
-    "value": {
-      "type": "any",
-      "required": false,
-      "description": ""
-    },
-    "disabled": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "filter": {
-      "type": "Boolean",
-      "required": false,
-      "description": ""
-    },
-    "selectedClass": {
+    "lazySrc": {
       "type": "String",
       "required": false,
       "description": ""
     },
-    "size": {
+    "alt": {
+      "type": "String",
+      "default": "",
+      "required": false,
+      "description": ""
+    },
+    "cover": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "aspectRatio": {
       "type": "String | Number",
-      "default": "default",
       "required": false,
       "description": ""
     },
-    "theme": {
+    "position": {
       "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "gradient": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "eager": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
+    "rounded": {
+      "type": "Boolean | String | Number",
+      "default": "false",
+      "required": false,
+      "description": ""
+    },
+    "height": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "maxHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "maxWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minHeight": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "minWidth": {
+      "type": "Number | String",
+      "required": false,
+      "description": ""
+    },
+    "width": {
+      "type": "Number | String",
       "required": false,
       "description": ""
     },
@@ -93,13 +91,10 @@
     }
   },
   "events": {
-    "update:modelValue": {
+    "load": {
       "description": ""
     },
-    "click:close": {
-      "description": ""
-    },
-    "click": {
+    "error": {
       "description": ""
     }
   },
