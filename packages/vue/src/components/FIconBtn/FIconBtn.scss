@@ -1,0 +1,14 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // FBtn carries the entire look. The only thing an icon-only button needs on
+  // top of it is a focus indicator that survives the solid variants (FBtn
+  // signals focus by filling, which is invisible on `flat` / `elevated`).
+  .fui-icon-btn {
+    &:focus-visible {
+      outline: 2px solid rgb(var(--fui-variant-color));
+      outline-offset: 2px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+// The stroke-in animation is driven imperatively by FSparkline (it measures the
+// path length, then transitions stroke-dashoffset), and it already no-ops under
+// prefers-reduced-motion. This stylesheet only carries the static presentation.
+
+@include tools.layer('components') {
+  .fui-sparkline {
+    display: block;
+    width: 100%;
+
+    &__fill {
+      stroke: none;
+    }
+
+    &__labels {
+      font-size: 0.72rem;
+    }
+
+    &__label {
+      fill: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      text-anchor: middle;
+    }
+  }
+}

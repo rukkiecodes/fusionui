@@ -1,0 +1,46 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // Inline code: mono font on a faint tinted fill. Sized in `em` so it always
+  // sits comfortably inside the paragraph that hosts it.
+  .fui-code {
+    --fui-code-color: var(--fui-theme-primary);
+    display: inline;
+    box-sizing: border-box;
+    padding: 0.15em 0.4em;
+    border-radius: var(--fui-radius-sm);
+    background-color: rgba(var(--fui-code-color), 0.1);
+    color: rgb(var(--fui-code-color));
+    font-family: var(--fui-font-family-mono);
+    font-size: var(--fui-code-font-size, 0.85em);
+    font-weight: settings.$fui-font-weight-medium;
+    line-height: inherit;
+    word-break: break-word;
+
+    &--size-small {
+      --fui-code-font-size: 0.75em;
+    }
+    &--size-large {
+      --fui-code-font-size: 0.95em;
+    }
+    &--size-x-large {
+      --fui-code-font-size: 1.05em;
+    }
+
+    &--rounded {
+      border-radius: var(--fui-radius-md);
+    }
+
+    // Inside a <pre> the snippet becomes the block itself: no inline padding
+    // games, scrollable, and it keeps the author's whitespace.
+    pre > & {
+      display: block;
+      padding: var(--fui-space-4);
+      border-radius: var(--fui-radius-md);
+      font-size: var(--fui-code-font-size, 0.85rem);
+      white-space: pre;
+      overflow-x: auto;
+    }
+  }
+}

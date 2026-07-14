@@ -1,0 +1,45 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-counter {
+    flex: 0 0 auto;
+    font-family: var(--fui-font-family);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    // Tabular figures keep the counter from jittering as digits change.
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: rgba(var(--fui-theme-on-surface), 0.55);
+    transition: settings.$fui-transition-fast;
+
+    &--exceeded {
+      color: rgb(var(--fui-theme-danger));
+      font-weight: settings.$fui-font-weight-medium;
+    }
+  }
+
+  .fui-counter-transition-enter-active,
+  .fui-counter-transition-leave-active {
+    transition: settings.$fui-transition-fast;
+  }
+
+  .fui-counter-transition-enter-from,
+  .fui-counter-transition-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-counter,
+    .fui-counter-transition-enter-active,
+    .fui-counter-transition-leave-active {
+      transition: none;
+    }
+
+    .fui-counter-transition-enter-from,
+    .fui-counter-transition-leave-to {
+      transform: none;
+    }
+  }
+}

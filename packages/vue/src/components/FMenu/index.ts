@@ -1,1 +1,1 @@
-export { FMenu, makeFMenuProps } from './FMenu'
+export { FMenu, makeFMenuProps, type FMenuLocation } from './FMenu'

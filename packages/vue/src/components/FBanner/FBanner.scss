@@ -1,0 +1,174 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // A page-level message strip. Mobile-first: stacked (media above copy above
+  // actions); from `sm` up it becomes a single row with the actions at the end.
+  .fui-banner {
+    --fui-banner-color: var(--fui-theme-primary);
+    --fui-banner-bg: var(--fui-theme-surface);
+    --fui-banner-on: var(--fui-theme-on-surface);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--fui-space-3);
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--fui-space-4) var(--fui-space-5);
+    border-bottom: thin solid rgba(var(--fui-banner-on), 0.08);
+    background-color: rgb(var(--fui-banner-bg));
+    color: rgba(var(--fui-banner-on), 0.92);
+    transition: settings.$fui-transition;
+
+    @include tools.media-breakpoint-up('sm') {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--fui-space-4);
+    }
+
+    // `stacked` forces the mobile layout at every width.
+    &--stacked {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    // `color` — a soft accent wash behind the message.
+    &--accent {
+      border-bottom-color: rgba(var(--fui-banner-color), 0.16);
+      background-color: rgba(var(--fui-banner-color), 0.08);
+    }
+
+    // `bg-color` — a solid fill; text flips to the contrasting on-color.
+    &--filled {
+      border-bottom-color: transparent;
+      background-color: rgb(var(--fui-banner-bg));
+      color: rgb(var(--fui-banner-on));
+    }
+
+    // `border` (boolean) — a full hairline instead of only the bottom rule.
+    &--border {
+      border: thin solid rgba(var(--fui-banner-on), 0.12);
+    }
+
+    &--rounded {
+      border-radius: var(--fui-radius-lg);
+    }
+
+    // Sticks to the top of the nearest scroll container.
+    &--sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    // Keep the copy clear of the absolutely-positioned close button.
+    &--closable {
+      padding-inline-end: var(--fui-space-7);
+    }
+
+    &__prepend {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+
+    &__content {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &__text {
+      font-size: 0.925rem;
+      line-height: 1.5;
+    }
+
+    &__actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: var(--fui-space-2);
+
+      @include tools.media-breakpoint-up('sm') {
+        margin-inline-start: auto;
+      }
+    }
+
+    &__close {
+      position: absolute;
+      top: var(--fui-space-3);
+      inset-inline-end: var(--fui-space-3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      border-radius: var(--fui-radius-circle);
+      background-color: transparent;
+      color: inherit;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover {
+        background-color: rgba(var(--fui-banner-on), 0.08);
+        opacity: 1;
+      }
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-banner-color));
+        outline-offset: 2px;
+        opacity: 1;
+      }
+    }
+
+    // ---- Line clamping ---------------------------------------------------
+    &--one-line .fui-banner__text,
+    &--two-line .fui-banner__text,
+    &--three-line .fui-banner__text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    &--one-line .fui-banner__text {
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+    }
+    &--two-line .fui-banner__text {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+    &--three-line .fui-banner__text {
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+  }
+
+  // Dismiss / reveal.
+  .fui-banner-enter-active,
+  .fui-banner-leave-active {
+    transition:
+      opacity settings.$fui-transition-duration settings.$fui-transition-timing,
+      transform settings.$fui-transition-duration settings.$fui-transition-timing;
+  }
+  .fui-banner-enter-from,
+  .fui-banner-leave-to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-banner {
+      transition: none;
+    }
+    .fui-banner-enter-active,
+    .fui-banner-leave-active {
+      transition: none;
+    }
+    .fui-banner-enter-from,
+    .fui-banner-leave-to {
+      transform: none;
+    }
+  }
+}

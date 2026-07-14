@@ -16,7 +16,7 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs'
 const here = dirname(fileURLToPath(import.meta.url))
 const pkgRoot = join(here, '..')
 const repoRoot = join(pkgRoot, '..', '..')
-const libEntry = join(repoRoot, 'packages', '@rukkiecodes/vue', 'src', 'index.ts')
+const libEntry = join(repoRoot, 'packages', 'vue', 'src', 'index.ts')
 const outDir = join(repoRoot, 'apps', 'docs', 'src', 'api')
 const descDir = join(pkgRoot, 'descriptions')
 

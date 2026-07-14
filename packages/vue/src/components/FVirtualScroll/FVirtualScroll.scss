@@ -1,0 +1,30 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-virtual-scroll {
+    display: block;
+    position: relative;
+    flex: 1 1 auto;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // Keep a fling inside the list instead of chaining it to the page.
+    overscroll-behavior-y: contain;
+    border-radius: var(--fui-radius-md);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--fui-theme-on-surface), 0.2) transparent;
+
+    // The region is focusable so it can be scrolled from the keyboard.
+    &:focus-visible {
+      outline: 2px solid rgb(var(--fui-theme-primary));
+      outline-offset: 2px;
+    }
+
+    &__container,
+    &__item,
+    &__spacer {
+      display: block;
+    }
+  }
+}

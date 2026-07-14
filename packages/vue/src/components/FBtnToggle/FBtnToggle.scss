@@ -1,0 +1,46 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--fui-radius-md);
+    background-color: rgb(var(--fui-surface-2));
+    padding: var(--fui-space-1);
+    gap: var(--fui-space-1);
+
+    > .fui-btn {
+      border-radius: calc(var(--fui-radius-md) - var(--fui-space-1));
+      transition: settings.$fui-transition;
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(var(--fui-variant-color), 0.35);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    // The padded pill look means the seam divider has to sit inside the gap.
+    &--divided {
+      gap: 0;
+
+      > .fui-btn:not(:last-child) {
+        margin-inline-end: var(--fui-space-1);
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset-block: 20%;
+          inset-inline-end: calc(var(--fui-space-1) / -2);
+          width: 1px;
+          background-color: rgba(var(--fui-border-color), 0.16);
+        }
+      }
+    }
+  }
+}

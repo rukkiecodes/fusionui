@@ -1,0 +1,73 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // The color + size vars live on the root only, so the caps of a shortcut
+  // inherit them (a colored `<f-kbd keys="ctrl+k">` tints every cap).
+  .fui-kbd {
+    --fui-kbd-color: var(--fui-theme-on-surface);
+    --fui-kbd-font-size: 0.78rem;
+  }
+
+  // A soft key cap: tinted fill, hairline border and a slightly thicker bottom
+  // edge that reads as the "travel" of a real key. The standalone cap and the
+  // caps inside a shortcut share the same look.
+  .fui-kbd,
+  .fui-kbd__key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 2em;
+    padding: 0.25em 0.5em;
+    border: thin solid rgba(var(--fui-kbd-color), 0.14);
+    border-bottom-width: 2px;
+    border-radius: var(--fui-radius-sm);
+    background-color: rgba(var(--fui-kbd-color), 0.08);
+    color: rgba(var(--fui-kbd-color), 0.9);
+    font-family: var(--fui-font-family-mono);
+    font-size: var(--fui-kbd-font-size);
+    font-weight: settings.$fui-font-weight-medium;
+    line-height: 1.5;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .fui-kbd {
+    // A shortcut: the root stops being a cap and becomes the row that holds them.
+    &--group {
+      gap: var(--fui-space-1);
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+    }
+
+    &--size-small {
+      --fui-kbd-font-size: 0.68rem;
+    }
+    &--size-large {
+      --fui-kbd-font-size: 0.9rem;
+    }
+    &--size-x-large {
+      --fui-kbd-font-size: 1rem;
+    }
+
+    // `border` (boolean) — a more pronounced outline.
+    &--border {
+      border: thin solid rgba(var(--fui-kbd-color), 0.28);
+      border-bottom-width: 2px;
+    }
+
+    &--rounded {
+      border-radius: var(--fui-radius-md);
+    }
+
+    &__separator {
+      color: rgba(var(--fui-kbd-color), 0.45);
+      font-family: var(--fui-font-family-mono);
+      font-size: var(--fui-kbd-font-size);
+      user-select: none;
+    }
+  }
+}

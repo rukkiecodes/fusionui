@@ -1,0 +1,174 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-bottom-nav {
+    --fui-bottom-nav-color: var(--fui-theme-primary);
+
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    background-color: rgb(var(--fui-theme-surface));
+    color: rgba(var(--fui-theme-on-surface), 0.7);
+    border-top: 1px solid rgba(var(--fui-border-color), 0.12);
+    box-shadow: var(--fui-elevation-3);
+    font-family: var(--fui-font-family);
+    box-sizing: border-box;
+    transition:
+      transform settings.$fui-transition-duration settings.$fui-transition-timing,
+      box-shadow settings.$fui-transition-duration settings.$fui-transition-timing;
+
+    &__content {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: var(--fui-space-1);
+      width: 100%;
+      height: 100%;
+      padding-inline: var(--fui-space-2);
+    }
+
+    // Pinned to the bottom of the viewport. Inside an <f-layout> the inline
+    // layout styles take over the inset/width so the bar clears any sidebar.
+    &--app {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: var(--fui-z-navbar);
+    }
+
+    // Slide out of the way. In a layout the item's own transform does this, but
+    // a standalone `app` bar needs the class.
+    &--hidden {
+      transform: translateY(110%);
+    }
+
+    &--grow &__item {
+      flex: 1 1 0;
+    }
+
+    // ---- Item --------------------------------------------------------------
+    &__item {
+      --fui-ripple-color: var(--fui-bottom-nav-color);
+
+      position: relative;
+      z-index: 0;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      flex: 0 1 auto;
+      min-width: 72px;
+      max-width: 168px;
+      margin: var(--fui-space-1) 0;
+      padding: var(--fui-space-2) var(--fui-space-3);
+      border: 0;
+      border-radius: var(--fui-radius-md);
+      background: transparent;
+      color: inherit;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: settings.$fui-font-weight-medium;
+      letter-spacing: settings.$fui-letter-spacing;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      box-sizing: border-box;
+      transition: settings.$fui-transition;
+
+      // The Vuesax tell: a soft tinted well fades in behind the active item
+      // instead of Material's flat highlight.
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background-color: rgba(var(--fui-bottom-nav-color), 0.12);
+        opacity: 0;
+        transform: scale(0.6);
+        pointer-events: none;
+        transition: settings.$fui-transition;
+      }
+
+      &:hover {
+        color: rgba(var(--fui-theme-on-surface), 0.95);
+      }
+      &:hover::before {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-bottom-nav-color));
+        outline-offset: -2px;
+      }
+
+      &--active {
+        color: rgb(var(--fui-bottom-nav-color));
+      }
+      &--active::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+      &--active .fui-bottom-nav__icon {
+        transform: translateY(-1px);
+      }
+
+      &--disabled {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+    }
+
+    &__icon {
+      display: inline-flex;
+      font-size: 1.25rem;
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    &__label {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition:
+        opacity settings.$fui-transition-duration settings.$fui-transition-timing,
+        max-height settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    // Shift mode: only the selected destination is named; the rest are icons.
+    &--shift &__item {
+      min-width: 56px;
+    }
+    &--shift &__label {
+      max-height: 0;
+      opacity: 0;
+    }
+    &--shift &__item--active &__label {
+      max-height: 1.2em;
+      opacity: 1;
+    }
+  }
+
+  // On narrow screens the bar always fills the width and the items share it.
+  @media (max-width: 600px) {
+    .fui-bottom-nav__item {
+      flex: 1 1 0;
+      min-width: 0;
+      padding-inline: var(--fui-space-1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-bottom-nav,
+    .fui-bottom-nav__item,
+    .fui-bottom-nav__item::before,
+    .fui-bottom-nav__icon,
+    .fui-bottom-nav__label {
+      transition: none;
+    }
+  }
+}

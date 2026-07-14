@@ -1,0 +1,67 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // The closing surface of a page: a quiet strip separated from the content by
+  // a hairline, with muted links.
+  .fui-footer {
+    --fui-footer-bg: var(--fui-theme-surface);
+    --fui-footer-on: var(--fui-theme-on-surface);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--fui-space-4);
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--fui-space-4) var(--fui-space-5);
+    border-top: thin solid rgba(var(--fui-footer-on), 0.08);
+    background-color: rgb(var(--fui-footer-bg));
+    color: rgba(var(--fui-footer-on), 0.86);
+    font-size: 0.875rem;
+    transition: settings.$fui-transition;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.75;
+      transition: settings.$fui-transition-fast;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+        opacity: 1;
+      }
+    }
+
+    // A colored footer carries its own contrast, so the hairline goes away.
+    &--colored {
+      border-top-color: transparent;
+      color: rgb(var(--fui-footer-on));
+    }
+
+    // Docked into an <f-layout> (position/width come from the layout item).
+    &--app {
+      z-index: var(--fui-z-navbar);
+    }
+
+    // `border` (boolean) — a full hairline instead of only the top rule.
+    &--border {
+      border: thin solid rgba(var(--fui-footer-on), 0.12);
+    }
+
+    &--rounded {
+      border-radius: var(--fui-radius-lg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-footer,
+    .fui-footer a {
+      transition: none;
+    }
+  }
+}

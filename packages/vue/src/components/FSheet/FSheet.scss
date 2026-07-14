@@ -1,0 +1,40 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // The base surface. Everything is driven by two vars so a colored sheet
+  // recolors its text, border and dividers in one move.
+  .fui-sheet {
+    --fui-sheet-color: var(--fui-theme-surface);
+    --fui-sheet-on: var(--fui-theme-on-surface);
+    display: block;
+    box-sizing: border-box;
+    border-radius: var(--fui-radius-md);
+    background-color: rgb(var(--fui-sheet-color));
+    color: rgba(var(--fui-sheet-on), 0.92);
+    transition: settings.$fui-transition;
+
+    // A filled sheet reads better with full-strength text than with the
+    // 0.92 emphasis used on the neutral surface.
+    &--colored {
+      color: rgb(var(--fui-sheet-on));
+    }
+
+    // `rounded` (boolean) — the softer Vuesax radius.
+    &--rounded {
+      border-radius: var(--fui-radius-lg);
+    }
+
+    // `border` (boolean) — a hairline that follows the sheet's own on-color,
+    // so it stays visible on colored fills too.
+    &--border {
+      border: thin solid rgba(var(--fui-sheet-on), 0.12);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-sheet {
+      transition: none;
+    }
+  }
+}

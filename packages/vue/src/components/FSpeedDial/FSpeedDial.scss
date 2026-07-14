@@ -1,0 +1,83 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-speed-dial {
+    display: inline-flex;
+  }
+
+  .fui-speed-dial__activator {
+    display: inline-flex;
+  }
+
+  // The fan reuses FMenu's teleported, viewport-anchored surface but not its
+  // *look* — no card, no shadow, no padding: just a transparent column that the
+  // floating actions live in. Compound selectors so the reset wins regardless of
+  // the order the two stylesheets land in the bundle.
+  .fui-menu__content.fui-speed-dial__content {
+    min-width: 0;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .fui-speed-dial__actions {
+    display: flex;
+  }
+
+  .fui-speed-dial__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--fui-space-2);
+    width: 100%;
+  }
+
+  // Fanning upward, the first action in the DOM should be the one nearest the
+  // FAB — so the visual column is reversed while the tab order stays natural.
+  .fui-speed-dial__content--top .fui-speed-dial__list,
+  .fui-speed-dial__content--top-end .fui-speed-dial__list {
+    flex-direction: column-reverse;
+  }
+
+  // ---- Stagger -------------------------------------------------------------
+  // Each action scales up out of the FAB, a beat behind the one before it.
+  .fui-speed-dial-enter-active,
+  .fui-speed-dial-leave-active {
+    transition:
+      transform 0.18s settings.$fui-transition-timing,
+      opacity 0.18s settings.$fui-transition-timing;
+  }
+  .fui-speed-dial-enter-from,
+  .fui-speed-dial-leave-to {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  .fui-speed-dial__list > * {
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.04s * ($i - 1);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-speed-dial-enter-active,
+    .fui-speed-dial-leave-active {
+      transition: opacity 0.01ms;
+    }
+    .fui-speed-dial-enter-from,
+    .fui-speed-dial-leave-to {
+      transform: none;
+    }
+    .fui-speed-dial__list > * {
+      transition-delay: 0s;
+    }
+  }
+}

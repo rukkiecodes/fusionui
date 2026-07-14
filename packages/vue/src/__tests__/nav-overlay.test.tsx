@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 import {
   createFusionUI,
   FMenu,
@@ -28,18 +28,26 @@ function mountWith(component: any, options: Record<string, any> = {}): any {
 
 describe('FMenu', () => {
   it('toggles content from the activator and closes on content click', async () => {
+    // FMenu teleports its content to <body>, so assert against the document
+    // rather than the wrapper's own subtree.
     const wrapper = mountWith(FMenu, {
+      attachTo: document.body,
       slots: {
         activator: ({ props }: any) =>
           h('button', { class: 'act', onClick: props.onClick }, 'Open'),
         default: () => h('div', { class: 'menu-body' }, 'Items'),
       },
     })
-    expect(wrapper.find('.menu-body').exists()).toBe(false)
+    expect(document.body.querySelector('.menu-body')).toBeNull()
     await wrapper.find('.act').trigger('click')
-    expect(wrapper.find('.menu-body').exists()).toBe(true)
-    await wrapper.find('.fui-menu__content').trigger('click')
-    expect(wrapper.find('.menu-body').exists()).toBe(false)
+    expect(document.body.querySelector('.menu-body')).not.toBeNull()
+
+    const content = document.body.querySelector('.fui-menu__content') as HTMLElement
+    content.click()
+    await nextTick()
+    expect(document.body.querySelector('.menu-body')).toBeNull()
+
+    wrapper.unmount()
   })
 })
 

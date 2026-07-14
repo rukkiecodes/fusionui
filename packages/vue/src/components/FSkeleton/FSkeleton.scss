@@ -1,0 +1,224 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-skeleton {
+    // Bone = the tinted placeholder block. Sheen = the light that sweeps over it.
+    // Both derive from the theme's on-surface color, so they work in either theme.
+    --fui-skeleton-bone: rgba(var(--fui-theme-on-surface), 0.08);
+    --fui-skeleton-sheen: rgba(var(--fui-theme-on-surface), 0.07);
+    --fui-skeleton-gutter: var(--fui-space-3);
+
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    border-radius: var(--fui-radius-lg);
+    background-color: rgb(var(--fui-theme-surface));
+    user-select: none;
+
+    // A single light sweeps the whole skeleton. It is painted after the bones
+    // (tree order), so it passes over them.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      will-change: transform;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, var(--fui-skeleton-sheen), transparent);
+      animation: fui-skeleton-sheen 1.6s linear infinite;
+    }
+
+    // Boilerplate: a dimmer, motionless placeholder for mock-ups and prototypes.
+    &--boilerplate {
+      --fui-skeleton-bone: rgba(var(--fui-theme-on-surface), 0.05);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    // ---- Bone base ----------------------------------------------------------
+    // A bone claims a full row by default; the inline primitives below opt out.
+    &__bone {
+      position: relative;
+      display: flex;
+      flex: 1 1 100%;
+      flex-wrap: wrap;
+      align-items: center;
+      border-radius: inherit;
+    }
+
+    // ---- Primitives ---------------------------------------------------------
+    &__avatar,
+    &__button,
+    &__chip,
+    &__heading,
+    &__image,
+    &__ossein,
+    &__text {
+      background-color: var(--fui-skeleton-bone);
+    }
+
+    &__ossein {
+      min-height: 40px;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    &__text {
+      height: 10px;
+      margin: 6px var(--fui-space-4);
+      border-radius: var(--fui-radius-pill);
+    }
+
+    &__heading {
+      flex: 1 1 auto;
+      max-width: 45%;
+      height: 20px;
+      margin: var(--fui-skeleton-gutter) var(--fui-space-4);
+      border-radius: var(--fui-radius-pill);
+    }
+
+    // Matches FAvatar's rounded-square silhouette.
+    &__avatar {
+      flex: 0 1 auto;
+      width: 44px;
+      min-width: 44px;
+      height: 44px;
+      min-height: 44px;
+      margin: var(--fui-skeleton-gutter) var(--fui-space-4);
+      border-radius: 35%;
+
+      // Whatever follows an avatar shares its row and hugs it.
+      + .fui-skeleton__bone {
+        flex: 1 1 auto;
+        margin-inline-start: 0;
+      }
+
+      + .fui-skeleton__sentences > .fui-skeleton__text,
+      + .fui-skeleton__paragraph > .fui-skeleton__text {
+        margin-inline-start: 0;
+      }
+    }
+
+    &__button {
+      flex: 0 1 auto;
+      width: 90px;
+      height: 40px;
+      margin: var(--fui-skeleton-gutter) var(--fui-space-2);
+      border-radius: var(--fui-radius-md);
+    }
+
+    &__chip {
+      flex: 0 1 auto;
+      width: 90px;
+      height: 32px;
+      margin: var(--fui-skeleton-gutter) var(--fui-space-4);
+      border-radius: var(--fui-radius-pill);
+    }
+
+    &__divider {
+      height: 0;
+      border-top: thin solid rgba(var(--fui-border-color), var(--fui-border-opacity));
+    }
+
+    // The image is full-bleed; the root's radius + overflow clip its corners.
+    &__image {
+      height: 150px;
+      border-radius: 0;
+    }
+
+    // ---- Compositions -------------------------------------------------------
+    &__actions {
+      justify-content: flex-end;
+      padding: var(--fui-space-2) var(--fui-space-2);
+    }
+
+    &__subtitle {
+      max-width: 60%;
+    }
+
+    &__list-item .fui-skeleton__text {
+      margin-block: 0;
+    }
+
+    // ---- Table --------------------------------------------------------------
+    &__table-heading,
+    &__table-row,
+    &__table-thead,
+    &__table-tfoot {
+      flex-wrap: nowrap;
+    }
+
+    &__table-heading {
+      justify-content: space-between;
+
+      .fui-skeleton__text {
+        flex: 0 1 40%;
+      }
+    }
+
+    &__table-thead {
+      .fui-skeleton__heading {
+        flex: 1 1 0;
+        max-width: none;
+        height: 12px;
+      }
+    }
+
+    &__table-row {
+      justify-content: space-evenly;
+
+      .fui-skeleton__text {
+        flex: 1 1 0;
+        margin-inline: var(--fui-space-2);
+      }
+    }
+
+    &__table-tfoot {
+      justify-content: flex-end;
+
+      .fui-skeleton__avatar {
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        min-height: 32px;
+      }
+
+      .fui-skeleton__text {
+        flex: 0 1 15%;
+      }
+    }
+
+    &__table-row-divider .fui-skeleton__divider {
+      margin: 0 var(--fui-space-4);
+    }
+  }
+
+  @keyframes fui-skeleton-sheen {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  // Reduced motion: no sweep. The bones keep a slightly stronger static tint so
+  // the placeholder still reads as "content hasn't arrived yet".
+  @media (prefers-reduced-motion: reduce) {
+    .fui-skeleton {
+      --fui-skeleton-bone: rgba(var(--fui-theme-on-surface), 0.11);
+
+      &::after {
+        animation: none;
+        opacity: 0;
+      }
+    }
+  }
+}

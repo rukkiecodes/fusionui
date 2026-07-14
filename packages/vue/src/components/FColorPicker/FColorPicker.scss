@@ -1,0 +1,301 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-color-picker {
+    // The alpha checkerboard, so a translucent colour reads as translucent.
+    --fui-color-picker-checker: repeating-conic-gradient(
+        rgba(var(--fui-theme-on-surface), 0.12) 0% 25%,
+        transparent 0% 50%
+      )
+      50% / 12px 12px;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: rgb(var(--fui-theme-surface));
+    color: rgb(var(--fui-theme-on-surface));
+
+    &--disabled {
+      opacity: var(--fui-disabled-opacity);
+      pointer-events: none;
+    }
+
+    // ---- canvas ------------------------------------------------------------
+    &__canvas {
+      position: relative;
+      width: 100%;
+      cursor: crosshair;
+      touch-action: none;
+      user-select: none;
+    }
+
+    // White → transparent across, then transparent → black down: the two layers
+    // that turn a flat hue into a saturation/brightness field.
+    &__canvas-saturation,
+    &__canvas-value {
+      position: absolute;
+      inset: 0;
+    }
+
+    &__canvas-saturation {
+      background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+    }
+
+    &__canvas-value {
+      background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+    }
+
+    &__canvas-thumb {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: var(--fui-radius-circle);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+      transform: translate(-50%, -50%);
+      cursor: grab;
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 3px;
+      }
+    }
+
+    // ---- sliders -----------------------------------------------------------
+    &__sliders {
+      display: flex;
+      align-items: center;
+      gap: var(--fui-space-3);
+      padding: var(--fui-space-3);
+    }
+
+    &__preview {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--fui-radius-circle);
+      background: var(--fui-color-picker-checker);
+      box-shadow: inset 0 0 0 1px var(--fui-border-color);
+      overflow: hidden;
+    }
+
+    &__preview-swatch {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__tracks {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      gap: var(--fui-space-2);
+      min-width: 0;
+    }
+
+    // Native range input, restyled. Keeps keyboard + AT support for free.
+    &__slider {
+      appearance: none;
+      width: 100%;
+      height: 12px;
+      border-radius: var(--fui-radius-pill);
+      margin: 0;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+      }
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: var(--fui-radius-circle);
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        box-shadow: var(--fui-elevation-2);
+      }
+
+      &::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border-radius: var(--fui-radius-circle);
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+      }
+
+      &--hue {
+        background: linear-gradient(
+          to right,
+          #f00 0%,
+          #ff0 17%,
+          #0f0 33%,
+          #0ff 50%,
+          #00f 67%,
+          #f0f 83%,
+          #f00 100%
+        );
+      }
+
+      &--alpha {
+        background:
+          linear-gradient(to right, transparent, var(--fui-color-picker-alpha-to, #000)),
+          var(--fui-color-picker-checker);
+      }
+    }
+
+    // ---- numeric inputs ----------------------------------------------------
+    &__inputs {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--fui-space-2);
+      padding: 0 var(--fui-space-3) var(--fui-space-3);
+    }
+
+    &__fields {
+      display: flex;
+      flex: 1 1 auto;
+      gap: var(--fui-space-2);
+      min-width: 0;
+    }
+
+    &__field {
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    &__field-input {
+      width: 100%;
+      min-width: 0;
+      padding: var(--fui-space-1);
+      font: inherit;
+      font-size: 0.8rem;
+      text-align: center;
+      color: inherit;
+      background: rgb(var(--fui-surface-2));
+      border: thin solid var(--fui-border-color);
+      border-radius: var(--fui-radius-sm);
+
+      // The spinners crowd an already-narrow field.
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+      appearance: textfield;
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 1px;
+      }
+    }
+
+    &__field-label {
+      font-size: 0.68rem;
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+    }
+
+    &__mode {
+      flex: 0 0 auto;
+      padding: var(--fui-space-1) var(--fui-space-2);
+      font: inherit;
+      font-size: 0.7rem;
+      font-weight: settings.$fui-font-weight-medium;
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      background: rgb(var(--fui-surface-2));
+      border: thin solid var(--fui-border-color);
+      border-radius: var(--fui-radius-sm);
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(var(--fui-theme-on-surface));
+      }
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 1px;
+      }
+    }
+
+    // ---- swatches ----------------------------------------------------------
+    &__swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--fui-space-2);
+      padding: 0 var(--fui-space-3) var(--fui-space-3);
+    }
+
+    &__swatch {
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: 0;
+      border-radius: var(--fui-radius-sm);
+      box-shadow: inset 0 0 0 1px rgba(var(--fui-theme-on-surface), 0.16);
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover {
+        transform: scale(1.12);
+      }
+
+      &--selected {
+        box-shadow:
+          inset 0 0 0 1px rgba(var(--fui-theme-on-surface), 0.16),
+          0 0 0 2px rgb(var(--fui-theme-surface)),
+          0 0 0 4px rgb(var(--fui-theme-primary));
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // ---- FColorInput ---------------------------------------------------------
+  .fui-color-input {
+    // The input sits outside .fui-color-picker, so it needs its own checkerboard.
+    --fui-color-picker-checker: repeating-conic-gradient(
+        rgba(var(--fui-theme-on-surface), 0.12) 0% 25%,
+        transparent 0% 50%
+      )
+      50% / 8px 8px;
+
+    &__menu {
+      padding: 0;
+    }
+
+    // The prepend swatch previews the value. It's aria-hidden and not tabbable —
+    // the input already carries the value and the combobox semantics.
+    &__swatch {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      border: 0;
+      border-radius: var(--fui-radius-sm);
+      background-image: var(--fui-color-picker-checker);
+      box-shadow: inset 0 0 0 1px rgba(var(--fui-theme-on-surface), 0.2);
+      cursor: pointer;
+    }
+
+    &__el {
+      font-family: var(--fui-font-family-mono);
+      text-transform: lowercase;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-color-picker__swatch {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}

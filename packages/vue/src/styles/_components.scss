@@ -55,4 +55,53 @@
 @use '../components/FOptionCard/FOptionCard';
 @use '../components/FLayout/FLayout';
 @use '../components/FMain/FMain';
+
+// ---- surfaces & typography ----
+@use '../components/FSheet/FSheet';
+@use '../components/FKbd/FKbd';
+@use '../components/FCode/FCode';
+@use '../components/FBanner/FBanner';
+@use '../components/FFooter/FFooter';
+@use '../components/FSkeleton/FSkeleton';
+@use '../components/FTimeline/FTimeline';
+
+// ---- form chrome & providers ----
+@use '../components/FLabel/FLabel';
+@use '../components/FMessages/FMessages';
+@use '../components/FCounter/FCounter';
+@use '../components/FThemeProvider/FThemeProvider';
+@use '../components/FIconBtn/FIconBtn';
+
+// ---- selection groups ----
+@use '../components/FItemGroup/FItemGroup';
+@use '../components/FBtnToggle/FBtnToggle';
+@use '../components/FChipGroup/FChipGroup';
+@use '../components/FWindow/FWindow';
+@use '../components/FSlideGroup/FSlideGroup';
+@use '../components/FExpansionPanels/FExpansionPanels';
+
+// ---- actions & navigation ----
+@use '../components/FPullToRefresh/FPullToRefresh';
+@use '../components/FFab/FFab';
+@use '../components/FSpeedDial/FSpeedDial';
+@use '../components/FBottomNav/FBottomNav';
+@use '../components/FBottomSheet/FBottomSheet';
+
+// ---- advanced inputs ----
+@use '../components/FAutocomplete/FAutocomplete';
+@use '../components/FCombobox/FCombobox';
+@use '../components/FConfirmEdit/FConfirmEdit';
+@use '../components/FDatePicker/FDatePicker';
+@use '../components/FDateInput/FDateInput';
+@use '../components/FTimePicker/FTimePicker';
+@use '../components/FColorPicker/FColorPicker';
+
+// ---- data ----
+@use '../components/FVirtualScroll/FVirtualScroll';
+@use '../components/FInfiniteScroll/FInfiniteScroll';
+@use '../components/FSparkline/FSparkline';
+@use '../components/FDataTable/FDataTable';
+@use '../components/FDataIterator/FDataIterator';
+@use '../components/FTreeview/FTreeview';
+
 @use '../services/services';

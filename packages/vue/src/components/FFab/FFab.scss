@@ -1,0 +1,160 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // The FAB is an FBtn in a positioning shell. Everything here is about *where*
+  // the button floats and how big the circle is — the button's own look (variant,
+  // colour, ripple, loader) is FBtn's business and is left untouched.
+  .fui-fab {
+    // Diameter of the circle / height of the extended pill.
+    --fui-fab-size: 56px;
+    // Icon size inside the circle.
+    --fui-fab-icon: 1.35rem;
+    // Distance from the edge it is anchored to.
+    --fui-fab-inset: var(--fui-space-5);
+
+    display: inline-flex;
+    vertical-align: middle;
+
+    &--size-x-small {
+      --fui-fab-size: 36px;
+      --fui-fab-icon: 0.95rem;
+    }
+    &--size-small {
+      --fui-fab-size: 46px;
+      --fui-fab-icon: 1.15rem;
+    }
+    &--size-large {
+      --fui-fab-size: 68px;
+      --fui-fab-icon: 1.6rem;
+    }
+    &--size-x-large {
+      --fui-fab-size: 80px;
+      --fui-fab-icon: 1.85rem;
+    }
+
+    &__container {
+      display: inline-flex;
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    // The button: a soft, generously rounded circle that rests on a coloured
+    // shadow — the Vuesax "floating" feel rather than Material's hard disc.
+    .fui-btn {
+      min-width: var(--fui-fab-size);
+      height: var(--fui-fab-size);
+      border-radius: var(--fui-radius-circle);
+      box-shadow: var(--fui-elevation-6);
+    }
+    .fui-btn.fui-btn--variant-elevated:hover,
+    .fui-btn.fui-btn--variant-flat:hover {
+      box-shadow: var(--fui-elevation-10);
+    }
+    .fui-btn .fui-icon {
+      font-size: var(--fui-fab-icon);
+    }
+
+    // Extended: a pill that keeps the FAB height but grows with its label.
+    &--extended .fui-btn {
+      min-width: 0;
+      border-radius: var(--fui-radius-pill);
+    }
+    &--extended .fui-btn .fui-btn__content {
+      padding-inline: var(--fui-space-5);
+    }
+    &--extended .fui-btn .fui-icon {
+      font-size: 1.15em;
+    }
+
+    // ---- Positioned modes --------------------------------------------------
+    // A positioned FAB is a zero-height strip pinned to one edge; the container
+    // is then placed at the start/end of it. Anchoring the strip (rather than the
+    // button) is what lets the <f-layout> inline styles slot it in beside a
+    // sidebar without the button itself having to know about the layout.
+    &--positioned {
+      display: block;
+      left: 0;
+      right: 0;
+      height: 0;
+      pointer-events: none;
+    }
+    &--fixed {
+      position: fixed;
+      z-index: var(--fui-z-navbar);
+    }
+    &--absolute {
+      position: absolute;
+      z-index: 4;
+    }
+    // In a layout the inline `layoutItemStyles` own position/inset/width.
+    &--in-layout {
+      pointer-events: none;
+    }
+
+    &--positioned.fui-fab--top {
+      top: 0;
+    }
+    &--positioned.fui-fab--bottom {
+      bottom: 0;
+    }
+
+    &--positioned &__container {
+      position: absolute;
+      pointer-events: auto;
+    }
+    &--positioned.fui-fab--top &__container {
+      top: var(--fui-fab-inset);
+    }
+    &--positioned.fui-fab--bottom &__container {
+      bottom: var(--fui-fab-inset);
+    }
+    &--positioned.fui-fab--start &__container {
+      left: var(--fui-fab-inset);
+    }
+    &--positioned.fui-fab--end &__container {
+      right: var(--fui-fab-inset);
+    }
+
+    // Straddle the edge — the classic "FAB half-sunk into the app bar" look.
+    &--offset.fui-fab--top &__container {
+      transform: translateY(-50%);
+    }
+    &--offset.fui-fab--bottom &__container {
+      transform: translateY(50%);
+    }
+  }
+
+  // Enter/leave: the button pops in from nothing and spins away.
+  .fui-fab-enter-active,
+  .fui-fab-leave-active {
+    transition:
+      transform settings.$fui-transition-duration settings.$fui-transition-timing,
+      opacity settings.$fui-transition-duration settings.$fui-transition-timing;
+  }
+  .fui-fab-enter-from,
+  .fui-fab-leave-to {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+
+  @media (max-width: 600px) {
+    .fui-fab {
+      --fui-fab-inset: var(--fui-space-4);
+    }
+  }
+
+  // Static fallback: the FAB simply appears, no pop, no rotation.
+  @media (prefers-reduced-motion: reduce) {
+    .fui-fab__container {
+      transition: none;
+    }
+    .fui-fab-enter-active,
+    .fui-fab-leave-active {
+      transition: opacity 0.01ms;
+    }
+    .fui-fab-enter-from,
+    .fui-fab-leave-to {
+      transform: none;
+    }
+  }
+}

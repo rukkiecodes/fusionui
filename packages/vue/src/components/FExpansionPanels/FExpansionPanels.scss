@@ -1,0 +1,156 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-expansion-panels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fui-space-3);
+    width: 100%;
+
+    &--disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    // ---- accordion: panels sit flush and share one rounded shell ----
+    &--accordion {
+      gap: 0;
+      border-radius: var(--fui-radius-md);
+      overflow: hidden;
+      box-shadow: settings.$fui-shadow-rest;
+    }
+
+    &--accordion .fui-expansion-panel {
+      border-radius: 0;
+      box-shadow: none;
+
+      & + .fui-expansion-panel {
+        border-top: 1px solid rgba(var(--fui-border-color), var(--fui-border-opacity));
+      }
+    }
+
+    // ---- inset: the open panel steps in ----
+    &--inset .fui-expansion-panel {
+      width: 100%;
+      margin-inline: auto;
+      transition: width settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    &--inset .fui-expansion-panel--active {
+      width: calc(100% - var(--fui-space-6));
+    }
+
+    // ---- popout: the open panel steps out ----
+    &--popout .fui-expansion-panel {
+      width: calc(100% - var(--fui-space-6));
+      margin-inline: auto;
+      transition: width settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    &--popout .fui-expansion-panel--active {
+      width: 100%;
+    }
+  }
+
+  .fui-expansion-panel {
+    position: relative;
+    border-radius: var(--fui-radius-md);
+    background-color: rgb(var(--fui-theme-surface));
+    box-shadow: settings.$fui-shadow-rest;
+    transition: box-shadow settings.$fui-transition-duration settings.$fui-transition-timing;
+
+    &--active {
+      box-shadow: var(--fui-elevation-4);
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--fui-space-3);
+      width: 100%;
+      padding: var(--fui-space-4) var(--fui-space-5);
+      border: none;
+      border-radius: inherit;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: settings.$fui-font-weight-medium;
+      text-align: start;
+      cursor: pointer;
+      transition: background-color settings.$fui-transition-fast;
+
+      &:hover {
+        background-color: rgba(var(--fui-theme-on-surface), var(--fui-hover-opacity));
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: -2px;
+      }
+    }
+
+    &__label {
+      min-width: 0;
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      color: rgba(var(--fui-theme-on-surface), 0.6);
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    &--active &__icon {
+      transform: rotate(180deg);
+      color: rgb(var(--fui-theme-primary));
+    }
+
+    // Height animation without JS measurement (grid-template-rows 0fr -> 1fr),
+    // the same technique FCollapse uses.
+    &__wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows settings.$fui-transition-duration
+        settings.$fui-transition-timing;
+    }
+
+    &--active &__wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    &__text {
+      overflow: hidden;
+      padding: 0 var(--fui-space-5);
+      color: rgba(var(--fui-theme-on-surface), 0.75);
+    }
+
+    &--active &__text {
+      padding: 0 var(--fui-space-5) var(--fui-space-4);
+    }
+
+    &--disabled &__title,
+    &--readonly &__title {
+      cursor: default;
+    }
+
+    &--disabled {
+      opacity: 0.6;
+    }
+
+    &--readonly &__title:hover {
+      background-color: transparent;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-expansion-panel,
+    .fui-expansion-panel__title,
+    .fui-expansion-panel__icon,
+    .fui-expansion-panel__wrapper,
+    .fui-expansion-panels--inset .fui-expansion-panel,
+    .fui-expansion-panels--popout .fui-expansion-panel {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use '../../styles/tools';
+@use './shared';
+
+@include tools.layer('components') {
+  .fui-autocomplete {
+    @include shared.combobox(fui-autocomplete-in);
+  }
+
+  @include shared.combobox-keyframes(fui-autocomplete-in);
+}

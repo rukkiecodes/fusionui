@@ -1,0 +1,22 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // The theme class the component also carries (`fui-theme--light` /
+  // `fui-theme--dark` / any custom theme) re-declares the `--fui-theme-*`
+  // custom properties for this subtree — that is the whole scoping mechanism.
+  // This block only makes the scope visible when asked to.
+  .fui-theme-provider {
+    &--with-background {
+      background-color: rgb(var(--fui-theme-background));
+      color: rgb(var(--fui-theme-on-background));
+      transition: settings.$fui-transition;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-theme-provider--with-background {
+      transition: none;
+    }
+  }
+}

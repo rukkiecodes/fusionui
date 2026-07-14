@@ -1,0 +1,204 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-time-picker {
+    --fui-time-picker-color: var(--fui-theme-primary);
+    --fui-time-picker-on: var(--fui-theme-on-primary);
+    display: inline-flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-width: 200px;
+    padding: var(--fui-space-3);
+    font-family: var(--fui-font-family);
+    font-size: 0.83rem;
+    background-color: rgb(var(--fui-theme-surface));
+    border: 1px solid rgba(var(--fui-theme-on-background), 0.08);
+    border-radius: var(--fui-radius-lg);
+    box-shadow: var(--fui-elevation-2);
+
+    &__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--fui-space-3);
+      padding: 0 var(--fui-space-1) var(--fui-space-3);
+    }
+
+    &__title {
+      color: rgba(var(--fui-theme-on-surface), 0.55);
+      font-size: 0.75rem;
+    }
+
+    // The chosen time, always spelled out — the selection is never signalled by
+    // colour alone.
+    &__value {
+      color: rgb(var(--fui-time-picker-color));
+      font-family: var(--fui-font-family-mono);
+      font-size: 0.95rem;
+      font-weight: settings.$fui-font-weight-bold;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    &__columns {
+      display: flex;
+      gap: var(--fui-space-2);
+    }
+
+    &__column {
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      min-width: 52px;
+    }
+
+    &__column-label {
+      padding-bottom: var(--fui-space-1);
+      color: rgba(var(--fui-theme-on-surface), 0.45);
+      font-size: 0.65rem;
+      font-weight: settings.$fui-font-weight-medium;
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    &__list {
+      position: relative; // offsetTop of an option is measured against this box
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      height: 172px;
+      padding: var(--fui-space-1);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background-color: rgb(var(--fui-surface-2));
+      border: 2px solid transparent;
+      border-radius: var(--fui-radius-md);
+      scrollbar-width: thin;
+      transition: settings.$fui-transition-fast;
+
+      &:focus-visible {
+        border-color: rgba(var(--fui-time-picker-color), 0.45);
+        outline: none;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--fui-theme-on-surface), 0.18);
+        border-radius: var(--fui-radius-pill);
+      }
+    }
+
+    &__option {
+      flex: 0 0 auto;
+      padding: 5px 0;
+      color: rgba(var(--fui-theme-on-surface), 0.75);
+      font-family: var(--fui-font-family-mono);
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      border-radius: var(--fui-radius-sm);
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover {
+        background-color: rgba(var(--fui-time-picker-color), 0.1);
+        color: rgb(var(--fui-time-picker-color));
+      }
+
+      // Selected reads as a filled pill AND as the header value text — colour is
+      // never the only channel.
+      &--selected {
+        background-color: rgb(var(--fui-time-picker-color));
+        color: rgb(var(--fui-time-picker-on));
+        font-weight: settings.$fui-font-weight-bold;
+        box-shadow: var(--fui-shadow-rest);
+
+        &:hover {
+          background-color: rgb(var(--fui-time-picker-color));
+          color: rgb(var(--fui-time-picker-on));
+        }
+      }
+
+      &--disabled {
+        color: rgba(var(--fui-theme-on-surface), 0.28);
+        cursor: not-allowed;
+        text-decoration: line-through;
+
+        &:hover {
+          background-color: transparent;
+          color: rgba(var(--fui-theme-on-surface), 0.28);
+        }
+      }
+    }
+
+    // The focused column gets a ring on its *selected* option so keyboard users
+    // can see which column they are driving.
+    &__list:focus-visible &__option--selected {
+      outline: 2px solid rgba(var(--fui-time-picker-color), 0.45);
+      outline-offset: 2px;
+    }
+
+    &--disabled {
+      opacity: var(--fui-disabled-opacity, 0.5);
+      pointer-events: none;
+    }
+
+    &--readonly &__option {
+      cursor: default;
+    }
+  }
+
+  // ---------- FTimeInput ----------
+  .fui-time-input {
+    display: flex;
+    width: 100%;
+
+    &__field {
+      width: 100%;
+    }
+
+    &__toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: rgba(var(--fui-theme-on-surface), 0.5);
+      background: transparent;
+      border: none;
+      border-radius: var(--fui-radius-sm);
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover,
+      &:focus-visible {
+        color: rgb(var(--fui-field-color));
+      }
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    // Inside the menu the picker sits on the menu's own surface.
+    &__menu {
+      padding: 0;
+    }
+    &__menu .fui-time-picker {
+      border: none;
+      border-radius: inherit;
+      box-shadow: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-time-picker__list,
+    .fui-time-picker__option,
+    .fui-time-input__toggle {
+      transition: none;
+    }
+  }
+}

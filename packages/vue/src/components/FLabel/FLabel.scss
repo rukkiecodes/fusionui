@@ -1,0 +1,38 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--fui-space-1);
+    font-family: var(--fui-font-family);
+    font-size: 0.78rem;
+    font-weight: settings.$fui-font-weight-medium;
+    letter-spacing: settings.$fui-letter-spacing;
+    line-height: 1.4;
+    color: rgba(var(--fui-theme-on-surface), 0.75);
+    transition: settings.$fui-transition-fast;
+
+    // A label bound to a control is already clickable natively; `clickable`
+    // only advertises it (pointer + accent on hover), the way Vuesax does.
+    &--clickable {
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(var(--fui-theme-primary));
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-label {
+      transition: none;
+    }
+  }
+}

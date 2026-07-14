@@ -1,0 +1,100 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  // FOverlay centres its content in the viewport; a bottom sheet drops it to the
+  // bottom edge instead. Compound with `.fui-overlay__content` so this wins no
+  // matter which order the two stylesheets land in the bundle.
+  .fui-overlay__content.fui-bottom-sheet {
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+    // Teleported to <body>, outside .fui-application — restate the font so the
+    // sheet doesn't fall back to the browser's serif default.
+    font-family: var(--fui-font-family, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  }
+
+  .fui-bottom-sheet__sheet {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    // Only the top corners round — the sheet is fused to the bottom of the screen.
+    border-radius: var(--fui-radius-lg) var(--fui-radius-lg) 0 0;
+    background-color: rgb(var(--fui-theme-surface));
+    color: rgb(var(--fui-theme-on-surface));
+    box-shadow: var(--fui-elevation-12);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  // The grab affordance. Purely decorative — the sheet is dismissed with the
+  // scrim, Escape, or whatever the content offers.
+  .fui-bottom-sheet__handle {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 4px;
+    margin: var(--fui-space-3) auto var(--fui-space-1);
+    border-radius: var(--fui-radius-pill);
+    background-color: rgba(var(--fui-theme-on-surface), 0.18);
+  }
+
+  .fui-bottom-sheet__content {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: var(--fui-space-4) var(--fui-space-5) var(--fui-space-5);
+  }
+
+  .fui-bottom-sheet__sheet--scrollable .fui-bottom-sheet__content {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  // Inset: the sheet lifts off the edges into a floating, fully rounded card —
+  // the softer Vuesax reading of the pattern.
+  .fui-overlay__content.fui-bottom-sheet--inset {
+    padding: var(--fui-space-3);
+  }
+  .fui-bottom-sheet--inset .fui-bottom-sheet__sheet {
+    border-radius: var(--fui-radius-lg);
+
+    @include tools.media-breakpoint-up('sm') {
+      max-width: 640px;
+    }
+  }
+
+  // ---- Transition ---------------------------------------------------------
+  // The scrim fades (FOverlay owns that); the sheet itself slides up from below.
+  .fui-bottom-sheet-enter-active,
+  .fui-bottom-sheet-leave-active {
+    transition: opacity 0.2s settings.$fui-transition-timing;
+
+    .fui-bottom-sheet__sheet {
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.25, 1);
+    }
+  }
+  .fui-bottom-sheet-leave-active .fui-bottom-sheet__sheet {
+    transition: transform 0.2s settings.$fui-transition-timing;
+  }
+  .fui-bottom-sheet-enter-from,
+  .fui-bottom-sheet-leave-to {
+    opacity: 0;
+
+    .fui-bottom-sheet__sheet {
+      transform: translateY(100%);
+    }
+  }
+
+  // Static fallback: the sheet fades in place, no travel.
+  @media (prefers-reduced-motion: reduce) {
+    .fui-bottom-sheet-enter-active .fui-bottom-sheet__sheet,
+    .fui-bottom-sheet-leave-active .fui-bottom-sheet__sheet {
+      transition: none;
+    }
+    .fui-bottom-sheet-enter-from .fui-bottom-sheet__sheet,
+    .fui-bottom-sheet-leave-to .fui-bottom-sheet__sheet {
+      transform: none;
+    }
+  }
+}

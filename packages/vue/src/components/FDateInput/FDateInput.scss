@@ -1,0 +1,21 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-date-input {
+    &__field {
+      cursor: pointer;
+    }
+
+    // The text element is read-only — the calendar owns the value — so it should
+    // still look and behave like an input, not like disabled text.
+    &__el {
+      cursor: inherit;
+      caret-color: transparent;
+    }
+
+    &__menu {
+      padding: 0;
+    }
+  }
+}

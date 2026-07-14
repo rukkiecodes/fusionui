@@ -1,0 +1,296 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-data-table {
+    position: relative;
+    background: rgb(var(--fui-theme-surface));
+    border-radius: var(--fui-radius-lg);
+    color: rgb(var(--fui-theme-on-surface));
+
+    &__wrapper {
+      overflow: auto;
+      border-radius: inherit;
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: start;
+    }
+
+    // ---- Header ------------------------------------------------------------
+    &__th {
+      position: relative;
+      padding: var(--fui-space-3) var(--fui-space-4);
+      font-size: 0.8rem;
+      font-weight: settings.$fui-font-weight-medium;
+      white-space: nowrap;
+      text-align: start;
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      background: rgb(var(--fui-surface-2));
+      border-bottom: thin solid var(--fui-border-color);
+    }
+
+    &__th--action {
+      width: 1%;
+    }
+
+    // The whole header is a button so the column is keyboard-sortable.
+    &__sort-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--fui-space-1);
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      border-radius: var(--fui-radius-sm);
+
+      &:hover {
+        color: rgb(var(--fui-theme-on-surface));
+      }
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+      }
+    }
+
+    &__sort-icon {
+      opacity: 0;
+      transition: settings.$fui-transition-fast;
+    }
+
+    &__th--sortable:hover &__sort-icon {
+      opacity: var(--fui-medium-emphasis-opacity);
+    }
+
+    &__th--sorted {
+      color: rgb(var(--fui-theme-on-surface));
+
+      .fui-data-table__sort-icon {
+        opacity: 1;
+      }
+    }
+
+    // The 1-2-3 badge shown when several columns are sorted at once.
+    &__sort-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      font-size: 0.65rem;
+      border-radius: var(--fui-radius-pill);
+      background: rgba(var(--fui-theme-primary), 0.16);
+      color: rgb(var(--fui-theme-primary));
+    }
+
+    // ---- Body --------------------------------------------------------------
+    &__td {
+      padding: var(--fui-space-3) var(--fui-space-4);
+      border-bottom: thin solid var(--fui-border-color);
+      vertical-align: middle;
+    }
+
+    &__td--action {
+      width: 1%;
+      white-space: nowrap;
+    }
+
+    &__cell--center {
+      text-align: center;
+    }
+    &__cell--end {
+      text-align: end;
+    }
+
+    &__row {
+      transition: background-color settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &--clickable {
+        cursor: pointer;
+      }
+      &--selected {
+        background: rgba(var(--fui-theme-primary), 0.08);
+      }
+    }
+
+    &--hover &__row:hover {
+      background: rgba(var(--fui-theme-on-surface), var(--fui-hover-opacity));
+    }
+
+    &--striped &__tbody &__row:nth-of-type(odd) {
+      background: rgb(var(--fui-surface-2));
+    }
+
+    // Last row shouldn't draw a rule against the footer.
+    &__tbody tr:last-child &__td {
+      border-bottom: 0;
+    }
+
+    // ---- Pinned columns ----------------------------------------------------
+    &__cell--fixed {
+      position: sticky;
+      z-index: 1;
+      background: rgb(var(--fui-theme-surface));
+    }
+
+    &__th.fui-data-table__cell--fixed {
+      z-index: 2;
+      background: rgb(var(--fui-surface-2));
+    }
+
+    &__cell--last-fixed {
+      box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.14);
+    }
+
+    &--fixed-header &__thead &__th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    // ---- Grouping ----------------------------------------------------------
+    &__group-row {
+      background: rgb(var(--fui-surface-2));
+    }
+
+    &__group-cell {
+      padding: var(--fui-space-2) var(--fui-space-4);
+      border-bottom: thin solid var(--fui-border-color);
+    }
+
+    &__group-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--fui-space-2);
+      font: inherit;
+      font-weight: settings.$fui-font-weight-medium;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      border-radius: var(--fui-radius-sm);
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-theme-primary));
+        outline-offset: 2px;
+      }
+    }
+
+    &__group-icon {
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &--open {
+        transform: rotate(90deg);
+      }
+    }
+
+    &__group-key {
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+    }
+
+    &__group-count {
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      font-weight: settings.$fui-font-weight-regular;
+    }
+
+    // ---- Expansion ---------------------------------------------------------
+    &__expand-btn {
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &--open {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__expanded-cell {
+      padding: 0;
+      border-bottom: thin solid var(--fui-border-color);
+      background: rgb(var(--fui-surface-2));
+    }
+
+    &__expanded-content {
+      padding: var(--fui-space-4);
+    }
+
+    // ---- Loading / empty ---------------------------------------------------
+    &__progress-cell {
+      padding: 0;
+      border: 0;
+      height: 0;
+    }
+
+    &__progress {
+      // Sits flush under the header without pushing the rows down.
+      position: relative;
+      top: -2px;
+    }
+
+    &__message {
+      padding: var(--fui-space-7) var(--fui-space-4);
+      text-align: center;
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+    }
+
+    // ---- Footer ------------------------------------------------------------
+    &__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: var(--fui-space-4);
+      padding: var(--fui-space-3) var(--fui-space-4);
+      border-top: thin solid var(--fui-border-color);
+      font-size: 0.85rem;
+    }
+
+    &__per-page {
+      display: flex;
+      align-items: center;
+      gap: var(--fui-space-2);
+    }
+
+    &__per-page-label {
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      white-space: nowrap;
+    }
+
+    &__per-page-select {
+      width: 96px;
+    }
+
+    &__range {
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+      white-space: nowrap;
+    }
+
+    // Visually hidden, but still announced — used for the checkbox labels.
+    &__sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-data-table__row,
+    .fui-data-table__sort-icon,
+    .fui-data-table__group-icon,
+    .fui-data-table__expand-btn {
+      transition: none;
+    }
+  }
+}

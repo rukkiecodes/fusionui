@@ -1,0 +1,52 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-chip-group {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    // Keep the focus ring of the first/last chip from being clipped by the rail.
+    padding: var(--fui-space-1);
+    margin: calc(var(--fui-space-1) * -1);
+
+    // A thin rail — the scrollbar itself stays out of the way until hovered.
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--fui-border-color), 0.24) transparent;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(var(--fui-border-color), 0.24);
+      border-radius: var(--fui-radius-pill);
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      gap: var(--fui-space-2);
+      flex: 1 0 auto;
+    }
+
+    > .fui-chip-group__content > .fui-chip {
+      scroll-snap-align: start;
+    }
+
+    &--column {
+      overflow-x: visible;
+      scroll-snap-type: none;
+
+      > .fui-chip-group__content {
+        flex-wrap: wrap;
+        row-gap: var(--fui-space-2);
+      }
+    }
+  }
+}

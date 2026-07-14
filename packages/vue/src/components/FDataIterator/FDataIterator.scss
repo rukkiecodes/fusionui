@@ -1,0 +1,23 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-data-iterator {
+    position: relative;
+
+    &--loading {
+      // Keep the current items visible but clearly stale while the next page loads.
+      opacity: var(--fui-medium-emphasis-opacity);
+      pointer-events: none;
+    }
+
+    &__loader,
+    &__no-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--fui-space-6);
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
+    }
+  }
+}

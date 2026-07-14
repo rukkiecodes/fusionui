@@ -1,0 +1,71 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-infinite-scroll {
+    display: flex;
+    position: relative;
+    max-width: 100%;
+    overscroll-behavior: contain;
+    border-radius: var(--fui-radius-md);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--fui-theme-on-surface), 0.2) transparent;
+
+    &--vertical {
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    &--horizontal {
+      flex-direction: row;
+      overflow-x: auto;
+    }
+
+    // The observed edge marker. It has no size of its own — the observer's
+    // rootMargin is what decides how early a load fires.
+    &__sentinel {
+      flex: 0 0 auto;
+      pointer-events: none;
+    }
+
+    &--vertical &__sentinel {
+      width: 100%;
+      height: 1px;
+    }
+
+    &--horizontal &__sentinel {
+      width: 1px;
+      align-self: stretch;
+    }
+
+    // Status region: spinner, "no more items", the error, or the Load more button.
+    &__side {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: var(--fui-space-2);
+      padding: var(--fui-space-4);
+      transition: padding settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &:empty {
+        padding: 0;
+      }
+    }
+
+    &__message {
+      color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.68));
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-infinite-scroll {
+      scroll-behavior: auto;
+
+      &__side {
+        transition: none;
+      }
+    }
+  }
+}

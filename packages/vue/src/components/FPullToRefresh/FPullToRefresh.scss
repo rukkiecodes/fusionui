@@ -1,0 +1,66 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-pull-to-refresh {
+    position: relative;
+
+    // Only the enabled (touch) variant clips and owns the vertical gesture;
+    // otherwise the component is a transparent wrapper.
+    &--active {
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    &__pull-down {
+      position: absolute;
+      inset-inline: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // Springs back when the finger lifts; follows it exactly while touching.
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &--touching {
+        transition: none;
+      }
+    }
+
+    &__indicator {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--fui-radius-circle);
+      background-color: rgb(var(--fui-theme-surface));
+      color: rgb(var(--fui-theme-primary));
+      box-shadow: var(--fui-elevation-3);
+    }
+
+    &__arrow {
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+    }
+
+    // Past the threshold the chevron flips: "let go and I'll refresh".
+    &__arrow--flipped {
+      transform: rotate(180deg);
+    }
+
+    &__content {
+      transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+
+      &--touching {
+        transition: none;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-pull-to-refresh__pull-down,
+    .fui-pull-to-refresh__content,
+    .fui-pull-to-refresh__arrow {
+      transition: none;
+    }
+  }
+}

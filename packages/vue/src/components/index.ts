@@ -59,6 +59,45 @@ import { FAuthLayout } from './FAuthLayout'
 import { FOptionCard } from './FOptionCard'
 import { FLayout } from './FLayout'
 import { FMain } from './FMain'
+import { FSheet } from './FSheet'
+import { FKbd } from './FKbd'
+import { FCode } from './FCode'
+import { FBanner, FBannerText, FBannerActions } from './FBanner'
+import { FFooter } from './FFooter'
+import { FSkeleton } from './FSkeleton'
+import { FTimeline, FTimelineItem } from './FTimeline'
+import { FLabel } from './FLabel'
+import { FMessages } from './FMessages'
+import { FCounter } from './FCounter'
+import { FThemeProvider } from './FThemeProvider'
+import { FDefaultsProvider } from './FDefaultsProvider'
+import { FIconBtn } from './FIconBtn'
+import { FItemGroup, FItem } from './FItemGroup'
+import { FBtnToggle } from './FBtnToggle'
+import { FChipGroup } from './FChipGroup'
+import { FWindow, FWindowItem } from './FWindow'
+import { FSlideGroup, FSlideGroupItem } from './FSlideGroup'
+import { FExpansionPanels, FExpansionPanel } from './FExpansionPanels'
+import { FPullToRefresh } from './FPullToRefresh'
+import { FFab } from './FFab'
+import { FSpeedDial } from './FSpeedDial'
+import { FBottomNav, FBottomNavItem } from './FBottomNav'
+import { FBottomSheet } from './FBottomSheet'
+import { FAutocomplete } from './FAutocomplete'
+import { FCombobox } from './FCombobox'
+import { FConfirmEdit } from './FConfirmEdit'
+import { FVirtualScroll } from './FVirtualScroll'
+import { FInfiniteScroll } from './FInfiniteScroll'
+import { FSparkline } from './FSparkline'
+import { FDataTable, FDataTableServer } from './FDataTable'
+import { FDataIterator } from './FDataIterator'
+// FTreeviewItem is intentionally not imported: it is re-exported for typing by
+// `export * from './FTreeview'`, but never registered globally (see the map below).
+import { FTreeview } from './FTreeview'
+import { FDatePicker } from './FDatePicker'
+import { FDateInput } from './FDateInput'
+import { FTimePicker, FTimeInput } from './FTimePicker'
+import { FColorPicker, FColorInput } from './FColorPicker'
 
 export * from './FIcon'
 export * from './FBtn'
@@ -120,6 +159,43 @@ export * from './FAuthLayout'
 export * from './FOptionCard'
 export * from './FLayout'
 export * from './FMain'
+export * from './FSheet'
+export * from './FKbd'
+export * from './FCode'
+export * from './FBanner'
+export * from './FFooter'
+export * from './FSkeleton'
+export * from './FTimeline'
+export * from './FLabel'
+export * from './FMessages'
+export * from './FCounter'
+export * from './FThemeProvider'
+export * from './FDefaultsProvider'
+export * from './FIconBtn'
+export * from './FItemGroup'
+export * from './FBtnToggle'
+export * from './FChipGroup'
+export * from './FWindow'
+export * from './FSlideGroup'
+export * from './FExpansionPanels'
+export * from './FPullToRefresh'
+export * from './FFab'
+export * from './FSpeedDial'
+export * from './FBottomNav'
+export * from './FBottomSheet'
+export * from './FAutocomplete'
+export * from './FCombobox'
+export * from './FConfirmEdit'
+export * from './FVirtualScroll'
+export * from './FInfiniteScroll'
+export * from './FSparkline'
+export * from './FDataTable'
+export * from './FDataIterator'
+export * from './FTreeview'
+export * from './FDatePicker'
+export * from './FDateInput'
+export * from './FTimePicker'
+export * from './FColorPicker'
 
 /** Built-in components registered globally by createFusionUI().install. */
 export const components: Record<string, Component> = {
@@ -199,4 +275,61 @@ export const components: Record<string, Component> = {
   FOptionCard,
   FLayout,
   FMain,
+  // ---- surfaces & typography ----
+  FSheet,
+  FKbd,
+  FCode,
+  FBanner,
+  FBannerText,
+  FBannerActions,
+  FFooter,
+  FSkeleton,
+  FTimeline,
+  FTimelineItem,
+  // ---- form chrome & providers ----
+  FLabel,
+  FMessages,
+  FCounter,
+  FThemeProvider,
+  FDefaultsProvider,
+  FIconBtn,
+  // ---- selection groups ----
+  FItemGroup,
+  FItem,
+  FBtnToggle,
+  FChipGroup,
+  FWindow,
+  FWindowItem,
+  FSlideGroup,
+  FSlideGroupItem,
+  FExpansionPanels,
+  FExpansionPanel,
+  // ---- actions & navigation ----
+  FPullToRefresh,
+  FFab,
+  FSpeedDial,
+  FBottomNav,
+  FBottomNavItem,
+  FBottomSheet,
+  // ---- advanced inputs ----
+  FAutocomplete,
+  FCombobox,
+  FConfirmEdit,
+  FDatePicker,
+  FDateInput,
+  FTimePicker,
+  FTimeInput,
+  FColorPicker,
+  FColorInput,
+  // ---- data ----
+  FVirtualScroll,
+  FInfiniteScroll,
+  FSparkline,
+  FDataTable,
+  FDataTableServer,
+  FDataIterator,
+  FTreeview,
+  // FTreeviewItem is deliberately NOT registered globally: it is an internal
+  // recursion detail of FTreeview (its `node` prop is not meant to be built by
+  // hand) and it throws without the tree's context. It stays exported for typing.
 }

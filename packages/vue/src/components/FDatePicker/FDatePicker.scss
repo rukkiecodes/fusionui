@@ -1,0 +1,356 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-date-picker {
+    --fui-date-picker-color: var(--fui-theme-primary);
+    --fui-date-picker-on: var(--fui-theme-on-primary);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 300px;
+    max-width: 100%;
+    padding: var(--fui-space-2);
+    font-family: var(--fui-font-family);
+    font-size: 0.83rem;
+    color: rgb(var(--fui-theme-on-surface));
+    background-color: rgb(var(--fui-theme-surface));
+    border-radius: var(--fui-radius-lg);
+    box-shadow: var(--fui-elevation-2);
+
+    &--show-week {
+      width: 336px;
+    }
+
+    &--disabled {
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    // ---- header -------------------------------------------------------
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--fui-space-1);
+      padding: var(--fui-space-3) var(--fui-space-3) var(--fui-space-2);
+    }
+
+    &__title {
+      font-size: 0.7rem;
+      font-weight: settings.$fui-font-weight-bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(var(--fui-theme-on-surface), 0.45);
+    }
+
+    &__header-text {
+      font-size: 1.35rem;
+      font-weight: settings.$fui-font-weight-bold;
+      line-height: 1.25;
+      color: rgb(var(--fui-date-picker-color));
+    }
+
+    // ---- controls -----------------------------------------------------
+    &__controls {
+      display: flex;
+      align-items: center;
+      gap: var(--fui-space-1);
+      padding: var(--fui-space-1) var(--fui-space-1) var(--fui-space-2);
+    }
+
+    &__period {
+      display: flex;
+      align-items: center;
+      gap: var(--fui-space-1);
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    &__period-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 5px var(--fui-space-2);
+      border: 0;
+      border-radius: var(--fui-radius-pill);
+      background-color: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: settings.$fui-font-weight-medium;
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      .fui-icon {
+        transition: transform settings.$fui-transition-duration settings.$fui-transition-timing;
+      }
+
+      &:hover {
+        background-color: rgba(var(--fui-theme-on-surface), 0.06);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-date-picker-color));
+        outline-offset: 2px;
+      }
+
+      &--active {
+        color: rgb(var(--fui-date-picker-color));
+        background-color: rgba(var(--fui-date-picker-color), 0.1);
+
+        .fui-icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+    }
+
+    &__nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: var(--fui-radius-circle);
+      background-color: transparent;
+      color: rgba(var(--fui-theme-on-surface), 0.7);
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(var(--fui-theme-on-surface), 0.08);
+        color: rgb(var(--fui-theme-on-surface));
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-date-picker-color));
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+    }
+
+    // ---- day grid -----------------------------------------------------
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 0 var(--fui-space-1) var(--fui-space-1);
+    }
+
+    &__row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+
+    &--show-week &__row {
+      grid-template-columns: 30px repeat(7, 1fr);
+    }
+
+    &__weekday {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      font-size: 0.72rem;
+      font-weight: settings.$fui-font-weight-bold;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(var(--fui-theme-on-surface), 0.42);
+    }
+
+    &__week-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-variant-numeric: tabular-nums;
+      color: rgba(var(--fui-theme-on-surface), 0.32);
+    }
+
+    &__cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+
+      // Range fill: a full-bleed band behind the day so consecutive days join up.
+      &--in-range::before {
+        content: '';
+        position: absolute;
+        inset: 3px -1px;
+        background-color: rgba(var(--fui-date-picker-color), 0.12);
+      }
+
+      &--range-start::before {
+        border-start-start-radius: var(--fui-radius-pill);
+        border-end-start-radius: var(--fui-radius-pill);
+        inset-inline-start: 3px;
+      }
+
+      &--range-end::before {
+        border-start-end-radius: var(--fui-radius-pill);
+        border-end-end-radius: var(--fui-radius-pill);
+        inset-inline-end: 3px;
+      }
+    }
+
+    &__day {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 0;
+      border-radius: var(--fui-radius-circle);
+      background-color: transparent;
+      color: rgba(var(--fui-theme-on-surface), 0.88);
+      font: inherit;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover {
+        background-color: rgba(var(--fui-theme-on-surface), 0.08);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-date-picker-color));
+        outline-offset: 1px;
+      }
+
+      &--adjacent {
+        color: rgba(var(--fui-theme-on-surface), 0.32);
+      }
+
+      &--today {
+        box-shadow: inset 0 0 0 1px rgba(var(--fui-date-picker-color), 0.6);
+        font-weight: settings.$fui-font-weight-bold;
+      }
+
+      &--selected,
+      &--selected:hover {
+        background-color: rgb(var(--fui-date-picker-color));
+        color: rgb(var(--fui-date-picker-on));
+        font-weight: settings.$fui-font-weight-bold;
+        box-shadow: 0 4px 12px -4px rgba(var(--fui-date-picker-color), 0.7);
+      }
+
+      &--disabled {
+        color: rgba(var(--fui-theme-on-surface), 0.24);
+        cursor: default;
+        text-decoration: line-through;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    // ---- month / year panels -------------------------------------------
+    &__months,
+    &__years {
+      padding: 0 var(--fui-space-1) var(--fui-space-1);
+    }
+
+    &__months {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--fui-space-1);
+    }
+
+    &__years {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--fui-space-1);
+      max-height: 244px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(var(--fui-theme-on-surface), 0.22) transparent;
+    }
+
+    &__month-btn,
+    &__year-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      border: 0;
+      border-radius: var(--fui-radius-md);
+      background-color: transparent;
+      color: rgba(var(--fui-theme-on-surface), 0.88);
+      font: inherit;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      transition: settings.$fui-transition-fast;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(var(--fui-theme-on-surface), 0.08);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgb(var(--fui-date-picker-color));
+        outline-offset: 2px;
+      }
+
+      &--active {
+        background-color: rgb(var(--fui-date-picker-color));
+        color: rgb(var(--fui-date-picker-on));
+        font-weight: settings.$fui-font-weight-bold;
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+    }
+
+    // ---- misc -----------------------------------------------------------
+    &__actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--fui-space-2);
+      padding: var(--fui-space-2) var(--fui-space-2) var(--fui-space-1);
+    }
+
+    // Visually hidden, still announced.
+    &__live {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-date-picker__day,
+    .fui-date-picker__nav,
+    .fui-date-picker__period-btn,
+    .fui-date-picker__period-btn .fui-icon,
+    .fui-date-picker__month-btn,
+    .fui-date-picker__year-btn {
+      transition: none;
+    }
+  }
+}

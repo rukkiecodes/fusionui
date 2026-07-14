@@ -1,0 +1,12 @@
+@use '../../styles/tools';
+@use '../FAutocomplete/shared';
+
+// FCombobox is FAutocomplete plus free text — same markup, same styles, its own
+// BEM namespace. The rules come from the shared mixin so the two never drift.
+@include tools.layer('components') {
+  .fui-combobox {
+    @include shared.combobox(fui-combobox-in);
+  }
+
+  @include shared.combobox-keyframes(fui-combobox-in);
+}

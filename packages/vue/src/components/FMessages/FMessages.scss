@@ -1,0 +1,52 @@
+@use '../../styles/settings';
+@use '../../styles/tools';
+
+@include tools.layer('components') {
+  .fui-messages {
+    position: relative;
+    min-height: 18px;
+    padding: 0 var(--fui-space-2);
+    font-family: var(--fui-font-family);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: rgba(var(--fui-theme-on-surface), 0.55);
+
+    &__message {
+      // Wrapping is the point: a validation message must never be clipped.
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+
+  // Slide-y + fade, matching the field's hint reveal. The leaving message is
+  // taken out of flow so the ones that remain don't jump.
+  .fui-messages-transition-enter-active,
+  .fui-messages-transition-leave-active,
+  .fui-messages-transition-move {
+    transition: settings.$fui-transition-fast;
+  }
+
+  .fui-messages-transition-enter-from,
+  .fui-messages-transition-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  .fui-messages-transition-leave-active {
+    position: absolute;
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fui-messages-transition-enter-active,
+    .fui-messages-transition-leave-active,
+    .fui-messages-transition-move {
+      transition: none;
+    }
+
+    .fui-messages-transition-enter-from,
+    .fui-messages-transition-leave-to {
+      transform: none;
+    }
+  }
+}
