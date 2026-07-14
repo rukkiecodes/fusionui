@@ -92,6 +92,31 @@ The `shadow` variant floats the field on a soft shadow.
 
 <Example file="input/shadow" />
 
+## Textarea
+
+`FTextarea` is the multi-line sibling. It wears the same `FField` chrome — label,
+color, hint, validation — and `rows` sets its initial height.
+
+<Example file="input/textarea" />
+
+## Number
+
+`FInputNumber` is a stepper: an input flanked by decrement / increment buttons.
+`min`, `max` and `step` clamp the value, and the buttons disable themselves at
+each end of the range.
+
+<Example file="input/number" />
+
 ## API
 
 <ApiTable name="FInput" />
+
+<ApiTable name="FTextarea" />
+
+<ApiTable name="FInputNumber" />
+
+`FField` is the chrome every field is built on — the label, hint, message and
+validation surface. You rarely render it directly, but its props are forwarded by
+`FInput`, `FSelect` and `FTextarea`.
+
+<ApiTable name="FField" />

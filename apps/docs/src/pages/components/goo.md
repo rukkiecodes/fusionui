@@ -78,3 +78,7 @@ field settles once to a resting frame and never animates.
 | `pointer`   | `0`           | cursor force: `+` attracts, `−` repels, `0` off                                 |
 | `cell`      | `8`           | marching-squares grid px (contour mode); lower = smoother + slower              |
 | `color`     | theme primary | fill of the goo                                                                 |
+
+## API
+
+<ApiTable name="FGoo" />

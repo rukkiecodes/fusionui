@@ -179,6 +179,9 @@
   "events": {
     "update:modelValue": {
       "description": ""
+    },
+    "update:search": {
+      "description": ""
     }
   },
   "slots": {}

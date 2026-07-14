@@ -4,6 +4,9 @@
 @include tools.layer('components') {
   .fui-calendar {
     --fui-calendar-event: var(--fui-theme-primary);
+    // The accent tints today and the focused day. It is deliberately NOT the
+    // calendar's `color`, so day numbers keep normal on-surface contrast.
+    --fui-calendar-accent: var(--fui-theme-primary);
 
     display: flex;
     flex-direction: column;
@@ -65,7 +68,7 @@
       }
 
       &--selected {
-        background: rgba(var(--fui-theme-primary), 0.06);
+        background: rgba(var(--fui-calendar-accent), 0.06);
       }
     }
 
@@ -96,7 +99,7 @@
     }
 
     &__day--today &__day-label {
-      background: rgb(var(--fui-theme-primary));
+      background: rgb(var(--fui-calendar-accent));
       color: rgb(var(--fui-theme-on-primary));
       font-weight: settings.$fui-font-weight-bold;
     }

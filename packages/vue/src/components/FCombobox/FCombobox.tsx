@@ -14,10 +14,16 @@ export const makeFComboboxProps = propsFactory({ ...comboboxSharedProps }, 'FCom
 export const FCombobox = genericComponent()({
   name: 'FCombobox',
   props: makeFComboboxProps(),
-  emits: { 'update:modelValue': (_v: unknown) => true },
-  setup(props: any, { slots }: any) {
+  emits: {
+    'update:modelValue': (_v: unknown) => true,
+    /** The typed query — what a server-side filter listens to. */
+    'update:search': (_v: string) => true,
+  },
+  setup(props: any, { slots, emit }: any) {
     provideTheme(props)
-    const core = useCombobox(props, { allowCustom: true })
+    // `emit` has to reach the core, or the `update:search` watcher inside it
+    // fires into nothing and the event never leaves the component.
+    const core = useCombobox(props, { allowCustom: true, emit })
 
     useRender(() => renderCombobox('fui-combobox', props, slots, core))
   },

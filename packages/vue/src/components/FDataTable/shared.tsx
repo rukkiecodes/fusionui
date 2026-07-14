@@ -2,6 +2,7 @@ import { computed, h } from 'vue'
 import type { ComputedRef, PropType, VNode, VNodeChild } from 'vue'
 import { propsFactory } from '../../util/propsFactory'
 import { convertToUnit, getUid } from '../../util/helpers'
+import { getCurrentInstance } from '../../util/getCurrentInstance'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps } from '../../composables/theme'
 import { FIcon } from '../FIcon'
@@ -107,6 +108,10 @@ export function useDataTableRender(
   // Stable per-instance id so `aria-controls` on an expand toggle can point at
   // the detail row it reveals. Generated in setup → identical on server + client.
   const uid = getUid()
+
+  // Both tables declare `click:row`; this render module is where a row is
+  // actually clicked, so it needs the instance to emit from.
+  const vm = getCurrentInstance('useDataTableRender')
 
   const columnCount = computed(
     () => columns.value.length + (props.showSelect ? 1 : 0) + (props.showExpand ? 1 : 0)
@@ -353,8 +358,12 @@ export function useDataTableRender(
             'fui-data-table__row--clickable': props.expandOnClick && props.showExpand,
           },
         ],
-        onClick:
-          props.expandOnClick && props.showExpand ? () => expansion.toggleExpand(item) : undefined,
+        onClick: (event: MouseEvent) => {
+          // `expand-on-click` is the table acting on the click itself; the event
+          // is emitted either way so a consumer can route, open a drawer, etc.
+          if (props.expandOnClick && props.showExpand) expansion.toggleExpand(item)
+          vm.emit('click:row', event, { item: item.raw })
+        },
       },
       [
         props.showSelect ? renderSelectCell(item) : null,

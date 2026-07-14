@@ -74,9 +74,17 @@ Below the navbar's breakpoint, drop `permanent` from the sidebar and drive its
 
 ## API
 
-`FLayout` and `FMain` are zero-config coordinators — they take no props of their
-own; just nest them. The layout behaviour is controlled by the navbar and sidebar
-props below.
+`FLayout` and `FMain` are near zero-config coordinators — beyond the shared
+`class` / `style` (and a `theme` on the layout) they take nothing; just nest them.
+The layout behaviour is controlled by the navbar and sidebar props below.
+
+### FLayout
+
+<ApiTable name="FLayout" />
+
+### FMain
+
+<ApiTable name="FMain" />
 
 ### FNavbar
 

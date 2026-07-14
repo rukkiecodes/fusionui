@@ -129,3 +129,5 @@ Set `href` to render the button as an anchor.
 ## API
 
 <ApiTable name="FBtn" />
+
+<ApiTable name="FBtnGroup" />

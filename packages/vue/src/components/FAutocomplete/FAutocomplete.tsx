@@ -13,10 +13,16 @@ export const makeFAutocompleteProps = propsFactory({ ...comboboxSharedProps }, '
 export const FAutocomplete = genericComponent()({
   name: 'FAutocomplete',
   props: makeFAutocompleteProps(),
-  emits: { 'update:modelValue': (_v: unknown) => true },
-  setup(props: any, { slots }: any) {
+  emits: {
+    'update:modelValue': (_v: unknown) => true,
+    /** The typed query — what a server-side filter listens to. */
+    'update:search': (_v: string) => true,
+  },
+  setup(props: any, { slots, emit }: any) {
     provideTheme(props)
-    const core = useCombobox(props)
+    // `emit` has to reach the core, or the `update:search` watcher inside it
+    // fires into nothing and the event never leaves the component.
+    const core = useCombobox(props, { emit })
 
     useRender(() => renderCombobox('fui-autocomplete', props, slots, core))
   },

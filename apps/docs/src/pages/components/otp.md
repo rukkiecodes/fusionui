@@ -64,3 +64,10 @@ the code.
 | `autofocus`  | `boolean`          | `false`     | Focus the first box on mount.          |
 
 Emits `update:modelValue` and `complete` (with the full code).
+
+### Full reference
+
+Generated from the component source — includes the shared `class` / `style` and
+theme props the table above leaves out.
+
+<ApiTable name="FOtp" />

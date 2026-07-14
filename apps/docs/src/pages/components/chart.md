@@ -74,3 +74,10 @@ pie slices sum to exactly 2π, and stacks sum to their column totals.
 - **Stats** — `extent`, `bin`, `linearRegression`
 - **Axis** — `axisTicks`, `bandAxisTicks`
 - **Path** — `pathToSvg`, `pathToCanvas`, `PathBuilder`
+
+## API
+
+The engine above is a set of plain imports. `FLineChart`, the reference component
+built on it, takes these props.
+
+<ApiTable name="FLineChart" />

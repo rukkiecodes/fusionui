@@ -77,3 +77,18 @@ updated the same way.
 
 `open(options)` returns `{ id, close(), update(patch) }`. `useLoading()` also
 exposes `close(id)` and `closeAll()`.
+
+## Progress components
+
+When you want a spinner or bar **in the layout** rather than over it, reach for
+`FProgressCircular` and `FProgressLinear` directly. Both take a 0–100
+`model-value` for a determinate reading, or `indeterminate` while the duration is
+unknown. `FProgressLinear` also accepts a `height` and a `striped` fill.
+
+<Example file="loading/progress-components" />
+
+## API
+
+<ApiTable name="FProgressCircular" />
+
+<ApiTable name="FProgressLinear" />

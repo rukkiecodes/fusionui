@@ -77,3 +77,7 @@ Liquid glass is opt-in, never default-on. Reach for it where a surface floats
 over content and depth reads as quality: a scrolled navbar, a sidebar overlay, a
 dialog or popup, a floating toolbar. Use it sparingly — overused, it cheapens the
 identity.
+
+## API
+
+<ApiTable name="FGlass" />

@@ -44,3 +44,5 @@ Pass `icon` to show a custom mark inside the circle when selected.
 ## API
 
 <ApiTable name="FRadio" />
+
+<ApiTable name="FRadioGroup" />

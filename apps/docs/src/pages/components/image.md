@@ -80,3 +80,10 @@ fallback. `FImage` also emits `load` and `error`.
 | ------- | ------- | -------------------------------------- |
 | `load`  | `src`   | Fired when the image finishes loading. |
 | `error` | `src`   | Fired when the image fails to load.    |
+
+### Full reference
+
+Generated from the component source — includes the shared `class` / `style` and
+dimension props the tables above leave out.
+
+<ApiTable name="FImage" />

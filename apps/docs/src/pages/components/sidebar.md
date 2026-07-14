@@ -57,3 +57,7 @@ Without `permanent`, the drawer is hidden by default and shown via
 ## API
 
 <ApiTable name="FSidebar" />
+
+<ApiTable name="FSidebarItem" />
+
+<ApiTable name="FSidebarGroup" />

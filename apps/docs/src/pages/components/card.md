@@ -118,6 +118,14 @@ Header, square media, the action row, then the caption.
 | `buttons`      | A footer row of actions below the text.               |
 | `default`      | Free-form content appended inside the card.           |
 
+## Sub-components
+
+If you'd rather compose the card from tags than from named slots, `FCardTitle`,
+`FCardText` and `FCardButtons` are the same regions as standalone components —
+drop them straight into the card's default slot.
+
+<Example file="card/sections" />
+
 ## Group
 
 Wrap several cards in `FCardGroup` for a horizontal, swipeable carousel with
@@ -128,3 +136,11 @@ previous / next controls.
 ## API
 
 <ApiTable name="FCard" />
+
+<ApiTable name="FCardGroup" />
+
+<ApiTable name="FCardTitle" />
+
+<ApiTable name="FCardText" />
+
+<ApiTable name="FCardButtons" />

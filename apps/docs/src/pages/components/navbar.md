@@ -67,3 +67,7 @@ page.
 ## API
 
 <ApiTable name="FNavbar" />
+
+<ApiTable name="FNavbarItem" />
+
+<ApiTable name="FNavbarGroup" />

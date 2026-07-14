@@ -104,3 +104,12 @@ for an image slide, or drop arbitrary content in its default slot.
 | `alt`      | `string`  | `''`    | Alt text.                                          |
 | `cover`    | `boolean` | `true`  | Crop to fill the slide vs. fit inside it.          |
 | `eager`    | `boolean` | `false` | Load the image immediately.                        |
+
+### Full reference
+
+Generated from the component source — includes the shared `class` / `style` and
+theme props the tables above leave out.
+
+<ApiTable name="FCarousel" />
+
+<ApiTable name="FCarouselItem" />

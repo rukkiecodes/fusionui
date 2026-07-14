@@ -270,13 +270,11 @@ export const FCalendar = genericComponent()({
       h(
         'div',
         {
-          class: [
-            'fui-calendar',
-            `fui-calendar--${view.value}`,
-            `text-${props.color}`,
-            props.class,
-          ],
-          style: props.style,
+          class: ['fui-calendar', `fui-calendar--${view.value}`, props.class],
+          // `color` is an *accent* — it tints today's pill and the focused day.
+          // It must not become the calendar's text colour, or every day number
+          // inherits it and the grid turns into a wall of primary-coloured digits.
+          style: [{ '--fui-calendar-accent': `var(--fui-theme-${props.color})` }, props.style],
         },
         [
           props.hideHeader
