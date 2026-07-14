@@ -1,7 +1,14 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Vault = /*#__PURE__*/ createFeatherIcon('vault', [
-  ['rect', { x: '3', y: '4', width: '18', height: '16', rx: '2' }],
-  ['circle', { cx: '11', cy: '12', r: '5' }],
-  ['path', { d: 'M11 7v2M11 15v2M6 12h2M14 12h2M8 9l1 1M13 14l1 1' }],
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2' }],
+  ['circle', { cx: '7.5', cy: '7.5', r: '.5', fill: 'currentColor' }],
+  ['path', { d: 'm7.9 7.9 2.7 2.7' }],
+  ['circle', { cx: '16.5', cy: '7.5', r: '.5', fill: 'currentColor' }],
+  ['path', { d: 'm13.4 10.6 2.7-2.7' }],
+  ['circle', { cx: '7.5', cy: '16.5', r: '.5', fill: 'currentColor' }],
+  ['path', { d: 'm7.9 16.1 2.7-2.7' }],
+  ['circle', { cx: '16.5', cy: '16.5', r: '.5', fill: 'currentColor' }],
+  ['path', { d: 'm13.4 13.4 2.7 2.7' }],
+  ['circle', { cx: '12', cy: '12', r: '2' }],
 ])

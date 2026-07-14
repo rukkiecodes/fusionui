@@ -1,5 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Flame = /*#__PURE__*/ createFeatherIcon('flame', [
-  ['path', { d: 'M12 2c3 4 6 7 6 11a6 6 0 0 1-12 0c0-2 1-4 3-5 0 2 1 3 2 3 1-2-1-5 1-9z' }],
+  [
+    'path',
+    {
+      d: 'M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4',
+    },
+  ],
 ])

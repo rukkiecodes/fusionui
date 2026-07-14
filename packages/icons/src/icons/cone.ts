@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Cone = /*#__PURE__*/ createFeatherIcon('cone', [
-  ['path', { d: 'M12 3 5 18h14z' }],
-  ['ellipse', { cx: '12', cy: '18', rx: '7', ry: '2.5' }],
+  ['path', { d: 'm20.9 18.55-8-15.98a1 1 0 0 0-1.8 0l-8 15.98' }],
+  ['ellipse', { cx: '12', cy: '19', rx: '9', ry: '3' }],
 ])

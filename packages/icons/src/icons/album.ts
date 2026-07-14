@@ -1,7 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Album = /*#__PURE__*/ createFeatherIcon('album', [
-  ['rect', { x: '3', y: '3', width: '18', height: '18', rx: '2' }],
-  ['circle', { cx: '12', cy: '12', r: '4' }],
-  ['circle', { cx: '12', cy: '12', r: '1' }],
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2', ry: '2' }],
+  ['polyline', { points: '11 3 11 11 14 8 17 11 17 3' }],
 ])

@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const ToggleRight = /*#__PURE__*/ createFeatherIcon('toggle-right', [
-  ['rect', { x: '1', y: '5', width: '22', height: '14', rx: '7', ry: '7' }],
-  ['circle', { cx: '16', cy: '12', r: '3' }],
+  ['circle', { cx: '15', cy: '12', r: '3' }],
+  ['rect', { width: '20', height: '14', x: '2', y: '5', rx: '7' }],
 ])

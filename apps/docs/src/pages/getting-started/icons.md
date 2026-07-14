@@ -1,13 +1,13 @@
 # Icons
 
-FusionUI ships its own set of clean, stroke-based **FusionUI icons** — a large,
-growing library that renders through `<f-icon>` and tree-shakes down to just the
-icons you actually use. More icons land over time, so the catalogue keeps growing.
+FusionUI ships **2,270** clean, stroke-based icons — one visual language (24×24,
+2px stroke, round caps, `currentColor`) that renders through `<f-icon>` and
+tree-shakes down to just the icons you actually use.
 
 ## Browse the icons
 
-Search by name and page through the full set. Click any icon to copy its
-`<f-icon>` snippet.
+Search by name **or meaning** — typing `bin` or `delete` finds `trash` — and
+page through the full set. Click any icon to copy its `<f-icon>` snippet.
 
 <IconGallery />
 

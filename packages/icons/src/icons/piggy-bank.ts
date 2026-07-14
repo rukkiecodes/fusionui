@@ -3,8 +3,10 @@ import { createFeatherIcon } from '../runtime'
 export const PiggyBank = /*#__PURE__*/ createFeatherIcon('piggy-bank', [
   [
     'path',
-    { d: 'M3 11c0-3 3-5 7-5 4 0 7 2 8 4l3 1v4l-2 1-1 3h-3l-1-2h-4l-1 2H4l-1-4a4 4 0 0 1 0-4z' },
+    {
+      d: 'M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z',
+    },
   ],
-  ['circle', { cx: '8', cy: '10', r: '.5' }],
-  ['path', { d: 'M11 6V4' }],
+  ['path', { d: 'M16 10h.01' }],
+  ['path', { d: 'M2 8v1a2 2 0 0 0 2 2h1' }],
 ])

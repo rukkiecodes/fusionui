@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const WavesVertical = /*#__PURE__*/ createFeatherIcon('waves-vertical', [
+  ['path', { d: 'M12 2q2 2.5 0 5t0 5 0 5 0 5' }],
+  ['path', { d: 'M19 2q2 2.5 0 5t0 5 0 5 0 5' }],
+  ['path', { d: 'M5 2q2 2.5 0 5t0 5 0 5 0 5' }],
+])

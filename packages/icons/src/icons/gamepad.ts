@@ -1,8 +1,9 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Gamepad = /*#__PURE__*/ createFeatherIcon('gamepad', [
-  ['rect', { x: '2', y: '7', width: '20', height: '10', rx: '5' }],
-  ['path', { d: 'M7 11v2M6 12h2' }],
-  ['circle', { cx: '16', cy: '11', r: '1' }],
-  ['circle', { cx: '18', cy: '13', r: '1' }],
+  ['line', { x1: '6', x2: '10', y1: '12', y2: '12' }],
+  ['line', { x1: '8', x2: '8', y1: '10', y2: '14' }],
+  ['line', { x1: '15', x2: '15.01', y1: '13', y2: '13' }],
+  ['line', { x1: '18', x2: '18.01', y1: '11', y2: '11' }],
+  ['rect', { width: '20', height: '12', x: '2', y: '6', rx: '2' }],
 ])

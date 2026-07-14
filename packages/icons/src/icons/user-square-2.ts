@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const UserSquare2 = /*#__PURE__*/ createFeatherIcon('user-square-2', [
+  ['path', { d: 'M18 21a6 6 0 0 0-12 0' }],
+  ['circle', { cx: '12', cy: '11', r: '4' }],
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2' }],
+])

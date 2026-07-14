@@ -1,7 +1,11 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Fence = /*#__PURE__*/ createFeatherIcon('fence', [
-  ['path', { d: 'M4 9l2-2 2 2M10 9l2-2 2 2M16 9l2-2 2 2' }],
-  ['path', { d: 'M6 7v14M12 7v14M18 7v14' }],
-  ['path', { d: 'M3 12h18M3 16h18' }],
+  ['path', { d: 'M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z' }],
+  ['path', { d: 'M6 8h4' }],
+  ['path', { d: 'M6 18h4' }],
+  ['path', { d: 'm12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z' }],
+  ['path', { d: 'M14 8h4' }],
+  ['path', { d: 'M14 18h4' }],
+  ['path', { d: 'm20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z' }],
 ])

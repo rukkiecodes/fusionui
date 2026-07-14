@@ -1,0 +1,10 @@
+import { createFeatherIcon } from '../runtime'
+
+export const ChartNoAxesColumnDecreasing = /*#__PURE__*/ createFeatherIcon(
+  'chart-no-axes-column-decreasing',
+  [
+    ['path', { d: 'M5 21V3' }],
+    ['path', { d: 'M12 21V9' }],
+    ['path', { d: 'M19 21v-6' }],
+  ]
+)

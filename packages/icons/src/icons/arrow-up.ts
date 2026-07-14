@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const ArrowUp = /*#__PURE__*/ createFeatherIcon('arrow-up', [
-  ['line', { x1: '12', y1: '19', x2: '12', y2: '5' }],
-  ['polyline', { points: '5 12 12 5 19 12' }],
+  ['path', { d: 'm5 12 7-7 7 7' }],
+  ['path', { d: 'M12 19V5' }],
 ])

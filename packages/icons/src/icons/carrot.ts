@@ -1,6 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Carrot = /*#__PURE__*/ createFeatherIcon('carrot', [
-  ['path', { d: 'M17 5c-1-1-3-1-4 0L5 13c-1 1-1 3 0 4s3 1 4 0l8-8c1-1 1-3 0-4z' }],
-  ['path', { d: 'M17 5l3-3M17 5c1-2 3-2 4-1M17 5c-2 1-2 3-1 4' }],
+  ['path', { d: 'M15 16a1 1 0 0 0-7-7q-4 4-5.987 12.385a.5.5 0 0 0 .602.602Q11 20 15 16l-3-3' }],
+  ['path', { d: 'M15 9q4 4 7 0-3-4-7 0 4-4 0-7-4 3 0 7' }],
+  ['path', { d: 'm8 15-2.58-2.58' }],
 ])

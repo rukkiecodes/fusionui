@@ -1,10 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const BatteryCharging = /*#__PURE__*/ createFeatherIcon('battery-charging', [
-  [
-    'path',
-    { d: 'M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19' },
-  ],
-  ['line', { x1: '23', y1: '13', x2: '23', y2: '11' }],
-  ['polyline', { points: '11 6 7 12 13 12 9 18' }],
+  ['path', { d: 'm11 7-3 5h4l-3 5' }],
+  ['path', { d: 'M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935' }],
+  ['path', { d: 'M22 14v-4' }],
+  ['path', { d: 'M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936' }],
 ])

@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const MinusSquare = /*#__PURE__*/ createFeatherIcon('minus-square', [
-  ['rect', { x: '3', y: '3', width: '18', height: '18', rx: '2', ry: '2' }],
-  ['line', { x1: '8', y1: '12', x2: '16', y2: '12' }],
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2' }],
+  ['path', { d: 'M8 12h8' }],
 ])

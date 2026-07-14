@@ -1,7 +1,14 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Microchip = /*#__PURE__*/ createFeatherIcon('microchip', [
-  ['rect', { x: '6', y: '6', width: '12', height: '12', rx: '1' }],
-  ['rect', { x: '9', y: '9', width: '6', height: '6' }],
-  ['path', { d: 'M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4' }],
+  ['path', { d: 'M10 12h4' }],
+  ['path', { d: 'M10 17h4' }],
+  ['path', { d: 'M10 7h4' }],
+  ['path', { d: 'M18 12h2' }],
+  ['path', { d: 'M18 18h2' }],
+  ['path', { d: 'M18 6h2' }],
+  ['path', { d: 'M4 12h2' }],
+  ['path', { d: 'M4 18h2' }],
+  ['path', { d: 'M4 6h2' }],
+  ['rect', { x: '6', y: '2', width: '12', height: '20', rx: '2' }],
 ])

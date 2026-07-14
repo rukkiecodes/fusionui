@@ -1,8 +1,13 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Projector = /*#__PURE__*/ createFeatherIcon('projector', [
-  ['rect', { x: '2', y: '8', width: '16', height: '9', rx: '2' }],
-  ['circle', { cx: '9', cy: '12', r: '2.5' }],
-  ['circle', { cx: '15', cy: '11', r: '1' }],
-  ['path', { d: 'M18 12h2l2-2v6l-2-2h-2' }],
+  ['path', { d: 'M5 7 3 5' }],
+  ['path', { d: 'M9 6V3' }],
+  ['path', { d: 'm13 7 2-2' }],
+  ['circle', { cx: '9', cy: '13', r: '3' }],
+  [
+    'path',
+    { d: 'M11.83 12H20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2.17' },
+  ],
+  ['path', { d: 'M16 16h2' }],
 ])

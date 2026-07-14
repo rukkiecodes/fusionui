@@ -1,7 +1,9 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Backpack = /*#__PURE__*/ createFeatherIcon('backpack', [
-  ['rect', { x: '5', y: '6', width: '14', height: '15', rx: '3' }],
-  ['path', { d: 'M9 6V4a3 3 0 0 1 6 0v2' }],
-  ['path', { d: 'M9 11h6M8 14h8v4' }],
+  ['path', { d: 'M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z' }],
+  ['path', { d: 'M8 10h8' }],
+  ['path', { d: 'M8 18h8' }],
+  ['path', { d: 'M8 22v-6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v6' }],
+  ['path', { d: 'M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2' }],
 ])

@@ -13,7 +13,7 @@ library mobile carries, and the mileage that only real usage buys.
 | `@rukkiecodes/vue`    | 0.15.0  | The Vue 3 component library — 118 components          |
 | `@rukkiecodes/tokens` | 0.2.0   | The single token source → CSS, SASS, TS, React Native |
 | `@rukkiecodes/native` | 0.1.1   | Expo + React Native components and liquid glass       |
-| `@rukkiecodes/icons`  | 0.1.0   | 737 tree-shakeable Feather-style icons                |
+| `@rukkiecodes/icons`  | 0.1.0   | 2,270 tree-shakeable icons                            |
 | `create-fusionui`     | 0.1.2   | The `npm create fusionui` scaffolder                  |
 
 **Every one of these is below 1.0, and that is meaningful.** Under semver, a

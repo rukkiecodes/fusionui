@@ -1,9 +1,14 @@
 # @rukkiecodes/icons
 
-The default [Feather](https://feathericons.com)-style icon set for **FusionUI** —
-737 tree-shakeable icon components (the original Feather set plus 450 extended
-icons) plus an opt-in string-name set and the semantic aliases used by FusionUI
+The default icon set for **FusionUI** — **2,270 tree-shakeable icon components**
+plus an opt-in string-name set and the semantic aliases used by FusionUI
 components.
+
+Icons whose names exist in [Lucide](https://lucide.dev) are Lucide's drawings
+(ISC-licensed; many derived in turn from [Feather](https://feathericons.com),
+MIT); the rest are original FusionUI icons. All share one visual language —
+24×24, 2px stroke, round caps, `currentColor`. See [`NOTICE`](./NOTICE) for the
+upstream licences.
 
 ## Usage
 
@@ -25,7 +30,7 @@ import { Bell, Search } from '@rukkiecodes/icons'
 ### By string name (convenience, opt-in)
 
 Register the full set to use string names like `<f-icon icon="bell" />`. This
-pulls all 737 icons, so prefer the tree-shakeable form for app bundles:
+pulls all 2,270 icons, so prefer the tree-shakeable form for app bundles:
 
 ```ts
 import { createFusionUI } from '@rukkiecodes/vue'

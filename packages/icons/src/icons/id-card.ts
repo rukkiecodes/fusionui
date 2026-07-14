@@ -1,8 +1,9 @@
 import { createFeatherIcon } from '../runtime'
 
 export const IdCard = /*#__PURE__*/ createFeatherIcon('id-card', [
+  ['path', { d: 'M16 10h2' }],
+  ['path', { d: 'M16 14h2' }],
+  ['path', { d: 'M6.17 15a3 3 0 0 1 5.66 0' }],
+  ['circle', { cx: '9', cy: '11', r: '2' }],
   ['rect', { x: '2', y: '5', width: '20', height: '14', rx: '2' }],
-  ['circle', { cx: '8', cy: '11', r: '2' }],
-  ['path', { d: 'M5 16a3 3 0 0 1 6 0' }],
-  ['path', { d: 'M14 10h4M14 13h3' }],
 ])

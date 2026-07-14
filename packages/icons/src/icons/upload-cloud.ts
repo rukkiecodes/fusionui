@@ -1,8 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const UploadCloud = /*#__PURE__*/ createFeatherIcon('upload-cloud', [
-  ['polyline', { points: '16 16 12 12 8 16' }],
-  ['line', { x1: '12', y1: '12', x2: '12', y2: '21' }],
-  ['path', { d: 'M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3' }],
-  ['polyline', { points: '16 16 12 12 8 16' }],
+  ['path', { d: 'M12 13v8' }],
+  ['path', { d: 'M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242' }],
+  ['path', { d: 'm8 17 4-4 4 4' }],
 ])

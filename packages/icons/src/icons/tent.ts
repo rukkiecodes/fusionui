@@ -1,7 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Tent = /*#__PURE__*/ createFeatherIcon('tent', [
-  ['path', { d: 'M3 20 12 4l9 16' }],
-  ['path', { d: 'M12 4v16' }],
-  ['path', { d: 'M8 20l4-5 4 5' }],
+  ['path', { d: 'M3.5 21 14 3' }],
+  ['path', { d: 'M20.5 21 10 3' }],
+  ['path', { d: 'M15.5 21 12 15l-3.5 6' }],
+  ['path', { d: 'M2 21h20' }],
 ])

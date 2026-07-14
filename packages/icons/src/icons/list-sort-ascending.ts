@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const ListSortAscending = /*#__PURE__*/ createFeatherIcon('list-sort-ascending', [
+  ['path', { d: 'M3 19h18' }],
+  ['path', { d: 'M15 12H3' }],
+  ['path', { d: 'M9 5H3' }],
+])

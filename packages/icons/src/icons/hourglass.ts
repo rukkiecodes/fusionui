@@ -1,6 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Hourglass = /*#__PURE__*/ createFeatherIcon('hourglass', [
-  ['path', { d: 'M6 2h12M6 22h12' }],
-  ['path', { d: 'M6 2c0 5 6 7 6 10s-6 5-6 10M18 2c0 5-6 7-6 10s6 5 6 10' }],
+  ['path', { d: 'M5 22h14' }],
+  ['path', { d: 'M5 2h14' }],
+  ['path', { d: 'M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22' }],
+  ['path', { d: 'M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2' }],
 ])

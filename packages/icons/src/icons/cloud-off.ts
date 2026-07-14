@@ -1,11 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const CloudOff = /*#__PURE__*/ createFeatherIcon('cloud-off', [
-  [
-    'path',
-    {
-      d: 'M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3',
-    },
-  ],
-  ['line', { x1: '1', y1: '1', x2: '23', y2: '23' }],
+  ['path', { d: 'M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057' }],
+  ['path', { d: 'M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78' }],
+  ['path', { d: 'm2 2 20 20' }],
 ])

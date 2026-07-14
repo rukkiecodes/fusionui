@@ -1,7 +1,12 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Haze = /*#__PURE__*/ createFeatherIcon('haze', [
-  ['circle', { cx: '12', cy: '10', r: '4' }],
-  ['line', { x1: '4', y1: '17', x2: '20', y2: '17' }],
-  ['line', { x1: '6', y1: '21', x2: '18', y2: '21' }],
+  ['path', { d: 'm5.2 6.2 1.4 1.4' }],
+  ['path', { d: 'M2 13h2' }],
+  ['path', { d: 'M20 13h2' }],
+  ['path', { d: 'm17.4 7.6 1.4-1.4' }],
+  ['path', { d: 'M22 17H2' }],
+  ['path', { d: 'M22 21H2' }],
+  ['path', { d: 'M16 13a4 4 0 0 0-8 0' }],
+  ['path', { d: 'M12 5V2.5' }],
 ])

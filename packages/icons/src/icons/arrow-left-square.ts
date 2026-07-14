@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const ArrowLeftSquare = /*#__PURE__*/ createFeatherIcon('arrow-left-square', [
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2' }],
+  ['path', { d: 'm12 8-4 4 4 4' }],
+  ['path', { d: 'M16 12H8' }],
+])

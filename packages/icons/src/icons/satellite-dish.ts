@@ -1,8 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const SatelliteDish = /*#__PURE__*/ createFeatherIcon('satellite-dish', [
-  ['path', { d: 'M4 20a12 12 0 0 1 12-12' }],
-  ['circle', { cx: '6', cy: '18', r: '2' }],
-  ['path', { d: 'M16 8 12 4M16 8a5 5 0 0 0-5-5' }],
-  ['path', { d: 'M6 18l5-6' }],
+  ['path', { d: 'M4 10a7.31 7.31 0 0 0 10 10Z' }],
+  ['path', { d: 'm9 15 3-3' }],
+  ['path', { d: 'M17 13a6 6 0 0 0-6-6' }],
+  ['path', { d: 'M21 13A10 10 0 0 0 11 3' }],
 ])

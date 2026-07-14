@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const DownloadCloud = /*#__PURE__*/ createFeatherIcon('download-cloud', [
-  ['polyline', { points: '8 17 12 21 16 17' }],
-  ['line', { x1: '12', y1: '12', x2: '12', y2: '21' }],
-  ['path', { d: 'M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29' }],
+  ['path', { d: 'M12 13v8l-4-4' }],
+  ['path', { d: 'm12 21 4-4' }],
+  ['path', { d: 'M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284' }],
 ])

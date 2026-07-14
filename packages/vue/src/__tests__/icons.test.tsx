@@ -37,9 +37,13 @@ describe('FIcon', () => {
 
   it('resolves a $ alias to the mapped feather icon', () => {
     const wrapper = mountIcon({ icon: '$close' })
-    // close → X icon = two lines
-    expect(wrapper.find('svg').exists()).toBe(true)
-    expect(wrapper.findAll('line').length).toBe(2)
+    // close → the X icon: an svg with two crossing strokes. Assert on the
+    // resolved icon (its class) and stroke count, not the tag used to draw them —
+    // the same glyph is a pair of <line>s or <path>s depending on the source.
+    const svg = wrapper.find('svg')
+    expect(svg.exists()).toBe(true)
+    expect(svg.classes()).toContain('fui-feather-x')
+    expect(wrapper.findAll('line, path').length).toBe(2)
   })
 
   it('applies size as a font-size and supports tokens', () => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { iconNames } from '@rukkiecodes/icons'
+import { iconNames, iconTags } from '@rukkiecodes/icons'
 
 const PER_PAGE = 200
 
@@ -8,9 +8,18 @@ const query = ref('')
 const page = ref(1)
 const copied = ref('')
 
+// Name first, then synonyms: typing "bin" or "delete" should surface `trash`.
+// Name matches rank above tag-only matches so the obvious hit stays on top.
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
-  return q ? iconNames.filter(n => n.includes(q)) : iconNames
+  if (!q) return iconNames
+  const byName: string[] = []
+  const byTag: string[] = []
+  for (const n of iconNames) {
+    if (n.includes(q)) byName.push(n)
+    else if (iconTags[n]?.some(t => t.includes(q))) byTag.push(n)
+  }
+  return [...byName, ...byTag]
 })
 const pageCount = computed(() => Math.max(1, Math.ceil(filtered.value.length / PER_PAGE)))
 const pageItems = computed(() =>

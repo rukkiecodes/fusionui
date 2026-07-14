@@ -1,5 +1,5 @@
 import { createFeatherIcon } from '../runtime'
 
 export const ChevronLeft = /*#__PURE__*/ createFeatherIcon('chevron-left', [
-  ['polyline', { points: '15 18 9 12 15 6' }],
+  ['path', { d: 'm15 18-6-6 6-6' }],
 ])

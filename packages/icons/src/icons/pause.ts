@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Pause = /*#__PURE__*/ createFeatherIcon('pause', [
-  ['rect', { x: '6', y: '4', width: '4', height: '16' }],
-  ['rect', { x: '14', y: '4', width: '4', height: '16' }],
+  ['rect', { x: '14', y: '3', width: '5', height: '18', rx: '1' }],
+  ['rect', { x: '5', y: '3', width: '5', height: '18', rx: '1' }],
 ])

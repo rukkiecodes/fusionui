@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const ArrowDownLeft = /*#__PURE__*/ createFeatherIcon('arrow-down-left', [
-  ['line', { x1: '17', y1: '7', x2: '7', y2: '17' }],
-  ['polyline', { points: '17 17 7 17 7 7' }],
+  ['path', { d: 'M17 7 7 17' }],
+  ['path', { d: 'M17 17H7V7' }],
 ])

@@ -1,6 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Diamond = /*#__PURE__*/ createFeatherIcon('diamond', [
-  ['path', { d: 'M5 9 8 4h8l3 5-7 12z' }],
-  ['path', { d: 'M5 9h14M9 4l-1 5 4 12 4-12-1-5' }],
+  [
+    'path',
+    {
+      d: 'M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z',
+    },
+  ],
 ])

@@ -1,6 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Euro = /*#__PURE__*/ createFeatherIcon('euro', [
-  ['circle', { cx: '12', cy: '12', r: '9' }],
-  ['path', { d: 'M16 8a4 4 0 1 0 0 8M6 11h6M6 14h5' }],
+  ['path', { d: 'M4 10h12' }],
+  ['path', { d: 'M4 14h9' }],
+  [
+    'path',
+    { d: 'M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2' },
+  ],
 ])

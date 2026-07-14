@@ -1,8 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Coins = /*#__PURE__*/ createFeatherIcon('coins', [
-  ['ellipse', { cx: '9', cy: '7', rx: '6', ry: '3' }],
-  ['path', { d: 'M3 7v4c0 1.7 2.7 3 6 3' }],
-  ['ellipse', { cx: '15', cy: '13', rx: '6', ry: '3' }],
-  ['path', { d: 'M9 13v4c0 1.7 2.7 3 6 3s6-1.3 6-3v-4' }],
+  ['path', { d: 'M13.744 17.736a6 6 0 1 1-7.48-7.48' }],
+  ['path', { d: 'M15 6h1v4' }],
+  ['path', { d: 'm6.134 14.768.866-.5 2 3.464' }],
+  ['circle', { cx: '16', cy: '8', r: '6' }],
 ])

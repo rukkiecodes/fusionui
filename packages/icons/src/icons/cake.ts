@@ -1,7 +1,13 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Cake = /*#__PURE__*/ createFeatherIcon('cake', [
-  ['path', { d: 'M4 20V13a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v7z' }],
-  ['path', { d: 'M4 16h16' }],
-  ['path', { d: 'M12 10V6M12 6l-1-2h2z' }],
+  ['path', { d: 'M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8' }],
+  ['path', { d: 'M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1' }],
+  ['path', { d: 'M2 21h20' }],
+  ['path', { d: 'M7 8v3' }],
+  ['path', { d: 'M12 8v3' }],
+  ['path', { d: 'M17 8v3' }],
+  ['path', { d: 'M7 4h.01' }],
+  ['path', { d: 'M12 4h.01' }],
+  ['path', { d: 'M17 4h.01' }],
 ])

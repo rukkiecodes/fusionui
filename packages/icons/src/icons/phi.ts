@@ -1,0 +1,6 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Phi = /*#__PURE__*/ createFeatherIcon('phi', [
+  ['path', { d: 'M12 2v20' }],
+  ['circle', { cx: '12', cy: '12', r: '7' }],
+])

@@ -1,8 +1,15 @@
 import { createFeatherIcon } from '../runtime'
 
 export const School = /*#__PURE__*/ createFeatherIcon('school', [
-  ['path', { d: 'M3 10 12 5l9 5' }],
-  ['path', { d: 'M5 10v9h14v-9' }],
-  ['path', { d: 'M9 19v-5h6v5' }],
-  ['path', { d: 'M12 5V2l3 1' }],
+  ['path', { d: 'M14 21v-3a2 2 0 0 0-4 0v3' }],
+  ['path', { d: 'M18 4.933V21' }],
+  ['path', { d: 'm4 6 7.106-3.79a2 2 0 0 1 1.788 0L20 6' }],
+  [
+    'path',
+    {
+      d: 'm6 11-3.52 2.147a1 1 0 0 0-.48.854V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a1 1 0 0 0-.48-.853L18 11',
+    },
+  ],
+  ['path', { d: 'M6 4.933V21' }],
+  ['circle', { cx: '12', cy: '9', r: '2' }],
 ])

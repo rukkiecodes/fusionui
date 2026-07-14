@@ -1,6 +1,11 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Pencil = /*#__PURE__*/ createFeatherIcon('pencil', [
-  ['path', { d: 'M4 20l1-4L16 5l3 3L8 19z' }],
-  ['path', { d: 'M14 7l3 3M4 20l4-1' }],
+  [
+    'path',
+    {
+      d: 'M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z',
+    },
+  ],
+  ['path', { d: 'm15 5 4 4' }],
 ])

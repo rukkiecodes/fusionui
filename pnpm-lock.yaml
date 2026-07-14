@@ -148,6 +148,9 @@ importers:
 
   packages/icons:
     devDependencies:
+      lucide-static:
+        specifier: ^1.24.0
+        version: 1.24.0
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
@@ -3993,6 +3996,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-static@1.24.0:
+    resolution: {integrity: sha512-NDSgPb/RWllI9QooPbGXfQCXQi/45oquDmtljeN3qVxqfEUf91uM2C4zijy8bs+pEWxKckA0/WZLZT43YD4Xnw==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -9928,6 +9934,8 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-static@1.24.0: {}
 
   magic-string@0.30.21:
     dependencies:

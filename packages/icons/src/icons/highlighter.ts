@@ -1,7 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Highlighter = /*#__PURE__*/ createFeatherIcon('highlighter', [
-  ['path', { d: 'M5 21h6l8-8-4-4-8 8z' }],
-  ['path', { d: 'M11 9l4 4' }],
-  ['path', { d: 'M5 21l1-3' }],
+  ['path', { d: 'm9 11-6 6v3h9l3-3' }],
+  ['path', { d: 'm22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4' }],
 ])

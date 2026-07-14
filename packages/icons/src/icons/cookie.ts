@@ -1,9 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Cookie = /*#__PURE__*/ createFeatherIcon('cookie', [
-  ['circle', { cx: '12', cy: '12', r: '9' }],
-  ['circle', { cx: '9', cy: '9', r: '.8' }],
-  ['circle', { cx: '15', cy: '10', r: '.8' }],
-  ['circle', { cx: '11', cy: '14', r: '.8' }],
-  ['circle', { cx: '15', cy: '15', r: '.8' }],
+  ['path', { d: 'M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5' }],
+  ['path', { d: 'M8.5 8.5v.01' }],
+  ['path', { d: 'M16 15.5v.01' }],
+  ['path', { d: 'M12 12v.01' }],
+  ['path', { d: 'M11 17v.01' }],
+  ['path', { d: 'M7 14v.01' }],
 ])

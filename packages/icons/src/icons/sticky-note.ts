@@ -1,6 +1,11 @@
 import { createFeatherIcon } from '../runtime'
 
 export const StickyNote = /*#__PURE__*/ createFeatherIcon('sticky-note', [
-  ['path', { d: 'M4 4h16v11l-5 5H4z' }],
-  ['path', { d: 'M20 15h-5v5' }],
+  [
+    'path',
+    {
+      d: 'M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z',
+    },
+  ],
+  ['path', { d: 'M15 3v5a1 1 0 0 0 1 1h5' }],
 ])

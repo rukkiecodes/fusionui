@@ -1,8 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Library = /*#__PURE__*/ createFeatherIcon('library', [
-  ['rect', { x: '4', y: '3', width: '4', height: '18' }],
-  ['rect', { x: '10', y: '3', width: '4', height: '18' }],
-  ['path', { d: 'M16 4l4 1-3 16-4-1z' }],
-  ['path', { d: 'M4 8h4M10 8h4' }],
+  ['path', { d: 'm16 6 4 14' }],
+  ['path', { d: 'M12 6v14' }],
+  ['path', { d: 'M8 8v12' }],
+  ['path', { d: 'M4 4v16' }],
 ])

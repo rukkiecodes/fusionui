@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const TestTube = /*#__PURE__*/ createFeatherIcon('test-tube', [
-  ['path', { d: 'M9 2v15a3 3 0 0 0 6 0V2' }],
-  ['path', { d: 'M8 2h8' }],
-  ['path', { d: 'M9 12h6' }],
+  ['path', { d: 'M14.5 2v17.5c0 1.4-1.1 2.5-2.5 2.5c-1.4 0-2.5-1.1-2.5-2.5V2' }],
+  ['path', { d: 'M8.5 2h7' }],
+  ['path', { d: 'M14.5 16h-5' }],
 ])

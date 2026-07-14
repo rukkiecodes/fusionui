@@ -1,7 +1,11 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Cable = /*#__PURE__*/ createFeatherIcon('cable', [
-  ['path', { d: 'M5 3v4a3 3 0 0 0 3 3h8a3 3 0 0 1 3 3v4' }],
-  ['rect', { x: '3', y: '2', width: '4', height: '3' }],
-  ['rect', { x: '17', y: '19', width: '4', height: '3' }],
+  ['path', { d: 'M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z' }],
+  ['path', { d: 'M17 21v-2' }],
+  ['path', { d: 'M19 14V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V10' }],
+  ['path', { d: 'M21 21v-2' }],
+  ['path', { d: 'M3 5V3' }],
+  ['path', { d: 'M4 10a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2z' }],
+  ['path', { d: 'M7 5V3' }],
 ])

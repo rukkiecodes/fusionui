@@ -1,10 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const List = /*#__PURE__*/ createFeatherIcon('list', [
-  ['line', { x1: '8', y1: '6', x2: '21', y2: '6' }],
-  ['line', { x1: '8', y1: '12', x2: '21', y2: '12' }],
-  ['line', { x1: '8', y1: '18', x2: '21', y2: '18' }],
-  ['line', { x1: '3', y1: '6', x2: '3.01', y2: '6' }],
-  ['line', { x1: '3', y1: '12', x2: '3.01', y2: '12' }],
-  ['line', { x1: '3', y1: '18', x2: '3.01', y2: '18' }],
+  ['path', { d: 'M3 5h.01' }],
+  ['path', { d: 'M3 12h.01' }],
+  ['path', { d: 'M3 19h.01' }],
+  ['path', { d: 'M8 5h13' }],
+  ['path', { d: 'M8 12h13' }],
+  ['path', { d: 'M8 19h13' }],
 ])

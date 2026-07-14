@@ -1,7 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Notebook = /*#__PURE__*/ createFeatherIcon('notebook', [
-  ['rect', { x: '5', y: '3', width: '14', height: '18', rx: '1' }],
-  ['path', { d: 'M9 3v18' }],
-  ['path', { d: 'M12 7h4M12 11h4' }],
+  ['path', { d: 'M2 6h4' }],
+  ['path', { d: 'M2 10h4' }],
+  ['path', { d: 'M2 14h4' }],
+  ['path', { d: 'M2 18h4' }],
+  ['rect', { width: '16', height: '20', x: '4', y: '2', rx: '2' }],
+  ['path', { d: 'M16 2v20' }],
 ])

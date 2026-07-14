@@ -1,5 +1,9 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Barcode = /*#__PURE__*/ createFeatherIcon('barcode', [
-  ['path', { d: 'M4 5v14M7 5v14M10 5v11M13 5v14M16 5v11M20 5v14' }],
+  ['path', { d: 'M3 5v14' }],
+  ['path', { d: 'M8 5v14' }],
+  ['path', { d: 'M12 5v14' }],
+  ['path', { d: 'M17 5v14' }],
+  ['path', { d: 'M21 5v14' }],
 ])

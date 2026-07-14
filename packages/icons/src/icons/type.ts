@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Type = /*#__PURE__*/ createFeatherIcon('type', [
-  ['polyline', { points: '4 7 4 4 20 4 20 7' }],
-  ['line', { x1: '9', y1: '20', x2: '15', y2: '20' }],
-  ['line', { x1: '12', y1: '4', x2: '12', y2: '20' }],
+  ['path', { d: 'M12 4v16' }],
+  ['path', { d: 'M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2' }],
+  ['path', { d: 'M9 20h6' }],
 ])

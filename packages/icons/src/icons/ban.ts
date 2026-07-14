@@ -1,0 +1,6 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Ban = /*#__PURE__*/ createFeatherIcon('ban', [
+  ['circle', { cx: '12', cy: '12', r: '10' }],
+  ['path', { d: 'M4.929 4.929 19.07 19.071' }],
+])

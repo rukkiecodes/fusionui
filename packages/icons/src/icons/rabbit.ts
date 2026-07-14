@@ -1,10 +1,14 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Rabbit = /*#__PURE__*/ createFeatherIcon('rabbit', [
-  ['path', { d: 'M9 9C8 6 7 3 8.5 2.5S11 5 11 8' }],
-  ['path', { d: 'M15 9c1-3 2-6 .5-6.5S13 5 13 8' }],
-  ['circle', { cx: '12', cy: '15', r: '6' }],
-  ['circle', { cx: '10', cy: '14', r: '.5' }],
-  ['circle', { cx: '14', cy: '14', r: '.5' }],
-  ['path', { d: 'M12 16v1' }],
+  ['path', { d: 'M13 16a3 3 0 0 1 2.24 5' }],
+  ['path', { d: 'M18 12h.01' }],
+  [
+    'path',
+    {
+      d: 'M18 21h-8a4 4 0 0 1-4-4 7 7 0 0 1 7-7h.2L9.6 6.4a1 1 0 1 1 2.8-2.8L15.8 7h.2c3.3 0 6 2.7 6 6v1a2 2 0 0 1-2 2h-1a3 3 0 0 0-3 3',
+    },
+  ],
+  ['path', { d: 'M20 8.54V4a2 2 0 1 0-4 0v3' }],
+  ['path', { d: 'M7.612 12.524a3 3 0 1 0-1.6 4.3' }],
 ])

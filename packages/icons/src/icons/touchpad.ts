@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const Touchpad = /*#__PURE__*/ createFeatherIcon('touchpad', [
+  ['rect', { width: '20', height: '16', x: '2', y: '4', rx: '2' }],
+  ['path', { d: 'M2 14h20' }],
+  ['path', { d: 'M12 20v-6' }],
+])

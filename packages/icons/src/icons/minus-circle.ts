@@ -2,5 +2,5 @@ import { createFeatherIcon } from '../runtime'
 
 export const MinusCircle = /*#__PURE__*/ createFeatherIcon('minus-circle', [
   ['circle', { cx: '12', cy: '12', r: '10' }],
-  ['line', { x1: '8', y1: '12', x2: '16', y2: '12' }],
+  ['path', { d: 'M8 12h8' }],
 ])

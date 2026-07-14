@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Underline = /*#__PURE__*/ createFeatherIcon('underline', [
-  ['path', { d: 'M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3' }],
-  ['line', { x1: '4', y1: '21', x2: '20', y2: '21' }],
+  ['path', { d: 'M6 4v6a6 6 0 0 0 12 0V4' }],
+  ['line', { x1: '4', x2: '20', y1: '20', y2: '20' }],
 ])

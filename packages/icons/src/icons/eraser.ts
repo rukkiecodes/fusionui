@@ -1,7 +1,11 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Eraser = /*#__PURE__*/ createFeatherIcon('eraser', [
-  ['path', { d: 'M5 16 13 8a2 2 0 0 1 3 0l3 3a2 2 0 0 1 0 3l-5 5H8z' }],
-  ['path', { d: 'M8 19l-3-3' }],
-  ['path', { d: 'M11 21h9' }],
+  [
+    'path',
+    {
+      d: 'M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21',
+    },
+  ],
+  ['path', { d: 'm5.082 11.09 8.828 8.828' }],
 ])

@@ -1,7 +1,12 @@
 import { createFeatherIcon } from '../runtime'
 
 export const FolderPlus = /*#__PURE__*/ createFeatherIcon('folder-plus', [
-  ['path', { d: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z' }],
-  ['line', { x1: '12', y1: '11', x2: '12', y2: '17' }],
-  ['line', { x1: '9', y1: '14', x2: '15', y2: '14' }],
+  ['path', { d: 'M12 10v6' }],
+  ['path', { d: 'M9 13h6' }],
+  [
+    'path',
+    {
+      d: 'M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z',
+    },
+  ],
 ])

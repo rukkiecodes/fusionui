@@ -1,7 +1,8 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Plug = /*#__PURE__*/ createFeatherIcon('plug', [
-  ['path', { d: 'M9 2v6M15 2v6' }],
-  ['path', { d: 'M6 8h12v3a6 6 0 0 1-12 0z' }],
-  ['path', { d: 'M12 17v5' }],
+  ['path', { d: 'M12 22v-5' }],
+  ['path', { d: 'M15 8V2' }],
+  ['path', { d: 'M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z' }],
+  ['path', { d: 'M9 8V2' }],
 ])

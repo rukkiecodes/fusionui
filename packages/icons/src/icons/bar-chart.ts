@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const BarChart = /*#__PURE__*/ createFeatherIcon('bar-chart', [
-  ['line', { x1: '12', y1: '20', x2: '12', y2: '10' }],
-  ['line', { x1: '18', y1: '20', x2: '18', y2: '4' }],
-  ['line', { x1: '6', y1: '20', x2: '6', y2: '16' }],
+  ['path', { d: 'M5 21v-6' }],
+  ['path', { d: 'M12 21V9' }],
+  ['path', { d: 'M19 21V3' }],
 ])

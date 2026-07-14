@@ -1,6 +1,9 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Leaf = /*#__PURE__*/ createFeatherIcon('leaf', [
-  ['path', { d: 'M11 20A7 7 0 0 1 4 13C4 6 9 3 20 3c0 11-4 17-11 17z' }],
-  ['path', { d: 'M11 20c0-6 2-10 6-13' }],
+  [
+    'path',
+    { d: 'M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z' },
+  ],
+  ['path', { d: 'M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12' }],
 ])

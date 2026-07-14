@@ -1,0 +1,7 @@
+import { createFeatherIcon } from '../runtime'
+
+export const XLineTop = /*#__PURE__*/ createFeatherIcon('x-line-top', [
+  ['path', { d: 'M18 4H6' }],
+  ['path', { d: 'M18 8 6 20' }],
+  ['path', { d: 'm6 8 12 12' }],
+])

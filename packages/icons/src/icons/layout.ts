@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Layout = /*#__PURE__*/ createFeatherIcon('layout', [
-  ['rect', { x: '3', y: '3', width: '18', height: '18', rx: '2', ry: '2' }],
-  ['line', { x1: '3', y1: '9', x2: '21', y2: '9' }],
-  ['line', { x1: '9', y1: '21', x2: '9', y2: '9' }],
+  ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2' }],
+  ['path', { d: 'M3 9h18' }],
+  ['path', { d: 'M9 21V9' }],
 ])

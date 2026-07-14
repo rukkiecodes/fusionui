@@ -1,0 +1,6 @@
+import { createFeatherIcon } from '../runtime'
+
+export const ZodiacTaurus = /*#__PURE__*/ createFeatherIcon('zodiac-taurus', [
+  ['circle', { cx: '12', cy: '15', r: '6' }],
+  ['path', { d: 'M18 3A6 6 0 0 1 6 3' }],
+])

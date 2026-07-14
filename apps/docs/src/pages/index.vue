@@ -23,7 +23,7 @@ async function copyInstall() {
 // that guards them.
 const stats = [
   { value: '133', label: 'components' },
-  { value: '737', label: 'icons included' },
+  { value: '2,270', label: 'icons included' },
   { value: '481', label: 'tests + an SSR gate' },
   { value: 'MIT', label: 'licensed' },
 ]

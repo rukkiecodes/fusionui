@@ -1,5 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Asterisk = /*#__PURE__*/ createFeatherIcon('asterisk', [
-  ['path', { d: 'M12 4v16M5 8l14 8M19 8 5 16' }],
+  ['path', { d: 'M12 6v12' }],
+  ['path', { d: 'M17.196 9 6.804 15' }],
+  ['path', { d: 'm6.804 9 10.392 6' }],
 ])

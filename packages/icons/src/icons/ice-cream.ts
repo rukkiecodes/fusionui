@@ -1,7 +1,7 @@
 import { createFeatherIcon } from '../runtime'
 
 export const IceCream = /*#__PURE__*/ createFeatherIcon('ice-cream', [
-  ['path', { d: 'M8 9a4 4 0 0 1 8 0' }],
-  ['path', { d: 'M8 9h8l-4 12z' }],
-  ['path', { d: 'M9 13h6M10 17h4' }],
+  ['path', { d: 'm7 11 4.08 10.35a1 1 0 0 0 1.84 0L17 11' }],
+  ['path', { d: 'M17 7A5 5 0 0 0 7 7' }],
+  ['path', { d: 'M17 7a2 2 0 0 1 0 4H7a2 2 0 0 1 0-4' }],
 ])

@@ -1,6 +1,6 @@
 import { createFeatherIcon } from '../runtime'
 
 export const CreditCard = /*#__PURE__*/ createFeatherIcon('credit-card', [
-  ['rect', { x: '1', y: '4', width: '22', height: '16', rx: '2', ry: '2' }],
-  ['line', { x1: '1', y1: '10', x2: '23', y2: '10' }],
+  ['rect', { width: '20', height: '14', x: '2', y: '5', rx: '2' }],
+  ['line', { x1: '2', x2: '22', y1: '10', y2: '10' }],
 ])

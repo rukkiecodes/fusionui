@@ -1,5 +1,10 @@
 import { createFeatherIcon } from '../runtime'
 
 export const Edit2 = /*#__PURE__*/ createFeatherIcon('edit-2', [
-  ['path', { d: 'M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z' }],
+  [
+    'path',
+    {
+      d: 'M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z',
+    },
+  ],
 ])
