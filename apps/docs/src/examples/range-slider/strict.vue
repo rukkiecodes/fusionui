@@ -26,6 +26,7 @@ const strict = ref([40, 60])
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
   max-width: 420px;
 }
 .label {

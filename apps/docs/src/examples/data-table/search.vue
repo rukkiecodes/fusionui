@@ -89,6 +89,7 @@ const search = ref('')
 
 <style scoped>
 .search {
+  width: 100%;
   max-width: 280px;
 }
 </style>

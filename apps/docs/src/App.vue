@@ -10,6 +10,9 @@ const theme = useTheme()
 const route = useRoute()
 const drawer = ref(false)
 
+// Resolved through Vite so it survives the `/fusionui/` base path on Pages.
+const logoUrl = new URL('../public/logo.svg', import.meta.url).href
+
 // Syntax-highlight the page's fenced code blocks after each navigation (the
 // markdown plugin emits them as plain text). rAF lets the new page mount first.
 watch(
@@ -50,7 +53,7 @@ function toggleTheme() {
           <f-icon icon="menu" />
         </button>
         <router-link to="/" class="docs__brand">
-          <f-icon icon="feather" color="primary" />
+          <img :src="logoUrl" alt="" class="docs__logo" width="26" height="26" />
           <strong>FusionUI</strong>
         </router-link>
       </template>
@@ -81,7 +84,7 @@ function toggleTheme() {
         @update:model-value="drawer = false"
       >
         <template v-if="!isDesktop" #logo>
-          <f-icon icon="feather" color="primary" size="medium" />
+          <img :src="logoUrl" alt="" class="docs__logo" width="24" height="24" />
         </template>
 
         <div v-for="section in nav" :key="section.title" class="docs__nav-section">

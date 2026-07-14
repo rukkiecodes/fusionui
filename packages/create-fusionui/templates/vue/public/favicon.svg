@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#195bff" />
-  <path d="M188 132h150v46h-104v52h94v46h-94v104h-46z" fill="#fff" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FusionUI">
+  <defs>
+    <linearGradient id="fui-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#195bff" />
+      <stop offset="1" stop-color="#7d33ff" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fui-tile)" />
+  <!-- On the tile the panels are white-on-gradient, so the lens is the *brightest*
+       element and the mark still reads at 16px. -->
+  <rect x="13" y="13" width="26" height="26" rx="8" fill="#fff" fill-opacity="0.62" />
+  <rect x="25" y="25" width="26" height="26" rx="8" fill="#fff" fill-opacity="0.62" />
+  <path d="M25 25h14v14H25z" fill="#fff" />
 </svg>

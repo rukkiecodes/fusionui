@@ -19,6 +19,7 @@ const c = ref([30, 90])
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
   max-width: 420px;
 }
 </style>

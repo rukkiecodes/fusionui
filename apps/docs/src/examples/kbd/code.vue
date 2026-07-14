@@ -8,6 +8,7 @@
 <style scoped>
 .copy {
   margin: 0;
+  width: 100%;
   max-width: 52ch;
   line-height: 2;
 }

@@ -41,6 +41,7 @@ const plan = ref('team')
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
   max-width: 520px;
 }
 </style>

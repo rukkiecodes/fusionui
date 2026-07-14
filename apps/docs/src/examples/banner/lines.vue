@@ -18,6 +18,7 @@ const message =
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
   max-width: 560px;
 }
 </style>

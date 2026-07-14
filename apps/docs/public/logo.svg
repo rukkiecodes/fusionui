@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FusionUI">
+  <defs>
+    <linearGradient id="fui-a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#195bff" />
+      <stop offset="1" stop-color="#195bff" stop-opacity="0.82" />
+    </linearGradient>
+    <linearGradient id="fui-b" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7d33ff" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#7d33ff" />
+    </linearGradient>
+    <clipPath id="fui-lens">
+      <rect x="8" y="8" width="30" height="30" rx="9" fill="#000" />
+    </clipPath>
+  </defs>
+
+  <rect x="8" y="8" width="30" height="30" rx="9" fill="url(#fui-a)" />
+  <rect x="26" y="26" width="30" height="30" rx="9" fill="url(#fui-b)" />
+
+  <!-- The refraction: panel B clipped to where it crosses panel A. -->
+  <g clip-path="url(#fui-lens)">
+    <rect x="26" y="26" width="30" height="30" rx="9" fill="#ffffff" fill-opacity="0.86" />
+  </g>
+</svg>

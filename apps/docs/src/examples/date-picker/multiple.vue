@@ -19,6 +19,7 @@ const dates = ref<Date[]>([])
   gap: 14px;
 }
 code {
+  width: 100%;
   max-width: 420px;
   text-align: center;
   background: rgba(var(--fui-theme-on-surface), 0.08);

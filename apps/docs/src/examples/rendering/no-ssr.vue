@@ -21,6 +21,7 @@
 
 <style scoped>
 .card {
+  width: 100%;
   max-width: 360px;
 }
 .local {

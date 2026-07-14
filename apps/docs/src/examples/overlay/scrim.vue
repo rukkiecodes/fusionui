@@ -37,6 +37,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  width: 100%;
   max-width: 320px;
   padding: 20px;
   border-radius: var(--fui-radius-lg);

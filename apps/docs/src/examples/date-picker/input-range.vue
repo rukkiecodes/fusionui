@@ -34,6 +34,7 @@ const today = new Date()
   gap: 14px;
 }
 code {
+  width: 100%;
   max-width: 100%;
   text-align: center;
   background: rgba(var(--fui-theme-on-surface), 0.08);

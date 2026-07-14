@@ -16,6 +16,7 @@ const price = ref([20, 80])
 
 <style scoped>
 .wrap {
+  width: 100%;
   max-width: 420px;
 }
 .label {

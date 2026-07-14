@@ -50,6 +50,7 @@
 .brand p {
   margin: 8px 0 0;
   opacity: 0.7;
+  width: 100%;
   max-width: 28ch;
 }
 

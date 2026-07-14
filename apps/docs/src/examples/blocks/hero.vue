@@ -35,6 +35,7 @@
 
 .hero__lede {
   margin: 20px 0 0;
+  width: 100%;
   max-width: 34em;
   font-size: 1.05rem;
   line-height: 1.6;

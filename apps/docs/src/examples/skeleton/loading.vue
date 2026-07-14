@@ -34,6 +34,7 @@ const loading = ref(true)
   display: flex;
   align-items: center;
   gap: 14px;
+  width: 100%;
   max-width: 420px;
 }
 

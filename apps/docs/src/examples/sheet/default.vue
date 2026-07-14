@@ -8,6 +8,7 @@
 <style scoped>
 .tile {
   padding: 20px;
+  width: 100%;
   max-width: 480px;
 }
 </style>

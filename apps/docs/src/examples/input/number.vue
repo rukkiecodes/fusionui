@@ -35,6 +35,7 @@ const retention = ref(30)
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
   max-width: 360px;
 }
 

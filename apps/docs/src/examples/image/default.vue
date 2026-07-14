@@ -12,6 +12,7 @@ const lazy = 'https://picsum.photos/seed/fusionui-lake/16/10'
 
 <style scoped>
 .demo {
+  width: 100%;
   max-width: 520px;
   margin: 0 auto;
 }

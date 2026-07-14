@@ -52,6 +52,7 @@ const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD
 
 <style scoped>
 .search {
+  width: 100%;
   max-width: 280px;
   margin-bottom: 16px;
 }

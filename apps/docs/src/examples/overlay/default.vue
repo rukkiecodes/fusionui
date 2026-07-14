@@ -19,6 +19,7 @@
 <style scoped>
 .lightbox {
   margin: 0;
+  width: 100%;
   max-width: min(720px, 100%);
   border-radius: var(--fui-radius-lg);
   overflow: hidden;

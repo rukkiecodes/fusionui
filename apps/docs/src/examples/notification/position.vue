@@ -27,6 +27,7 @@ function open(position) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  width: 100%;
   max-width: 480px;
 }
 </style>

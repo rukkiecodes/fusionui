@@ -22,6 +22,7 @@ const hours = ref([9, 17])
 
 <style scoped>
 .wrap {
+  width: 100%;
   max-width: 420px;
 }
 .label {

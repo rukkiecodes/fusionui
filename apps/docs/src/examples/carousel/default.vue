@@ -15,6 +15,7 @@ const images = [
 
 <style scoped>
 .demo {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }

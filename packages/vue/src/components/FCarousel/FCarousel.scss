@@ -3,6 +3,10 @@
     position: relative;
     outline: none;
     user-select: none;
+    // A carousel fills its container. Without this it is full-width only in a
+    // block context: drop it into a flex or grid parent and it collapses to its
+    // content width (~70px of arrow), which is what it did in the docs.
+    width: 100%;
 
     &__viewport {
       position: relative;

@@ -27,6 +27,7 @@ const v7 = ref('')
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px 18px;
+  width: 100%;
   max-width: 700px;
 }
 </style>

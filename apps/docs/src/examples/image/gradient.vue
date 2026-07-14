@@ -21,6 +21,7 @@ const src = 'https://picsum.photos/seed/fusionui-forest/1200/700'
 
 <style scoped>
 .demo {
+  width: 100%;
   max-width: 520px;
   margin: 0 auto;
 }

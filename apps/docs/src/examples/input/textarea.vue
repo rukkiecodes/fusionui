@@ -25,6 +25,7 @@ const notes = ref('Renewal call went well — they want SSO before signing.')
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
   max-width: 480px;
 }
 </style>
