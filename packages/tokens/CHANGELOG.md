@@ -1,5 +1,15 @@
 # @rukkiecodes/tokens
 
+## 0.2.0
+
+### Minor Changes
+
+- Expose the stacking-order scale to SASS as `$fui-z-index`, alongside the CSS
+  custom properties it already emitted. `@rukkiecodes/vue` needs it at build time
+  so its stylesheet can declare `--fui-z-*` itself — a component reading
+  `var(--fui-z-menu)` has to find it defined even when the consumer imports only
+  the vue package's stylesheet.
+
 ## 0.1.0
 
 ### Minor Changes

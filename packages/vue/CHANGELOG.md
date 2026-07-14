@@ -1,5 +1,61 @@
 # @rukkiecodes/vue
 
+## 0.15.0
+
+### Minor Changes
+
+- Complete the Vuetify-parity component set — 58 new components, taking the library
+  from 60 to 118.
+
+  **Data:** `FDataTable` and `FDataTableServer` (sorting incl. multi-sort,
+  pagination, selection with an indeterminate select-all, expandable rows,
+  grouping, search, loading/empty states; the two share one render module so the
+  client and server tables can never drift), `FDataIterator`, `FTreeview`,
+  `FVirtualScroll`, `FInfiniteScroll`, `FSparkline`.
+
+  **Inputs:** `FAutocomplete`, `FCombobox`, `FDatePicker`/`FDateInput`,
+  `FTimePicker`/`FTimeInput`, `FColorPicker`/`FColorInput`, `FCalendar`,
+  `FRating`, `FRangeSlider`, `FConfirmEdit`.
+
+  **Selection groups & navigation:** `FItemGroup`/`FItem`, `FBtnToggle`,
+  `FChipGroup`, `FWindow`, `FSlideGroup`, `FExpansionPanels`, `FFab`,
+  `FSpeedDial`, `FBottomNav`, `FBottomSheet`, `FPullToRefresh`.
+
+  **Surfaces, feedback & utilities:** `FSheet`, `FBanner`, `FSkeleton`,
+  `FTimeline`, `FKbd`, `FCode`, `FFooter`, `FSystemBar`, `FParallax`, `FLabel`,
+  `FMessages`, `FCounter`, `FIconBtn`, `FThemeProvider`, `FDefaultsProvider`,
+  `FHover`, `FLazy`, `FResponsive`, `FNoSsr`.
+
+  Everything is token-driven, SSR-safe, keyboard accessible and honours
+  `prefers-reduced-motion`. The date, time and colour pickers add no dependencies —
+  their maths is implemented in-package.
+
+  ### Fixes
+  - **Design tokens were not all emitted.** `@rukkiecodes/vue/styles` declared only
+    a subset of the token set as CSS custom properties: `--fui-space-1…7`,
+    `--fui-font-family-mono`, `--fui-hover-opacity`, the elevation ramp and the
+    z-index scale were missing. A `var()` that is read but never defined makes its
+    whole declaration invalid, so `padding: var(--fui-space-4)` resolved to _no
+    padding at all_. The stylesheet now emits the full set.
+  - **Borders using `--fui-border-color` were not drawn.** It is an RGB triplet, so
+    `border: 1px solid var(--fui-border-color)` is invalid; these now use
+    `rgba(var(--fui-border-color), …)`.
+  - **A selected `FChip` was invisible.** It applied the theme's `text-*` utility,
+    which is injected `!important` into the last cascade layer and therefore beat
+    the chip's own selected-state colour, rendering primary text on a primary fill.
+    `FChip` now carries its colour on `--fui-variant-color`/`--fui-variant-on` (the
+    `FBtn` pattern) instead of the utility classes.
+  - **`FAutocomplete`/`FCombobox` never emitted `update:search`** — the event was
+    declared but `emit` was never passed into the shared core, so a server-side
+    filter had nothing to listen to.
+  - **`FDataTable`/`FDataTableServer` never emitted `click:row`** — declared in
+    `emits`, but the row handler only toggled expansion.
+
+### Patch Changes
+
+- Updated dependencies
+  - @rukkiecodes/tokens@0.2.0
+
 ## 0.14.0
 
 ### Minor Changes
