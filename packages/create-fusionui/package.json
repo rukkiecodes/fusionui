@@ -1,12 +1,14 @@
 {
   "name": "create-fusionui",
   "version": "0.1.2",
-  "description": "The FusionUI CLI — scaffold (init), add components, and brand themes for Vue + Expo.",
+  "description": "The FusionUI CLI — scaffold a Vue SPA, PWA, static site, Nuxt or Expo app with the presets you want; add components; brand themes.",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "create",
     "vue",
+    "nuxt",
+    "pwa",
     "expo",
     "@rukkiecodes/vue",
     "scaffold",
@@ -25,7 +27,7 @@
   "scripts": {
     "build": "echo \"[create-fusionui] no build step\"",
     "typecheck": "echo \"[create-fusionui] typecheck placeholder\"",
-    "test": "node test/smoke.mjs && node --test test/commands.test.mjs"
+    "test": "node test/smoke.mjs && node --test test/*.test.mjs"
   },
   "dependencies": {
     "kleur": "^4.1.5",

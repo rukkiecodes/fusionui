@@ -9,6 +9,49 @@ npm create fusionui@latest
 # or: pnpm create fusionui / yarn create fusionui / bun create fusionui
 ```
 
+It asks two things that matter — what you're building, and what else you want
+wired in — and generates a project that installs, builds and lints cleanly on the
+first run.
+
+### Targets
+
+| Target       | What you get                                                 |
+| ------------ | ------------------------------------------------------------ |
+| `vue-spa`    | Vite + Vue 3, client-rendered, with routing                  |
+| `vue-pwa`    | The SPA, plus a service worker, manifest and offline support |
+| `vue-static` | Vite + Vue, no router — a landing page you can host anywhere |
+| `nuxt`       | Server-rendered or statically generated, file-based routing  |
+| `expo`       | React Native for iOS and Android, with Skia                  |
+
+### Presets
+
+Pick as many as you like; each one brings its dependency, its config and a small
+worked example — never a dangling import.
+
+| Preset                                       | Available on                                         |
+| -------------------------------------------- | ---------------------------------------------------- |
+| `pinia` — state management                   | Vue targets, Nuxt                                    |
+| `router` — Vue Router                        | the static site (the SPA and PWA are routed already) |
+| `vueuse` — composition utilities             | Vue targets, Nuxt                                    |
+| `i18n` — Vue I18n                            | Vue targets                                          |
+| `shaders` — the signature GPU layer          | Vue targets, Nuxt                                    |
+| `vitest` — unit testing, with Vue Test Utils | Vue targets, Nuxt                                    |
+| `eslint` — ESLint + Prettier                 | all targets                                          |
+| `state` — Zustand                            | Expo                                                 |
+| `expo-router` — file-based navigation        | Expo                                                 |
+
+Everything is scriptable, so CI and agents never have to answer a prompt:
+
+```bash
+fusionui init my-app --target nuxt --features pinia,eslint
+fusionui init site --target vue-pwa --no-features -y
+fusionui init app --target vue-spa --js          # JavaScript instead of TypeScript
+```
+
+FusionUI itself is still only a component library — it doesn't ship a router or a
+store. The scaffolder just wires up the ecosystem's standard choices for you, and
+you can delete any of them without touching FusionUI.
+
 ## Add to an existing project
 
 ```bash

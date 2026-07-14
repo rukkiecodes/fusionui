@@ -1,4 +1,12 @@
 {
   "extends": "expo/tsconfig.base",
-  "compilerOptions": { "strict": true }
+  "compilerOptions": {
+    "strict": true,
+    // @rukkiecodes/native imports `@rukkiecodes/tokens/native`, which exists only
+    // in that package's `exports` map. Expo's base config still resolves modules
+    // the Node 10 way, which ignores `exports` — so without this the import fails
+    // to typecheck even though Metro bundles and runs it perfectly well.
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  }
 }

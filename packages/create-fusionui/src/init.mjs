@@ -1,18 +1,60 @@
-// `fusionui init` (and the `npm create fusionui` entry) — scaffold a new project
-// preconfigured with FusionUI: a Vite + Vue web app or an Expo mobile app.
-import { existsSync, readdirSync, statSync } from 'node:fs'
+// `fusionui init` (and the `npm create fusionui` entry) — scaffold a new project.
+//
+// Two questions that matter: WHAT are you building (the target), and WHAT ELSE do
+// you want wired in (the features). Everything else has a sane default and can be
+// skipped with `-y`.
+import { existsSync, readdirSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
 import prompts from 'prompts'
-import { bold, cyan, dim, green, red } from 'kleur/colors'
-import { copyDir, detectPm } from './util.mjs'
+import { bold, cyan, dim, green, red, yellow } from 'kleur/colors'
+import { copyDir, copyFile, detectPm } from './util.mjs'
+import { TARGETS, featuresFor, targetById } from './presets.mjs'
+import { createContext, demoPath, generatedFiles, writeFiles } from './scaffold.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const templatesDir = join(here, '..', 'templates')
 
-function templates() {
-  return readdirSync(templatesDir).filter(t => statSync(join(templatesDir, t)).isDirectory())
+// The pre-0.2 flags kept working: `--template typescript`, `--target expo`, `--ts`.
+const LEGACY_TEMPLATES = {
+  default: { target: 'vue-spa', typescript: false },
+  typescript: { target: 'vue-spa', typescript: true },
+  expo: { target: 'expo', typescript: true },
+  web: { target: 'vue-spa', typescript: true },
+}
+
+/** Resolves the target + language from flags, so `-y` can skip every prompt. */
+export function resolveFromFlags(argv) {
+  const out = {}
+  const legacy = LEGACY_TEMPLATES[argv.template] ?? LEGACY_TEMPLATES[argv.target]
+  if (legacy) Object.assign(out, legacy)
+  // An explicit target id always wins over the legacy aliases.
+  if (targetById(argv.target)) out.target = argv.target
+  if (targetById(argv.template)) out.target = argv.template
+  if (argv.ts || argv.typescript) out.typescript = true
+  if (argv.js) out.typescript = false
+  return out
+}
+
+/** `--features pinia,vitest` / `--no-features` */
+export function parseFeatureFlag(argv, target) {
+  if (argv.features === false || argv.features === '') return []
+  if (typeof argv.features !== 'string') return null // not specified
+  const allowed = featuresFor(target).map(f => f.id)
+  const asked = argv.features
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean)
+  const unknown = asked.filter(f => !allowed.includes(f))
+  if (unknown.length) {
+    console.log(
+      red(`✖ Unknown feature(s) for ${target.id}: ${unknown.join(', ')}`) +
+        dim(`\n  Available: ${allowed.join(', ') || '(none)'}`)
+    )
+    process.exit(1)
+  }
+  return asked
 }
 
 export async function runInit(argv) {
@@ -20,59 +62,92 @@ export async function runInit(argv) {
     console.log(red('✖ Operation cancelled'))
     process.exit(1)
   }
-  const TEMPLATES = templates()
-  const skipPrompts = argv.yes
+  const skipPrompts = !!argv.yes
+  const flags = resolveFromFlags(argv)
 
   let targetDir = argv._[argv._[0] === 'init' ? 1 : 0]
-  // Explicit template selection (flags win over prompts).
-  let template =
-    argv.template ||
-    (argv.target === 'expo' ? 'expo' : undefined) ||
-    (argv.ts || argv.typescript ? 'typescript' : undefined)
+  let targetId = flags.target
+  let typescript = flags.typescript
 
-  const questions = []
+  // ---- 1. name + target + language -----------------------------------------
+  const q = []
   if (!targetDir) {
-    questions.push({
+    q.push({
       type: 'text',
       name: 'projectName',
       message: 'Project name:',
       initial: 'my-fusionui-app',
     })
   }
-  if (!template && !skipPrompts) {
-    questions.push({
+  if (!targetId && !skipPrompts) {
+    q.push({
       type: 'select',
       name: 'target',
-      message: 'Target',
-      choices: [
-        { title: 'Web — Vite + Vue 3', value: 'web' },
-        { title: 'Mobile — Expo + React Native', value: 'expo' },
-      ],
+      message: 'What are you building?',
+      choices: TARGETS.map(t => ({ title: t.title, description: t.hint, value: t.id })),
       initial: 0,
     })
-    questions.push({
-      type: (prev, values) => (values.target === 'web' ? 'select' : null),
+  }
+  if (typescript === undefined && !skipPrompts) {
+    q.push({
+      // Expo is TypeScript-only here — its template is already .tsx.
+      type: (prev, values) => ((values.target ?? targetId) === 'expo' ? null : 'select'),
       name: 'lang',
       message: 'Language',
       choices: [
-        { title: 'TypeScript', value: 'typescript' },
-        { title: 'JavaScript', value: 'default' },
+        { title: 'TypeScript', value: true },
+        { title: 'JavaScript', value: false },
       ],
       initial: 0,
     })
   }
 
-  const answers = await prompts(questions, { onCancel })
-  targetDir = targetDir || answers.projectName
-  if (!template) {
-    template = answers.target === 'expo' ? 'expo' : answers.lang || 'typescript'
-  }
+  const a = await prompts(q, { onCancel })
+  targetDir = targetDir || a.projectName
+  targetId = targetId || a.target || 'vue-spa'
 
-  if (!TEMPLATES.includes(template)) {
-    console.log(red(`✖ Unknown template "${template}". Available: ${TEMPLATES.join(', ')}`))
+  const target = targetById(targetId)
+  if (!target) {
+    console.log(
+      red(`✖ Unknown target "${targetId}".`) +
+        dim(`\n  Available: ${TARGETS.map(t => t.id).join(', ')}`)
+    )
     process.exit(1)
   }
+  if (target.kind === 'expo') typescript = true
+  if (typescript === undefined) typescript = a.lang ?? true
 
+  // ---- 2. features ---------------------------------------------------------
+  const available = featuresFor(target)
+  let features = parseFeatureFlag(argv, target)
+
+  if (features === null) {
+    if (skipPrompts) {
+      features = available.filter(f => f.default).map(f => f.id)
+    } else if (available.length) {
+      const r = await prompts(
+        {
+          type: 'multiselect',
+          name: 'features',
+          message: 'Add anything else?',
+          hint: '— space to toggle, enter to confirm',
+          instructions: false,
+          choices: available.map(f => ({
+            title: f.title,
+            description: f.hint,
+            value: f.id,
+            selected: !!f.default,
+          })),
+        },
+        { onCancel }
+      )
+      features = r.features ?? []
+    } else {
+      features = []
+    }
+  }
+
+  // ---- 3. destination ------------------------------------------------------
   const root = resolve(process.cwd(), targetDir)
   if (existsSync(root) && readdirSync(root).length > 0) {
     if (skipPrompts) {
@@ -105,27 +180,46 @@ export async function runInit(argv) {
     )
     install = r.install
   }
+  if (install === undefined) install = false
 
-  console.log(dim(`\nScaffolding ${template} project in ${root} …`))
-  copyDir(join(templatesDir, template), root, { '{{projectName}}': basename(root) })
+  // ---- 4. scaffold ---------------------------------------------------------
+  const projectName = basename(root)
+  const ctx = createContext({ target, features, projectName, typescript })
 
+  console.log(
+    dim(`\nScaffolding ${bold(target.title)} in ${root}`) +
+      (ctx.features.length ? dim(` — ${ctx.features.join(', ')}`) : '') +
+      dim(' …')
+  )
+
+  const tokens = {
+    '{{projectName}}': projectName,
+    '{{scriptLang}}': ctx.lang,
+    '{{ext}}': ctx.ext,
+  }
+
+  copyDir(join(templatesDir, target.base), root, tokens)
+
+  // The showcase is shared by the web targets, so it lives in _shared/ rather
+  // than being duplicated into each base template.
+  const demo = demoPath(ctx)
+  if (demo) copyFile(join(templatesDir, '_shared', 'Demo.vue'), join(root, demo), tokens)
+
+  writeFiles(root, generatedFiles(ctx))
+
+  // ---- 5. install + next steps ---------------------------------------------
   if (install) {
     console.log(dim(`Installing dependencies with ${pm} …\n`))
     try {
       execSync(`${pm} install`, { cwd: root, stdio: 'inherit' })
     } catch {
-      console.log(red('Dependency install failed — run it manually.'))
+      console.log(yellow('Dependency install failed — run it yourself and try again.'))
     }
   }
 
-  const isExpo = template === 'expo'
-  const runCmd = isExpo
-    ? pm === 'npm'
-      ? 'npm run start'
-      : `${pm} start`
-    : pm === 'npm'
-      ? 'npm run dev'
-      : `${pm} dev`
+  const runScript = target.kind === 'expo' ? 'start' : 'dev'
+  const runCmd = pm === 'npm' ? `npm run ${runScript}` : `${pm} ${runScript}`
+
   console.log(`
 ${green('✔ Done!')} Next steps:
 

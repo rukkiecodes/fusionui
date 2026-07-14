@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup{{scriptLang}}>
 import { ref } from 'vue'
 import { useNotify, useTheme } from '@rukkiecodes/vue'
 
@@ -95,7 +95,7 @@ const subscribed = ref(true)
         <f-input v-model="name" block placeholder="Your name" prepend-icon="user" />
         <div class="row row--between">
           <f-switch v-model="subscribed" color="primary">Email updates</f-switch>
-          <f-badge :content="count" v-if="count">
+          <f-badge v-if="count" :content="count">
             <f-icon icon="bell" />
           </f-badge>
         </div>

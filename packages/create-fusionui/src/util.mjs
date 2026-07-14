@@ -1,6 +1,6 @@
 // Shared CLI helpers.
 import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 
 export function detectPm() {
   const ua = process.env.npm_config_user_agent || ''
@@ -27,6 +27,16 @@ export function copyDir(src, dest, replacements = {}) {
       writeFileSync(to, content)
     }
   }
+}
+
+/** Copy one file, applying the same `{{token}}` replacements as `copyDir`. */
+export function copyFile(src, dest, replacements = {}) {
+  mkdirSync(dirname(dest), { recursive: true })
+  let content = readFileSync(src, 'utf8')
+  for (const [token, value] of Object.entries(replacements)) {
+    content = content.split(token).join(value)
+  }
+  writeFileSync(dest, content)
 }
 
 /** Normalize a hex like `#abc` / `ABCDEF` to `#aabbcc`. */

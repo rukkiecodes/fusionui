@@ -17,6 +17,11 @@ export default ts.config(
       'plans/**',
       // Self-contained Expo Snack sources (JSX in .js, shipped as raw text).
       'apps/docs/src/snacks/**',
+      // Scaffold payload, not repo source: these carry `{{token}}` placeholders
+      // (e.g. `<script setup{{scriptLang}}>`), so the SFC parser can't read them.
+      // They are linted for real by the scaffolder's own smoke test, which
+      // generates a project and runs `eslint` inside it.
+      'packages/create-fusionui/templates/**',
       '**/*.md',
       // Generated Feather icon modules
       'packages/icons/src/icons/**',
