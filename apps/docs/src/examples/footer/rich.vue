@@ -38,7 +38,6 @@
   align-items: stretch;
   gap: 20px;
   width: 100%;
-  padding: 24px;
 }
 
 .columns {

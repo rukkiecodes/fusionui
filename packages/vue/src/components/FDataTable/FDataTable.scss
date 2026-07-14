@@ -30,7 +30,7 @@
       text-align: start;
       color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
       background: rgb(var(--fui-surface-2));
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
     }
 
     &__th--action {
@@ -93,7 +93,7 @@
     // ---- Body --------------------------------------------------------------
     &__td {
       padding: var(--fui-space-3) var(--fui-space-4);
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
       vertical-align: middle;
     }
 
@@ -162,7 +162,7 @@
 
     &__group-cell {
       padding: var(--fui-space-2) var(--fui-space-4);
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
     }
 
     &__group-toggle {
@@ -212,7 +212,7 @@
 
     &__expanded-cell {
       padding: 0;
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
       background: rgb(var(--fui-surface-2));
     }
 
@@ -247,7 +247,7 @@
       flex-wrap: wrap;
       gap: var(--fui-space-4);
       padding: var(--fui-space-3) var(--fui-space-4);
-      border-top: thin solid var(--fui-border-color);
+      border-top: thin solid rgba(var(--fui-border-color), 0.12);
       font-size: 0.85rem;
     }
 

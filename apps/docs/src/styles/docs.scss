@@ -286,19 +286,24 @@ body {
     font-size: inherit;
     color: inherit;
   }
-  table {
+  // Prose tables only. FusionUI's own table components (FTable, FDataTable) are
+  // rendered inside examples on this same page, and their elements all carry a
+  // `fui-*` class — markdown-generated ones carry none. Without this guard the
+  // docs restyle the very components they are meant to be demonstrating (and
+  // win, because these rules are unlayered and the library's are layered).
+  table:not([class]) {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 0.9rem;
   }
-  th,
-  td {
+  th:not([class]),
+  td:not([class]) {
     text-align: left;
     padding: 10px 14px;
     border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
   }
-  th {
+  th:not([class]) {
     font-weight: 600;
   }
 }

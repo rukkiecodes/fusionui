@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     background: rgb(var(--fui-theme-surface));
-    border: thin solid var(--fui-border-color);
+    border: thin solid rgba(var(--fui-border-color), 0.12);
     border-radius: var(--fui-radius-lg);
     overflow: hidden;
     color: rgb(var(--fui-theme-on-surface));
@@ -22,7 +22,7 @@
       justify-content: space-between;
       gap: var(--fui-space-2);
       padding: var(--fui-space-2) var(--fui-space-3);
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
     }
 
     &__title {
@@ -45,7 +45,7 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
-      border-bottom: thin solid var(--fui-border-color);
+      border-bottom: thin solid rgba(var(--fui-border-color), 0.12);
     }
 
     &__day {
@@ -54,8 +54,8 @@
       gap: var(--fui-space-1);
       min-height: 96px;
       padding: var(--fui-space-1);
-      border-inline-end: thin solid var(--fui-border-color);
-      border-block-end: thin solid var(--fui-border-color);
+      border-inline-end: thin solid rgba(var(--fui-border-color), 0.12);
+      border-block-end: thin solid rgba(var(--fui-border-color), 0.12);
 
       &:nth-child(7n) {
         border-inline-end: 0;

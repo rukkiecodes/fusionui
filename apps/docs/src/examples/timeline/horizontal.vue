@@ -21,7 +21,7 @@
       <strong class="step">Build</strong>
     </f-timeline-item>
 
-    <f-timeline-item dot-color="dark" icon="rocket">
+    <f-timeline-item dot-color="secondary" icon="rocket">
       <template #opposite>
         <span class="stamp">Next Tue</span>
       </template>

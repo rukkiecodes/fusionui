@@ -15,6 +15,15 @@
 
 // ---------------------------------------------------------------------------
 // Design tokens as CSS custom properties (overridable by consumers)
+//
+// This block must emit EVERY token a component stylesheet reads through `var()`.
+// A custom property that is read but never defined makes its whole declaration
+// invalid, so the rule silently does nothing — `padding: var(--fui-space-4)`
+// becomes no padding at all, with no warning anywhere. The theme runtime adds
+// the per-theme variables on top (`--fui-theme-*`, `--fui-border-color`,
+// `--fui-surface-2/3`, the emphasis opacities); everything below is theme-
+// independent and has to come from here, because `@rukkiecodes/vue/styles` is
+// the only stylesheet a consumer imports.
 // ---------------------------------------------------------------------------
 @layer fui-tokens {
   :root {
@@ -28,13 +37,40 @@
     --fui-transition-duration: #{settings.$fui-transition-duration};
     --fui-transition-timing: #{settings.$fui-transition-timing};
     --fui-transition: #{settings.$fui-transition};
+    --fui-transition-fast: #{settings.$fui-transition-fast};
 
     --fui-font-family: #{settings.$fui-font-family};
+    --fui-font-family-mono: #{settings.$fui-font-family-mono};
+    --fui-font-size-root: #{settings.$fui-font-size-root};
     --fui-font-weight-regular: #{settings.$fui-font-weight-regular};
     --fui-font-weight-medium: #{settings.$fui-font-weight-medium};
     --fui-font-weight-bold: #{settings.$fui-font-weight-bold};
+    --fui-letter-spacing: #{settings.$fui-letter-spacing};
 
+    // Spacing scale (4px base) — used for every padding/gap in the component CSS.
     --fui-spacer: #{settings.$fui-spacer};
+    --fui-space-1: #{settings.$fui-space-1};
+    --fui-space-2: #{settings.$fui-space-2};
+    --fui-space-3: #{settings.$fui-space-3};
+    --fui-space-4: #{settings.$fui-space-4};
+    --fui-space-5: #{settings.$fui-space-5};
+    --fui-space-6: #{settings.$fui-space-6};
+    --fui-space-7: #{settings.$fui-space-7};
+
+    // Interaction-state opacities (the emphasis/disabled ones are per-theme).
+    --fui-hover-opacity: #{settings.$fui-hover-opacity};
+    --fui-focus-opacity: #{settings.$fui-focus-opacity};
+    --fui-pressed-opacity: #{settings.$fui-pressed-opacity};
+
+    // Elevation ramp.
+    @each $level, $shadow in settings.$fui-shadows {
+      --fui-elevation-#{$level}: #{$shadow};
+    }
+
+    // Stacking order.
+    @each $name, $z in settings.$fui-z-index {
+      --fui-z-#{$name}: #{$z};
+    }
   }
 }
 

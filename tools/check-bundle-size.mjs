@@ -31,9 +31,17 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 // position, cursor, opacity, overflow, float, elevation. Responsive spacing/
 // sizing dominate the growth; utilities aren't tree-shaken so this is the
 // full-barrel worst case (real apps ship what they use).
+// Bumped (2026-07-14): the Vuetify-parity COMPONENT set landed — 58 new
+// components (FDataTable/FDataTableServer, FTreeview, the date/time/colour
+// pickers, FCalendar, FAutocomplete/FCombobox, FVirtualScroll, FSparkline, the
+// selection groups, FFab/FSpeedDial, …). The registered map went 76 → 133, and
+// the barrel's JS went 62 → 119.5 kB gz: per-component cost is essentially
+// unchanged (~0.9 kB gz each), there is simply far more library. CSS grew far
+// less (38 → 43.9) because the utility layer — which dominates the stylesheet —
+// did not change. Ceilings keep ~5% headroom so a real regression still trips.
 const BUDGETS = [
-  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 62 },
-  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 38 },
+  { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 125 },
+  { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 46 },
   { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]

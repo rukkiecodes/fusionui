@@ -4,7 +4,7 @@
 @include tools.layer('components') {
   .fui-timeline {
     --fui-timeline-line-thickness: 2px;
-    --fui-timeline-line-color: var(--fui-border-color);
+    --fui-timeline-line-color: rgba(var(--fui-border-color), 0.12);
     --fui-timeline-dot-size: 38px;
     --fui-timeline-gap: var(--fui-space-4);
 

@@ -23,8 +23,13 @@
     &--variant-outlined {
       @include tools.variant-outlined;
     }
+    // The filled variants paint themselves from the vars (like FBtn) rather than
+    // from a `bg-*` utility class — see FChip.tsx for why the utilities can't be
+    // used here.
     &--variant-elevated,
     &--variant-flat {
+      background-color: rgb(var(--fui-variant-color));
+      color: rgb(var(--fui-variant-on, 255, 255, 255));
       box-shadow: none;
     }
 

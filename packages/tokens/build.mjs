@@ -211,6 +211,15 @@ $fui-hover-opacity: ${opacity.hover} !default;
 $fui-focus-opacity: ${opacity.focus} !default;
 $fui-pressed-opacity: ${opacity.pressed} !default;
 
+// Stacking order. Exposed to SASS as well as CSS so the stylesheet can emit the
+// custom properties itself — a component reading var(--fui-z-menu) needs it to
+// exist even when the consumer only imports the vue package's stylesheet.
+$fui-z-index: (
+${Object.entries(zIndex)
+  .map(([k, v]) => `  ${k}: ${v},`)
+  .join('\n')}
+) !default;
+
 // Elevation
 $fui-shadows: (
 ${shadowMap}

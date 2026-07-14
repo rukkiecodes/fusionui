@@ -9,6 +9,7 @@ import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { useGroupItem } from '../../composables/group'
 import type { IconValue } from '../../composables/icons'
+import { isCssColor, isLightColor, parseColor } from '../../util/colors'
 import { Ripple } from '../../directives/ripple'
 import { FIcon } from '../FIcon'
 import { FChipGroupSymbol } from '../FChipGroup/key'
@@ -49,7 +50,8 @@ export const FChip = genericComponent()({
   setup(props: any, { slots, emit }: any) {
     provideTheme(props)
     const isActive = useProxiedModel(props, 'modelValue', true)
-    const { colorClasses, colorStyles, variantClasses } = useVariant(props)
+    // Only the variant classes: the colour is carried by the CSS vars below.
+    const { variantClasses } = useVariant(props)
     const { sizeClasses } = useSize(props)
     // `null` when the chip is standalone — a plain chip stays a plain <span>.
     const group = useGroupItem(props, FChipGroupSymbol)
@@ -57,14 +59,36 @@ export const FChip = genericComponent()({
     const isSelected = computed(() => group?.isSelected.value ?? false)
     const isSelectable = computed(() => !!group)
 
-    const variantColor = computed(() =>
-      props.color && !props.color.startsWith('#') ? `var(--fui-theme-${props.color})` : undefined
-    )
+    // Resolved to CSS vars rather than the text-*/bg-* utility classes — the same
+    // reason FBtn does it: the theme injects those utilities into the LAST cascade
+    // layer with `!important`, so a `text-primary` on the chip would beat
+    // `.fui-chip--selected`'s colour and a selected chip would render primary text
+    // on a primary fill (i.e. invisible).
+    const variantColor = computed(() => {
+      const color = props.color
+      if (!color) return 'var(--fui-theme-primary)'
+      if (isCssColor(color)) {
+        if (color.startsWith('#') || color.startsWith('rgb')) {
+          const { r, g, b } = parseColor(color)
+          return `${r},${g},${b}`
+        }
+        return undefined
+      }
+      return `var(--fui-theme-${color})`
+    })
 
     // Contrast color for the solid fill a selected chip wears.
-    const variantOn = computed(() =>
-      props.color && !props.color.startsWith('#') ? `var(--fui-theme-on-${props.color})` : undefined
-    )
+    const variantOn = computed(() => {
+      const color = props.color
+      if (!color) return 'var(--fui-theme-on-primary)'
+      if (isCssColor(color)) {
+        if (color.startsWith('#') || color.startsWith('rgb')) {
+          return isLightColor(color) ? '0,0,0' : '255,255,255'
+        }
+        return '255,255,255'
+      }
+      return `var(--fui-theme-on-${color})`
+    })
 
     function onClose(e: MouseEvent): void {
       // Never let the close icon double as a selection toggle.
@@ -105,13 +129,11 @@ export const FChip = genericComponent()({
               },
               ...(group?.selectedClass.value ?? []),
               ...variantClasses.value,
-              ...colorClasses.value,
               ...sizeClasses.value,
               props.class,
             ],
             style: [
               { '--fui-variant-color': variantColor.value, '--fui-variant-on': variantOn.value },
-              colorStyles.value,
               props.style,
             ],
             // Selectable chips are toggle buttons: pressable, focusable, and

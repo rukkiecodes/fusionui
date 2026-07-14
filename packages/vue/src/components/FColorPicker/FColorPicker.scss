@@ -76,7 +76,7 @@
       height: 36px;
       border-radius: var(--fui-radius-circle);
       background: var(--fui-color-picker-checker);
-      box-shadow: inset 0 0 0 1px var(--fui-border-color);
+      box-shadow: inset 0 0 0 1px rgba(var(--fui-border-color), 0.12);
       overflow: hidden;
     }
 
@@ -178,7 +178,7 @@
       text-align: center;
       color: inherit;
       background: rgb(var(--fui-surface-2));
-      border: thin solid var(--fui-border-color);
+      border: thin solid rgba(var(--fui-border-color), 0.12);
       border-radius: var(--fui-radius-sm);
 
       // The spinners crowd an already-narrow field.
@@ -208,7 +208,7 @@
       font-weight: settings.$fui-font-weight-medium;
       color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity));
       background: rgb(var(--fui-surface-2));
-      border: thin solid var(--fui-border-color);
+      border: thin solid rgba(var(--fui-border-color), 0.12);
       border-radius: var(--fui-radius-sm);
       cursor: pointer;
 

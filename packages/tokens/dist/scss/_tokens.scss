@@ -39,6 +39,17 @@ $fui-hover-opacity: 0.08 !default;
 $fui-focus-opacity: 0.12 !default;
 $fui-pressed-opacity: 0.16 !default;
 
+// Stacking order. Exposed to SASS as well as CSS so the stylesheet can emit the
+// custom properties itself — a component reading var(--fui-z-menu) needs it to
+// exist even when the consumer only imports the vue package's stylesheet.
+$fui-z-index: (
+  navbar: 1000,
+  sidebar: 1100,
+  overlay: 2000,
+  menu: 2100,
+  tooltip: 2200,
+) !default;
+
 // Elevation
 $fui-shadows: (
   0: none,
