@@ -16,9 +16,9 @@ Each component runs for real in its **own Expo Snack** — edit the code inline,
 press _My Device_ and scan the QR with [Expo Go](https://expo.dev/go) to run it on
 your phone. The press springs are [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 and the liquid glass is [Skia](https://shopify.github.io/react-native-skia/), the
-same engines the package uses — so the feel matches the web. Snack can't import the
-unpublished `@rukkiecodes/native`, so each is a self-contained mirror, but every value
-comes from `@rukkiecodes/tokens`.
+same engines the package uses — so the feel matches the web. Each Snack is a
+self-contained mirror rather than an import of `@rukkiecodes/native`, so it can run
+without a build step, but every value still comes from `@rukkiecodes/tokens`.
 
 ### Button
 

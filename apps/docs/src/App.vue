@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, nextTick, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '@rukkiecodes/vue'
 import { nav } from './nav'
@@ -12,6 +12,8 @@ const drawer = ref(false)
 
 // Resolved through Vite so it survives the `/fusionui/` base path on Pages.
 const logoUrl = new URL('../public/logo.svg', import.meta.url).href
+
+const isHome = computed(() => route.path === '/')
 
 // Syntax-highlight the page's fenced code blocks after each navigation (the
 // markdown plugin emits them as plain text). rAF lets the new page mount first.
@@ -76,6 +78,7 @@ function toggleTheme() {
 
     <div class="docs__body">
       <f-sidebar
+        v-if="!isHome"
         :model-value="route.path"
         :permanent="isDesktop"
         :open="drawer"
@@ -103,8 +106,11 @@ function toggleTheme() {
         </div>
       </f-sidebar>
 
-      <main class="docs__main">
-        <article class="docs__content markdown-body">
+      <!-- The landing page is full-bleed: no sidebar, no prose column, no page
+           actions. Every other route keeps the documentation shell. -->
+      <main class="docs__main" :class="{ 'docs__main--landing': isHome }">
+        <router-view v-if="isHome" />
+        <article v-else class="docs__content markdown-body">
           <PageActions />
           <router-view />
         </article>

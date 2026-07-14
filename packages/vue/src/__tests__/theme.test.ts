@@ -67,3 +67,22 @@ describe('theme engine', () => {
     expect(document.documentElement.classList.contains('fui-theme--dark')).toBe(true)
   })
 })
+
+describe('custom themes merge with the built-ins', () => {
+  // Regression: `themes` used to REPLACE the defaults. Overriding one colour is
+  // the common case, and doing it used to delete the dark theme outright and
+  // leave `light` holding a single colour — silently.
+  it('keeps the other colors and the dark theme when overriding one color', () => {
+    const theme = createTheme({
+      themes: { light: { colors: { primary: '#ff0000' } } as never },
+    })
+
+    expect(theme.themes.value.light.colors.primary).toBe('#ff0000')
+    // Everything else survives.
+    expect(theme.themes.value.light.colors.success).toBeDefined()
+    expect(theme.themes.value.light.colors['on-primary']).toBeDefined()
+    // …and so does the theme you never mentioned.
+    expect(theme.themes.value.dark).toBeDefined()
+    expect(theme.themes.value.dark.dark).toBe(true)
+  })
+})

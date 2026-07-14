@@ -29,6 +29,11 @@
       "required": false,
       "description": ""
     },
+    "noTrap": {
+      "type": "Boolean",
+      "required": false,
+      "description": ""
+    },
     "class": {
       "type": "String | Array | Object",
       "required": false,

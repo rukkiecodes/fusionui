@@ -79,6 +79,9 @@ reduced-motion path; the GL loop also pauses on `visibilitychange`).
 
 ## Release
 
-Changesets + semver are in place. **Nothing is published to npm** — the
-`@rukkiecodes/*` names are unpublished by design; publishing requires explicit,
-fresh authorization and credentials at release time.
+Changesets + semver are in place, and the packages are **published to npm** under
+the `@rukkiecodes` scope (`@rukkiecodes/vue`, `tokens`, `native`, `shaders`,
+`icons`, plus `create-fusionui`). Publishing still requires explicit, fresh
+authorization and credentials at release time — see the memory note on the
+release flow. Use `pnpm -r publish`, never `npm publish`: pnpm is what rewrites
+the `workspace:*` dependencies into real versions.

@@ -213,6 +213,13 @@ body {
     min-height: calc(100vh - var(--docs-bar-height));
   }
 
+  // The landing page has no sidebar and no prose column: it lays itself out.
+  &__main--landing {
+    display: block;
+    border-left: none;
+    border-top-left-radius: 0;
+  }
+
   &__content {
     width: 100%;
     max-width: var(--docs-content-max);

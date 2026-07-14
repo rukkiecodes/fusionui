@@ -5,6 +5,7 @@ import { propsFactory } from '../../util/propsFactory'
 import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
+import { useFocusTrap } from '../../composables/focusTrap'
 import { convertToUnit } from '../../util/helpers'
 import { parseColor } from '../../util/colors'
 import { FIcon } from '../FIcon'
@@ -112,8 +113,18 @@ export const FDialog = genericComponent()({
       else close()
     }
 
+    // The dialog is modal (`aria-modal`), so focus must move into it, stay inside
+    // it, and be handed back to the opener on close. FDialog does not build on
+    // FOverlay, so it takes the same trap from the shared composable.
+    const boxRef = ref<HTMLElement>()
+    const { onTrapKeydown } = useFocusTrap(boxRef, active)
+
     function onKeydown(e: KeyboardEvent) {
-      if (e.key === 'Escape' && !props.preventClose) close()
+      if (e.key === 'Escape' && !props.preventClose) {
+        close()
+        return
+      }
+      onTrapKeydown(e)
     }
 
     // Balance the body lock per instance so an active dialog that unmounts still
@@ -164,6 +175,10 @@ export const FDialog = genericComponent()({
                       h(
                         'div',
                         {
+                          ref: boxRef,
+                          // Focusable so the box can hold focus itself when it
+                          // contains no controls of its own.
+                          tabindex: -1,
                           class: [
                             'fui-dialog__box',
                             {

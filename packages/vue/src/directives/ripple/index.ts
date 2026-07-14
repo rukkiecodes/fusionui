@@ -13,9 +13,24 @@ interface RippleElement extends HTMLElement {
   }
 }
 
+/**
+ * The ripple is pure decoration, so under `prefers-reduced-motion` it does not
+ * run at all. It has to be checked HERE rather than in CSS: the effect's
+ * transition is written as an inline style, and no media query can out-specify
+ * an inline style — a `@media (prefers-reduced-motion: reduce)` rule would be
+ * silently ignored.
+ */
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
 function show(e: PointerEvent, el: RippleElement): void {
   const data = el._fuiRipple
   if (!data?.enabled) return
+  if (prefersReducedMotion()) return
 
   const rect = el.getBoundingClientRect()
   const x = data.centered ? rect.width / 2 : e.clientX - rect.left

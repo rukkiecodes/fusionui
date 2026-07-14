@@ -10,10 +10,20 @@ import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 
-// gzip-kB ceilings on the FULL barrel bundle. Apps tree-shake what they don't
-// import, so a button-only app ships a fraction of this — these budgets exist
-// to catch *regressions*, not to bound a real app's payload. Tighten as the
-// library is optimised; never loosen silently (a bump needs a reason in review).
+// gzip-kB ceilings on the FULL barrel bundle.
+//
+// NOTE (2026-07-14): this file used to claim "apps tree-shake what they don't
+// import, so a button-only app ships a fraction of this". That is NOT true today
+// and the comment was misleading. `createFusionUI()` registers every component
+// globally (`for (const key in components) app.component(...)` in framework.ts),
+// which pins the whole barrel into the graph, and the plugin is not optional —
+// components throw without the theme it provides. Measured: an app importing only
+// FBtn is 5.3 kB gz until it calls createFusionUI(), at which point it is 121 kB gz.
+//
+// So these ceilings ARE roughly the real payload, not a worst case. They exist to
+// catch regressions; never loosen silently (a bump needs a reason in review).
+// Making the tree-shaking story true needs a framework change — opting out of
+// global registration — not a change here.
 // Bumped (2026-06-15): the full barrel grew with the Vuesax-parity component
 // additions (Avatar, Tooltip, Dialog, Select, Radio, Switch, Checkbox, OTP,
 // Loading, Navbar, Sidebar, …). Tree-shaking means real apps still ship a

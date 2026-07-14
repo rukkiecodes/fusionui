@@ -3,6 +3,7 @@ import type { App, ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import { themes as tokenThemes } from '@rukkiecodes/tokens'
 import { propsFactory } from '../util/propsFactory'
 import { isLightColor, parseColor } from '../util/colors'
+import { mergeDeep } from '../util/helpers'
 
 // Theme engine: generates `--fui-theme-*` CSS variables (RGB triplets so
 // components can apply alpha), auto-derives `on-*` contrast colors, emits the
@@ -87,8 +88,16 @@ function genColorUtilities(colorKeys: string[]): string {
 }
 
 export function createTheme(options: ThemeOptions = {}): ThemeInstance {
+  // Deep-merged OVER the built-in themes rather than replacing them. Overriding
+  // one colour is the common case, and a wholesale replace made that quietly
+  // destructive: `themes: { light: { colors: { primary } } }` used to delete the
+  // dark theme entirely and leave `light` with a single colour, with no warning.
+  // Anything you do declare still wins, so a fully custom theme is unaffected.
   const themes = ref<Record<string, ThemeDefinition>>(
-    options.themes ?? { light: vuesaxLight, dark: vuesaxDark }
+    mergeDeep(
+      { light: vuesaxLight, dark: vuesaxDark } as unknown as Record<string, unknown>,
+      (options.themes ?? {}) as Record<string, unknown>
+    ) as Record<string, ThemeDefinition>
   )
   const name = ref(options.defaultTheme ?? 'light')
 

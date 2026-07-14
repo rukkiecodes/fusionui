@@ -1,4 +1,4 @@
-import { h, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { h, ref } from 'vue'
 import type { PropType } from 'vue'
 import { genericComponent, useRender } from '../../util/defineComponent'
 import { propsFactory } from '../../util/propsFactory'
@@ -6,16 +6,6 @@ import { makeComponentProps } from '../../composables/component'
 import { makeThemeProps, provideTheme } from '../../composables/theme'
 import { useProxiedModel } from '../../composables/proxiedModel'
 import { FOverlay } from '../FOverlay'
-
-const FOCUSABLE =
-  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-
-function focusables(root: HTMLElement | undefined): HTMLElement[] {
-  if (!root) return []
-  return Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
-    el => el.offsetParent !== null || el === document.activeElement
-  )
-}
 
 export const makeFBottomSheetProps = propsFactory(
   {
@@ -55,42 +45,6 @@ export const FBottomSheet = genericComponent()({
     provideTheme(props)
     const isActive = useProxiedModel(props, 'modelValue', false)
     const sheetRef = ref<HTMLElement>()
-    let returnTo: HTMLElement | null = null
-
-    function onKeydown(e: KeyboardEvent): void {
-      if (e.key !== 'Tab') return
-      const items = focusables(sheetRef.value)
-      const first = items[0] ?? sheetRef.value
-      const last = items[items.length - 1] ?? sheetRef.value
-      if (!first || !last) return
-
-      // Keep Tab inside the sheet — it is modal, so there is nothing behind it
-      // worth reaching.
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
-      }
-    }
-
-    watch(isActive, async (value: boolean) => {
-      if (typeof document === 'undefined') return
-      if (value) {
-        returnTo = document.activeElement as HTMLElement | null
-        await nextTick()
-        const [first] = focusables(sheetRef.value)
-        ;(first ?? sheetRef.value)?.focus()
-      } else {
-        returnTo?.focus?.()
-        returnTo = null
-      }
-    })
-    onBeforeUnmount(() => {
-      returnTo = null
-    })
-
     useRender(() =>
       h(
         FOverlay,
@@ -118,7 +72,6 @@ export const FBottomSheet = genericComponent()({
                 ],
                 style: props.style,
                 tabindex: -1,
-                onKeydown,
               },
               [
                 props.notHandle
