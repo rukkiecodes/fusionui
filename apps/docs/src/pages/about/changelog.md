@@ -112,7 +112,7 @@ SASS as `$fui-z-index` alongside the CSS custom properties it already emitted, s
 `@rukkiecodes/vue` can declare the `--fui-z-*` variables in its own stylesheet
 and a component reading `var(--fui-z-menu)` always finds it defined.
 
-`@rukkiecodes/native` (**0.1.1**), `@rukkiecodes/shaders` (**0.1.0**),
+`@rukkiecodes/native` (**0.1.1**),
 `@rukkiecodes/icons` (**0.1.0**) and `create-fusionui` (**0.1.2**) are all still
 close to their initial release. Their changelogs live beside each package in the
 [repository](https://github.com/rukkiecodes/fusionui/tree/main/packages).

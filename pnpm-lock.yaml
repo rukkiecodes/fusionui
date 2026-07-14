@@ -71,9 +71,6 @@ importers:
       '@rukkiecodes/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@rukkiecodes/shaders':
-        specifier: workspace:*
-        version: link:../../packages/shaders
       '@rukkiecodes/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
@@ -191,30 +188,6 @@ importers:
       vitest:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@25.9.3)(jsdom@25.0.1)(lightningcss@1.32.0)(sass@1.100.0)(terser@5.48.0)
-
-  packages/shaders:
-    devDependencies:
-      '@vitejs/plugin-vue-jsx':
-        specifier: ^4.1.1
-        version: 4.2.0(vite@6.4.3(@types/node@25.9.3)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.100.0)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))
-      '@vue/test-utils':
-        specifier: ^2.4.6
-        version: 2.4.11(@vue/compiler-dom@3.5.38)(@vue/server-renderer@3.5.38(vue@3.5.38(typescript@5.9.3)))(vue@3.5.38(typescript@5.9.3))
-      jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
-      typescript:
-        specifier: ^5.7.3
-        version: 5.9.3
-      vite:
-        specifier: ^6.0.7
-        version: 6.4.3(@types/node@25.9.3)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.100.0)(terser@5.48.0)(yaml@2.9.0)
-      vitest:
-        specifier: ^2.1.8
-        version: 2.1.9(@types/node@25.9.3)(jsdom@25.0.1)(lightningcss@1.32.0)(sass@1.100.0)(terser@5.48.0)
-      vue:
-        specifier: ^3.5.13
-        version: 3.5.38(typescript@5.9.3)
 
   packages/tokens: {}
 

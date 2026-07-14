@@ -38,8 +38,7 @@ the parity table.
 The differentiator is real GPU work used deliberately: liquid glass
 ([`FGlass`](/components/liquid-glass) — a signed-distance field resolved into
 surface normals, then Snell refraction and displacement), metaball physics
-([`FGoo`](/components/goo)), and a lazy-loaded WebGL2 shader catalog
-([`@rukkiecodes/shaders`](/components/shaders)). On mobile the same maths runs
+([`FGoo`](/components/goo)). On mobile the same maths runs
 through Skia, or through iOS 26's `UIGlassEffect` where it exists.
 
 The discipline around it matters more than the effects themselves. Every effect
@@ -50,9 +49,10 @@ must have:
 2. a **`prefers-reduced-motion` path** — motion stops, the surface stays;
 3. a reason it improves the component, beyond decoration.
 
-The shader runtime is lazy-loaded — a ~1.3 kB gzipped chunk, fetched on first
-on-screen use — pauses off-screen and on `visibilitychange`, and is never in the
-critical path. No component _requires_ a shader to function.
+Both effects paint their fallback first and upgrade only where the browser
+genuinely supports the real thing; both pause off-screen and on
+`visibilitychange`, so neither is ever in the critical path. No component
+_requires_ an effect to function.
 
 ## Accessibility is a blocker, not a backlog item
 

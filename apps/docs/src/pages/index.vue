@@ -32,7 +32,7 @@ const pillars = [
   {
     icon: 'droplet',
     title: 'A signature visual layer',
-    text: 'Real GPU work — liquid-glass refraction, metaball goo, a lazy-loaded WebGL2 shader runtime — used for depth and motion rather than decoration. Every effect has a static fallback and a reduced-motion path, and the runtime never blocks interaction.',
+    text: 'Real GPU work — liquid-glass refraction and metaball goo — used for depth and motion rather than decoration. Every effect has a static fallback and a reduced-motion path, and never blocks interaction.',
     to: '/labs',
   },
   {

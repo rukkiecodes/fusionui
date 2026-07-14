@@ -5,7 +5,7 @@
 // glob), keeping this module dependency-free.
 
 const WIDGETS =
-  'TokensCatalog|IconGallery|NativeSnack|ButtonPlayground|InputPlayground|CardPlayground|AlertPlayground|GlassPlayground|GooPlayground|ShaderPlayground|ChartPlayground|DashboardExample|Markup'
+  'TokensCatalog|IconGallery|NativeSnack|ButtonPlayground|InputPlayground|CardPlayground|AlertPlayground|GlassPlayground|GooPlayground|ChartPlayground|DashboardExample|Markup'
 
 function row(cells) {
   return '| ' + cells.join(' | ') + ' |\n'

@@ -17,7 +17,6 @@
     "@rukkiecodes/vue": "workspace:*",
     "@rukkiecodes/icons": "workspace:*",
     "@rukkiecodes/tokens": "workspace:*",
-    "@rukkiecodes/shaders": "workspace:*",
     "vue-router": "^4.5.0",
     "prismjs": "^1.29.0"
   },

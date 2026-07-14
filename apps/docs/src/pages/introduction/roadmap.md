@@ -8,14 +8,13 @@ library mobile carries, and the mileage that only real usage buys.
 
 ## Published today
 
-| Package                | Version | What it is                                            |
-| ---------------------- | ------- | ----------------------------------------------------- |
-| `@rukkiecodes/vue`     | 0.15.0  | The Vue 3 component library — 118 components          |
-| `@rukkiecodes/tokens`  | 0.2.0   | The single token source → CSS, SASS, TS, React Native |
-| `@rukkiecodes/native`  | 0.1.1   | Expo + React Native components and liquid glass       |
-| `@rukkiecodes/shaders` | 0.1.0   | The lazy WebGL2 runtime and effect catalog            |
-| `@rukkiecodes/icons`   | 0.1.0   | 737 tree-shakeable Feather-style icons                |
-| `create-fusionui`      | 0.1.2   | The `npm create fusionui` scaffolder                  |
+| Package               | Version | What it is                                            |
+| --------------------- | ------- | ----------------------------------------------------- |
+| `@rukkiecodes/vue`    | 0.15.0  | The Vue 3 component library — 118 components          |
+| `@rukkiecodes/tokens` | 0.2.0   | The single token source → CSS, SASS, TS, React Native |
+| `@rukkiecodes/native` | 0.1.1   | Expo + React Native components and liquid glass       |
+| `@rukkiecodes/icons`  | 0.1.0   | 737 tree-shakeable Feather-style icons                |
+| `create-fusionui`     | 0.1.2   | The `npm create fusionui` scaffolder                  |
 
 **Every one of these is below 1.0, and that is meaningful.** Under semver, a
 pre-1.0 minor bump is allowed to break you. Pin your versions, read the
@@ -32,7 +31,7 @@ batches, all of which are done:
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Rebrand**                | The `F*` component prefix, the `.fui-` / `--fui-` namespaces, the `@rukkiecodes/*` packages                                                                                                         |
 | **Design tokens**          | `@rukkiecodes/tokens` — one source generating CSS, SASS, TypeScript and native outputs; the library consumes the generated outputs only                                                             |
-| **Signature visual layer** | `FGlass` (SDF → Snell refraction), `FGoo` (metaball physics), `@rukkiecodes/shaders` (lazy WebGL2 catalog), and the chart engine — each with a static fallback and a reduced-motion path            |
+| **Signature visual layer** | `FGlass` (SDF → Snell refraction), `FGoo` (metaball physics), and the chart engine — each with a static fallback and a reduced-motion path                                                          |
 | **Mobile**                 | `@rukkiecodes/native` — `FusionProvider`, a core component set, and `LiquidGlassView` on `UIGlassEffect` / Skia SKSL                                                                                |
 | **CLI**                    | `fusionui init / add / theme` — scaffolds Vue SPA, PWA, static, Nuxt and Expo targets, adds components as a dependency or vendors them with `--copy`, and generates brand theme overrides           |
 | **Hardening**              | The SSR test, per-bundle gzip budgets in CI, the axe-core audit, a token sweep, and [`HARDENING.md`](https://github.com/rukkiecodes/fusionui/blob/main/HARDENING.md)                                |
@@ -51,11 +50,11 @@ contracts and tokens shared with the web. Whether 1.0 means full parity with the
 web library or a documented, deliberately smaller mobile surface has not been
 decided. The working assumption is web-first, with mobile as a fast-follow.
 
-**The shader library.** The runtime is hand-written WebGL2 with no dependency,
-which is why the entry point is small and the GL chunk lazy. Adopting a thin
-wrapper such as OGL would trade bundle size for development velocity. It has not
-been revisited since the runtime shipped, and it will not be unless authoring
-effects starts to hurt.
+**The shader library — settled: none.** A hand-written WebGL2 runtime
+(`@rukkiecodes/shaders`) shipped in 0.1.0 and was **removed in July 2026**. It was
+a second rendering stack to maintain, and the liquid-glass and goo engines already
+carry the visual identity without it. The package remains on npm, deprecated, for
+anyone who installed it. If a genuine GLSL need reappears, this reopens.
 
 The rest are settled: distribution is an npm dependency (with copy-in available
 through `fusionui add --copy`), styling is co-located SASS plus CSS custom

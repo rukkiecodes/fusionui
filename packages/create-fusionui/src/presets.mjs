@@ -186,14 +186,6 @@ export const FEATURES = [
     deps: () => ({ 'vue-i18n': VERSIONS['vue-i18n'] }),
   },
   {
-    id: 'shaders',
-    title: 'FusionUI shaders',
-    hint: 'The signature GPU layer — lazy-loaded, always degrades to CSS',
-    kinds: ['vue', 'nuxt'],
-    default: false,
-    deps: () => ({ '@rukkiecodes/shaders': 'latest' }),
-  },
-  {
     id: 'state',
     title: 'Zustand',
     hint: 'State management',

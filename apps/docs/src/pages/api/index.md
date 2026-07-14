@@ -122,8 +122,7 @@ rather than components you place — see [Services](#services) below.
 | `FGlass`   | [Liquid Glass](/components/liquid-glass) |
 | `FGoo`     | [Goo](/components/goo)                   |
 
-The WebGL2 surface (`FShaderSurface`, `v-shader`) ships in its own package,
-`@rukkiecodes/shaders` — see [Shaders](/components/shaders). The whole layer is
+The signature visual layer is
 covered on the [Labs](/labs) page, including what stability to expect from it.
 
 ## Utilities
@@ -148,8 +147,6 @@ hand is not a supported use.
 | `v-ripple`        | The Vuesax ripple on press. Already applied inside `FBtn`, `FListItem`, etc.                      |
 | `v-click-outside` | Calls the handler when a click lands outside the element — the primitive behind menus and popups. |
 | `v-intersect`     | Wraps `IntersectionObserver`; fires when the element enters or leaves the viewport.               |
-
-`@rukkiecodes/shaders` adds a fourth, `v-shader`, when you install its plugin.
 
 ## Services
 

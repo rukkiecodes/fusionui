@@ -52,19 +52,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const BUDGETS = [
   { label: '@rukkiecodes/vue (js, full barrel)', file: 'packages/vue/dist/index.js', maxKb: 125 },
   { label: '@rukkiecodes/vue (css)', file: 'packages/vue/dist/fusionui.css', maxKb: 46 },
-  { label: '@rukkiecodes/shaders (entry)', file: 'packages/shaders/dist/index.js', maxKb: 5 },
   { label: '@rukkiecodes/tokens (css)', file: 'packages/tokens/dist/css/tokens.css', maxKb: 3 },
 ]
 
-// The lazy WebGL runtime ships as its own hashed chunk — match by prefix.
-const GLOB_BUDGETS = [
-  {
-    label: '@rukkiecodes/shaders (gl runtime, lazy)',
-    dir: 'packages/shaders/dist',
-    prefix: 'gl-',
-    maxKb: 3,
-  },
-]
+// (The @rukkiecodes/shaders budgets lived here until the WebGL layer was removed
+// in 2026-07. Liquid glass and goo are not affected — they ship inside
+// @rukkiecodes/vue and are counted in its barrel above.)
+const GLOB_BUDGETS = []
 
 function kb(buf) {
   return gzipSync(buf).length / 1024

@@ -34,7 +34,6 @@ worked example — never a dangling import.
 | `router` — Vue Router                        | the static site (the SPA and PWA are routed already) |
 | `vueuse` — composition utilities             | Vue targets, Nuxt                                    |
 | `i18n` — Vue I18n                            | Vue targets                                          |
-| `shaders` — the signature GPU layer          | Vue targets, Nuxt                                    |
 | `vitest` — unit testing, with Vue Test Utils | Vue targets, Nuxt                                    |
 | `eslint` — ESLint + Prettier                 | all targets                                          |
 | `state` — Zustand                            | Expo                                                 |

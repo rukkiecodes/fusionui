@@ -2,7 +2,7 @@
 
 FusionUI is released under the **MIT License** — the monorepo and every
 published package (`@rukkiecodes/vue`, `@rukkiecodes/tokens`,
-`@rukkiecodes/native`, `@rukkiecodes/shaders`, `@rukkiecodes/icons` and
+`@rukkiecodes/native`, `@rukkiecodes/icons` and
 `create-fusionui`) carry it.
 
 > Copyright (c) 2026 FusionUI contributors

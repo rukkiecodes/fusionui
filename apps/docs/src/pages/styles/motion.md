@@ -139,8 +139,8 @@ onMounted(() => {
 })
 ```
 
-And for anything expensive — a shader, a canvas, a parallax — the rule is
+And for anything expensive — a canvas, a parallax, a glass surface — the rule is
 stronger than "don't animate": don't _start_. The effect must have a static
 fallback that renders when the preference is set, when the GPU can't keep up, or
 when the runtime never loads. See
-[Shaders](/components/shaders) and [Liquid glass](/components/liquid-glass).
+[Liquid glass](/components/liquid-glass) and [Goo](/components/goo).

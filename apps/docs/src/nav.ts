@@ -225,7 +225,6 @@ export const nav: NavSection[] = [
       { title: 'What is Labs?', to: '/labs/' },
       { title: 'Liquid Glass', to: '/components/liquid-glass' },
       { title: 'Goo', to: '/components/goo' },
-      { title: 'Shaders', to: '/components/shaders' },
     ],
   },
   {

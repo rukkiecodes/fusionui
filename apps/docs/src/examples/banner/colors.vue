@@ -14,7 +14,7 @@
     <f-banner
       bg-color="primary"
       icon="rocket"
-      text="FusionUI 1.0 is out — liquid glass surfaces, shaders and a native package."
+      text="FusionUI 1.0 is out — liquid glass surfaces, goo and a native package."
       rounded
     >
       <template #actions>

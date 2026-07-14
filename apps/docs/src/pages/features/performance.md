@@ -7,13 +7,11 @@ numbers below are those budgets, not estimates.
 
 ## The budgets
 
-| Artefact                            | Ceiling (gzip) | What it is                                                          |
-| ----------------------------------- | -------------- | ------------------------------------------------------------------- |
-| `@rukkiecodes/vue` — JS             | 125 kB         | the full barrel: all 133 components, every composable and directive |
-| `@rukkiecodes/vue` — CSS            | 46 kB          | the whole stylesheet: components + the utility layer                |
-| `@rukkiecodes/shaders` — entry      | 5 kB           | the shader package's eagerly loaded half                            |
-| `@rukkiecodes/shaders` — GL runtime | 3 kB           | the WebGL2 renderer, in its own lazy chunk                          |
-| `@rukkiecodes/tokens` — CSS         | 3 kB           | the design tokens as custom properties                              |
+| Artefact                    | Ceiling (gzip) | What it is                                                          |
+| --------------------------- | -------------- | ------------------------------------------------------------------- |
+| `@rukkiecodes/vue` — JS     | 125 kB         | the full barrel: all 133 components, every composable and directive |
+| `@rukkiecodes/vue` — CSS    | 46 kB          | the whole stylesheet: components + the utility layer                |
+| `@rukkiecodes/tokens` — CSS | 3 kB           | the design tokens as custom properties                              |
 
 The library currently sits a little under each of those. The ceilings are set
 with roughly 5% headroom, so a real regression trips them; loosening one takes a
@@ -42,9 +40,10 @@ that is exactly why the budget tracks the full barrel rather than a synthetic
 minimal app. What the budget buys you is that the ceiling stays where it is, and
 that CI notices the day it doesn't.
 
-Two things stay out of that number regardless: the shader package, which is a
-separate opt-in dependency, and its WebGL runtime, which is not loaded at all
-until something asks it to draw.
+The signature visual layer (`FGlass`, `FGoo`) is counted inside that barrel — it
+is part of `@rukkiecodes/vue`, not a separate download — but it costs nothing at
+runtime until you render one, and nothing at all to a user who has asked for
+reduced motion.
 
 ## The CSS layer
 
@@ -65,28 +64,24 @@ again: it is one file, it caches, and it does not grow with your app. If you
 never touch the utility classes, it is still the same file — the ceiling is
 what it is.
 
-## The shader runtime is lazy
+## The visual layer never blocks paint
 
 The GPU layer is the most expensive thing FusionUI can do, so it is the most
-carefully gated thing in the library. An `FShaderSurface` renders its **static
-CSS fallback immediately**, with zero JavaScript. The WebGL2 runtime is behind a
-dynamic `import()` that fires only when all three of these are true:
+carefully gated. `FGlass` paints its **static fallback immediately** — a
+`blur` + `saturate` frost with the rim and bevel still drawn — and only upgrades
+to real refraction where the browser genuinely supports an SVG displacement map
+inside `backdrop-filter`. `FGoo` settles its field to a single resting frame and
+renders it statically under `prefers-reduced-motion`, so the shape survives and
+the motion does not.
 
-- the surface has scrolled into view (an `IntersectionObserver` decides),
-- the browser can actually create a WebGL2 context, and
-- the user has not asked for reduced motion.
-
-So it is never in the critical path. It arrives as its own hashed chunk
-(≤ 3 kB gz), after first paint, on a surface the user is looking at — and on a
-machine or a preference that rules it out, it never arrives at all and the
-fallback simply stays. If the GL context fails to initialise, the fallback stays
-too.
+Both pause when they scroll off-screen (an `IntersectionObserver` decides), so an
+effect below the fold costs nothing at all.
 
 ## Effects pause when nobody is watching
 
-A running shader is a running `requestAnimationFrame` loop, and an animation
+A running effect is a running `requestAnimationFrame` loop, and an animation
 nobody can see is pure battery drain. The same `IntersectionObserver` that starts
-the runtime stops it: scroll the surface off screen and the loop stops; scroll it
+an effect stops it: scroll the surface off screen and the loop stops; scroll it
 back and it resumes. A `visibilitychange` listener covers the case the observer
 can't — a surface still on screen in a tab you have backgrounded. The loop is
 also FPS-capped (30 by default) rather than running as fast as the display will

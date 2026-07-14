@@ -56,10 +56,6 @@ opened it on close.
 Every signature effect must have a static fallback and a reduced-motion path —
 that is a rule the visual layer is held to, not a best effort:
 
-- **Shaders** (`@rukkiecodes/shaders`) — the runtime checks
-  `prefers-reduced-motion` alongside GPU capability, and where it is set the CSS
-  fallback _is_ the reduced-motion path. The WebGL loop is never started. It also
-  pauses off-screen and on `visibilitychange`.
 - **Goo** (`FGoo`, the navbar/sidebar junction) — the animation settles to a
   static frame instead of running.
 - **Parallax** (`FParallax`) — no scroll binding at all; the image is simply

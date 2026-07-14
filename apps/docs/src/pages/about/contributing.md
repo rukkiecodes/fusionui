@@ -15,7 +15,6 @@ packages/
   vue/               # @rukkiecodes/vue — the Vue 3 component library
   tokens/            # @rukkiecodes/tokens — the single source of design truth
   native/            # @rukkiecodes/native — Expo + React Native
-  shaders/           # @rukkiecodes/shaders — the lazy WebGL2 runtime
   icons/             # @rukkiecodes/icons — the Feather-style icon set
   api-generator/     # generates the API tables in these docs
   create-fusionui/   # the `npm create fusionui` scaffolder
@@ -88,7 +87,7 @@ tokens are the single source of truth, without exception), every interactive
 state is styled (default, hover, focus, active, disabled, loading, error),
 keyboard support and screen-reader semantics and focus management are verified,
 `prefers-reduced-motion` is respected, it is SSR- and hydration-safe, it is
-responsive across the breakpoints, any optional shader effect has a static
+responsive across the breakpoints, any optional visual effect has a static
 fallback, it is documented with a live example, and it has unit and accessibility
 test coverage.
 

@@ -15,7 +15,7 @@ basis for one.
 | **Accessibility**           | A release gate: keyboard, focus, screen reader, reduced motion. axe-core runs over the docs in both themes. A tracked backlog remains (see below)       | Taken seriously and covers far more ground in practice, with years of real-world bug reports behind it | Limited                                                                                    |
 | **SSR**                     | A hard constraint, enforced by a test that server-renders every registered component in a DOM-less Node environment. Nuxt works via a scaffolded plugin | Full SSR support with an official, well-maintained Nuxt module                                         | No first-class SSR story                                                                   |
 | **Mobile / React Native**   | `@rukkiecodes/native` — Expo + RN components sharing the tokens and the component contracts. Currently a core set, not the full library                 | None                                                                                                   | None                                                                                       |
-| **GPU visual layer**        | Liquid glass, goo and a lazy WebGL2 shader catalog, each with a static fallback and a reduced-motion path; mirrored on mobile through Skia              | None                                                                                                   | None                                                                                       |
+| **GPU visual layer**        | Liquid glass and goo, each with a static fallback and a reduced-motion path; mirrored on mobile through Skia                                            | None                                                                                                   | None                                                                                       |
 | **Bundle size**             | Full barrel ~119 kB gz JS + ~44 kB gz CSS, tracked against budgets in CI; ~0.9 kB gz per component, tree-shaken                                         | Depends heavily on your build; well-optimised and long-tuned                                           | Small library, correspondingly small                                                       |
 | **Maturity**                | Pre-1.0. Young, small user base, minors can break                                                                                                       | Years in production across thousands of apps, a large community and ecosystem                          | Established look, but verify the project's current release activity before depending on it |
 
@@ -53,7 +53,7 @@ the Expo app at once, and the component contracts (`variant`, `color`, `size`,
 `loading`, …) are the same on both. Neither Vuetify nor Vuesax offers a React
 Native counterpart at all.
 
-**The signature visual layer.** Liquid glass, goo and shaders are not decoration
+**The signature visual layer.** Liquid glass and goo are not decoration
 bolted onto a Material clone — they are the identity, and they are engineered
 with fallbacks so they can never break a page. Nothing comparable ships in either
 of the other two.

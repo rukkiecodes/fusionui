@@ -13,7 +13,6 @@ import AlertPlayground from './components/AlertPlayground.vue'
 import TokensCatalog from './components/TokensCatalog.vue'
 import GlassPlayground from './components/GlassPlayground.vue'
 import GooPlayground from './components/GooPlayground.vue'
-import ShaderPlayground from './components/ShaderPlayground.vue'
 import ChartPlayground from './components/ChartPlayground.vue'
 import GridPlayground from './components/GridPlayground.vue'
 import FlexPlayground from './components/FlexPlayground.vue'
@@ -45,7 +44,6 @@ createApp(App)
   .component('TokensCatalog', TokensCatalog)
   .component('GlassPlayground', GlassPlayground)
   .component('GooPlayground', GooPlayground)
-  .component('ShaderPlayground', ShaderPlayground)
   .component('ChartPlayground', ChartPlayground)
   .component('GridPlayground', GridPlayground)
   .component('FlexPlayground', FlexPlayground)
