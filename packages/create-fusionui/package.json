@@ -27,7 +27,7 @@
   "scripts": {
     "build": "echo \"[create-fusionui] no build step\"",
     "typecheck": "echo \"[create-fusionui] typecheck placeholder\"",
-    "test": "node test/smoke.mjs && node --test test/*.test.mjs"
+    "test": "node test/smoke.mjs && node --test test/commands.test.mjs test/scaffold.test.mjs"
   },
   "dependencies": {
     "kleur": "^4.1.5",
