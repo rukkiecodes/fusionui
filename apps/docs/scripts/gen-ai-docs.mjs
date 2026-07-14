@@ -102,7 +102,7 @@ pages.sort(
 )
 
 // ---- llms.txt -------------------------------------------------------------
-let llms = `# FusionUI\n\n> A soft, modern Vue 3 component library — the look of Vuesax with the engineering stability of Vuetify. Install with \`npm i @rukkiecodes/vue @rukkiecodes/icons\`. Every page below is also available as raw markdown (append \`.md\`) and JSON (append \`.json\`).\n\n`
+let llms = `# FusionUI\n\n> A soft, modern Vue 3 component library — accessible, token-driven and SSR-safe, with one design language for Vue and React Native. Install with \`npm i @rukkiecodes/vue @rukkiecodes/icons\`. Every page below is also available as raw markdown (append \`.md\`) and JSON (append \`.json\`).\n\n`
 let lastSection = ''
 for (const p of pages) {
   if (p.section !== lastSection) {
@@ -138,7 +138,7 @@ writeFileSync(
   JSON.stringify(
     {
       name: 'FusionUI',
-      description: 'A Vue 3 component library (Vuesax look, Vuetify stability).',
+      description: 'A soft, modern Vue 3 component library — accessible, token-driven, SSR-safe.',
       install: 'npm i @rukkiecodes/vue @rukkiecodes/icons',
       llms: `${SITE}/llms.txt`,
       skill: `${SITE}/ai/fusionui-skill.md`,
@@ -169,8 +169,8 @@ description: Build Vue 3 UIs with FusionUI (@rukkiecodes/vue) — components, th
 
 # FusionUI skill
 
-FusionUI is a Vue 3 component library with the look of Vuesax and the engineering
-stability of Vuetify. Use this when building a Vue 3 app with FusionUI.
+FusionUI is a soft, modern Vue 3 component library — accessible, token-driven and
+SSR-safe. Use this when building a Vue 3 app with FusionUI.
 
 ## Install
 

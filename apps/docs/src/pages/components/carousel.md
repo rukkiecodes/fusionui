@@ -1,7 +1,7 @@
 # Carousel
 
 `FCarousel` cycles through slides with arrows, delimiters, swipe and keyboard
-support — FusionUI's take on Vuetify's `v-carousel`. Slides render through
+support. Slides render through
 [`FImage`](/components/image), so every image lazy-loads and fades in.
 
 Pass images with the `items` prop, or compose slides with `FCarouselItem`.

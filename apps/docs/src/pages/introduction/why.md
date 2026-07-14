@@ -5,11 +5,10 @@ Bootstrap clone, competent and forgettable. The ones that look distinctive tend
 to trade away the engineering: shaky accessibility, no SSR story, a theming
 system that fights you the moment your brand isn't the default blue.
 
-FusionUI refuses that trade. It aims for the engineering stability of
-[Vuetify](https://vuetifyjs.com) with the visual polish of
-[Vuesax](https://vuesax.com) — soft shadows, gentle radii, ripples,
-lift-on-hover — on top of a token system that is the single source of truth for
-both web and mobile.
+FusionUI refuses that trade. It wants both: a distinctive look — soft shadows,
+gentle radii, ripples, lift-on-hover — on serious engineering, with the WAI-ARIA
+patterns implemented properly, an SSR story that holds, and a token system that
+is the single source of truth for both web and mobile.
 
 <Example file="button/variants" />
 
@@ -102,7 +101,7 @@ Scope discipline is part of the design.
 
 ## The honest caveat
 
-FusionUI is pre-1.0 (`@rukkiecodes/vue` is at 0.15.0). It is young, and the API
-can still change in a minor release. If you need a library with a decade of
-production mileage behind it, that is Vuetify, and the
-[comparison](/introduction/comparison) says so plainly.
+FusionUI is pre-1.0. It is young, and the API can still change in a minor
+release. If what you need is a decade of production mileage and an ecosystem to
+match, one of the long-established Vue frameworks is the safer call —
+[Is FusionUI for you?](/introduction/comparison) says so plainly.

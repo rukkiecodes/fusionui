@@ -39,14 +39,14 @@ const subscribed = ref(true)
     <section class="hero">
       <span class="hero__badge">
         <f-icon icon="zap" size="small" />
-        Vue 3 · Vuesax-inspired
+        Vue 3 · token-driven
       </span>
       <h1 class="hero__title">
         Build beautiful UIs with
         <span class="grad">FusionUI</span>
       </h1>
       <p class="hero__sub">
-        A soft, modern component library with the look of Vuesax and the stability of Vuetify. Edit
+        A soft, modern component library — accessible, token-driven and SSR-safe. Edit
         <code>src/App.vue</code> and save — hot reload does the rest.
       </p>
       <div class="hero__cta">

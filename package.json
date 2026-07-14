@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "FusionUI — a Vue 3 design library with the stability of Vuetify and the looks of Vuesax.",
+  "description": "FusionUI — a soft, modern Vue 3 design library. Accessible, token-driven and SSR-safe.",
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "engines": {

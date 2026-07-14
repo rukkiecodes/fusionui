@@ -1,6 +1,6 @@
 # Dialog
 
-`FDialog` is a Vuesax-style modal: the backdrop fades in while the panel
+`FDialog` is a modal with a signature entrance: the backdrop fades in while the panel
 **bounces** up to scale, with a floating rounded close button perched on the
 top-right corner. Bind it with `v-model` and fill the `header`, default and
 `footer` slots.

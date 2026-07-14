@@ -62,7 +62,7 @@ const SIZES = {
   large: { padV: 14, padH: 24, font: 17, radius: 15 },
 }
 
-// Vuesax dual-ring loader: two overlaid rings spinning at slightly different
+// Dual-ring loader: two overlaid rings spinning at slightly different
 // speeds. Replaces the label while keeping the accent fill behind it.
 function DualRingLoader({ ringColor }) {
   const a = useSharedValue(0)

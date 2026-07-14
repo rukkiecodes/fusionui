@@ -8,7 +8,7 @@ const slides = [
 
 <template>
   <div class="demo">
-    <!-- Compose slides with FCarouselItem (like Vuetify's v-carousel-item). -->
+    <!-- Compose slides with FCarouselItem. -->
     <f-carousel height="320">
       <f-carousel-item v-for="src in slides" :key="src" :src="src" cover />
       <f-carousel-item>

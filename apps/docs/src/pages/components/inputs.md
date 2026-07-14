@@ -1,6 +1,6 @@
 # Input
 
-`FInput` is a text field with the Vuesax look — a soft filled background, a
+`FInput` is a text field with the signature look — a soft filled background, a
 stable focus, and the signature animated floating label.
 
 > **Fluid by default.** Inputs (and every field built on `FField` — select,

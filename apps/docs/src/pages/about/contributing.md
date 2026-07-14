@@ -69,8 +69,8 @@ A11Y_BASE=http://localhost:4173 pnpm a11y
 
 The workflow that produced the existing components, in order:
 
-1. **Study the reference.** The design language is Vuesax's; the engineering
-   stability is Vuetify's.
+1. **Study the design language.** Soft shadows, gentle radii, ripples,
+   lift-on-hover. Match the components that already exist.
 2. **Implement it** against the [definition of done](#definition-of-done) below.
 3. **Write the docs page.** Every component gets one, under
    `apps/docs/src/pages/components/`: live examples, a playground, and the

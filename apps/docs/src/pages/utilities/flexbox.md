@@ -1,7 +1,7 @@
 # Flex utilities
 
-A set of global helper classes for building flexbox layouts without writing CSS
-— the same approach Vuetify uses. Put `d-flex` on a container, then reach for
+A set of global helper classes for building flexbox layouts without writing CSS.
+Put `d-flex` on a container, then reach for
 `justify-*`, `align-*`, `flex-*`, `order-*`, and `ga-*` to arrange its children.
 
 Every helper has responsive variants: insert a breakpoint infix

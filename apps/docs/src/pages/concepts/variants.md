@@ -8,9 +8,9 @@ component that has a fill to paint: `FBtn`, `FIconBtn`, `FChip`, `FChipGroup`,
 
 ## The eleven variants
 
-Six come from the Vuetify lineage (`elevated`, `flat`, `tonal`, `outlined`,
-`text`, `plain`), three are the signature Vuesax looks (`gradient`, `relief`,
-`line`), and two are FusionUI's own (`floating`, `shadow`). The prop validates
+Six are the conventional set you'd expect (`elevated`, `flat`, `tonal`,
+`outlined`, `text`, `plain`), and five are the signature looks (`gradient`,
+`relief`, `line`, `floating`, `shadow`). The prop validates
 against that list, so a typo warns in development instead of silently rendering
 the default.
 

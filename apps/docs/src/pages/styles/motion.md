@@ -53,7 +53,7 @@ between honoring the preference and deleting the affordance.
 
 ## The signature motion
 
-**The hover-lift.** The Vuesax move, and the one you'll recognise: the element
+**The hover-lift.** The signature move, and the one you'll recognise: the element
 rises `translateY(-3px)` and swaps its resting shadow for a larger, softer one,
 then returns to `translateY(0)` when pressed — it goes _down_ under your finger.
 `FBtn`'s default (`elevated`) variant lifts, and casts the bigger shadow in its

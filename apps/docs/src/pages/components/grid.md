@@ -1,7 +1,7 @@
 # Grid
 
-A 12-column flexbox layout system for building responsive pages. It works the
-way Vuetify's grid does — a **container** centers your content, a **row** holds
+A 12-column flexbox layout system for building responsive pages. It follows the
+convention you already know — a **container** centers your content, a **row** holds
 the columns and owns the gutter, and each **column** declares how many of the 12
 tracks it spans, per breakpoint.
 

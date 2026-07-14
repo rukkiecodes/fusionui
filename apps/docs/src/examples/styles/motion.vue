@@ -47,7 +47,7 @@
   transition: var(--fui-transition);
 }
 
-/* The Vuesax lift — rise -3px, cast a bigger soft shadow. */
+/* The signature lift — rise -3px, cast a bigger soft shadow. */
 .tile--lift:hover {
   transform: translateY(-3px);
   box-shadow: var(--fui-elevation-6);

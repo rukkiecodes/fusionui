@@ -1,71 +1,66 @@
-# Comparison
+# Is FusionUI for you?
 
-FusionUI's two reference points are [Vuetify](https://vuetifyjs.com) — the most
-mature component framework in the Vue ecosystem — and
-[Vuesax](https://vuesax.com), whose visual language is the one FusionUI is
-modelled on. It is worth being blunt about how it stacks up against both, because
-picking a UI framework is a multi-year commitment and a sales pitch is a bad
-basis for one.
+Picking a UI framework is a multi-year commitment, and a sales pitch is a bad
+basis for one. So here is the honest version: what FusionUI is good at, where it
+is still young, and when you should pick something else.
 
-|                             | FusionUI                                                                                                                                                | Vuetify                                                                                                | Vuesax                                                                                     |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| **Component count**         | 118 as of `@rukkiecodes/vue` 0.15.0                                                                                                                     | A comparably large set, refined over far longer                                                        | A much smaller set                                                                         |
-| **Design language**         | Vuesax-derived: soft shadows, gentle radii, ripples, lift-on-hover, Apple-ish type and whitespace                                                       | Material Design                                                                                        | Its own soft, playful aesthetic — the original                                             |
-| **Theming (CSS variables)** | Every value is a `--fui-*` custom property generated from one token source; runtime theme swap with no re-render                                        | CSS custom properties plus SASS variables; mature and well-documented                                  | Colour variables; workable, but not a full token system                                    |
-| **Accessibility**           | A release gate: keyboard, focus, screen reader, reduced motion. axe-core runs over the docs in both themes. A tracked backlog remains (see below)       | Taken seriously and covers far more ground in practice, with years of real-world bug reports behind it | Limited                                                                                    |
-| **SSR**                     | A hard constraint, enforced by a test that server-renders every registered component in a DOM-less Node environment. Nuxt works via a scaffolded plugin | Full SSR support with an official, well-maintained Nuxt module                                         | No first-class SSR story                                                                   |
-| **Mobile / React Native**   | `@rukkiecodes/native` — Expo + RN components sharing the tokens and the component contracts. Currently a core set, not the full library                 | None                                                                                                   | None                                                                                       |
-| **GPU visual layer**        | Liquid glass and goo, each with a static fallback and a reduced-motion path; mirrored on mobile through Skia                                            | None                                                                                                   | None                                                                                       |
-| **Bundle size**             | Full barrel ~119 kB gz JS + ~44 kB gz CSS, tracked against budgets in CI; ~0.9 kB gz per component, tree-shaken                                         | Depends heavily on your build; well-optimised and long-tuned                                           | Small library, correspondingly small                                                       |
-| **Maturity**                | Pre-1.0. Young, small user base, minors can break                                                                                                       | Years in production across thousands of apps, a large community and ecosystem                          | Established look, but verify the project's current release activity before depending on it |
+## What you get
 
-## Where Vuetify wins, plainly
+|                           |                                                                                                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Components**            | 133, covering the full range — data tables, pickers, autocomplete and combobox, treeview, virtual scroll, expansion panels — plus a 12-column grid and a complete utility-class system |
+| **Design language**       | Soft shadows, gentle radii, ripples, lift-on-hover, Apple-ish type and whitespace. Deliberately not Material                                                                           |
+| **Theming**               | Every value is a `--fui-*` custom property generated from one token source. Runtime theme swap, no re-render                                                                           |
+| **Accessibility**         | A release gate, not a backlog item: keyboard, focus, screen reader, reduced motion. axe-core runs over the docs in both themes. A tracked backlog remains — see below                  |
+| **SSR**                   | A hard constraint, enforced by a test that server-renders every registered component in a DOM-less Node environment. Nuxt works through a scaffolded plugin                            |
+| **Mobile / React Native** | `@rukkiecodes/native` — Expo and RN components sharing the tokens and the component contracts. Currently a core set, not the full library                                              |
+| **GPU visual layer**      | Liquid glass and goo, each with a static fallback and a reduced-motion path, mirrored on mobile through Skia                                                                           |
+| **Bundle size**           | ~120 kB gz JS + ~45 kB gz CSS for the full barrel, tracked against budgets in CI                                                                                                       |
+| **Licence**               | MIT                                                                                                                                                                                    |
 
-Vuetify is more mature and more battle-tested than FusionUI, and that gap will
-not close soon. It has been through years of edge cases, browser quirks,
-accessibility bug reports and enterprise deployments that FusionUI simply has not
-seen yet. Its documentation is deeper, its ecosystem larger, its Nuxt story
-first-party, and its answer to "has anyone hit this bug before" is usually yes.
+## Where it's still young
 
-If your priority is the lowest-risk, most widely-supported choice — or you want a
-Material-Design product and a large hiring pool of people who already know the
-framework — use Vuetify. FusionUI takes many of its engineering ideas
-(composable-driven components, a `props` factory, CSS-variable theming, an
-in-house grid and utility-class layer) precisely because they are good ones.
+FusionUI is pre-1.0. It has a small user base, and a minor version can still
+break your build.
 
-## Where Vuesax fits
+It has not been through the years of edge cases, browser quirks, accessibility
+bug reports and enterprise deployments that the long-established Vue frameworks
+have. When you hit a bug, the answer to "has anyone seen this before" is often
+no. The ecosystem around it — third-party plugins, Stack Overflow answers, people
+you can hire who already know it — is correspondingly thin.
 
-Vuesax defined the look FusionUI is chasing, and it did it first. If you want
-that aesthetic and your project's needs are modest, it may still be the simplest
-path. What FusionUI adds is the engineering underneath it: SSR safety, a token
-system, accessibility gates, bundle budgets, a much larger component set, and a
-mobile implementation. Check Vuesax's current release activity and Vue 3 support
-before you build on it — that is a question about the project's present state,
-and its repository is the only honest source for it.
+The accessibility work is a gate, but it is not finished: there is a tracked
+backlog in [`HARDENING.md`](https://github.com/rukkiecodes/fusionui/blob/main/HARDENING.md).
+Tree-shaking does not currently work — `createFusionUI()` registers the whole
+component set, so you pay for the full barrel whether you use it or not.
 
-## Where FusionUI's edges actually are
+## Pick something else if…
 
-Three things, and no more than three.
+- **You need Material Design.** FusionUI is not Material and will not become it.
+- **You need maturity above all else.** If the deciding factor is the
+  lowest-risk, most widely-supported choice, take the mature option. That gap is
+  real and it will not close soon.
+- **You need a large hiring pool** of developers who already know the framework.
+- **You need a first-party Nuxt module.** FusionUI works under Nuxt through a
+  plugin the CLI scaffolds for you, which is not the same thing as an official,
+  long-maintained module.
 
-**The cross-platform token model.** One token source generates CSS, SASS,
-TypeScript and React Native outputs. A brand re-theme lands on the web app and
-the Expo app at once, and the component contracts (`variant`, `color`, `size`,
-`loading`, …) are the same on both. Neither Vuetify nor Vuesax offers a React
-Native counterpart at all.
+## Pick FusionUI if…
 
-**The signature visual layer.** Liquid glass and goo are not decoration
-bolted onto a Material clone — they are the identity, and they are engineered
-with fallbacks so they can never break a page. Nothing comparable ships in either
-of the other two.
+**You want the web app and the phone app to be the same product.** One token
+source generates CSS, SASS, TypeScript and React Native outputs. A brand re-theme
+lands on both at once, and the component contracts (`variant`, `color`, `size`,
+`loading`, …) are identical across them. This is the thing FusionUI does that the
+alternatives do not do at all.
 
-**The looks.** A FusionUI app does not read as a default template. That is a
-matter of taste rather than measurement, so judge it from the
-[components](/components/button) rather than from this sentence.
+**You want a signature visual layer that can't break your page.** Liquid glass
+and goo are the identity, not decoration bolted onto a clone — and every effect
+paints a static fallback first, honours `prefers-reduced-motion`, and pauses off
+screen.
 
-## Choosing
+**You don't want to look like a default template.** That is a matter of taste
+rather than measurement, so judge it from the [components](/components/button)
+rather than from this sentence.
 
-Choose **Vuetify** if maturity, ecosystem depth and Material Design are what you
-need. Choose **FusionUI** if you want the Vuesax aesthetic with modern
-engineering underneath, you value the token-driven web + React Native story, and
-you can live with a pre-1.0 library whose API may still shift. Both are MIT
-licensed, so the cost of being wrong is mostly the cost of a migration.
+**And you can live with pre-1.0.** The API may still shift. It is MIT licensed,
+so the cost of being wrong is mostly the cost of a migration.

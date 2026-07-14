@@ -47,7 +47,7 @@ const shadowRest = {
 /**
  * FInput — the React Native sibling of the web <FInput>/<FField>. Same contract:
  * label, placeholder, value/onChangeText, disabled, and an error/message surface.
- * The Vuesax gray fill (surface-2 -> surface-3 on focus) + a 2px border that
+ * The gray fill (surface-2 -> surface-3 on focus) + a 2px border that
  * smoothly colors to the accent on focus (danger on error), with a subtle lift.
  */
 function FInput({
@@ -140,9 +140,7 @@ export default function App() {
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <Text style={styles.title}>FInput</Text>
-        <Text style={styles.subtitle}>
-          Vuesax filled field — the 2px border smoothly colors on focus.
-        </Text>
+        <Text style={styles.subtitle}>Filled field — the 2px border smoothly colors on focus.</Text>
 
         <Group caption="Labelled + bound (focus to see the accent slide in)">
           <FInput

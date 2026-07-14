@@ -2,7 +2,7 @@
 
 FusionUI is pre-1.0. The foundations are all in place — tokens, the signature
 visual layer, the mobile package, the CLI, the hardening gates — and the
-component set has reached Vuetify parity in breadth. What remains before a 1.0 is
+component set is complete in breadth. What remains before a 1.0 is
 mostly burn-down: an accessibility backlog, a decision about how much of the
 library mobile carries, and the mileage that only real usage buys.
 
@@ -23,19 +23,19 @@ change until 1.0 lands.
 
 ## Shipped
 
-The library grew out of _Vue DL_ — the Vuetify-stability × Vuesax-looks framework
-that became `@rukkiecodes/vue`. The FusionUI-era work sat on top of it in six
+The library grew out of _Vue DL_, the framework that became `@rukkiecodes/vue`.
+The FusionUI-era work sat on top of it in six
 batches, all of which are done:
 
-| Work                       | What landed                                                                                                                                                                                         |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Rebrand**                | The `F*` component prefix, the `.fui-` / `--fui-` namespaces, the `@rukkiecodes/*` packages                                                                                                         |
-| **Design tokens**          | `@rukkiecodes/tokens` — one source generating CSS, SASS, TypeScript and native outputs; the library consumes the generated outputs only                                                             |
-| **Signature visual layer** | `FGlass` (SDF → Snell refraction), `FGoo` (metaball physics), and the chart engine — each with a static fallback and a reduced-motion path                                                          |
-| **Mobile**                 | `@rukkiecodes/native` — `FusionProvider`, a core component set, and `LiquidGlassView` on `UIGlassEffect` / Skia SKSL                                                                                |
-| **CLI**                    | `fusionui init / add / theme` — scaffolds Vue SPA, PWA, static, Nuxt and Expo targets, adds components as a dependency or vendors them with `--copy`, and generates brand theme overrides           |
-| **Hardening**              | The SSR test, per-bundle gzip budgets in CI, the axe-core audit, a token sweep, and [`HARDENING.md`](https://github.com/rukkiecodes/fusionui/blob/main/HARDENING.md)                                |
-| **Component parity**       | The full Vuetify-parity set — data tables, pickers, autocomplete/combobox, treeview, virtual scroll, expansion panels, and the rest — plus the 12-column grid and the complete utility-class system |
+| Work                       | What landed                                                                                                                                                                               |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Rebrand**                | The `F*` component prefix, the `.fui-` / `--fui-` namespaces, the `@rukkiecodes/*` packages                                                                                               |
+| **Design tokens**          | `@rukkiecodes/tokens` — one source generating CSS, SASS, TypeScript and native outputs; the library consumes the generated outputs only                                                   |
+| **Signature visual layer** | `FGlass` (SDF → Snell refraction), `FGoo` (metaball physics), and the chart engine — each with a static fallback and a reduced-motion path                                                |
+| **Mobile**                 | `@rukkiecodes/native` — `FusionProvider`, a core component set, and `LiquidGlassView` on `UIGlassEffect` / Skia SKSL                                                                      |
+| **CLI**                    | `fusionui init / add / theme` — scaffolds Vue SPA, PWA, static, Nuxt and Expo targets, adds components as a dependency or vendors them with `--copy`, and generates brand theme overrides |
+| **Hardening**              | The SSR test, per-bundle gzip budgets in CI, the axe-core audit, a token sweep, and [`HARDENING.md`](https://github.com/rukkiecodes/fusionui/blob/main/HARDENING.md)                      |
+| **Component parity**       | The full set — data tables, pickers, autocomplete/combobox, treeview, virtual scroll, expansion panels, and the rest — plus the 12-column grid and the complete utility-class system      |
 
 ## Open
 

@@ -1,6 +1,6 @@
 # v-ripple
 
-`v-ripple` is the Vuesax ink ripple: a soft radial circle that grows from the
+`v-ripple` is the signature ink ripple: a soft radial circle that grows from the
 point you pressed to about 2.5× the element's width, lingers while the pointer
 is down, and fades on release. Every FusionUI control that can be pressed
 already uses it internally — this directive is for the surfaces you build

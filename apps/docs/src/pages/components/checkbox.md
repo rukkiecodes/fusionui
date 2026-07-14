@@ -1,6 +1,6 @@
 # Checkbox
 
-`FCheckbox` is a Vuesax-style checkbox with a drawn check mark, a soft colored
+`FCheckbox` has a drawn check mark, a soft colored
 glow, and a label slot. Bind `v-model` to a boolean — or to an array to collect
 several values at once.
 

@@ -1,6 +1,6 @@
 # Switch
 
-`FSwitch` is a Vuesax-style toggle with a sliding thumb and a soft colored glow.
+`FSwitch` is a toggle with a sliding thumb and a soft colored glow.
 Bind `v-model` to a boolean, drop text or icons inside the track, or collect
 several values into an array.
 

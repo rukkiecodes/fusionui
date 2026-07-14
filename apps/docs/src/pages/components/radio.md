@@ -1,6 +1,6 @@
 # Radio
 
-`FRadio` is a Vuesax-style radio with a draw-in dot and a soft colored glow.
+`FRadio` has a draw-in dot and a soft colored glow.
 Group them with `FRadioGroup` (which shares the `v-model`, color and disabled
 state), or bind a standalone radio's own `v-model`.
 

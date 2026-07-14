@@ -1,6 +1,6 @@
 # Theme & Colors
 
-FusionUI ships a light and dark theme seeded with the Vuesax palette. Colors are
+FusionUI ships a light and dark theme, seeded from one token source. Colors are
 exposed as CSS variables (`--fui-theme-primary`, …) so components can apply alpha.
 
 ## Named colors

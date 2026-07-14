@@ -14,7 +14,7 @@ entry before you upgrade.
 
 ## `@rukkiecodes/vue`
 
-### 0.15.0 — Vuetify parity
+### 0.15.0 — the complete component set
 
 The largest release so far: **58 new components**, taking the library from 60 to 118. Data components (`FDataTable` and `FDataTableServer` — sharing a single
 render module so the client and server tables cannot drift — plus
@@ -74,9 +74,9 @@ image bounds, and `+` / `-` / `0` keyboard shortcuts.
 `cycle`, `continuous`, swipe and keyboard navigation, a thumbnail strip and a
 counter.
 
-### 0.9.0 — the Vuesax switch
+### 0.9.0 — the signature switch
 
-`FSwitch` reworked around the Vuesax toggle animation: a coloured circle wipes in
+`FSwitch` reworked around a new toggle animation: a coloured circle wipes in
 from the left to fill the track, the thumb slides with an active stretch, and the
 track presses in on tap — with square, indeterminate and icon variants, and a
 reduced-motion path.
@@ -100,8 +100,8 @@ every page, `llms.txt`) and `create-fusionui` got its polished starter template.
 
 ### 0.1.0 — initial public release
 
-FusionUI 0.1.0: a Vue 3 design library with the engineering stability of Vuetify
-and the look of Vuesax v4, blended with Apple-style typography and whitespace —
+FusionUI 0.1.0: a soft, modern Vue 3 design library — a distinctive look on
+serious engineering, blended with Apple-style typography and whitespace —
 50+ components, the Feather icon set, the programmatic notify / dialog / loading
 services, the documentation site, and the `npm create fusionui` scaffolder.
 

@@ -1,8 +1,7 @@
 # Image
 
 `FImage` renders a responsive image with lazy loading, a blur-up placeholder,
-aspect-ratio control, cropping, gradients and content overlays — FusionUI's take
-on Vuetify's `v-img`.
+aspect-ratio control, cropping, gradients and content overlays.
 
 ## Default
 

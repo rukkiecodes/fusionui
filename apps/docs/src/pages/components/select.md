@@ -1,6 +1,6 @@
 # Select
 
-`FSelect` is a Vuesax-style dropdown built on the same field as the inputs. Pass
+`FSelect` is a dropdown built on the same field as the inputs. Pass
 an `items` array (strings or `{ title, value }` objects); bind `v-model` to the
 value, or to an array for multiple selection.
 

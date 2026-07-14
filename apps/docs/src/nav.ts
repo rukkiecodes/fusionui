@@ -23,7 +23,7 @@ export const nav: NavSection[] = [
     title: 'Introduction',
     items: [
       { title: 'Why FusionUI', to: '/introduction/why' },
-      { title: 'Comparison', to: '/introduction/comparison' },
+      { title: 'Is FusionUI for you?', to: '/introduction/comparison' },
       { title: 'Roadmap', to: '/introduction/roadmap' },
     ],
   },

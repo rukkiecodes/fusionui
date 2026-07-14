@@ -17,7 +17,7 @@ generated TS output.
 
 ## Color
 
-The Vuesax v4 palette. Each named color is emitted as an RGB triplet
+The FusionUI palette. Each named color is emitted as an RGB triplet
 (`--fui-theme-primary: 25,91,255`) so components can compose alpha. Light and
 dark values are shown side by side.
 
@@ -37,7 +37,7 @@ A 4px base scale for consistent, generous whitespace.
 
 ## Elevation
 
-The signature Vuesax soft shadow — gentle, low-alpha, large-blur. A 0–24 ramp;
+The signature soft shadow — gentle, low-alpha, large-blur. A 0–24 ramp;
 a representative slice is shown.
 
 <TokensCatalog group="shadow" />
@@ -51,7 +51,7 @@ slightly tightened tracking.
 
 ## Motion
 
-The Vuesax heartbeat — `0.25s ease` everywhere, `0.15s` for fast interactions,
+The heartbeat of the system — `0.25s ease` everywhere, `0.15s` for fast interactions,
 a `-3px` hover lift.
 
 <TokensCatalog group="motion" />

@@ -116,6 +116,6 @@ its canvas_. Render the backdrop in-canvas, or snapshot it with
 
 `FusionProvider` feeds the `@rukkiecodes/tokens` **native** output — durations in
 milliseconds, dimensions as numbers, shadows as `{ color, offsetX, offsetY,
-blur, opacity }` objects (no CSS units). The native palette is the _same_ Vuesax
-palette as the web, generated from one source, so a brand re-theme applies to
-both platforms at once.
+blur, opacity }` objects (no CSS units). The native palette is the _same_ palette
+as the web, generated from one source, so a brand re-theme applies to both
+platforms at once.

@@ -45,7 +45,7 @@ const shadowRest = {
 // ----TOKENS END----
 
 /**
- * FCard — RN sibling of the web <FCard>. Vuesax soft-shadow surface: themed
+ * FCard — RN sibling of the web <FCard>. Soft-shadow surface: themed
  * surface fill, lg (20) radius, soft resting shadow (0 5px 20px rgba(0,0,0,.12)).
  * On the web it LIFTS on hover (transition all .25s); here, when pressable, we
  * give it a Reanimated press-lift: translateY -> -4 + scale 1.01 on pressIn.
@@ -111,7 +111,7 @@ export default function App() {
       <ScrollView contentContainerStyle={styles.scroll}>
         <Text style={styles.h1}>FCard</Text>
         <Text style={styles.sub}>
-          Vuesax soft-shadow surface. Token-driven, lg radius, lifts on press.
+          Soft-shadow surface. Token-driven, lg radius, lifts on press.
         </Text>
 
         <Group caption="Interactive — press to feel the lift">

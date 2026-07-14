@@ -1,9 +1,9 @@
 # FusionUI
 
 A non-generic, performance-obsessed design system for the Vue ecosystem —
-the engineering **stability of [Vuetify](https://vuetifyjs.com)** with the
-visual **polish of [Vuesax](https://vuesax.com)**, unified by a single source
-of design truth and a signature GPU-accelerated visual layer.
+**soft, modern and deliberately not Material**, built on a single source of
+design truth and a signature GPU-accelerated visual layer, with the same design
+language on the web and on mobile.
 
 > 🚧 **Status:** active development. Docs deploy from `main` to
 > [rukkiecodes.github.io/fusionui](https://rukkiecodes.github.io/fusionui/).

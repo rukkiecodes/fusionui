@@ -50,9 +50,9 @@ const stats = [
         </h1>
 
         <p class="hero__sub">
-          133 accessible, token-driven, SSR-safe components with the engineering stability of
-          Vuetify and the looks of Vuesax — plus a GPU visual layer that always degrades gracefully.
-          One design language for Vue and React Native.
+          133 components with a soft, modern look — accessible, token-driven and SSR-safe, with a
+          GPU visual layer that always degrades gracefully. One design language for Vue and React
+          Native.
         </p>
 
         <div class="hero__cta">

@@ -54,7 +54,7 @@ export default function App() {
 | Web (`@rukkiecodes/vue`) | Native (`@rukkiecodes/native`) | Shared contract                                                                                |
 | ------------------------ | ------------------------------ | ---------------------------------------------------------------------------------------------- |
 | `<FBtn>`                 | `<FButton>`                    | `variant` (elevated/flat/tonal/outlined/text), `color`, `size`, `loading`, `disabled`, `block` |
-| `<FCard>`                | `<FCard>`                      | `flat`, `padding`, `radius`; Vuesax soft shadow                                                |
+| `<FCard>`                | `<FCard>`                      | `flat`, `padding`, `radius`; the signature soft shadow                                         |
 | `<FInput>`/`<FField>`    | `<FInput>`                     | `label`, `value`/`onChangeText`, `disabled`, `error`, `message`, `color`                       |
 | `<FSwitch>`              | `<FSwitch>`                    | `value`/`onValueChange`, `color`, `disabled`                                                   |
 | `<FGlass>`               | `<LiquidGlassView>`            | `radius`, glass `options` (bezel/depth/ior/…); same SDF→Snell engine                           |

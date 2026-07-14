@@ -1,6 +1,6 @@
 # Avatar
 
-`FAvatar` is a Vuesax-style avatar: a rounded-square tile that holds a photo,
+`FAvatar` is a soft rounded-square tile that holds a photo,
 an icon or initials, with an optional status badge, a "story" ring, a loading
 state and a typing indicator. Stack several with `FAvatarGroup`.
 

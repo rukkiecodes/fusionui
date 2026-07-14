@@ -144,7 +144,7 @@ hand is not a supported use.
 
 | Directive         | What it does                                                                                      |
 | ----------------- | ------------------------------------------------------------------------------------------------- |
-| `v-ripple`        | The Vuesax ripple on press. Already applied inside `FBtn`, `FListItem`, etc.                      |
+| `v-ripple`        | The ink ripple on press. Already applied inside `FBtn`, `FListItem`, etc.                         |
 | `v-click-outside` | Calls the handler when a click lands outside the element — the primitive behind menus and popups. |
 | `v-intersect`     | Wraps `IntersectionObserver`; fires when the element enters or leaves the viewport.               |
 
