@@ -737,4 +737,32 @@ export const components = [
       },
     ],
   },
+  {
+    slug: 'shell',
+    component: 'FShell',
+    title: 'App shell',
+    category: 'Effects',
+    web: 'navbar + sidebar',
+    part: 'FShell',
+    deps: ['@shopify/react-native-skia'],
+    imports: ["import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web'"],
+    description:
+      'The app shell: a navbar + sidebar frame around recessed content. The junction where content meets the shell is the fluid goo corner — a convex fillet drawn on the GPU with Skia from the shared shell geometry (the same smin math as the web shell). The content stays ordinary RN views on top.',
+    api: [
+      { prop: 'navbar', type: 'ReactNode', default: '—' },
+      { prop: 'sidebar', type: 'ReactNode', default: '—' },
+      { prop: 'navbarHeight', type: 'number', default: '56' },
+      { prop: 'sidebarWidth', type: 'number', default: '240' },
+      { prop: 'cornerSize', type: 'number', default: '20' },
+      { prop: 'shellColor / contentColor', type: 'string', default: 'surface / background' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Navbar + sidebar',
+        blurb: 'A full app frame; the content nestles into the shell at the Skia goo corner.',
+        height: 640,
+      },
+    ],
+  },
 ]
