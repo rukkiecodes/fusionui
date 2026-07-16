@@ -1,0 +1,37 @@
+{
+  "name": "@rukkiecodes/native-docs",
+  "version": "0.0.0",
+  "description": "Documentation website for FusionUI on mobile (@rukkiecodes/native) with live Expo Snacks.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "gen:snacks": "node scripts/gen-snacks.mjs",
+    "predev": "node scripts/gen-snacks.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/gen-snacks.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "echo \"[native-docs] typecheck via build\"",
+    "test": "echo \"[native-docs] no tests yet\""
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "@rukkiecodes/vue": "workspace:*",
+    "@rukkiecodes/icons": "workspace:*",
+    "@rukkiecodes/tokens": "workspace:*",
+    "vue-router": "^4.5.0",
+    "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@types/markdown-it": "^14.1.2",
+    "markdown-it-anchor": "^9.2.0",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "unplugin-vue-markdown": "^0.26.2",
+    "vite": "^6.0.7",
+    "vite-plugin-pages": "^0.32.5"
+  }
+}

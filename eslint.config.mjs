@@ -15,8 +15,12 @@ export default ts.config(
       '.claude/**',
       'extras/**',
       'plans/**',
-      // Self-contained Expo Snack sources (JSX in .js, shipped as raw text).
+      // Self-contained Expo Snack sources (JSX in .js, shipped as raw text). The
+      // native-docs snacks/ tree holds the kit + per-component mirrors + per-variant
+      // demos + generated output — raw payload composed by scripts/gen-snacks.mjs,
+      // with imports injected at generation time (so React/View are free here).
       'apps/docs/src/snacks/**',
+      'apps/native-docs/snacks/**',
       // Scaffold payload, not repo source: these carry `{{token}}` placeholders
       // (e.g. `<script setup{{scriptLang}}>`), so the SFC parser can't read them.
       // They are linted for real by the scaffolder's own smoke test, which
@@ -62,7 +66,7 @@ export default ts.config(
   },
   {
     // Docs example snippets are intentionally single-purpose SFCs.
-    files: ['apps/docs/**/*.vue', '**/examples/**/*.vue'],
+    files: ['apps/docs/**/*.vue', 'apps/native-docs/**/*.vue', '**/examples/**/*.vue'],
     rules: {
       'vue/multi-word-component-names': 'off',
       // Slot names with dots (e.g. #item.score) are a valid table-cell pattern.

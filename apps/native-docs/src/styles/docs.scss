@@ -1,0 +1,881 @@
+:root {
+  --docs-bar-height: 60px;
+  --docs-sidebar-width: 264px;
+  --docs-content-max: 920px;
+  // Apple-style whitespace rhythm
+  --docs-gutter: 40px;
+  --docs-font:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--docs-font);
+  letter-spacing: -0.011em;
+  background-color: rgb(var(--fui-theme-background));
+  color: rgba(var(--fui-theme-on-background), 0.92);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// One uniform scrollbar across the whole documentation: thin, with an invisible
+// track and a faint thumb that blends into whatever surface it sits on — a
+// low-opacity on-surface tint, so it adapts to light and dark automatically
+// (the theme class lives on <html>, so this resolves at the window too). It
+// matches the FSelect menu treatment, so every scroll region reads identically.
+//
+// Kept in the fui-base layer so components that opt out (FCard's hidden scroller)
+// or supply their own bar (FSelect) still win — their rules live in the later
+// fui-components layer.
+@layer fui-base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--fui-theme-on-surface), 0.2) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--fui-theme-on-surface), 0.18);
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(var(--fui-theme-on-surface), 0.32);
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+// The code panels (markdown fenced blocks + the Example source view) are forced
+// dark in BOTH themes, so an on-surface thumb would go dark-on-dark and vanish
+// in light mode. Give them a light thumb (the panel's own text colour) that
+// stays visibly subtle on that dark surface regardless of theme. Width and
+// shape are inherited from the global rule above.
+.markdown-body pre,
+.markup {
+  scrollbar-color: rgba(192, 202, 245, 0.25) transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(192, 202, 245, 0.22);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(192, 202, 245, 0.4);
+  }
+}
+
+.docs {
+  min-height: 100vh;
+
+  // The Vuesax layout model: navbar + sidebar form a single tinted "shell"
+  // (one background), and the documentation content is a brighter, inset sheet
+  // clearly separated from that shell.
+  // Shell (navbar + sidebar) is the brighter frame; the content is the recessed
+  // surface it wraps. Exact palette per spec.
+  &.fui-theme--light {
+    --docs-shell: #ffffff;
+    --docs-content: #f4f7f8;
+    --docs-edge: rgba(44, 62, 80, 0.08);
+  }
+  &.fui-theme--dark {
+    --docs-shell: #1e2023;
+    --docs-content: #18191c;
+    --docs-edge: rgba(255, 255, 255, 0.06);
+  }
+  background-color: var(--docs-shell);
+
+  // The top bar and the sidebar share the shell background, so they read as one
+  // navigation frame distinct from the content. overflow:visible lets the goo
+  // corner hang below the bar into the content junction.
+  &__bar.fui-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--docs-shell);
+    overflow: visible;
+
+    .fui-navbar__inner {
+      min-height: var(--docs-bar-height);
+      padding: 0 24px;
+    }
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  &__menu-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+    font-size: 1.2rem;
+  }
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  // The desktop sidebar is a permanent FSidebar painted with the shell color —
+  // the same background as the navbar.
+  &__sidebar.fui-sidebar {
+    position: sticky;
+    top: var(--docs-bar-height);
+    width: var(--docs-sidebar-width);
+    max-width: var(--docs-sidebar-width);
+    height: calc(100vh - var(--docs-bar-height));
+    // No horizontal padding on the sidebar itself, so the scroll container (and
+    // its scrollbar) sits flush against the right edge. The nav content carries
+    // its own inset instead (see &__nav-section).
+    padding: 22px 0;
+    flex-shrink: 0;
+    background: var(--docs-shell);
+    box-shadow: none;
+    border-radius: 0;
+
+    // The shell is one flat surface — drop the group's tinted "card" highlight
+    // so the nav reads as part of the shell, not panels floating on a mismatched
+    // background.
+    .fui-sidebar__group--open {
+      background: transparent;
+      border-radius: 0;
+    }
+  }
+
+  &__nav-section {
+    margin-bottom: 22px;
+    // Inset the nav content (not the sidebar), keeping the scrollbar flush.
+    padding: 0 14px;
+
+    // Top-level pages sit directly under a section label (not inside a group),
+    // so the FSidebar far-left active pill would be clipped by the sidebar's
+    // inset, overflow-hidden body. Give them a clean rounded active tint and a
+    // steady padding (no hover/active indent jump) instead.
+    > .fui-sidebar__item {
+      border-radius: 10px;
+
+      &::after {
+        display: none;
+      }
+      &,
+      &:hover,
+      &.fui-sidebar__item--active {
+        padding-left: 16px;
+      }
+      &:hover {
+        background: rgba(var(--fui-theme-on-surface), 0.05);
+      }
+      &.fui-sidebar__item--active {
+        background: rgba(var(--fui-theme-primary), 0.12);
+        color: rgb(var(--fui-theme-primary));
+      }
+    }
+  }
+
+  &__nav-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0 0 8px 16px;
+  }
+
+  // The content is the recessed surface the shell wraps. The fluid concave
+  // junction at its top-left is drawn by the navbar's goo corner, so the corner
+  // itself stays square here (the shell-coloured fillet carves it).
+  &__main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--docs-content);
+    min-height: calc(100vh - var(--docs-bar-height));
+  }
+
+  // The landing page has no sidebar and no prose column: it lays itself out.
+  &__main--landing {
+    display: block;
+    border-left: none;
+    border-top-left-radius: 0;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: var(--docs-content-max);
+    padding: 48px var(--docs-gutter) 120px;
+  }
+}
+
+// Markdown content — Apple-style generous spacing & typographic hierarchy
+.markdown-body {
+  line-height: 1.72;
+  font-size: 1.02rem;
+
+  // Direct children only, so prose typography never leaks into the headings
+  // of rendered component demos (e.g. a card's <h3> title).
+  > h1 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin: 0 0 12px;
+  }
+  > h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 56px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.08);
+  }
+  > h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 36px 0 12px;
+  }
+  p {
+    margin: 14px 0;
+  }
+  // Only style plain prose links — component anchors (buttons, list items,
+  // breadcrumbs, heading anchors) keep their own colors.
+  a:not([class]) {
+    color: rgb(var(--fui-theme-primary));
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  code {
+    font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.84em;
+    background-color: rgba(var(--fui-theme-on-surface), 0.07);
+    padding: 2px 7px;
+    border-radius: 6px;
+  }
+  // Fenced code blocks — the same dark panel as the <Example> source view.
+  pre {
+    margin: 18px 0;
+    padding: 18px 20px;
+    overflow-x: auto;
+    background-color: #1a1b26;
+    color: #c0caf5;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.83rem;
+    line-height: 1.65;
+    tab-size: 2;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+  // Prose tables only. FusionUI's own table components (FTable, FDataTable) are
+  // rendered inside examples on this same page, and their elements all carry a
+  // `fui-*` class — markdown-generated ones carry none. Without this guard the
+  // docs restyle the very components they are meant to be demonstrating (and
+  // win, because these rules are unlayered and the library's are layered).
+  table:not([class]) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+  }
+  th:not([class]),
+  td:not([class]) {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
+  }
+  th:not([class]) {
+    font-weight: 600;
+  }
+}
+
+// Live example block — Vuesax v4 "showcase" card
+.example {
+  margin: 28px 0;
+  border: 1px solid rgba(var(--fui-theme-on-surface), 0.09);
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: rgba(var(--fui-theme-on-surface), 0.015);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 44px 32px;
+    background-color: rgb(var(--fui-theme-background));
+  }
+
+  // centered icon toolbar (copy · toggle source)
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  &__tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(var(--fui-theme-on-surface), 0.45);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(var(--fui-theme-on-surface), 0.07);
+      color: rgba(var(--fui-theme-on-surface), 0.8);
+    }
+    &--active {
+      color: rgb(var(--fui-theme-primary));
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 18px;
+    background-color: rgba(var(--fui-theme-on-surface), 0.12);
+  }
+
+  // Template / Script / All tabs
+  &__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 4px 0 0;
+  }
+
+  &__tab {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 6px 2px;
+    font: inherit;
+    font-size: 0.82rem;
+    color: rgba(var(--fui-theme-on-surface), 0.45);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 2px;
+      background-color: rgb(var(--fui-theme-primary));
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    &:hover {
+      color: rgba(var(--fui-theme-on-surface), 0.75);
+    }
+    &--active {
+      color: rgb(var(--fui-theme-on-surface));
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__panel {
+    position: relative;
+    margin: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  &__lang {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__missing {
+    color: rgb(var(--fui-theme-danger));
+    font-size: 0.9rem;
+  }
+}
+
+.markup {
+  margin: 0;
+  padding: 22px 24px;
+  overflow-x: auto;
+  background-color: #1a1b26;
+  color: #c0caf5;
+  font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.83rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+// Prism token theme (Tokyo Night–ish) for the code panels
+.markup,
+.markdown-body pre {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #565f89;
+  }
+  .token.punctuation {
+    color: #89ddff;
+  }
+  .token.tag {
+    color: #f7768e;
+  }
+  .token.attr-name {
+    color: #bb9af7;
+  }
+  .token.attr-value,
+  .token.string {
+    color: #9ece6a;
+  }
+  .token.keyword,
+  .token.boolean {
+    color: #bb9af7;
+  }
+  .token.function {
+    color: #7aa2f7;
+  }
+  .token.number,
+  .token.constant {
+    color: #ff9e64;
+  }
+  .token.operator,
+  .token.script .token.punctuation {
+    color: #89ddff;
+  }
+}
+
+// Interactive button playground (Vuetify-style "Usage")
+.pg {
+  margin: 28px 0;
+  border: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    background-color: rgba(var(--fui-theme-on-surface), 0.04);
+    border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.08);
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  &__tab {
+    border: none;
+    background: transparent;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.82rem;
+    text-transform: capitalize;
+    color: rgba(var(--fui-theme-on-surface), 0.6);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(var(--fui-theme-on-surface), 0.06);
+    }
+    &--active {
+      background-color: rgba(var(--fui-theme-primary), 0.12);
+      color: rgb(var(--fui-theme-primary));
+      font-weight: 500;
+    }
+  }
+
+  &__bar-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(var(--fui-theme-on-surface), 0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: rgba(var(--fui-theme-on-surface), 0.08);
+      color: rgba(var(--fui-theme-on-surface), 0.85);
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: stretch;
+    min-height: 240px;
+  }
+
+  &__preview {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background-color: rgb(var(--fui-theme-background));
+  }
+
+  &__config {
+    width: 280px;
+    flex-shrink: 0;
+    padding: 20px;
+    border-left: 1px solid rgba(var(--fui-theme-on-surface), 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__config-title {
+    margin: 0;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    opacity: 0.55;
+  }
+
+  &__checks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 2px;
+  }
+
+  .markup {
+    border-top: 1px solid rgba(var(--fui-theme-on-surface), 0.08);
+  }
+}
+
+@media (max-width: 720px) {
+  .pg__body {
+    flex-direction: column;
+  }
+  .pg__config {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(var(--fui-theme-on-surface), 0.08);
+  }
+}
+
+.api-table__pending {
+  padding: 18px;
+  border-radius: 14px;
+  background-color: rgba(var(--fui-theme-warning), 0.12);
+  font-size: 0.9rem;
+}
+
+// Detailed, tabbed API reference (Props / Events / Slots)
+.api {
+  margin: 16px 0 8px;
+
+  &__tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(var(--fui-theme-on-surface), 0.12);
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font: inherit;
+    font-size: 0.85rem;
+    color: rgba(var(--fui-theme-on-surface), 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba(var(--fui-theme-primary), 0.4);
+    }
+    &--active {
+      background-color: rgb(var(--fui-theme-primary));
+      border-color: rgb(var(--fui-theme-primary));
+      color: rgb(var(--fui-theme-on-primary));
+    }
+  }
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9999px;
+    background-color: rgba(var(--fui-theme-on-surface), 0.12);
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+  &__tab--active &__count {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  &__table-wrap {
+    border: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+
+    th {
+      text-align: left;
+      padding: 11px 16px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(var(--fui-theme-on-surface), 0.55);
+      background-color: rgba(var(--fui-theme-on-surface), 0.03);
+      border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.1);
+    }
+
+    td {
+      padding: 11px 16px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(var(--fui-theme-on-surface), 0.06);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: rgba(var(--fui-theme-on-surface), 0.02);
+    }
+
+    code {
+      font-family: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+  }
+
+  &__name {
+    background-color: rgba(var(--fui-theme-primary), 0.1) !important;
+    color: rgb(var(--fui-theme-primary)) !important;
+    font-weight: 500;
+  }
+  &__type {
+    background-color: rgba(var(--fui-theme-on-surface), 0.07);
+    color: rgba(var(--fui-theme-on-surface), 0.75);
+  }
+  &__default {
+    background-color: transparent !important;
+    color: rgba(var(--fui-theme-on-surface), 0.55);
+    padding-left: 0 !important;
+  }
+  &__desc {
+    color: rgba(var(--fui-theme-on-surface), 0.78);
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 880px) {
+  :root {
+    --docs-gutter: 24px;
+  }
+  .docs__menu-btn {
+    display: inline-flex;
+  }
+  // On mobile the sidebar is an overlay drawer, so the content fills the width —
+  // drop the inset edge/round it had next to the desktop sidebar.
+  .docs__main {
+    border-left: none;
+    border-top-left-radius: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Grid docs — visualizes FRow / FCol cells so spans, gutters and offsets read
+// at a glance. Kept in the docs layer only (not part of the library).
+// ---------------------------------------------------------------------------
+.grid-demo {
+  .fui-col {
+    // A soft tinted tile per column so the grid is legible in both themes.
+    > .grid-demo__cell,
+    &.grid-demo__cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 8px 12px;
+      border-radius: var(--fui-radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgb(var(--fui-theme-primary));
+      background-color: rgba(var(--fui-theme-primary), 0.12);
+      border: 1px solid rgba(var(--fui-theme-primary), 0.22);
+    }
+  }
+
+  // Outline the row so gutters/alignment are visible against the page.
+  .fui-row {
+    border-radius: var(--fui-radius-lg);
+    outline: 1px dashed rgba(var(--fui-theme-on-surface), 0.16);
+    outline-offset: 6px;
+  }
+
+  .fui-row + .fui-row {
+    margin-top: 28px;
+  }
+
+  &.grid-demo--tall .fui-col:nth-child(2) .grid-demo__cell {
+    min-height: 84px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Flex-utility docs — a dashed container boundary makes justify/align/wrap
+// visible, and each child is a tinted tile. Docs-layer only.
+// ---------------------------------------------------------------------------
+.util-demo {
+  &__box {
+    border-radius: var(--fui-radius-lg);
+    outline: 1px dashed rgba(var(--fui-theme-on-surface), 0.18);
+    outline-offset: 4px;
+    min-height: 56px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    padding: 10px 16px;
+    border-radius: var(--fui-radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(var(--fui-theme-primary));
+    background-color: rgba(var(--fui-theme-primary), 0.12);
+    border: 1px solid rgba(var(--fui-theme-primary), 0.22);
+  }
+  &__item--tall {
+    padding-block: 22px;
+  }
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--docs-mono, ui-monospace, monospace);
+    font-size: 12px;
+    color: rgba(var(--fui-theme-on-surface), 0.6);
+  }
+  &__row + &__row {
+    margin-top: 16px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Utility-class docs — inline demo tiles for spacing/sizing/borders/etc. so a
+// helper's effect is visible. Docs-layer only.
+// ---------------------------------------------------------------------------
+.u-demo {
+  margin: 8px 0 4px;
+  padding: 16px;
+  border-radius: var(--fui-radius-lg);
+  background: rgba(128, 128, 128, 0.06);
+  outline: 1px dashed rgba(var(--fui-theme-on-surface), 0.14);
+}
+.u-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--fui-radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(var(--fui-theme-primary));
+  background: rgba(var(--fui-theme-primary), 0.12);
+  border: 1px solid rgba(var(--fui-theme-primary), 0.22);
+}
+// A solid block (for spacing/sizing where the box edges must be obvious).
+.u-block {
+  background: rgb(var(--fui-theme-primary));
+  border-radius: var(--fui-radius-sm);
+  min-height: 40px;
+}
+.u-fill {
+  background: rgba(var(--fui-theme-primary), 0.1);
+  border: 1px solid rgba(var(--fui-theme-primary), 0.2);
+  border-radius: var(--fui-radius-sm);
+}
+// Ruler frame so margins/paddings read against a boundary.
+.u-frame {
+  display: inline-block;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(var(--fui-theme-primary), 0.08),
+    rgba(var(--fui-theme-primary), 0.08) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-radius: var(--fui-radius-sm);
+}
