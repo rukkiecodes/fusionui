@@ -62,6 +62,18 @@ const stats = [
             <f-btn color="primary" size="large" :href="href" @click="navigate">Get started</f-btn>
           </RouterLink>
 
+          <!-- The mobile (Expo / React Native) components are their own site. -->
+          <f-btn
+            variant="tonal"
+            color="primary"
+            size="large"
+            prepend-icon="smartphone"
+            append-icon="arrow-up-right"
+            href="https://rukkiecodes.github.io/fusionui-mobile/"
+          >
+            React Native
+          </f-btn>
+
           <f-btn
             variant="outlined"
             size="large"
