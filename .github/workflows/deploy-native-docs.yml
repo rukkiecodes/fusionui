@@ -1,0 +1,65 @@
+name: Deploy Mobile Docs
+
+# The mobile (Expo / React Native) documentation is its own website, published to a
+# SEPARATE repository's GitHub Pages: https://rukkiecodes.github.io/fusionui-mobile/
+#
+# One-time setup (owner):
+#   1. Create an empty public repo `rukkiecodes/fusionui-mobile`.
+#   2. Create a token that can write to it — a fine-grained PAT scoped to that repo
+#      with Contents: read/write (classic PAT with `repo` also works).
+#   3. Add it to THIS repo as an Actions secret named `MOBILE_PAGES_TOKEN`.
+#   4. After the first successful run, set fusionui-mobile → Settings → Pages →
+#      Source: Deploy from a branch → `gh-pages` / root.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/native-docs/**'
+      - 'packages/vue/**'
+      - 'packages/tokens/**'
+      - 'packages/icons/**'
+      - '.github/workflows/deploy-native-docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mobile-pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build mobile docs
+        run: pnpm --filter @rukkiecodes/native-docs build
+        env:
+          DOCS_BASE: /fusionui-mobile/
+
+      - name: SPA fallback + Jekyll opt-out
+        run: |
+          cp apps/native-docs/dist/index.html apps/native-docs/dist/404.html
+          touch apps/native-docs/dist/.nojekyll
+
+      - name: Publish to fusionui-mobile Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.MOBILE_PAGES_TOKEN }}
+          external_repository: rukkiecodes/fusionui-mobile
+          publish_branch: gh-pages
+          publish_dir: apps/native-docs/dist
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

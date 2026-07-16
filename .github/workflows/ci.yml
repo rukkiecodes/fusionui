@@ -43,3 +43,6 @@ jobs:
 
       - name: Build docs
         run: pnpm --filter @rukkiecodes/docs build
+
+      - name: Build mobile docs
+        run: pnpm --filter @rukkiecodes/native-docs build
