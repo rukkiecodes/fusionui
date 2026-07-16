@@ -25,7 +25,7 @@ const genDir = join(snacksDir, 'gen')
 const BASE_IMPORTS = [
   "import React, { useState, useEffect, useRef, useMemo } from 'react'",
   "import { SafeAreaView, ScrollView, View, Text, Pressable, TextInput, Image, Modal, StyleSheet, useColorScheme, Platform } from 'react-native'",
-  "import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming, withRepeat, withDelay, withSequence, interpolate, interpolateColor, useReducedMotion, Easing, cancelAnimation } from 'react-native-reanimated'",
+  "import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming, withRepeat, withDelay, withSequence, interpolate, interpolateColor, useReducedMotion, Easing, cancelAnimation, runOnJS, ReduceMotion } from 'react-native-reanimated'",
 ]
 // Every snack depends on Reanimated (the base import pulls it in).
 const BASE_DEPS = ['react-native-reanimated']
@@ -66,7 +66,7 @@ for (const comp of components) {
     writeFileSync(join(genDir, `${name}.js`), compose({ comp, part, demo }))
     snackCount++
 
-    const deps = [...new Set([...BASE_DEPS, ...(v.deps ?? [])])].join(',')
+    const deps = [...new Set([...BASE_DEPS, ...(comp.deps ?? []), ...(v.deps ?? [])])].join(',')
     variants.push({
       id: v.id,
       title: v.title,

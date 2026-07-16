@@ -13,6 +13,9 @@ export const components = [
     category: 'Actions',
     web: '<f-btn>',
     part: 'FButton',
+    // The mirror always imports LinearGradient (the gradient variant), so every
+    // button snack must declare the dep — not only the one that renders it.
+    deps: ['expo-linear-gradient'],
     imports: ["import { LinearGradient } from 'expo-linear-gradient'"],
     description:
       'The primary call to action — the React Native sibling of the web `<f-btn>`, with the same variants, colours, sizes and states, and a Reanimated press spring.',
@@ -35,7 +38,6 @@ export const components = [
         title: 'Variants',
         blurb: 'elevated · flat · tonal · outlined · text · gradient — the six fills.',
         height: 300,
-        deps: ['expo-linear-gradient'],
       },
       {
         id: 'colors',
@@ -381,6 +383,358 @@ export const components = [
         height: 260,
       },
       { id: 'vertical', title: 'Vertical', blurb: 'Separating items in a row.', height: 200 },
+    ],
+  },
+
+  // --------------------------------------------------- Form controls (more)
+  {
+    slug: 'field',
+    component: 'FField',
+    title: 'Field',
+    category: 'Form controls',
+    web: '<f-field>',
+    part: 'FField',
+    description:
+      'The label + message/error shell that wraps any control. `required` adds an asterisk; an error swaps the message to the danger colour.',
+    api: [
+      { prop: 'label', type: 'string', default: '—' },
+      { prop: 'message', type: 'string', default: '—' },
+      { prop: 'error', type: 'string', default: '—' },
+      { prop: 'required', type: 'boolean', default: 'false' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Label & message',
+        blurb: 'Wrap a control with a label and helper line.',
+        height: 260,
+      },
+      {
+        id: 'validation',
+        title: 'Required & error',
+        blurb: 'A required marker, and the danger error state.',
+        height: 320,
+      },
+    ],
+  },
+  {
+    slug: 'textarea',
+    component: 'FTextarea',
+    title: 'Textarea',
+    category: 'Form controls',
+    web: '<f-textarea>',
+    part: 'FTextarea',
+    description:
+      'A multiline text field on the FField shell — label, message/error, and a growing height set by `rows`.',
+    api: [
+      { prop: 'label', type: 'string', default: '—' },
+      { prop: 'value / onChangeText', type: 'string / (v) => void', default: '—' },
+      { prop: 'rows', type: 'number', default: '4' },
+      { prop: 'error', type: 'string', default: '—' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Basic',
+        blurb: 'A labelled multiline field with a helper line.',
+        height: 300,
+      },
+      {
+        id: 'error',
+        title: 'Error',
+        blurb: 'A danger border and message on invalid input.',
+        height: 300,
+      },
+    ],
+  },
+  {
+    slug: 'form',
+    component: 'FForm',
+    title: 'Form',
+    category: 'Form controls',
+    web: '<f-form>',
+    part: 'FForm',
+    description:
+      'A vertical container that spaces its fields evenly — compose fields and a submit action into a real form.',
+    api: [
+      { prop: 'gap', type: 'number', default: '16' },
+      { prop: 'children', type: 'ReactNode', default: '—' },
+    ],
+    variants: [
+      { id: 'basic', title: 'Sign in', blurb: 'Fields plus a springy submit button.', height: 380 },
+    ],
+  },
+  {
+    slug: 'otp',
+    component: 'FOtp',
+    title: 'OTP input',
+    category: 'Form controls',
+    web: '<f-otp>',
+    part: 'FOtp',
+    description:
+      'A one-time-code field: a hidden input drives a row of cells, and the next empty cell is highlighted with the accent.',
+    api: [
+      { prop: 'value / onChangeText', type: 'string / (v) => void', default: '—' },
+      { prop: 'length', type: 'number', default: '6' },
+      { prop: 'color', type: 'primary | success | …', default: 'primary' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Six digits',
+        blurb: 'Tap to focus, then type — digits fill the cells.',
+        height: 280,
+      },
+      {
+        id: 'length',
+        title: 'Four digits',
+        blurb: 'Any length via the `length` prop.',
+        height: 260,
+      },
+    ],
+  },
+
+  // ---------------------------------------------------- Data display (more)
+  {
+    slug: 'list',
+    component: 'FList',
+    title: 'List',
+    category: 'Data display',
+    web: '<f-list>',
+    part: 'FList',
+    description:
+      'A surface list of rows. Each `FListItem` takes leading/trailing slots and a title/subtitle, and presses when given `onPress`.',
+    api: [
+      { prop: 'FList divider', type: 'boolean', default: 'false' },
+      { prop: 'FListItem title', type: 'string', default: '—' },
+      { prop: 'FListItem subtitle', type: 'string', default: '—' },
+      { prop: 'FListItem leading / trailing', type: 'ReactNode', default: '—' },
+      { prop: 'FListItem onPress', type: '() => void', default: '—' },
+    ],
+    variants: [
+      { id: 'basic', title: 'Basic', blurb: 'Title + subtitle rows on a surface.', height: 280 },
+      {
+        id: 'rich',
+        title: 'Leading & trailing',
+        blurb: 'Avatars, values and chevrons in the slots.',
+        height: 320,
+      },
+      { id: 'dividers', title: 'Dividers', blurb: 'Inset hairlines between rows.', height: 300 },
+    ],
+  },
+
+  // -------------------------------------------------------------- Feedback
+  {
+    slug: 'alert',
+    component: 'FAlert',
+    title: 'Alert',
+    category: 'Feedback',
+    web: '<f-alert>',
+    part: 'FAlert',
+    deps: ['expo-linear-gradient'],
+    imports: ["import { LinearGradient } from 'expo-linear-gradient'"],
+    description:
+      'An inline message. `type` sets colour + glyph; `variant` sets the fill; `closable` fades it out on a Reanimated dismiss, and `progress` animates a bottom bar.',
+    api: [
+      { prop: 'type', type: 'success | info | warning | error', default: '—' },
+      {
+        prop: 'variant',
+        type: 'default | solid | border | shadow | flat | gradient | relief',
+        default: 'default',
+      },
+      { prop: 'title', type: 'string', default: '—' },
+      { prop: 'text', type: 'string', default: '—' },
+      { prop: 'closable', type: 'boolean', default: 'false' },
+      { prop: 'progress', type: 'number (0–100)', default: '0' },
+    ],
+    variants: [
+      {
+        id: 'types',
+        title: 'Types',
+        blurb: 'success · info · warning · error — colour and glyph.',
+        height: 420,
+      },
+      {
+        id: 'variants',
+        title: 'Variants',
+        blurb: 'default · solid · border · shadow · flat · gradient · relief.',
+        height: 560,
+      },
+      {
+        id: 'closable',
+        title: 'Closable',
+        blurb: 'Tap ✕ to fade it out; reset to bring them back.',
+        height: 340,
+      },
+      {
+        id: 'progress',
+        title: 'Progress',
+        blurb: 'An animated bottom bar tracks a value.',
+        height: 300,
+      },
+    ],
+  },
+  {
+    slug: 'tooltip',
+    component: 'FTooltip',
+    title: 'Tooltip',
+    category: 'Feedback',
+    web: '<f-tooltip>',
+    part: 'FTooltip',
+    description:
+      'A hint shown on long-press. Touch has no hover, so the native contract is long-press → a small popover (a documented platform divergence).',
+    api: [
+      { prop: 'text', type: 'string', default: '—' },
+      { prop: 'children', type: 'ReactNode (the trigger)', default: '—' },
+      { prop: 'delay', type: 'number (ms)', default: '300' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Long-press',
+        blurb: 'Press and hold the tile to reveal the tip.',
+        height: 300,
+      },
+    ],
+  },
+  {
+    slug: 'skeleton',
+    component: 'FSkeleton',
+    title: 'Skeleton',
+    category: 'Feedback',
+    web: '<f-skeleton>',
+    part: 'FSkeleton',
+    description:
+      'A reduced-motion-aware opacity pulse standing in for content that has not loaded. Compose primitives into a placeholder for any layout.',
+    api: [
+      { prop: 'width', type: 'number | string', default: "'100%'" },
+      { prop: 'height', type: 'number', default: '16' },
+      { prop: 'radius', type: 'number', default: '8' },
+      { prop: 'circle', type: 'boolean', default: 'false' },
+    ],
+    variants: [
+      {
+        id: 'shapes',
+        title: 'Shapes',
+        blurb: 'Lines and a circle, pulsing together.',
+        height: 260,
+      },
+      {
+        id: 'card',
+        title: 'Card placeholder',
+        blurb: 'A media + text card, faked while loading.',
+        height: 320,
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------- Marketing
+  {
+    slug: 'stat',
+    component: 'FStat',
+    title: 'Stat',
+    category: 'Marketing',
+    web: '<f-stat>',
+    part: 'FStat',
+    description:
+      'A headline metric with a label and optional icon — the building block of a stats row.',
+    api: [
+      { prop: 'value', type: 'string | number', default: '—' },
+      { prop: 'label', type: 'string', default: '—' },
+      { prop: 'color', type: 'primary | success | …', default: 'primary' },
+      { prop: 'icon', type: 'ReactNode', default: '—' },
+    ],
+    variants: [
+      { id: 'basic', title: 'Single', blurb: 'One metric with its label.', height: 220 },
+      { id: 'row', title: 'Stats row', blurb: 'Several metrics across a card.', height: 240 },
+    ],
+  },
+  {
+    slug: 'feature',
+    component: 'FFeature',
+    title: 'Feature',
+    category: 'Marketing',
+    web: '<f-feature>',
+    part: 'FFeature',
+    description:
+      'An icon tile, a title and supporting copy — the marketing "feature" block, grid-friendly.',
+    api: [
+      { prop: 'icon', type: 'ReactNode', default: '—' },
+      { prop: 'title', type: 'string', default: '—' },
+      { prop: 'text', type: 'string', default: '—' },
+    ],
+    variants: [
+      { id: 'basic', title: 'Single', blurb: 'One feature with an icon tile.', height: 260 },
+      { id: 'grid', title: 'Grid', blurb: 'Two features side by side.', height: 300 },
+    ],
+  },
+  {
+    slug: 'cta',
+    component: 'FCta',
+    title: 'CTA',
+    category: 'Marketing',
+    web: '<f-cta>',
+    part: 'FCta',
+    description:
+      'A centred call-to-action panel (xl radius, tonal primary wash) with a title, copy and an action slot.',
+    api: [
+      { prop: 'title', type: 'string', default: '—' },
+      { prop: 'text', type: 'string', default: '—' },
+      { prop: 'children', type: 'ReactNode (the action)', default: '—' },
+    ],
+    variants: [
+      {
+        id: 'basic',
+        title: 'Panel',
+        blurb: 'Title, copy and a springy action button.',
+        height: 320,
+      },
+    ],
+  },
+  {
+    slug: 'hero',
+    component: 'FHero',
+    title: 'Hero',
+    category: 'Marketing',
+    web: '<f-hero>',
+    part: 'FHero',
+    description:
+      'The page-top banner: an eyebrow, a large title, a subtitle, and a slot for actions.',
+    api: [
+      { prop: 'eyebrow', type: 'string', default: '—' },
+      { prop: 'title', type: 'string', default: '—' },
+      { prop: 'subtitle', type: 'string', default: '—' },
+      { prop: 'children', type: 'ReactNode (actions)', default: '—' },
+    ],
+    variants: [
+      { id: 'basic', title: 'Banner', blurb: 'Eyebrow, title, subtitle and a CTA.', height: 320 },
+    ],
+  },
+
+  // ---------------------------------------------------------------- Effects
+  {
+    slug: 'liquid-glass',
+    component: 'LiquidGlassView',
+    title: 'Liquid glass',
+    category: 'Effects',
+    web: '<f-glass>',
+    part: 'LiquidGlass',
+    deps: ['@shopify/react-native-skia'],
+    imports: ["import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web'"],
+    description:
+      'The signature effect — a refractive translucent slab over a live backdrop. Renders through Skia CanvasKit on the web (WithSkiaWeb); on device it is the GPU BackdropFilter / iOS 26 UIGlassEffect. Same SDF → Snell engine as the web.',
+    api: [
+      { prop: 'radius', type: 'number', default: '24' },
+      { prop: 'options', type: 'GlassOptions', default: 'DEFAULT_GLASS_OPTIONS' },
+      { prop: 'children', type: 'ReactNode (content above the slab)', default: '—' },
+    ],
+    variants: [
+      {
+        id: 'glass',
+        title: 'Refraction slab',
+        blurb: 'A blurred translucent panel over a colourful backdrop, with content above it.',
+        height: 560,
+      },
     ],
   },
 ]
