@@ -33,7 +33,13 @@ export const nav: NavSection[] = [
       { title: 'Installation', to: '/getting-started/installation' },
       { title: 'Quick Start', to: '/getting-started/quick-start' },
       { title: 'Frameworks', to: '/getting-started/frameworks' },
-      { title: 'Native (mobile)', to: '/getting-started/native' },
+    ],
+  },
+  {
+    title: 'Mobile (Expo)',
+    items: [
+      { title: 'Overview', to: '/getting-started/native' },
+      { title: 'Components & styles', to: '/native' },
     ],
   },
   {
