@@ -1,0 +1,25 @@
+{
+  "name": "@rukkiecodes/native",
+  "version": "0.1.0",
+  "description": "FusionUI mobile — copy-in React Native components. Add one with the CLI; you own the source after that.",
+  "components": {
+    "text": {
+      "title": "Text",
+      "category": "base",
+      "path": "components/text",
+      "description": "Typography primitive: size or heading level (H1–H6), weight, colour variants, alignment, truncation, skeleton loading, prefix/suffix, and press support.",
+      "files": ["index.tsx", "types.ts", "const.ts", "helpers.ts"],
+      "dependencies": [],
+      "peerDependencies": ["react", "react-native"]
+    },
+    "button": {
+      "title": "Button",
+      "category": "base",
+      "path": "components/button",
+      "description": "Button with a press spring, a loading crossfade (the label slides up as the loading state slides in), and an optional gradient fill.",
+      "files": ["index.tsx", "types.ts"],
+      "dependencies": ["expo-linear-gradient"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    }
+  }
+}

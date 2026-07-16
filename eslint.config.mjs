@@ -26,6 +26,9 @@ export default ts.config(
       // They are linted for real by the scaffolder's own smoke test, which
       // generates a project and runs `eslint` inside it.
       'packages/create-fusionui/templates/**',
+      // Copy-in component registry — shipped as raw source into the user's project
+      // (typechecked there, not here), same as the scaffold templates above.
+      'packages/native/registry/**',
       '**/*.md',
       // Generated Feather icon modules
       'packages/icons/src/icons/**',
