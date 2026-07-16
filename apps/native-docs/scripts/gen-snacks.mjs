@@ -30,6 +30,10 @@ const BASE_IMPORTS = [
 // Every snack depends on Reanimated (the base import pulls it in).
 const BASE_DEPS = ['react-native-reanimated']
 
+// The Expo Snack embed renders a code pane + a phone preview; below this the phone
+// gets clipped. Every snack is floored to it (a variant may ask for more).
+const MIN_SNACK_HEIGHT = 700
+
 const read = p => readFileSync(p, 'utf8')
 
 function compose({ comp, part, demo }) {
@@ -73,7 +77,7 @@ for (const comp of components) {
       blurb: v.blurb ?? '',
       snack: name,
       deps,
-      height: v.height ?? 560,
+      height: Math.max(v.height ?? MIN_SNACK_HEIGHT, MIN_SNACK_HEIGHT),
     })
   }
 

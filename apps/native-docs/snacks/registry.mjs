@@ -558,7 +558,7 @@ export const components = [
         id: 'variants',
         title: 'Variants',
         blurb: 'default · solid · border · shadow · flat · gradient · relief.',
-        height: 560,
+        height: 860,
       },
       {
         id: 'closable',
@@ -761,7 +761,7 @@ export const components = [
         id: 'basic',
         title: 'Navbar + sidebar',
         blurb: 'A full app frame; the content nestles into the shell at the Skia goo corner.',
-        height: 640,
+        height: 800,
       },
     ],
   },
