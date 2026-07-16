@@ -42,6 +42,55 @@ export type { FSwitchProps } from './components/FSwitch'
 export { FAlert } from './components/FAlert'
 export type { FAlertProps, AlertVariant, AlertType } from './components/FAlert'
 
+// Lightweight (Tier 1) components
+export { FChip } from './components/FChip'
+export type { FChipProps } from './components/FChip'
+export { FBadge } from './components/FBadge'
+export type { FBadgeProps } from './components/FBadge'
+export { FDivider } from './components/FDivider'
+export type { FDividerProps } from './components/FDivider'
+export { FAvatar } from './components/FAvatar'
+export type { FAvatarProps } from './components/FAvatar'
+export { FCheckbox } from './components/FCheckbox'
+export type { FCheckboxProps } from './components/FCheckbox'
+export { FRadio, FRadioGroup } from './components/FRadio'
+export type { FRadioProps, FRadioGroupProps, FRadioOption } from './components/FRadio'
+export { FProgress } from './components/FProgress'
+export type { FProgressProps } from './components/FProgress'
+export { FSkeleton } from './components/FSkeleton'
+export type { FSkeletonProps } from './components/FSkeleton'
+export { FListItem } from './components/FListItem'
+export type { FListItemProps } from './components/FListItem'
+export { FList } from './components/FList'
+export type { FListProps } from './components/FList'
+export { FStat } from './components/FStat'
+export type { FStatProps } from './components/FStat'
+export { FFeature } from './components/FFeature'
+export type { FFeatureProps } from './components/FFeature'
+export { FCta } from './components/FCta'
+export type { FCtaProps } from './components/FCta'
+export { FHero } from './components/FHero'
+export type { FHeroProps } from './components/FHero'
+export { FField } from './components/FField'
+export type { FFieldProps } from './components/FField'
+export { FTextarea } from './components/FTextarea'
+export type { FTextareaProps } from './components/FTextarea'
+export { FForm } from './components/FForm'
+export type { FFormProps } from './components/FForm'
+export { FOtp } from './components/FOtp'
+export type { FOtpProps } from './components/FOtp'
+export { FTooltip } from './components/FTooltip'
+export type { FTooltipProps } from './components/FTooltip'
+export {
+  initials,
+  badgeLabel,
+  chipMetrics,
+  progressFraction,
+  otpCells,
+  sanitizeOtp,
+} from './components/helpers'
+export type { ChipSize } from './components/helpers'
+
 export { FShell } from './components/FShell'
 export type { FShellProps } from './components/FShell'
 
