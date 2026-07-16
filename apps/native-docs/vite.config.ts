@@ -11,6 +11,8 @@ const r = (p: string) => fileURLToPath(new URL(p, import.meta.url))
 export default defineConfig({
   // Served under a sub-path on the fusionui-mobile Pages site (set by deploy).
   base: process.env.DOCS_BASE ?? '/',
+  // The docs read the real copy-in registry from packages/native (a sibling package).
+  server: { fs: { allow: [r('../..')] } },
   resolve: {
     alias: [
       // Resolve the web library to its SOURCE so the docs chrome (navbar,

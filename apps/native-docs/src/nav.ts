@@ -1,4 +1,4 @@
-import { componentsByCategory } from './manifest'
+import { componentsByCategory } from './registry'
 
 export interface NavItem {
   title: string
@@ -10,8 +10,8 @@ export interface NavSection {
   items: NavItem[]
 }
 
-// The component groups are generated from the manifest, so a new registry entry
-// appears in the sidebar automatically — categories become nested groups.
+// Component groups are generated from the registry, so a new copy-in component shows
+// up in the sidebar automatically.
 const componentSection: NavSection = {
   title: 'Components',
   items: componentsByCategory().map(({ category, items }) => ({
@@ -25,20 +25,12 @@ export const nav: NavSection[] = [
     title: 'Get started',
     items: [
       { title: 'Overview', to: '/' },
-      { title: 'Installation', to: '/install' },
-      { title: 'Styles & tokens', to: '/styles' },
+      { title: 'Getting started', to: '/install' },
       { title: 'All components', to: '/components' },
     ],
   },
   componentSection,
-  {
-    title: 'Reference',
-    items: [
-      { title: 'Component parity', to: '/parity' },
-      { title: 'Liquid glass', to: '/liquid-glass' },
-    ],
-  },
 ]
 
-// The sibling web (Vue) documentation — linked from the navbar, opened in place.
+// The sibling web (Vue) documentation — linked from the navbar.
 export const WEB_DOCS_URL = 'https://rukkiecodes.github.io/fusionui/'

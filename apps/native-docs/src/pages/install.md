@@ -1,55 +1,76 @@
-# Installation
+# Getting started
 
-**`@rukkiecodes/native`** is FusionUI for Expo + React Native — the same design
-language as the web, reimplemented for the phone. Add it to any Expo project.
+FusionUI on mobile is **copy-in**, in the spirit of shadcn/ui: there's no component
+package to install. You run one command, the component's source is written into
+_your_ project, and from then on you own it — edit, theme and extend it freely.
 
-## Install
+## Initialize
+
+From the root of your Expo app:
 
 ```bash
-npx expo install @shopify/react-native-skia react-native-reanimated expo-linear-gradient
-npm i @rukkiecodes/native @rukkiecodes/tokens
-# iOS 26 real Liquid Glass (optional):
-npx expo install expo-glass-effect
+npx @rukkiecodes/native init
 ```
 
-`react-native-reanimated` drives the press springs and the switch/focus
-transitions; `expo-linear-gradient` backs the `gradient` button variant (it falls
-back to a solid fill if absent); `@shopify/react-native-skia` renders the liquid
-glass.
+That writes a small `component.config.json` (where components should land) and copies
+in the two you always want — **Text** and **Button**:
 
-> **Reanimated** needs its Babel plugin. Add `react-native-reanimated/plugin` as
-> the **last** entry in `babel.config.js` — Expo's default config includes it.
+```
+your-app/
+  component.config.json        # { "outDir": "components/ui" }
+  components/ui/
+    text/    index.tsx types.ts const.ts helpers.ts
+    button/  index.tsx types.ts
+```
 
-## Usage
+Then install the packages those components need — the command prints the exact line:
 
-Wrap your app in `FusionProvider` — the native counterpart of `createFusionUI`.
-It feeds the `@rukkiecodes/tokens` native output to every component:
+```bash
+npx expo install expo-linear-gradient react-native-reanimated
+```
+
+> `react-native-reanimated` needs its Babel plugin — add `react-native-reanimated/plugin`
+> as the **last** entry in `babel.config.js` (Expo's default config already includes it).
+
+## Add more, on demand
+
+Pull in any other component one at a time. Its source is copied into your `outDir`,
+and its dependencies are printed for you:
+
+```bash
+npx @rukkiecodes/native add <name>
+npx @rukkiecodes/native list          # see everything available
+```
+
+Useful flags: `--dir <path>` overrides the configured `outDir`; `--overwrite` replaces
+existing files.
+
+## Use them
 
 ```tsx
-import { FusionProvider, FButton, FCard, FInput } from '@rukkiecodes/native'
+import { Text } from './components/ui/text'
+import { Button } from './components/ui/button'
 
-export default function App() {
+export default function Screen() {
   return (
-    <FusionProvider theme="light">
-      <FCard>
-        <FInput label="Email" placeholder="you@example.com" />
-        <FButton variant="elevated" color="primary" onPress={save}>
-          Save
-        </FButton>
-      </FCard>
-    </FusionProvider>
+    <>
+      <Text.H1 color="primary">Welcome</Text.H1>
+      <Button gradientColors={['#195bff', '#7d5fff']} onPress={save}>
+        <Text color="#fff" weight="bold">
+          Continue
+        </Text>
+      </Button>
+    </>
   )
 }
 ```
 
-## Every variant runs live
-
-Each component page carries a live **Expo Snack** per variant — a self-contained,
-pure-RN mirror so it runs without a build step, but every value still traces to
-`@rukkiecodes/tokens`. Edit inline in the browser, or press _My Device_ and scan
-the QR with [Expo Go](https://expo.dev/go) to run it on your phone. The press
-springs are [Reanimated](https://docs.swmansion.com/react-native-reanimated/) and
-the liquid glass is [Skia](https://shopify.github.io/react-native-skia/) — the same
-engines the package ships, so the feel matches the web.
+Each component page shows its exact usage and props. Copy the component in and it
+runs in your Expo app straight away.
 
 Next: [browse the components →](/components)
+
+---
+
+Components are adapted from [reacticx](https://github.com/rit3zh/reacticx) (MIT ©
+rit3zh), rebranded for FusionUI.

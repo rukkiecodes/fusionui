@@ -1,45 +1,49 @@
 <script setup lang="ts">
-// Home of the mobile docs — the components-and-styles hub. Primary CTA into the
-// full component reference; secondary into install.
-import { components } from '@/manifest'
+// Home of the mobile docs — the copy-in model. One command sets a project up with
+// the minimal Text + Button; add anything else on demand.
+import { components } from '@/registry'
+import CommandBlock from '@/components/CommandBlock.vue'
 
 const features = [
   {
-    icon: 'smartphone',
-    title: 'Component parity',
-    body: 'The same names, props, variants and states as the web — FButton, FCard, FInput, FSwitch and more. A component feels identical on both platforms.',
+    icon: 'download',
+    title: 'Copy-in, you own it',
+    body: 'add drops the component’s source straight into your project. No black-box package — edit, theme and extend it however you like.',
   },
   {
-    icon: 'layers',
-    title: 'Liquid glass, on the GPU',
-    body: 'The signature effect via Skia (SKSL) — or the real UIGlassEffect on iOS 26. The same SDF → Snell refraction engine as the web, running per pixel.',
-  },
-  {
-    icon: 'sliders',
-    title: 'Tokens are the styles',
-    body: 'No stylesheet to maintain — colour, spacing, radii, type and motion resolve from one token source shared with the web. Re-theme once, both platforms follow.',
+    icon: 'feather',
+    title: 'Minimal by default',
+    body: 'init gives you just Text and Button. Your bundle only ever carries the components you actually pulled in.',
   },
   {
     icon: 'zap',
-    title: 'Runs for real',
-    body: 'Every variant has a live Expo Snack — edit inline or scan the QR to run it on your phone. Reanimated springs and Skia glass, not screenshots.',
+    title: 'Motion built in',
+    body: 'Real interaction, not static styles — Reanimated press springs, loading crossfades and gradient fills ship in the source you copy in.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Expo + React Native',
+    body: 'Built for Expo. Each component lists the packages it needs, and add prints the one expo install line to run.',
   },
 ]
 
 const count = components.length
-const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
 </script>
 
 <template>
   <div class="nl">
     <header class="nl__hero">
-      <p class="nl__eyebrow">React Native · Expo · Skia</p>
-      <h1 class="nl__title">FusionUI, on <b>mobile</b></h1>
+      <p class="nl__eyebrow">React Native · Expo · copy-in</p>
+      <h1 class="nl__title">Beautiful RN components,<br /><b>one command away</b></h1>
       <p class="nl__sub">
-        One design language, two runtimes. <code>@rukkiecodes/native</code> brings the FusionUI
-        components, the token-driven styles, and the signature liquid glass to Expo + React Native —
-        sharing the web's contracts, not its code.
+        FusionUI on mobile is copy-in. Start a project with the bare minimum —
+        <code>Text</code> and <code>Button</code> — and pull in anything else one command at a time.
+        The source lands in your project, so you own it.
       </p>
+
+      <div class="nl__cmd">
+        <CommandBlock command="npx @rukkiecodes/native init" />
+      </div>
 
       <div class="nl__cta">
         <RouterLink v-slot="{ href, navigate }" to="/components" custom>
@@ -50,18 +54,18 @@ const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
             :href="href"
             @click="navigate"
           >
-            Explore the components
+            Browse the components
           </f-btn>
         </RouterLink>
         <RouterLink v-slot="{ href, navigate }" to="/install" custom>
-          <f-btn variant="text" size="large" prepend-icon="download" :href="href" @click="navigate">
-            Install
+          <f-btn variant="text" size="large" prepend-icon="terminal" :href="href" @click="navigate">
+            How it works
           </f-btn>
         </RouterLink>
       </div>
 
       <p class="nl__stats">
-        <b>{{ count }}</b> components · <b>{{ variantCount }}</b> live Snacks
+        <b>{{ count }}</b> components and counting
       </p>
     </header>
 
@@ -75,13 +79,13 @@ const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
 
     <div class="nl__band">
       <div class="nl__band-copy">
-        <h2>Ready to build on the phone?</h2>
+        <h2>Add your first component</h2>
         <p>
-          Every component has its own page and a live Snack per variant — edit inline, or scan the
-          QR to run it on your device.
+          <code>init</code> writes a tiny config and copies Text + Button in. From there,
+          <code>add &lt;name&gt;</code> pulls in the rest.
         </p>
       </div>
-      <RouterLink v-slot="{ href, navigate }" to="/components" custom>
+      <RouterLink v-slot="{ href, navigate }" to="/install" custom>
         <f-btn
           color="primary"
           size="large"
@@ -89,7 +93,7 @@ const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
           :href="href"
           @click="navigate"
         >
-          Browse all components
+          Get started
         </f-btn>
       </RouterLink>
     </div>
@@ -109,12 +113,11 @@ const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
   margin: 0;
   font-family: var(--fui-font-family-mono, monospace);
   font-size: 0.78rem;
-  letter-spacing: 0.02em;
   color: rgb(var(--fui-theme-primary));
 }
 .nl__title {
   margin: 12px 0 0;
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
   font-weight: 780;
   letter-spacing: -0.035em;
   line-height: 1.05;
@@ -137,11 +140,15 @@ const variantCount = components.reduce((n, c) => n + c.variants.length, 0)
   line-height: 1.65;
   color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.66));
 }
+.nl__cmd {
+  margin: 24px 0 0;
+  max-width: 420px;
+}
 .nl__cta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 12px;
 }
 .nl__stats {
   margin: 18px 0 0;

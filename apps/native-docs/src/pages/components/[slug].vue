@@ -1,33 +1,46 @@
 <script setup lang="ts">
-// One page per @rukkiecodes/native component — data-driven from the manifest. Each
-// variant renders its own live Expo Snack. Adding a component/variant is a registry
-// edit; this page renders whatever the manifest carries.
-import { computed } from 'vue'
+// One page per copy-in component, driven by the real registry. It shows what the
+// component is, the `add` command that copies it into your project, the packages to
+// install, its props, a usage snippet, and a live preview of the actual component.
+import { computed, onMounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { findComponent } from '@/manifest'
-import NativeSnack from '@/components/NativeSnack.vue'
+import { findComponent, addCommand, installCommand } from '@/registry'
+import CommandBlock from '@/components/CommandBlock.vue'
 import InlineCode from '@/components/InlineCode.vue'
+import { highlightMarkdown } from '@/prism'
 
 const route = useRoute()
 const doc = computed(() => findComponent(String(route.params.slug)))
+const install = computed(() => (doc.value ? installCommand(doc.value) : ''))
+
+watch(
+  () => route.params.slug,
+  () => nextTick(() => requestAnimationFrame(() => highlightMarkdown())),
+  { immediate: true }
+)
+onMounted(() => nextTick(() => requestAnimationFrame(() => highlightMarkdown())))
 </script>
 
 <template>
   <div v-if="doc" class="cmp">
     <header class="cmp__head">
-      <p class="cmp__eyebrow">
-        {{ doc.category }}
-        <span v-if="doc.web" class="cmp__web"
-          >· web <code>{{ doc.web }}</code></span
-        >
-      </p>
-      <h1 class="cmp__title">
-        {{ doc.title }} <span class="cmp__name">{{ doc.component }}</span>
-      </h1>
+      <p class="cmp__eyebrow">{{ doc.category }}</p>
+      <h1 class="cmp__title">{{ doc.title }}</h1>
       <p class="cmp__desc"><InlineCode :text="doc.description" /></p>
     </header>
 
+    <section class="cmp__install">
+      <CommandBlock label="Add it" :command="addCommand(doc.slug)" />
+      <CommandBlock v-if="install" label="Install its dependencies" :command="install" />
+    </section>
+
+    <section v-if="doc.usage" class="cmp__usage">
+      <h2>Usage</h2>
+      <pre><code class="language-tsx">{{ doc.usage }}</code></pre>
+    </section>
+
     <section v-if="doc.api.length" class="cmp__api">
+      <h2>Props</h2>
       <table>
         <thead>
           <tr>
@@ -50,12 +63,6 @@ const doc = computed(() => findComponent(String(route.params.slug)))
         </tbody>
       </table>
     </section>
-
-    <section v-for="v in doc.variants" :id="v.id" :key="v.id" class="cmp__variant">
-      <h2 class="cmp__variant-title">{{ v.title }}</h2>
-      <p v-if="v.blurb" class="cmp__variant-blurb">{{ v.blurb }}</p>
-      <NativeSnack :name="v.snack" :deps="v.deps" :height="v.height" />
-    </section>
   </div>
 
   <div v-else class="cmp cmp--missing">
@@ -69,47 +76,39 @@ const doc = computed(() => findComponent(String(route.params.slug)))
 
 <style scoped>
 .cmp__head {
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 .cmp__eyebrow {
   margin: 0 0 6px;
   font-family: var(--fui-font-family-mono, monospace);
   font-size: 0.76rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgb(var(--fui-theme-primary));
 }
-.cmp__web {
-  color: rgba(var(--fui-theme-on-surface), 0.5);
-}
 .cmp__title {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
   letter-spacing: -0.03em;
 }
-.cmp__name {
-  font-family: var(--fui-font-family-mono, monospace);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 8px;
-  color: rgb(var(--fui-theme-primary));
-  background: rgba(var(--fui-theme-primary), 0.1);
-}
 .cmp__desc {
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   max-width: 65ch;
   font-size: 1.02rem;
   line-height: 1.6;
   color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.72));
 }
-.cmp__api {
-  margin: 0 0 34px;
-  overflow-x: auto;
+.cmp__install {
+  margin: 0 0 20px;
+}
+.cmp__api,
+.cmp__usage {
+  margin: 30px 0 0;
+}
+.cmp__api h2,
+.cmp__usage h2 {
+  font-size: 1.15rem;
+  margin: 0 0 12px;
 }
 .cmp__api table {
   width: 100%;
@@ -130,18 +129,5 @@ const doc = computed(() => findComponent(String(route.params.slug)))
 }
 .cmp__type {
   color: rgba(var(--fui-theme-on-surface), 0.7);
-}
-.cmp__variant {
-  margin: 0 0 40px;
-  scroll-margin-top: 80px;
-}
-.cmp__variant-title {
-  margin: 0 0 4px;
-  font-size: 1.25rem;
-  letter-spacing: -0.02em;
-}
-.cmp__variant-blurb {
-  margin: 0 0 4px;
-  color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.66));
 }
 </style>

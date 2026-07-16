@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// The component index — every @rukkiecodes/native component, grouped by category.
-import { componentsByCategory } from '@/manifest'
+// The component index — everything in the copy-in registry, grouped by category.
+import { componentsByCategory } from '@/registry'
 
 const groups = componentsByCategory()
 </script>
@@ -10,8 +10,10 @@ const groups = componentsByCategory()
     <header class="idx__head">
       <h1>Components</h1>
       <p>
-        Every component mirrors its web sibling's contract and runs for real in a live Expo Snack —
-        one per variant. Pick a component to see its variants, props and Snacks.
+        Every component is copy-in: pick one and run
+        <code>npx @rukkiecodes/native add &lt;name&gt;</code>
+        to drop its source into your project, where you own it. Start minimal — Text and Button —
+        and add the rest as you need them.
       </p>
     </header>
 
@@ -24,11 +26,9 @@ const groups = componentsByCategory()
           :to="`/components/${c.slug}`"
           class="idx__card"
         >
-          <div class="idx__card-top">
-            <strong>{{ c.title }}</strong>
-            <span class="idx__count">{{ c.variants.length }}</span>
-          </div>
-          <code class="idx__name">{{ c.component }}</code>
+          <strong>{{ c.title }}</strong>
+          <p>{{ c.description }}</p>
+          <code class="idx__add">add {{ c.slug }}</code>
         </RouterLink>
       </div>
     </section>
@@ -46,9 +46,9 @@ const groups = componentsByCategory()
 }
 .idx__head p {
   margin: 0;
-  max-width: 62ch;
-  color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.7));
+  max-width: 64ch;
   line-height: 1.6;
+  color: rgba(var(--fui-theme-on-surface), var(--fui-medium-emphasis-opacity, 0.7));
 }
 .idx__cat {
   margin: 30px 0 12px;
@@ -59,12 +59,12 @@ const groups = componentsByCategory()
 }
 .idx__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
 }
 .idx__card {
   display: block;
-  padding: 16px;
+  padding: 18px;
   border-radius: 14px;
   text-decoration: none;
   color: inherit;
@@ -78,26 +78,20 @@ const groups = componentsByCategory()
   transform: translateY(-2px);
   border-color: rgba(var(--fui-theme-primary), 0.5);
 }
-.idx__card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.idx__card strong {
+  font-size: 1.05rem;
 }
-.idx__card-top strong {
-  font-size: 1rem;
+.idx__card p {
+  margin: 6px 0 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(var(--fui-theme-on-surface), 0.6);
 }
-.idx__count {
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 1px 7px;
-  border-radius: 999px;
+.idx__add {
+  font-size: 0.78rem;
+  padding: 3px 8px;
+  border-radius: 7px;
   color: rgb(var(--fui-theme-primary));
-  background: rgba(var(--fui-theme-primary), 0.12);
-}
-.idx__name {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: rgba(var(--fui-theme-on-surface), 0.55);
+  background: rgba(var(--fui-theme-primary), 0.1);
 }
 </style>

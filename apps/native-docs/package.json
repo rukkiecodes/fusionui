@@ -1,15 +1,12 @@
 {
   "name": "@rukkiecodes/native-docs",
   "version": "0.0.0",
-  "description": "Documentation website for FusionUI on mobile (@rukkiecodes/native) with live Expo Snacks.",
+  "description": "Documentation website for FusionUI on mobile (@rukkiecodes/native) — the copy-in component registry.",
   "type": "module",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "gen:snacks": "node scripts/gen-snacks.mjs",
-    "predev": "node scripts/gen-snacks.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/gen-snacks.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "echo \"[native-docs] typecheck via build\"",
