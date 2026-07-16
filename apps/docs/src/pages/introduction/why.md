@@ -30,8 +30,8 @@ three shared layers and two implementations:
 Only the rendering code is reimplemented per platform. Unit tests assert that
 the native variant unions are subsets of their web counterparts, so the two
 sides cannot silently drift. See the
-[mobile documentation](https://rukkiecodes.github.io/fusionui-mobile/parity) for
-the parity table.
+[mobile documentation](https://rukkiecodes.github.io/fusionui-mobile/) for the
+React Native components.
 
 ## A signature visual layer that always degrades
 
