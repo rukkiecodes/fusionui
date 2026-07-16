@@ -12,6 +12,24 @@ export {
 } from './theme'
 export type { FusionTheme, FusionProviderProps } from './theme'
 
+// Style primitives — the token-driven layer that replaces the web utility classes
+export { useTokens, useVariant, useBreakpoints, useStyles, FBox } from './styles/hooks'
+export { resolveVariant, withAlpha } from './styles/variant'
+export type { Variant, VariantStyle } from './styles/variant'
+export {
+  resolveBreakpoint,
+  isBreakpointUp,
+  BREAKPOINTS,
+  BREAKPOINT_ORDER,
+} from './styles/breakpoints'
+export type { Breakpoint } from './styles/breakpoints'
+export { boxStyle } from './styles/box'
+export type { FBoxProps } from './styles/box'
+export { useMotion, FPressable } from './styles/FPressable'
+export type { Motion, FPressableProps } from './styles/FPressable'
+export { motionTokens, pressMotion } from './styles/motion'
+export type { MotionTokens, PressMotion } from './styles/motion'
+
 // Components (API-mirrored from @rukkiecodes/vue)
 export { FButton } from './components/FButton'
 export type { FButtonProps, FButtonVariant, FButtonSize } from './components/FButton'
@@ -23,6 +41,7 @@ export { FSwitch } from './components/FSwitch'
 export type { FSwitchProps } from './components/FSwitch'
 export { FAlert } from './components/FAlert'
 export type { FAlertProps, AlertVariant, AlertType } from './components/FAlert'
+
 export { FShell } from './components/FShell'
 export type { FShellProps } from './components/FShell'
 
