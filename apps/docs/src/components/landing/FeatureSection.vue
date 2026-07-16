@@ -22,6 +22,9 @@ const props = defineProps<{
 const titleParts = computed(() =>
   props.title.split(/\*([^*]+)\*/g).map((text, i) => ({ text, em: i % 2 === 1 }))
 )
+
+// `to` may be an in-app route or an absolute URL (e.g. the separate mobile docs).
+const isExternal = computed(() => /^https?:\/\//.test(props.to))
 </script>
 
 <template>
@@ -39,7 +42,16 @@ const titleParts = computed(() =>
         </template>
       </h2>
       <p class="feat__body">{{ body }}</p>
-      <RouterLink v-slot="{ href, navigate }" :to="to" custom>
+      <f-btn
+        v-if="isExternal"
+        color="primary"
+        variant="tonal"
+        append-icon="arrow-up-right"
+        :href="to"
+      >
+        {{ cta }}
+      </f-btn>
+      <RouterLink v-else v-slot="{ href, navigate }" :to="to" custom>
         <f-btn
           color="primary"
           variant="tonal"

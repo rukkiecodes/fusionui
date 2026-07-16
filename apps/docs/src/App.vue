@@ -13,6 +13,9 @@ const drawer = ref(false)
 // Resolved through Vite so it survives the `/fusionui/` base path on Pages.
 const logoUrl = new URL('../public/logo.svg', import.meta.url).href
 
+// The sibling mobile (Expo / React Native) documentation — its own site.
+const MOBILE_DOCS_URL = 'https://rukkiecodes.github.io/fusionui-mobile/'
+
 const isHome = computed(() => route.path === '/')
 
 // Syntax-highlight the page's fenced code blocks after each navigation (the
@@ -60,6 +63,15 @@ function toggleTheme() {
         </router-link>
       </template>
       <template #right>
+        <f-btn
+          variant="text"
+          size="small"
+          append-icon="arrow-up-right"
+          :href="MOBILE_DOCS_URL"
+          class="docs__mobile-link"
+        >
+          Mobile
+        </f-btn>
         <f-btn
           variant="text"
           :icon="theme.isDark.value ? 'sun' : 'moon'"
@@ -121,3 +133,14 @@ function toggleTheme() {
     </div>
   </div>
 </template>
+
+<style scoped>
+.docs__mobile-link {
+  margin-right: 2px;
+}
+@media (max-width: 640px) {
+  .docs__mobile-link {
+    display: none;
+  }
+}
+</style>

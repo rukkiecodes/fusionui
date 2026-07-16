@@ -29,7 +29,8 @@ three shared layers and two implementations:
 
 Only the rendering code is reimplemented per platform. Unit tests assert that
 the native variant unions are subsets of their web counterparts, so the two
-sides cannot silently drift. See [Native (mobile)](/getting-started/native) for
+sides cannot silently drift. See the
+[mobile documentation](https://rukkiecodes.github.io/fusionui-mobile/parity) for
 the parity table.
 
 ## A signature visual layer that always degrades

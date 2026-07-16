@@ -126,7 +126,7 @@ const stats = [
         eyebrow="Cross-platform, honestly"
         title="The same language on *web and mobile*"
         body="Vue on the web, Expo and Skia on mobile. What is genuinely shared is the token values, the component API and the interaction semantics — not the same .vue files pretending to run on a phone. We would rather tell you exactly what carries across."
-        to="/getting-started/native"
+        to="https://rukkiecodes.github.io/fusionui-mobile/"
         cta="The mobile story"
       />
 

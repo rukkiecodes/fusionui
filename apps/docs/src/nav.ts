@@ -36,13 +36,6 @@ export const nav: NavSection[] = [
     ],
   },
   {
-    title: 'Mobile (Expo)',
-    items: [
-      { title: 'Overview', to: '/getting-started/native' },
-      { title: 'Components & styles', to: '/native' },
-    ],
-  },
-  {
     title: 'Features',
     items: [
       { title: 'Design Tokens', to: '/getting-started/design-tokens' },

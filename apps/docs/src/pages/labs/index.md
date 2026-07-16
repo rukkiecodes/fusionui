@@ -72,8 +72,8 @@ example you copy when you build your own chart. Treat both as Labs.
 - [Goo](/components/goo) — metaball physics, the two render modes, and the
   soft-body droplet.
 - [Chart](/components/chart) — the engine, and the pattern for building your own.
-- [Native (mobile)](/getting-started/native) — how the same maths reaches
-  React Native.
+- [Mobile (Expo)](https://rukkiecodes.github.io/fusionui-mobile/liquid-glass) — how
+  the same maths reaches React Native.
 
 Use this layer deliberately. It is opt-in everywhere, never default-on, and it
 buys you the most when a surface floats over content and depth reads as quality.

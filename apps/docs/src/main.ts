@@ -17,8 +17,6 @@ import ChartPlayground from './components/ChartPlayground.vue'
 import GridPlayground from './components/GridPlayground.vue'
 import FlexPlayground from './components/FlexPlayground.vue'
 import DashboardExample from './components/DashboardExample.vue'
-import NativeSnack from './components/NativeSnack.vue'
-import NativeLanding from './components/NativeLanding.vue'
 import IconGallery from './components/IconGallery.vue'
 import SkillInstall from './components/SkillInstall.vue'
 import PaletteGrid from './components/PaletteGrid.vue'
@@ -49,8 +47,6 @@ createApp(App)
   .component('GridPlayground', GridPlayground)
   .component('FlexPlayground', FlexPlayground)
   .component('DashboardExample', DashboardExample)
-  .component('NativeSnack', NativeSnack)
-  .component('NativeLanding', NativeLanding)
   .component('IconGallery', IconGallery)
   .component('SkillInstall', SkillInstall)
   .component('PaletteGrid', PaletteGrid)

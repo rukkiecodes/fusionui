@@ -185,4 +185,4 @@ It is **three shared layers and two implementations**:
   so the two can't silently drift apart.
 
 Component coverage on native is a subset of the web set, and each component runs
-live in its own Expo Snack on the [Native (mobile)](/getting-started/native) page.
+live in its own Expo Snack in the [mobile documentation](https://rukkiecodes.github.io/fusionui-mobile/).
