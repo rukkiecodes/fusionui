@@ -4,8 +4,9 @@
 // install, its props, a usage snippet, and a live preview of the actual component.
 import { computed, onMounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { findComponent, addCommand, installCommand } from '@/registry'
+import { findComponent, installCommand } from '@/registry'
 import CommandBlock from '@/components/CommandBlock.vue'
+import PreviewShell from '@/components/PreviewShell.vue'
 import InlineCode from '@/components/InlineCode.vue'
 import { highlightMarkdown } from '@/prism'
 
@@ -29,9 +30,10 @@ onMounted(() => nextTick(() => requestAnimationFrame(() => highlightMarkdown()))
       <p class="cmp__desc"><InlineCode :text="doc.description" /></p>
     </header>
 
-    <section class="cmp__install">
-      <CommandBlock label="Add it" :command="addCommand(doc.slug)" />
-      <CommandBlock v-if="install" label="Install its dependencies" :command="install" />
+    <PreviewShell :slug="doc.slug" :snack-id="doc.snackId" />
+
+    <section v-if="install" class="cmp__install">
+      <CommandBlock label="Install its dependencies" :command="install" />
     </section>
 
     <section v-if="doc.usage" class="cmp__usage">

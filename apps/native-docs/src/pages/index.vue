@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: 'zap',
-    title: 'Motion built in',
-    body: 'Real interaction, not static styles — Reanimated press springs, loading crossfades and gradient fills ship in the source you copy in.',
+    title: 'Runnable previews',
+    body: 'Every component page has a live Expo Snack of the real component — press it, edit it inline, or scan the QR to run it on your phone.',
   },
   {
     icon: 'smartphone',

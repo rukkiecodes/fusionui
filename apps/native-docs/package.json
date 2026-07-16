@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "save:snacks": "node scripts/save-snacks.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

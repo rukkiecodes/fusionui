@@ -2,6 +2,7 @@
 // packages/native/registry — and merge in the docs-only metadata (props, usage,
 // preview). Add a component to the registry and it shows up here automatically.
 import registryJson from '../../../packages/native/registry/registry.json'
+import snackIds from './snack-ids.json'
 import { docsMeta, type ApiRow } from './docs-meta'
 
 interface RegistryEntry {
@@ -31,6 +32,7 @@ export interface ComponentDoc {
   peerDependencies: string[]
   api: ApiRow[]
   usage: string
+  snackId?: string
 }
 
 export const components: ComponentDoc[] = Object.entries(reg.components).map(([slug, c]) => ({
@@ -43,6 +45,7 @@ export const components: ComponentDoc[] = Object.entries(reg.components).map(([s
   peerDependencies: c.peerDependencies ?? [],
   api: docsMeta[slug]?.api ?? [],
   usage: docsMeta[slug]?.usage ?? '',
+  snackId: (snackIds as Record<string, string>)[slug],
 }))
 
 export function findComponent(slug: string): ComponentDoc | undefined {

@@ -65,8 +65,9 @@ export default function Screen() {
 }
 ```
 
-Each component page shows its exact usage and props. Copy the component in and it
-runs in your Expo app straight away.
+Each component page has a **runnable preview** — a live Expo Snack of the actual
+component, opening on the clean demo with the real source one tab over — plus its
+usage and props.
 
 Next: [browse the components →](/components)
 
