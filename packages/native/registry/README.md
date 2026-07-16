@@ -6,11 +6,14 @@ one command at a time. The component's source is written into _your_ project, so
 you own it and can edit it freely.
 
 ```bash
-# planned CLI (shadcn-style)
-npx @rukkiecodes/native init          # writes component.config.json (outDir)
-npx @rukkiecodes/native add button    # copies the button source into your project
-npx @rukkiecodes/native add <name>    # …and any other component on demand
+npx @rukkiecodes/native init          # writes component.config.json + copies Text + Button in
+npx @rukkiecodes/native add <name>    # copies any other component on demand
+npx @rukkiecodes/native list          # shows everything available
 ```
+
+The CLI (`packages/native/cli`) ships with the package and copies from this
+directory — no network, no build step. `--dir <path>` overrides the configured
+`outDir`; `--overwrite` replaces existing files.
 
 This directory is the **source of truth** the CLI copies from:
 

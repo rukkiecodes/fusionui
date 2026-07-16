@@ -5,8 +5,13 @@
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
+  "bin": {
+    "fusionui-native": "./cli/index.mjs"
+  },
   "files": [
-    "src"
+    "src",
+    "registry",
+    "cli"
   ],
   "exports": {
     ".": {
