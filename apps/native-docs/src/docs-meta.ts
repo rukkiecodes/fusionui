@@ -98,4 +98,35 @@ export function Example() {
   )
 }`,
   },
+  'apple-intelligence': {
+    snackPlatform: 'mydevice',
+    api: [
+      { prop: 'children', type: 'ReactNode', default: '—' },
+      { prop: 'introDuration / outroDuration', type: 'number (ms)', default: '1200 / 600' },
+      { prop: 'glow', type: '{ speed, saturation, lightness, colors }', default: '—' },
+      { prop: 'wave', type: '{ speed, strength, origin }', default: '—' },
+      { prop: 'shimmer', type: '{ amount, speed }', default: '—' },
+      { prop: 'border', type: '{ margin, spread, radius }', default: '—' },
+      { prop: 'useSiri()', type: '{ toggle, isActive, setOverlay }', default: '—' },
+    ],
+    usage: `import { Pressable, Text } from 'react-native'
+import { SiriProvider, useSiri } from './components/ui/apple-intelligence'
+
+function Screen() {
+  const { toggle } = useSiri()
+  return (
+    <Pressable onPress={() => toggle()}>
+      <Text>Ask Siri</Text>
+    </Pressable>
+  )
+}
+
+export default function App() {
+  return (
+    <SiriProvider>
+      <Screen />
+    </SiriProvider>
+  )
+}`,
+  },
 }

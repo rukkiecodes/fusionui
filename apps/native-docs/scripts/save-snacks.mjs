@@ -120,6 +120,61 @@ export default function App() {
 }
 `,
   },
+  'apple-intelligence': {
+    sdk: '54.0.0',
+    files: [
+      'index.tsx',
+      'types.ts',
+      'context.ts',
+      'conf.ts',
+      'const.ts',
+      'helpers.ts',
+      'use-siri-uniforms.ts',
+    ],
+    deps: {
+      'react-native-reanimated': '~4.1.1',
+      '@shopify/react-native-skia': '2.2.12',
+      'react-native-worklets': '0.5.1',
+    },
+    app: `import React from 'react'
+import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { SiriProvider, useSiri } from './apple-intelligence'
+
+function Screen() {
+  const { toggle, isActive } = useSiri()
+  return (
+    <View style={styles.screen}>
+      <View style={styles.card}>
+        <Text style={styles.title}>Apple Intelligence</Text>
+        <Text style={styles.body}>
+          Tap below to wash this screen in the Siri glow — a snapshot + SKSL shader overlay.
+        </Text>
+      </View>
+      <Pressable style={styles.btn} onPress={() => toggle()}>
+        <Text style={styles.btnText}>{isActive ? 'Dismiss' : 'Ask Siri'}</Text>
+      </Pressable>
+    </View>
+  )
+}
+
+export default function App() {
+  return (
+    <SiriProvider>
+      <Screen />
+    </SiriProvider>
+  )
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, backgroundColor: '#0a0a0a', alignItems: 'center', justifyContent: 'center', gap: 28, padding: 24 },
+  card: { backgroundColor: '#141414', borderRadius: 20, padding: 24, gap: 10, width: '100%' },
+  title: { color: '#fff', fontSize: 22, fontWeight: '800' },
+  body: { color: '#8b8b8b', fontSize: 15, lineHeight: 22 },
+  btn: { backgroundColor: '#8093ff', paddingVertical: 14, paddingHorizontal: 28, borderRadius: 14 },
+  btnText: { color: '#fff', fontWeight: '700', fontSize: 16 },
+})
+`,
+  },
 }
 
 function buildCode(slug, spec) {

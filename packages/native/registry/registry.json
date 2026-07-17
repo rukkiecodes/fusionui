@@ -35,6 +35,23 @@
         "@expo/vector-icons"
       ],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    },
+    "apple-intelligence": {
+      "title": "Apple Intelligence",
+      "category": "base",
+      "path": "components/apple-intelligence",
+      "description": "An Apple-Intelligence-style overlay provider. Wrap your UI in <SiriProvider>, then call useSiri().toggle() to snapshot it and paint an SKSL shader over it — wave, noise, glow, shimmer and a glowing border, fading in and out.",
+      "files": [
+        "index.tsx",
+        "types.ts",
+        "context.ts",
+        "conf.ts",
+        "const.ts",
+        "helpers.ts",
+        "use-siri-uniforms.ts"
+      ],
+      "dependencies": ["@shopify/react-native-skia", "react-native-worklets"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }
 }
