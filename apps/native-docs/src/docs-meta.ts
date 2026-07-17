@@ -77,11 +77,25 @@ export function Example() {
       },
     ],
     usage: `import { useState } from 'react'
+import { Feather, Ionicons } from '@expo/vector-icons'
 import { Switch } from './components/ui/switch'
 
 export function Example() {
   const [on, setOn] = useState(true)
-  return <Switch value={on} onValueChange={setOn} onColor="#195bff" />
+  return (
+    <Switch
+      value={on}
+      onValueChange={setOn}
+      onColor="#8bf26e"
+      offColor="#333"
+      iconAnimationType="rotate"
+      thumbOnIcon={<Feather name="check" size={13} color="#000" />}
+      thumbOffIcon={<Ionicons name="close-outline" size={14} color="#000" />}
+      width={70}
+      height={40}
+      thumbInset={4.5}
+    />
+  )
 }`,
   },
 }

@@ -75,29 +75,36 @@ export default function App() {
   },
   switch: {
     files: ['index.tsx', 'types.ts'],
-    deps: { 'react-native-reanimated': '~3.16.0' },
+    deps: { 'react-native-reanimated': '~3.16.0', '@expo/vector-icons': '^14.0.0' },
     app: `import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import { Feather, Ionicons } from '@expo/vector-icons'
 import { Switch } from './switch'
 
-function Row({ label, color, value, onValueChange }) {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-      <Text style={{ color: '#fff', fontSize: 16, width: 96 }}>{label}</Text>
-      <Switch value={value} onValueChange={onValueChange} onColor={color} />
-    </View>
-  )
-}
-
 export default function App() {
+  const [dark, setDark] = useState(true)
   const [a, setA] = useState(true)
-  const [b, setB] = useState(true)
-  const [c, setC] = useState(false)
+  const [b, setB] = useState(false)
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 26, backgroundColor: '#0b1220' }}>
-      <Row label="Primary" color="#195bff" value={a} onValueChange={setA} />
-      <Row label="Success" color="#34C759" value={b} onValueChange={setB} />
-      <Row label="Danger" color="#ff4757" value={c} onValueChange={setC} />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 34, backgroundColor: '#0a0a0a' }}>
+      <Switch
+        value={dark}
+        onValueChange={setDark}
+        onColor="#8bf26ee2"
+        offColor="#333333"
+        thumbColor="#ffffff"
+        iconAnimationType="rotate"
+        thumbOnIcon={<Feather name="check" size={13} color="#000" />}
+        thumbOffIcon={<Ionicons name="close-outline" size={14} color="#000" />}
+        animateIcons
+        thumbInset={4.5}
+        height={40}
+        width={70}
+      />
+      <View style={{ flexDirection: 'row', gap: 22 }}>
+        <Switch value={a} onValueChange={setA} onColor="#195bff" />
+        <Switch value={b} onValueChange={setB} onColor="#ff4757" />
+      </View>
     </View>
   )
 }
