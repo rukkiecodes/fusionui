@@ -45,6 +45,12 @@ interface TextProps extends Required<React.PropsWithChildren> {
   readonly style?: StyleProp<TextStyle>
   readonly containerStyle?: StyleProp<ViewStyle>
   readonly weight?: FontWeight
+  /**
+   * Override the default typeface. FusionUI defaults to Poppins, resolving each
+   * `weight` to its weight-specific family (e.g. Poppins_700Bold). Pass a family
+   * name here to use a different loaded font.
+   */
+  readonly fontFamily?: string
   readonly align?: TextAlign
   readonly transform?: TextTransform
   readonly decoration?: TextDecoration
@@ -96,6 +102,7 @@ interface TextTheme {
   colors: Record<ColorVariant, string>
   headingSizes: Record<HeadingLevel, number>
   fontWeights: Record<FontWeight, TextStyle['fontWeight']>
+  fontFamilies: Record<FontWeight, string>
   defaultColor: string
   defaultSize: number
   defaultWeight: FontWeight

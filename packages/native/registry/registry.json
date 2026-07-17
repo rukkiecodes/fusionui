@@ -7,10 +7,10 @@
       "title": "Text",
       "category": "base",
       "path": "components/text",
-      "description": "Typography primitive: size or heading level (H1–H6), weight, colour variants, alignment, truncation, skeleton loading, prefix/suffix, and press support.",
+      "description": "Typography primitive: size or heading level (H1–H6), weight, colour variants, alignment, truncation, skeleton loading, prefix/suffix, and press support. Defaults to the Poppins typeface.",
       "files": ["index.tsx", "types.ts", "const.ts", "helpers.ts"],
       "dependencies": [],
-      "peerDependencies": ["react", "react-native"]
+      "peerDependencies": ["react", "react-native", "expo-font", "@expo-google-fonts/poppins"]
     },
     "button": {
       "title": "Button",

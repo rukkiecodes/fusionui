@@ -22,15 +22,21 @@ export const docsMeta: Record<string, DocMeta> = {
       { prop: 'level', type: "'h1' … 'h6'", default: '—' },
       { prop: 'size', type: 'number', default: '18' },
       { prop: 'weight', type: "'thin' … 'black'", default: "'bold'" },
+      { prop: 'fontFamily', type: 'string', default: 'Poppins (per weight)' },
       { prop: 'color', type: 'string | colour variant', default: "'#FFFFFF'" },
       { prop: 'align', type: "'left' | 'center' | 'right' | 'justify'", default: "'left'" },
       { prop: 'numberOfLines', type: 'number', default: '—' },
       { prop: 'loading', type: 'boolean (skeleton)', default: 'false' },
       { prop: 'prefix / suffix', type: 'ReactNode', default: '—' },
     ],
-    usage: `import { Text } from './components/ui/text'
+    usage: `import { useFonts, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins'
+import { Text } from './components/ui/text'
 
+// FusionUI defaults to Poppins — load the faces you use.
 export function Example() {
+  const [loaded] = useFonts({ Poppins_500Medium, Poppins_700Bold })
+  if (!loaded) return null
+
   return (
     <>
       <Text.H1 color="primary">Welcome</Text.H1>

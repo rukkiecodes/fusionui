@@ -19,7 +19,7 @@ export const space = {
 }
 export const font = {
   "family": {
-    "base": "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+    "base": "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     "mono": "'SF Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
   },
   "size": {

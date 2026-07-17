@@ -18,12 +18,24 @@ const SAVE_URL = 'https://api.expo.dev/v2/snack/save'
 const specs = {
   text: {
     files: ['index.tsx', 'types.ts', 'const.ts', 'helpers.ts'],
-    deps: {},
+    deps: {
+      '@expo-google-fonts/poppins': '^0.2.3',
+    },
     app: `import React from 'react'
 import { View } from 'react-native'
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins'
 import { Text } from './text'
 
+// FusionUI defaults to Poppins — load the faces the demo uses.
 export default function App() {
+  const [loaded] = useFonts({ Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold })
+  if (!loaded) return null
+
   return (
     <View style={{ flex: 1, padding: 28, justifyContent: 'center', gap: 16, backgroundColor: '#f4f7f8' }}>
       <Text.H1 color="#0b1220">Heading 1</Text.H1>

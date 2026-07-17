@@ -3,6 +3,15 @@
  * variants, alignment, truncation, skeleton loading, prefix/suffix, and press
  * support. Copy-in source: you own this file after `fusionui add text`.
  *
+ * Default typeface is Poppins. Load the Poppins faces in your app for it to show —
+ * e.g. with `@expo-google-fonts/poppins`:
+ *
+ *   import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins'
+ *   const [loaded] = useFonts({ Poppins_400Regular, Poppins_700Bold })
+ *
+ * Each `weight` maps to its own family (see const.ts). Without the faces loaded the
+ * text falls back to the system font at the right weight.
+ *
  * Adapted from reacticx (MIT © rit3zh) — https://github.com/rit3zh/reacticx
  */
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from 'react'
@@ -66,6 +75,7 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
   style,
   containerStyle,
   weight = DEFAULT_THEME.defaultWeight,
+  fontFamily,
   align = 'left',
   transform = 'none',
   decoration = 'none',
@@ -111,6 +121,15 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
   const resolvedSize = useMemo<number>(() => resolveSize(size, level, theme), [size, level, theme])
   const resolvedColor = useMemo<string>(() => resolveColor(color, theme), [color, theme])
   const resolvedWeight = theme.fontWeights[weight]
+  // Default typeface is Poppins, resolved to the weight-specific family. `italic`
+  // uses the matching italic face (Poppins_700Bold_Italic); a custom `fontFamily`
+  // is used verbatim. `fontWeight` is kept below as a fallback for when the Poppins
+  // faces aren't loaded, so the text still renders at the right weight.
+  const resolvedFamily = useMemo<string>(() => {
+    if (fontFamily) return fontFamily
+    const base = theme.fontFamilies[weight]
+    return italic ? `${base}_Italic` : base
+  }, [fontFamily, weight, italic, theme])
   useEffect(() => {
     if (animated) {
       Animated.timing(fadeAnim, {
@@ -136,6 +155,7 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
       styles.text,
       {
         fontSize: resolvedSize,
+        fontFamily: resolvedFamily,
         fontWeight: resolvedWeight,
         color: resolvedColor,
         textAlign: align,
@@ -153,7 +173,9 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
       baseStyles.push({ letterSpacing })
     }
 
-    if (italic) {
+    // The default Poppins path already uses the italic face; only synthesise
+    // italic when a custom family is supplied.
+    if (italic && fontFamily) {
       baseStyles.push({ fontStyle: 'italic' })
     }
 
@@ -184,6 +206,7 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
     return baseStyles
   }, [
     resolvedSize,
+    resolvedFamily,
     resolvedWeight,
     resolvedColor,
     align,
@@ -193,6 +216,7 @@ const TextComponent: React.FC<TextProps> & React.FunctionComponent<TextProps> = 
     lineHeight,
     letterSpacing,
     italic,
+    fontFamily,
     decorationColor,
     shadow,
     shadowConfig,

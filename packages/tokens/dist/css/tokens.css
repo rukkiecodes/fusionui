@@ -13,7 +13,7 @@
     --fui-transition-timing: ease;
     --fui-transition: all 0.25s ease;
     --fui-transition-fast: all 0.15s ease;
-    --fui-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --fui-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --fui-font-family-mono: 'SF Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     --fui-font-size-root: 16px;
     --fui-font-weight-regular: 400;
