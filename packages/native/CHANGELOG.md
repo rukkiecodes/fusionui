@@ -1,5 +1,11 @@
 # @rukkiecodes/native
 
+## 0.2.0
+
+### Minor Changes
+
+- Bring the mobile Button to web parity with FBtn: variants (solid, relief, shadow, floating, link), a size scale (xs–xl), block, icon / icon-only with left/right icons, circle & square shapes, a loading overlay and an animated upload sweep, and href link support. Adds ButtonGroup for segmented rows (shared rounded ends, optional dividers, horizontal or vertical).
+
 ## 0.1.2
 
 ### Patch Changes
