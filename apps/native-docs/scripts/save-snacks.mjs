@@ -56,31 +56,47 @@ export default function App() {
       'expo-linear-gradient': '~14.0.0',
     },
     app: `import React, { useState } from 'react'
-import { View, Text } from 'react-native'
-import { Button } from './button'
+import { View, Text, ScrollView } from 'react-native'
+import { Button, ButtonGroup } from './button'
+
+const L = ({ children, color = '#fff' }) => (
+  <Text style={{ color, fontWeight: '600', fontSize: 14 }}>{children}</Text>
+)
 
 export default function App() {
   const [loading, setLoading] = useState(false)
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 18, backgroundColor: '#0b1220' }}>
-      <Button gradientColors={['#195bff', '#7d5fff']} onPress={() => {}}>
-        <Text style={{ color: '#fff', fontWeight: '700', fontSize: 16 }}>Continue</Text>
-      </Button>
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', gap: 14, padding: 24, backgroundColor: '#f4f7f8' }}
+    >
+      <View style={{ flexDirection: 'row', gap: 12 }}>
+        <Button variant="solid" backgroundColor="#195bff"><L>Solid</L></Button>
+        <Button variant="relief" backgroundColor="#195bff"><L>Relief</L></Button>
+      </View>
+      <View style={{ flexDirection: 'row', gap: 12 }}>
+        <Button variant="shadow" backgroundColor="#ffffff"><L color="#195bff">Shadow</L></Button>
+        <Button variant="floating" backgroundColor="#7d5fff"><L>Floating</L></Button>
+      </View>
+
+      <ButtonGroup divided borderRadius={12}>
+        <Button size="sm" backgroundColor="#195bff"><L>Day</L></Button>
+        <Button size="sm" backgroundColor="#195bff"><L>Week</L></Button>
+        <Button size="sm" backgroundColor="#195bff"><L>Month</L></Button>
+      </ButtonGroup>
+
       <Button
+        block
         backgroundColor="#195bff"
         isLoading={loading}
-        showLoadingIndicator
         loadingText="Saving…"
-        loadingTextColor="#fff"
-        loadingTextBackgroundColor="#12203f"
         onPress={() => {
           setLoading(true)
           setTimeout(() => setLoading(false), 1600)
         }}
       >
-        <Text style={{ color: '#fff', fontWeight: '700', fontSize: 16 }}>Tap to load</Text>
+        <L>Tap to load</L>
       </Button>
-    </View>
+    </ScrollView>
   )
 }
 `,

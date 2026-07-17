@@ -49,25 +49,41 @@ export function Example() {
   },
   button: {
     api: [
-      { prop: 'onPress', type: '() => void', default: '—' },
-      { prop: 'backgroundColor', type: 'string', default: "'#fff'" },
+      {
+        prop: 'variant',
+        type: "'solid' | 'relief' | 'shadow' | 'floating' | 'link'",
+        default: "'solid'",
+      },
+      { prop: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'" },
+      { prop: 'block', type: 'boolean (full width)', default: 'false' },
+      { prop: 'iconOnly', type: 'boolean (square 1:1)', default: 'false' },
+      { prop: 'leftIcon / rightIcon', type: 'ReactNode', default: '—' },
+      { prop: 'circle / square', type: 'boolean (shape)', default: 'false' },
+      { prop: 'isLoading / upload', type: 'boolean', default: 'false' },
+      { prop: 'href', type: 'string (opens URL)', default: '—' },
+      { prop: 'backgroundColor', type: 'string', default: "'#195bff'" },
       { prop: 'gradientColors', type: 'string[]', default: '—' },
-      { prop: 'isLoading', type: 'boolean', default: 'false' },
-      { prop: 'loadingText', type: 'string', default: "'Loading...'" },
-      { prop: 'width / height', type: 'number', default: '220 / 52' },
-      { prop: 'borderRadius', type: 'number', default: 'height / 2' },
-      { prop: 'disabled', type: 'boolean', default: 'false' },
+      { prop: 'onPress / disabled', type: '() => void / boolean', default: '—' },
     ],
-    usage: `import { Button } from './components/ui/button'
+    usage: `import { Button, ButtonGroup } from './components/ui/button'
 import { Text } from './components/ui/text'
 
 export function Example() {
   return (
-    <Button gradientColors={['#195bff', '#7d5fff']} onPress={save}>
-      <Text color="#fff" weight="bold">
-        Continue
-      </Text>
-    </Button>
+    <>
+      <Button variant="relief" backgroundColor="#195bff" onPress={save}>
+        <Text color="#fff" weight="bold">Continue</Text>
+      </Button>
+
+      <Button variant="floating" size="lg" leftIcon={<Icon />}>
+        <Text color="#fff" weight="bold">Upload</Text>
+      </Button>
+
+      <ButtonGroup divided>
+        <Button size="sm"><Text color="#fff">Day</Text></Button>
+        <Button size="sm"><Text color="#fff">Week</Text></Button>
+      </ButtonGroup>
+    </>
   )
 }`,
   },
