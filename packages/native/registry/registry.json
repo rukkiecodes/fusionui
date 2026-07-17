@@ -20,6 +20,15 @@
       "files": ["index.tsx", "types.ts"],
       "dependencies": ["expo-linear-gradient"],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    },
+    "switch": {
+      "title": "Switch",
+      "category": "base",
+      "path": "components/switch",
+      "description": "A spring-animated toggle: a track-colour crossfade, a sliding thumb, optional track/thumb icons (fade · rotate · scale · bounce) and a background image.",
+      "files": ["index.tsx", "types.ts"],
+      "dependencies": [],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }
 }

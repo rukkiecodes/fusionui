@@ -62,4 +62,26 @@ export function Example() {
   )
 }`,
   },
+  switch: {
+    api: [
+      { prop: 'value / onValueChange', type: 'boolean / (v) => void', default: '—' },
+      { prop: 'onColor / offColor', type: 'string', default: "'#4CD964' / '#E9E9EA'" },
+      { prop: 'thumbColor', type: 'string', default: "'#FFFFFF'" },
+      { prop: 'width / height', type: 'number', default: '56 / 32' },
+      { prop: 'disabled', type: 'boolean', default: 'false' },
+      { prop: 'thumbOnIcon / thumbOffIcon', type: 'ReactNode', default: '—' },
+      {
+        prop: 'iconAnimationType',
+        type: "'fade' | 'rotate' | 'scale' | 'bounce'",
+        default: "'fade'",
+      },
+    ],
+    usage: `import { useState } from 'react'
+import { Switch } from './components/ui/switch'
+
+export function Example() {
+  const [on, setOn] = useState(true)
+  return <Switch value={on} onValueChange={setOn} onColor="#195bff" />
+}`,
+  },
 }

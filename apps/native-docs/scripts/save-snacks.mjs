@@ -73,6 +73,36 @@ export default function App() {
 }
 `,
   },
+  switch: {
+    files: ['index.tsx', 'types.ts'],
+    deps: { 'react-native-reanimated': '~3.16.0' },
+    app: `import React, { useState } from 'react'
+import { View, Text } from 'react-native'
+import { Switch } from './switch'
+
+function Row({ label, color, value, onValueChange }) {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+      <Text style={{ color: '#fff', fontSize: 16, width: 96 }}>{label}</Text>
+      <Switch value={value} onValueChange={onValueChange} onColor={color} />
+    </View>
+  )
+}
+
+export default function App() {
+  const [a, setA] = useState(true)
+  const [b, setB] = useState(true)
+  const [c, setC] = useState(false)
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 26, backgroundColor: '#0b1220' }}>
+      <Row label="Primary" color="#195bff" value={a} onValueChange={setA} />
+      <Row label="Success" color="#34C759" value={b} onValueChange={setB} />
+      <Row label="Danger" color="#ff4757" value={c} onValueChange={setC} />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {
