@@ -5,7 +5,7 @@
   "components": {
     "text": {
       "title": "Text",
-      "category": "base",
+      "category": "Typography",
       "path": "components/text",
       "description": "Typography primitive: size or heading level (H1–H6), weight, colour variants, alignment, truncation, skeleton loading, prefix/suffix, and press support. Defaults to the Poppins typeface.",
       "files": ["index.tsx", "types.ts", "const.ts", "helpers.ts"],
@@ -14,7 +14,7 @@
     },
     "button": {
       "title": "Button",
-      "category": "base",
+      "category": "Actions",
       "path": "components/button",
       "description": "Button with web-parity features: variants (solid, relief, shadow, floating, link), a size scale, block, icon / icon-only, circle & square shapes, a loading overlay and an upload sweep, gradient fill, and href links. Ships ButtonGroup for segmented rows.",
       "files": ["index.tsx", "types.ts"],
@@ -23,7 +23,7 @@
     },
     "gooey-switch": {
       "title": "Gooey Switch",
-      "category": "base",
+      "category": "Effects",
       "path": "components/gooey-switch",
       "description": "A gooey toggle with fluid metaball blobs: a Skia canvas (blur + colour-matrix goo) melds a moving blob between the on/off ends, driven by Reanimated; drag or tap to toggle.",
       "files": ["index.tsx", "types.ts", "const.ts"],
@@ -38,7 +38,7 @@
     },
     "apple-intelligence": {
       "title": "Apple Intelligence",
-      "category": "base",
+      "category": "Effects",
       "path": "components/apple-intelligence",
       "description": "An Apple-Intelligence-style overlay provider. Wrap your UI in <SiriProvider>, then call useSiri().toggle() to snapshot it and paint an SKSL shader over it — wave, noise, glow, shimmer and a glowing border, fading in and out.",
       "files": [
@@ -51,6 +51,15 @@
         "use-siri-uniforms.ts"
       ],
       "dependencies": ["@shopify/react-native-skia", "react-native-worklets"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    },
+    "aurora": {
+      "title": "Aurora",
+      "category": "Effects",
+      "path": "components/aurora",
+      "description": "A Skia + Reanimated aurora: flowing bands of light drift over a soft night-sky gradient, driven by an SKSL noise shader on a per-frame clock. Colours, speed, intensity and drift direction are all configurable.",
+      "files": ["index.tsx", "types.ts", "const.ts", "conf.ts", "helper.ts"],
+      "dependencies": ["@shopify/react-native-skia"],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }

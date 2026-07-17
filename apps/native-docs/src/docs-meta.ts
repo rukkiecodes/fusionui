@@ -151,4 +151,29 @@ export default function App() {
   )
 }`,
   },
+  aurora: {
+    snackPlatform: 'mydevice',
+    api: [
+      {
+        prop: 'auroraColors',
+        type: 'string[] (up to 3 hex)',
+        default: "['#00FF87', '#60EFFF', '#B967FF']",
+      },
+      { prop: 'skyColors', type: '[top, bottom] hex', default: "['#020308', '#0D1B2A']" },
+      { prop: 'speed', type: 'number', default: '0.5' },
+      { prop: 'intensity', type: 'number', default: '1' },
+      { prop: 'waveDirection', type: '[number, number]', default: '[9, -9]' },
+      { prop: 'width / height', type: 'number', default: 'screen / 25% of screen' },
+    ],
+    usage: `import { View } from 'react-native'
+import { Aurora } from './components/ui/aurora'
+
+export function Example() {
+  return (
+    <View style={{ flex: 1, backgroundColor: '#020308' }}>
+      <Aurora speed={0.5} intensity={1} />
+    </View>
+  )
+}`,
+  },
 }

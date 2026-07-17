@@ -203,6 +203,27 @@ const styles = StyleSheet.create({
 })
 `,
   },
+  aurora: {
+    sdk: '54.0.0',
+    files: ['index.tsx', 'types.ts', 'const.ts', 'conf.ts', 'helper.ts'],
+    deps: {
+      'react-native-reanimated': '~4.1.1',
+      '@shopify/react-native-skia': '2.2.12',
+      'react-native-worklets': '0.5.1',
+    },
+    app: `import React from 'react'
+import { View } from 'react-native'
+import { Aurora } from './aurora'
+
+export default function App() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: '#020308' }}>
+      <Aurora />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {
