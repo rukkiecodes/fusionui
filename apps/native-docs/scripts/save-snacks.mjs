@@ -296,6 +296,51 @@ export default function App() {
 }
 `,
   },
+  select: {
+    files: ['index.tsx', 'types.ts', 'const.ts'],
+    deps: {
+      'react-native-reanimated': '~3.16.0',
+      '@expo/vector-icons': '^14.0.0',
+    },
+    app: `import React, { useState } from 'react'
+import { View } from 'react-native'
+import { Select } from './select'
+
+export default function App() {
+  const [country, setCountry] = useState()
+  const [tags, setTags] = useState([])
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', gap: 20, padding: 24, backgroundColor: '#f4f7f8' }}>
+      <Select
+        label="Country"
+        labelPlaceholder
+        value={country}
+        onChange={setCountry}
+        filter
+        clearable
+        items={[
+          { header: 'Africa' },
+          { title: 'Nigeria', value: 'ng' },
+          { title: 'Kenya', value: 'ke' },
+          { header: 'Europe' },
+          { title: 'France', value: 'fr' },
+          { title: 'Germany', value: 'de' },
+        ]}
+      />
+      <Select
+        label="Tags"
+        labelPlaceholder
+        multiple
+        collapseChips
+        value={tags}
+        onChange={setTags}
+        items={['Design', 'Engineering', 'Product', 'Sales', 'Support']}
+      />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {

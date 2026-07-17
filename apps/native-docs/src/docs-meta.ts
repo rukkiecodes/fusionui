@@ -210,6 +210,43 @@ export function Example() {
   )
 }`,
   },
+  select: {
+    api: [
+      { prop: 'items', type: 'string[] | {title,value}[] | {header}[]', default: '[]' },
+      { prop: 'value / onChange', type: 'value | value[] / (v) => void', default: '—' },
+      { prop: 'variant', type: "'default' | 'underlined' | 'shadow'", default: "'default'" },
+      { prop: 'multiple / collapseChips', type: 'boolean', default: 'false' },
+      { prop: 'filter', type: 'boolean (search box)', default: 'false' },
+      { prop: 'label / labelPlaceholder', type: 'string / boolean', default: '—' },
+      { prop: 'prependIcon', type: 'ReactNode', default: '—' },
+      { prop: 'clearable / loading', type: 'boolean', default: 'false' },
+      { prop: 'state / color', type: 'tint / accent', default: '—' },
+      { prop: 'hint / errorMessage', type: 'string', default: '—' },
+    ],
+    usage: `import { useState } from 'react'
+import { Select } from './components/ui/select'
+
+export function Example() {
+  const [country, setCountry] = useState()
+  return (
+    <Select
+      label="Country"
+      labelPlaceholder
+      value={country}
+      onChange={setCountry}
+      filter
+      clearable
+      items={[
+        { header: 'Africa' },
+        { title: 'Nigeria', value: 'ng' },
+        { title: 'Kenya', value: 'ke' },
+        { header: 'Europe' },
+        { title: 'France', value: 'fr' },
+      ]}
+    />
+  )
+}`,
+  },
   badge: {
     api: [
       {

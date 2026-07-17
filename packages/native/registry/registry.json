@@ -79,6 +79,15 @@
       "files": ["index.tsx", "types.ts", "const.ts"],
       "dependencies": ["@expo/vector-icons"],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    },
+    "select": {
+      "title": "Select",
+      "category": "Inputs",
+      "path": "components/select",
+      "description": "A select built on the same field shell as the Input: variants (default, underlined, shadow), state tints, prepend + dropdown icon cards that lift on open, floating & pinned labels, single or multiple (collapsible chips), a filter search box, group headers, clearable, loading, and hint / error / success messages.",
+      "files": ["index.tsx", "types.ts", "const.ts"],
+      "dependencies": ["@expo/vector-icons"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }
 }
