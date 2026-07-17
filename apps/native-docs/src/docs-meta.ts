@@ -176,4 +176,28 @@ export function Example() {
   )
 }`,
   },
+  badge: {
+    api: [
+      {
+        prop: 'variant',
+        type: "'default' | 'success' | 'warning' | 'error' | 'pending' | 'notifications'",
+        default: "'default'",
+      },
+      { prop: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'" },
+      { prop: 'radius', type: "'none' … '10xl' | 'full' | 'pill'", default: "'md'" },
+      { prop: 'label', type: 'string', default: '—' },
+      { prop: 'icon', type: 'ReactNode', default: '—' },
+    ],
+    usage: `import { Badge } from './components/ui/badge'
+
+export function Example() {
+  return (
+    <>
+      <Badge label="Default" />
+      <Badge label="Success" variant="success" />
+      <Badge label="Error" variant="error" size="lg" radius="pill" />
+    </>
+  )
+}`,
+  },
 }

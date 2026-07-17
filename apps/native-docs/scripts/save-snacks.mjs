@@ -224,6 +224,29 @@ export default function App() {
 }
 `,
   },
+  badge: {
+    files: ['index.tsx', 'types.ts', 'conf.ts'],
+    deps: {},
+    app: `import React from 'react'
+import { View } from 'react-native'
+import { Badge } from './badge'
+
+export default function App() {
+  return (
+    <View
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: 12, padding: 24, backgroundColor: '#f4f7f8' }}
+    >
+      <Badge label="Default" />
+      <Badge label="Success" variant="success" />
+      <Badge label="Warning" variant="warning" />
+      <Badge label="Error" variant="error" />
+      <Badge label="Pending" variant="pending" />
+      <Badge label="42" variant="error" radius="pill" />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {
