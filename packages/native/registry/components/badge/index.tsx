@@ -11,7 +11,7 @@ import { variantStyles, sizeStyles, borderRadiusStyles } from './conf'
 import type { BadgeProps } from './types'
 
 export const Badge: React.FC<BadgeProps> = memo<BadgeProps>(
-  ({ label, variant = 'default', size = 'md', style, textStyle, icon, radius = 'md' }) => {
+  ({ label, variant = 'default', size = 'md', style, textStyle, icon, radius = 'pill' }) => {
     const vs = variantStyles[variant]
     const ss = sizeStyles[size]
     const rs = borderRadiusStyles[radius]
@@ -57,5 +57,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'flex-start',
   },
-  text: { fontWeight: '500' },
+  text: { fontWeight: '600', letterSpacing: 0.2 },
 })

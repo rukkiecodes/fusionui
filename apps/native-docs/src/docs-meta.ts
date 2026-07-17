@@ -184,7 +184,7 @@ export function Example() {
         default: "'default'",
       },
       { prop: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'" },
-      { prop: 'radius', type: "'none' … '10xl' | 'full' | 'pill'", default: "'md'" },
+      { prop: 'radius', type: "'none' … '10xl' | 'full' | 'pill'", default: "'pill'" },
       { prop: 'label', type: 'string', default: '—' },
       { prop: 'icon', type: 'ReactNode', default: '—' },
     ],
