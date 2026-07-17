@@ -247,6 +247,55 @@ export default function App() {
 }
 `,
   },
+  input: {
+    files: ['index.tsx', 'types.ts', 'const.ts'],
+    deps: {
+      'react-native-reanimated': '~3.16.0',
+      '@expo/vector-icons': '^14.0.0',
+    },
+    app: `import React, { useState } from 'react'
+import { View } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { Input } from './input'
+
+export default function App() {
+  const [a, setA] = useState('')
+  const [b, setB] = useState('')
+  const [c, setC] = useState('')
+  const [p, setP] = useState('')
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', gap: 20, padding: 24, backgroundColor: '#f4f7f8' }}>
+      <Input
+        label="Email"
+        labelPlaceholder
+        value={a}
+        onChangeText={setA}
+        clearable
+        prependIcon={<Ionicons name="mail-outline" size={18} color="#6b7280" />}
+      />
+      <Input variant="underlined" placeholder="Underlined" value={b} onChangeText={setB} />
+      <Input
+        variant="shadow"
+        placeholder="Search"
+        value={c}
+        onChangeText={setC}
+        appendIcon={<Ionicons name="search" size={18} color="#6b7280" />}
+      />
+      <Input
+        label="Password"
+        labelPlaceholder
+        secureTextEntry
+        value={p}
+        onChangeText={setP}
+        state={p.length > 0 && p.length < 6 ? 'danger' : undefined}
+        hint="At least 6 characters"
+        persistentHint
+      />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {

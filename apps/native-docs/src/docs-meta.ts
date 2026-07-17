@@ -176,6 +176,40 @@ export function Example() {
   )
 }`,
   },
+  input: {
+    api: [
+      { prop: 'variant', type: "'default' | 'underlined' | 'shadow'", default: "'default'" },
+      {
+        prop: 'state',
+        type: "'success' | 'danger' | 'warning' | 'primary' | 'dark'",
+        default: '—',
+      },
+      { prop: 'label / labelPlaceholder', type: 'string / boolean (floating)', default: '—' },
+      { prop: 'prependIcon / appendIcon', type: 'ReactNode (lifts on focus)', default: '—' },
+      { prop: 'clearable / loading', type: 'boolean', default: 'false' },
+      { prop: 'secureTextEntry', type: 'boolean (with reveal)', default: 'false' },
+      { prop: 'progress', type: 'number (0–100 strength bar)', default: '0' },
+      { prop: 'hint / errorMessage / successMessage', type: 'string', default: '—' },
+      { prop: 'color / square / transparent', type: 'string / boolean', default: '—' },
+    ],
+    usage: `import { useState } from 'react'
+import { Ionicons } from '@expo/vector-icons'
+import { Input } from './components/ui/input'
+
+export function Example() {
+  const [email, setEmail] = useState('')
+  return (
+    <Input
+      label="Email"
+      labelPlaceholder
+      value={email}
+      onChangeText={setEmail}
+      clearable
+      prependIcon={<Ionicons name="mail-outline" size={18} color="#6b7280" />}
+    />
+  )
+}`,
+  },
   badge: {
     api: [
       {

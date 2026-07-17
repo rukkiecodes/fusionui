@@ -70,6 +70,15 @@
       "files": ["index.tsx", "types.ts", "conf.ts"],
       "dependencies": [],
       "peerDependencies": ["react", "react-native"]
+    },
+    "input": {
+      "title": "Input",
+      "category": "Inputs",
+      "path": "components/input",
+      "description": "A text field mirroring the web FInput: variants (default, underlined, shadow), state tints, prepend/append icon cards that lift out on focus, floating & pinned labels, clearable, loading, password reveal, a strength/progress bar, and hint / error / success messages.",
+      "files": ["index.tsx", "types.ts", "const.ts"],
+      "dependencies": ["@expo/vector-icons"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }
 }
