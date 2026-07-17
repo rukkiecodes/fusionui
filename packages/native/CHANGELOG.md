@@ -1,5 +1,11 @@
 # @rukkiecodes/native
 
+## 0.4.0
+
+### Minor Changes
+
+- 5c2d921: Add the Badge component — a compact status / label chip with colour variants (default, success, warning, error, pending, notifications), three sizes, a full radius scale, and an optional leading icon.
+
 ## 0.3.0
 
 ### Minor Changes
