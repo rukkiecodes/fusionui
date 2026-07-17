@@ -73,39 +73,49 @@ export default function App() {
 }
 `,
   },
-  switch: {
-    files: ['index.tsx', 'types.ts'],
-    deps: { 'react-native-reanimated': '~3.16.0', '@expo/vector-icons': '^14.0.0' },
-    app: `import React, { useState } from 'react'
+  'gooey-switch': {
+    sdk: '54.0.0',
+    files: ['index.tsx', 'types.ts', 'const.ts'],
+    deps: {
+      'react-native-reanimated': '~4.1.1',
+      '@shopify/react-native-skia': '2.2.12',
+      'react-native-gesture-handler': '~2.28.0',
+      'react-native-worklets': '0.5.1',
+      'expo-symbols': '~1.0.8',
+      '@expo/vector-icons': '^15.0.0',
+    },
+    extraFiles: {
+      'Demo.tsx': `import React, { useState } from 'react'
+import { GooeySwitch } from './gooey-switch'
+
+export default function Demo() {
+  const [on, setOn] = useState(true)
+  return (
+    <GooeySwitch
+      active={on}
+      onToggle={setOn}
+      size={200}
+      activeColor="#8093ff"
+      trackColor="#1a1a1a"
+      gooey={35}
+      deformation={{ squishY: 0.5, stretchX: 1.2 }}
+    />
+  )
+}
+`,
+    },
+    app: `import React from 'react'
 import { View } from 'react-native'
-import { Feather, Ionicons } from '@expo/vector-icons'
-import { Switch } from './switch'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { WithSkiaWeb } from '@shopify/react-native-skia/lib/module/web'
 
 export default function App() {
-  const [dark, setDark] = useState(true)
-  const [a, setA] = useState(true)
-  const [b, setB] = useState(false)
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 34, backgroundColor: '#0a0a0a' }}>
-      <Switch
-        value={dark}
-        onValueChange={setDark}
-        onColor="#8bf26ee2"
-        offColor="#333333"
-        thumbColor="#ffffff"
-        iconAnimationType="rotate"
-        thumbOnIcon={<Feather name="check" size={13} color="#000" />}
-        thumbOffIcon={<Ionicons name="close-outline" size={14} color="#000" />}
-        animateIcons
-        thumbInset={4.5}
-        height={40}
-        width={70}
-      />
-      <View style={{ flexDirection: 'row', gap: 22 }}>
-        <Switch value={a} onValueChange={setA} onColor="#195bff" />
-        <Switch value={b} onValueChange={setB} onColor="#ff4757" />
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#0a0a0a' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <WithSkiaWeb getComponent={() => import('./Demo')} fallback={<View />} />
       </View>
-    </View>
+    </GestureHandlerRootView>
   )
 }
 `,
@@ -117,13 +127,16 @@ function buildCode(slug, spec) {
   for (const f of spec.files) {
     code[`${slug}/${f}`] = { type: 'CODE', contents: readFileSync(join(regDir, slug, f), 'utf8') }
   }
+  for (const [name, contents] of Object.entries(spec.extraFiles ?? {})) {
+    code[name] = { type: 'CODE', contents }
+  }
   return code
 }
 
 async function save(slug, spec) {
   const payload = {
     manifest: {
-      sdkVersion: SDK,
+      sdkVersion: spec.sdk ?? SDK,
       name: `FusionUI — ${slug}`,
       description: `The @rukkiecodes/native ${slug} component, running live.`,
       dependencies: spec.deps,

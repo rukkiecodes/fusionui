@@ -21,13 +21,19 @@
       "dependencies": ["expo-linear-gradient"],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     },
-    "switch": {
-      "title": "Switch",
+    "gooey-switch": {
+      "title": "Gooey Switch",
       "category": "base",
-      "path": "components/switch",
-      "description": "A spring-animated toggle: a track-colour crossfade, a sliding thumb, optional track/thumb icons (fade · rotate · scale · bounce) and a background image.",
-      "files": ["index.tsx", "types.ts"],
-      "dependencies": [],
+      "path": "components/gooey-switch",
+      "description": "A gooey toggle with fluid metaball blobs: a Skia canvas (blur + colour-matrix goo) melds a moving blob between the on/off ends, driven by Reanimated; drag or tap to toggle.",
+      "files": ["index.tsx", "types.ts", "const.ts"],
+      "dependencies": [
+        "@shopify/react-native-skia",
+        "react-native-gesture-handler",
+        "react-native-worklets",
+        "expo-symbols",
+        "@expo/vector-icons"
+      ],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }

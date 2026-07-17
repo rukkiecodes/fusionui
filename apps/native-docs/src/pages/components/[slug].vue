@@ -30,7 +30,7 @@ onMounted(() => nextTick(() => requestAnimationFrame(() => highlightMarkdown()))
       <p class="cmp__desc"><InlineCode :text="doc.description" /></p>
     </header>
 
-    <PreviewShell :slug="doc.slug" :snack-id="doc.snackId" />
+    <PreviewShell :slug="doc.slug" :snack-id="doc.snackId" :platform="doc.snackPlatform" />
 
     <section v-if="install" class="cmp__install">
       <CommandBlock label="Install its dependencies" :command="install" />

@@ -7,10 +7,15 @@ import { computed, onMounted, ref } from 'vue'
 import { useTheme } from '@rukkiecodes/vue'
 import { scheduleSnackEmbed } from './snackEmbed'
 
-const props = withDefaults(defineProps<{ slug: string; snackId?: string; height?: number }>(), {
-  snackId: undefined,
-  height: 640,
-})
+const props = withDefaults(
+  defineProps<{
+    slug: string
+    snackId?: string
+    height?: number
+    platform?: 'web' | 'mydevice'
+  }>(),
+  { snackId: undefined, height: 640, platform: 'web' }
+)
 
 const managers = [
   { id: 'npm', label: 'npm', run: 'npx' },
@@ -65,13 +70,19 @@ onMounted(scheduleSnackEmbed)
       </button>
     </div>
 
+    <p v-if="snackId && platform === 'mydevice'" class="shell__hint">
+      <f-icon icon="smartphone" size="small" />
+      This is a GPU (Skia) component — open it on your device (scan the QR, or press
+      <em>My Device</em>) to see it run.
+    </p>
+
     <div class="shell__preview" :style="{ height: `${height}px` }">
       <div
         v-if="snackId"
         class="shell__snack"
         :data-snack-id="snackId"
         data-snack-preview="true"
-        data-snack-platform="web"
+        :data-snack-platform="platform"
         data-snack-supportedplatforms="web,mydevice,ios,android"
         data-snack-loading="lazy"
         :data-snack-theme="snackTheme"
@@ -149,6 +160,19 @@ onMounted(scheduleSnackEmbed)
 }
 .shell__copy:hover {
   border-color: rgba(var(--fui-theme-primary), 0.5);
+}
+.shell__hint {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  color: rgba(var(--fui-theme-on-surface), 0.6);
+}
+.shell__hint em {
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(var(--fui-theme-on-surface), 0.8);
 }
 .shell__preview {
   border-radius: var(--fui-radius-lg, 16px);

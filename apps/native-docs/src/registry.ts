@@ -33,6 +33,7 @@ export interface ComponentDoc {
   api: ApiRow[]
   usage: string
   snackId?: string
+  snackPlatform: 'web' | 'mydevice'
 }
 
 export const components: ComponentDoc[] = Object.entries(reg.components).map(([slug, c]) => ({
@@ -46,6 +47,7 @@ export const components: ComponentDoc[] = Object.entries(reg.components).map(([s
   api: docsMeta[slug]?.api ?? [],
   usage: docsMeta[slug]?.usage ?? '',
   snackId: (snackIds as Record<string, string>)[slug],
+  snackPlatform: docsMeta[slug]?.snackPlatform ?? 'web',
 }))
 
 export function findComponent(slug: string): ComponentDoc | undefined {

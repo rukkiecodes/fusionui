@@ -11,6 +11,9 @@ export interface ApiRow {
 export interface DocMeta {
   api: ApiRow[]
   usage: string
+  /** Snack preview platform — 'web' (in-browser) by default; 'mydevice' for GPU/Skia
+   *  components that Snack can't render in-browser (scan the QR to run on a device). */
+  snackPlatform?: 'web' | 'mydevice'
 }
 
 export const docsMeta: Record<string, DocMeta> = {
@@ -62,39 +65,36 @@ export function Example() {
   )
 }`,
   },
-  switch: {
+  'gooey-switch': {
+    snackPlatform: 'mydevice',
     api: [
-      { prop: 'value / onValueChange', type: 'boolean / (v) => void', default: '—' },
-      { prop: 'onColor / offColor', type: 'string', default: "'#4CD964' / '#E9E9EA'" },
-      { prop: 'thumbColor', type: 'string', default: "'#FFFFFF'" },
-      { prop: 'width / height', type: 'number', default: '56 / 32' },
-      { prop: 'disabled', type: 'boolean', default: 'false' },
-      { prop: 'thumbOnIcon / thumbOffIcon', type: 'ReactNode', default: '—' },
-      {
-        prop: 'iconAnimationType',
-        type: "'fade' | 'rotate' | 'scale' | 'bounce'",
-        default: "'fade'",
-      },
+      { prop: 'active / onToggle', type: 'boolean / (v) => void', default: '—' },
+      { prop: 'size', type: 'number', default: '200' },
+      { prop: 'activeColor / inactiveColor', type: 'string', default: "'#34D399' / '#9CA3AF'" },
+      { prop: 'trackColor', type: 'string (the blob)', default: "'#1F2937'" },
+      { prop: 'gooey', type: 'number (goo intensity)', default: '35' },
+      { prop: 'deformation', type: '{ stretchX, squishY, sideBlobScale }', default: '—' },
+      { prop: 'showIcons', type: 'boolean', default: 'true' },
+      { prop: 'isDisabled', type: 'boolean', default: 'false' },
     ],
     usage: `import { useState } from 'react'
-import { Feather, Ionicons } from '@expo/vector-icons'
-import { Switch } from './components/ui/switch'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { GooeySwitch } from './components/ui/gooey-switch'
 
 export function Example() {
   const [on, setOn] = useState(true)
   return (
-    <Switch
-      value={on}
-      onValueChange={setOn}
-      onColor="#8bf26e"
-      offColor="#333"
-      iconAnimationType="rotate"
-      thumbOnIcon={<Feather name="check" size={13} color="#000" />}
-      thumbOffIcon={<Ionicons name="close-outline" size={14} color="#000" />}
-      width={70}
-      height={40}
-      thumbInset={4.5}
-    />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <GooeySwitch
+        active={on}
+        onToggle={setOn}
+        size={200}
+        activeColor="#8093ff"
+        trackColor="#1a1a1a"
+        gooey={35}
+        deformation={{ squishY: 0.5, stretchX: 1.2 }}
+      />
+    </GestureHandlerRootView>
   )
 }`,
   },
