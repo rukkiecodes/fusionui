@@ -1,5 +1,11 @@
 # @rukkiecodes/native
 
+## 0.4.1
+
+### Patch Changes
+
+- f8cb9cf: Badge: make it actually look like a badge — small pill by default (semibold, tighter type and padding), a neutral grey `default` variant instead of the old green, and a `notifications` outline that's visible on light backgrounds.
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@rukkiecodes/native",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "FusionUI for mobile — Expo + React Native components that mirror the web contracts, sharing tokens and the signature visual identity (liquid glass via Skia/SKSL).",
   "type": "module",
   "license": "MIT",
