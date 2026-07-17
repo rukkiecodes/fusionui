@@ -35,6 +35,10 @@ Thumbs.db
 .env
 .env.local
 
+# Local Expo sandbox for hands-on testing (copy-in components + Expo Go). Not a
+# workspace member; regenerate with `npx create-expo-app` + `@rukkiecodes/native add`.
+/sandbox/
+
 # research reference clones (kept locally, not part of the monorepo)
 vuetify/
 vuesax/
