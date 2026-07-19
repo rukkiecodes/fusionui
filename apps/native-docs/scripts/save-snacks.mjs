@@ -341,6 +341,59 @@ export default function App() {
 }
 `,
   },
+  checkbox: {
+    files: ['index.tsx', 'types.ts', 'const.ts'],
+    deps: {
+      'react-native-reanimated': '~3.16.0',
+      'react-native-svg': '15.8.0',
+    },
+    app: `import React, { useState } from 'react'
+import { View, Text } from 'react-native'
+import { Checkbox } from './checkbox'
+
+const OPTIONS = [
+  { id: 'design', label: 'Design' },
+  { id: 'engineering', label: 'Engineering' },
+  { id: 'product', label: 'Product' },
+]
+
+export default function App() {
+  const [agreed, setAgreed] = useState(false)
+  const [picked, setPicked] = useState(['design'])
+  const [done, setDone] = useState(true)
+
+  const all = picked.length === OPTIONS.length
+  const some = picked.length > 0 && !all
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', gap: 18, padding: 28, backgroundColor: '#f4f7f8' }}>
+      <Checkbox label="I agree to the terms" value={agreed} onChange={setAgreed} />
+
+      {/* One array model shared by the group; the parent shows a dash while partial. */}
+      <Checkbox
+        label="Select all"
+        value={all}
+        indeterminate={some}
+        onChange={() => setPicked(all ? [] : OPTIONS.map(o => o.id))}
+      />
+      <View style={{ paddingLeft: 22, gap: 10 }}>
+        {OPTIONS.map(o => (
+          <Checkbox key={o.id} label={o.label} itemValue={o.id} value={picked} onChange={setPicked} />
+        ))}
+      </View>
+
+      <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
+        <Checkbox label="Small" size="sm" value onChange={() => {}} />
+        <Checkbox label="Large" size="lg" value onChange={() => {}} />
+      </View>
+
+      <Checkbox label="Ship the checkbox" lineThrough color="#16a34a" value={done} onChange={setDone} />
+      <Checkbox label="Loading" loading value onChange={() => {}} />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {

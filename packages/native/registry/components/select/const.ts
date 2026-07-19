@@ -1,4 +1,4 @@
-import type { InputState } from './types'
+import type { SelectState } from './types'
 
 // Light-theme palette mirroring the FusionUI tokens the web field uses.
 export const PALETTE = {
@@ -13,7 +13,7 @@ export const PALETTE = {
   primary: '#195bff',
 }
 
-export const STATE_COLORS: Record<InputState, string> = {
+export const STATE_COLORS: Record<SelectState, string> = {
   success: '#16a34a',
   danger: '#ef4444',
   warning: '#f59e0b',

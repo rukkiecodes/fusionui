@@ -271,4 +271,45 @@ export function Example() {
   )
 }`,
   },
+  checkbox: {
+    api: [
+      { prop: 'value', type: 'boolean | unknown[]', default: 'false' },
+      { prop: 'itemValue', type: 'unknown (identity in an array model)', default: '—' },
+      { prop: 'onChange', type: '(next) => void', default: '—' },
+      { prop: 'label', type: 'string', default: '—' },
+      { prop: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'" },
+      { prop: 'color', type: 'string (accent)', default: "'#195bff'" },
+      { prop: 'indeterminate', type: 'boolean (dash)', default: 'false' },
+      { prop: 'icon', type: 'ReactNode (replaces the tick)', default: '—' },
+      { prop: 'lineThrough', type: 'boolean (strike label)', default: 'false' },
+      { prop: 'loading / disabled', type: 'boolean', default: 'false' },
+    ],
+    usage: `import { useState } from 'react'
+import { Checkbox } from './components/ui/checkbox'
+
+export function Example() {
+  const [agreed, setAgreed] = useState(false)
+  const [picked, setPicked] = useState(['a'])
+
+  return (
+    <>
+      <Checkbox label="I agree to the terms" value={agreed} onChange={setAgreed} />
+
+      {/* Several boxes sharing one array model. */}
+      {['a', 'b', 'c'].map(id => (
+        <Checkbox
+          key={id}
+          label={id.toUpperCase()}
+          itemValue={id}
+          value={picked}
+          onChange={setPicked}
+        />
+      ))}
+
+      <Checkbox label="Partially selected" indeterminate value={false} />
+      <Checkbox label="Done" lineThrough value color="#16a34a" />
+    </>
+  )
+}`,
+  },
 }

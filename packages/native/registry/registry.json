@@ -88,6 +88,15 @@
       "files": ["index.tsx", "types.ts", "const.ts"],
       "dependencies": ["@expo/vector-icons"],
       "peerDependencies": ["react", "react-native", "react-native-reanimated"]
+    },
+    "checkbox": {
+      "title": "Checkbox",
+      "category": "Inputs",
+      "path": "components/checkbox",
+      "description": "A checkbox mirroring the web FCheckbox: the box fills with the accent colour while the check mark draws itself on, plus an indeterminate dash, a custom icon slot, line-through labels, a loading ring, three sizes, and array models for checkbox groups.",
+      "files": ["index.tsx", "types.ts", "const.ts"],
+      "dependencies": ["react-native-svg"],
+      "peerDependencies": ["react", "react-native", "react-native-reanimated"]
     }
   }
 }

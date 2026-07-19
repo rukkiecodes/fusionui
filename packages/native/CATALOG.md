@@ -27,7 +27,7 @@ Status legend: [ ] not started · [x] shipped in @rukkiecodes/native.
 | animated-input-bar  | Expo Go       | expo-blur, react-native-reanimated                                                              | [ ]    |
 | avatar              | Expo Go       | react-native-reanimated                                                                         | [ ]    |
 | avatar-group        | Expo Go       | expo-haptics, react-native-gesture-handler, react-native-reanimated                             | [ ]    |
-| badge               | Expo Go       | —                                                                                               | [ ]    |
+| badge               | Expo Go       | —                                                                                               | [x]    |
 | button              | Expo Go       | react-native-reanimated                                                                         | [x]    |
 | curved-bottom-tabs  | Expo Go       | react-native-reanimated, react-native-svg                                                       | [ ]    |
 | empty-state         | Expo Go       | —                                                                                               | [ ]    |
@@ -72,7 +72,7 @@ Status legend: [ ] not started · [x] shipped in @rukkiecodes/native.
 | animated-chip          | Expo Go       | expo-haptics, react-native-reanimated                                                           | [ ]    |
 | animated-curve-text    | Expo Go       | react-native-reanimated, react-native-svg, svg-path-properties                                  | [ ]    |
 | animated-masked-text   | Expo Go       | @react-native-masked-view/masked-view                                                           | [ ]    |
-| aurora                 | **dev build** | @shopify/react-native-skia, react-native-reanimated                                             | [ ]    |
+| aurora                 | **dev build** | @shopify/react-native-skia, react-native-reanimated                                             | [x]    |
 | blur-carousel          | Expo Go       | expo-blur, react-native-reanimated                                                              | [ ]    |
 | Breadcrumbs            | Expo Go       | —                                                                                               | [ ]    |
 | card                   | Expo Go       | —                                                                                               | [ ]    |
@@ -121,7 +121,7 @@ Status legend: [ ] not started · [x] shipped in @rukkiecodes/native.
 | animated-text               | Expo Go       | expo-blur, react-native-reanimated                                                | [ ]    |
 | apple-intelligence          | **dev build** | @shopify/react-native-skia, react-native-reanimated                               | [x]    |
 | aura-lift                   | **dev build** | @shopify/react-native-skia, react-native-reanimated                               | [ ]    |
-| check-box                   | Expo Go       | react-native-reanimated, react-native-svg                                         | [ ]    |
+| check-box                   | Expo Go       | react-native-reanimated, react-native-svg                                         | [x]    |
 | chroma-ring                 | **dev build** | @shopify/react-native-skia, react-native-reanimated                               | [ ]    |
 | circular-progress           | Expo Go       | react-native-reanimated, react-native-svg                                         | [ ]    |
 | circular-text               | Expo Go       | react-native-reanimated                                                           | [ ]    |
