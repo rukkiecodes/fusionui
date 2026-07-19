@@ -394,6 +394,60 @@ export default function App() {
 }
 `,
   },
+  autocomplete: {
+    files: ['index.tsx', 'types.ts', 'const.ts'],
+    deps: {
+      'react-native-reanimated': '~3.16.0',
+      '@expo/vector-icons': '^14.0.0',
+    },
+    app: `import React, { useState } from 'react'
+import { View } from 'react-native'
+import { Autocomplete } from './autocomplete'
+
+const COUNTRIES = [
+  { header: 'Africa' },
+  { title: 'Nigeria', value: 'ng' },
+  { title: 'Niger', value: 'ne' },
+  { title: 'Kenya', value: 'ke' },
+  { title: 'Ghana', value: 'gh' },
+  { header: 'Europe' },
+  { title: 'France', value: 'fr' },
+  { title: 'Finland', value: 'fi' },
+  { title: 'Germany', value: 'de' },
+]
+
+export default function App() {
+  const [country, setCountry] = useState()
+  const [tags, setTags] = useState([])
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', gap: 20, padding: 24, backgroundColor: '#f4f7f8' }}>
+      {/* Type to filter. The value is always one of the items — unmatched
+          text is reverted when the field is left. */}
+      <Autocomplete
+        label="Country"
+        labelPlaceholder
+        value={country}
+        onChange={setCountry}
+        clearable
+        autoSelectFirst
+        items={COUNTRIES}
+      />
+
+      <Autocomplete
+        label="Tags"
+        labelPlaceholder
+        multiple
+        collapseChips
+        value={tags}
+        onChange={setTags}
+        items={['Design', 'Engineering', 'Product', 'Sales', 'Support']}
+      />
+    </View>
+  )
+}
+`,
+  },
 }
 
 function buildCode(slug, spec) {

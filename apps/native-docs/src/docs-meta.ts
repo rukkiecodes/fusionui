@@ -312,4 +312,66 @@ export function Example() {
   )
 }`,
   },
+  autocomplete: {
+    api: [
+      { prop: 'items', type: 'string[] | {title,value}[] | {header}[]', default: '[]' },
+      { prop: 'value / onChange', type: 'value | value[] / (v) => void', default: '—' },
+      { prop: 'onSearchChange', type: '(query) => void', default: '—' },
+      { prop: 'noFilter', type: 'boolean (server-side search)', default: 'false' },
+      { prop: 'customFilter', type: '(title, query, raw) => boolean', default: '—' },
+      { prop: 'autoSelectFirst', type: 'boolean', default: 'false' },
+      { prop: 'noDataText', type: 'string', default: "'No matching results'" },
+      { prop: 'multiple / collapseChips', type: 'boolean', default: 'false' },
+      { prop: 'variant', type: "'default' | 'underlined' | 'shadow'", default: "'default'" },
+      { prop: 'label / labelPlaceholder', type: 'string / boolean', default: '—' },
+      { prop: 'clearable / loading', type: 'boolean', default: 'false' },
+      { prop: 'readonly / disabled', type: 'boolean', default: 'false' },
+      { prop: 'state / color', type: 'tint / accent', default: '—' },
+      { prop: 'hint / errorMessage', type: 'string', default: '—' },
+    ],
+    usage: `import { useState } from 'react'
+import { Autocomplete } from './components/ui/autocomplete'
+
+export function Example() {
+  const [country, setCountry] = useState()
+
+  return (
+    <Autocomplete
+      label="Country"
+      labelPlaceholder
+      value={country}
+      onChange={setCountry}
+      clearable
+      autoSelectFirst
+      items={[
+        { header: 'Africa' },
+        { title: 'Nigeria', value: 'ng' },
+        { title: 'Niger', value: 'ne' },
+        { header: 'Europe' },
+        { title: 'France', value: 'fr' },
+      ]}
+    />
+  )
+}
+
+// Server-side search: you filter, the component just renders.
+export function Remote() {
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  return (
+    <Autocomplete
+      label="Search users"
+      noFilter
+      loading={loading}
+      items={items}
+      onSearchChange={async q => {
+        setLoading(true)
+        setItems(await searchUsers(q))
+        setLoading(false)
+      }}
+    />
+  )
+}`,
+  },
 }
